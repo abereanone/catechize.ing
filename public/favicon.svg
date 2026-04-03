@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="favicon-title">
+  <title id="favicon-title">Catechize.ing favicon</title>
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="#244431" />
+  <rect x="6.5" y="6.5" width="51" height="51" rx="13.5" fill="none" stroke="#8FBC8A" stroke-opacity="0.45" stroke-width="1.5" />
+  <text
+    x="32"
+    y="41"
+    text-anchor="middle"
+    fill="#F2F8F0"
+    font-family="Palatino Linotype, Book Antiqua, Georgia, serif"
+    font-size="34"
+    font-weight="700"
+  >
+    C
+  </text>
+</svg>
