@@ -1,0 +1,300 @@
+---
+import NavBar from "@/components/NavBar.astro";
+import Footer from "@/components/Footer.astro";
+import { siteSettings } from "@/config/siteSettings";
+
+const branding = siteSettings.branding;
+const {
+  title = branding.siteName,
+  description = branding.description,
+  openGraph: pageOpenGraph,
+} = Astro.props;
+const analyticsId = siteSettings.integrations.googleAnalyticsId;
+const openGraphDefaults = siteSettings.openGraph ?? {};
+const openGraphProps = pageOpenGraph ?? {};
+const requestPath = `${Astro.url?.pathname ?? "/"}${Astro.url?.search ?? ""}`;
+const baseSiteUrl = Astro.site ?? openGraphDefaults.url;
+const resolveAbsoluteUrl = (value?: string | null) => {
+  if (!value) {
+    return undefined;
+  }
+  if (/^https?:\/\//i.test(value)) {
+    return value;
+  }
+  if (!baseSiteUrl) {
+    return value;
+  }
+  try {
+    return new URL(value, baseSiteUrl).toString();
+  } catch {
+    return value;
+  }
+};
+const defaultPageUrl = baseSiteUrl
+  ? (() => {
+      try {
+        return new URL(requestPath, baseSiteUrl).toString();
+      } catch {
+        return baseSiteUrl;
+      }
+    })()
+  : Astro.url?.toString() ?? openGraphDefaults.url;
+const ogUrl =
+  openGraphProps.url !== undefined
+    ? resolveAbsoluteUrl(openGraphProps.url)
+    : defaultPageUrl ?? openGraphDefaults.url;
+const ogTitle = openGraphProps.title ?? title ?? openGraphDefaults.title ?? branding.siteName;
+const ogDescription =
+  openGraphProps.description ?? description ?? openGraphDefaults.description ?? branding.description;
+const ogType = openGraphProps.type ?? openGraphDefaults.type ?? "website";
+const ogImage = resolveAbsoluteUrl(openGraphProps.image ?? openGraphDefaults.image);
+const ogImageAlt = openGraphProps.imageAlt ?? openGraphDefaults.imageAlt ?? branding.tagline;
+const twitterCard = openGraphProps.twitterCard ?? openGraphDefaults.twitterCard ?? "summary_large_image";
+
+const duplicateReport =
+  (
+    globalThis as typeof globalThis & {
+      __QUESTION_DUPLICATE_REPORT__?: {
+        heading: string;
+        entries: Array<{ label: string; value: string; sources: string[] }>;
+      };
+    }
+  ).__QUESTION_DUPLICATE_REPORT__ ?? null;
+
+const duplicateReportPayload = duplicateReport ? JSON.stringify(duplicateReport) : null;
+---
+
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {ogUrl ? <link rel="canonical" href={ogUrl} /> : null}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={ogTitle} />
+    {ogDescription ? <meta property="og:description" content={ogDescription} /> : null}
+    {ogUrl ? <meta property="og:url" content={ogUrl} /> : null}
+    {ogImage ? <meta property="og:image" content={ogImage} /> : null}
+    {ogImageAlt ? <meta property="og:image:alt" content={ogImageAlt} /> : null}
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={ogTitle} />
+    {ogDescription ? <meta name="twitter:description" content={ogDescription} /> : null}
+    {ogImage ? <meta name="twitter:image" content={ogImage} /> : null}
+    {ogImageAlt ? <meta name="twitter:image:alt" content={ogImageAlt} /> : null}
+    <script is:inline>
+      (function () {
+        const STORAGE_KEY = "site-theme";
+        const root = document.documentElement;
+        if (!root) {
+          return;
+        }
+        const readStoredTheme = () => {
+          try {
+            const value = window.localStorage.getItem(STORAGE_KEY);
+            return value === "light" || value === "dark" ? value : null;
+          } catch (error) {
+            return null;
+          }
+        };
+        const prefersDark = () => {
+          if (typeof window.matchMedia !== "function") {
+            return null;
+          }
+          try {
+            return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          } catch (error) {
+            return null;
+          }
+        };
+        const theme = readStoredTheme() || prefersDark() || "light";
+        root.dataset.theme = theme;
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles/theme.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    {analyticsId ? (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}></script>
+        <script
+          is:inline
+          data-analytics-id={analyticsId}
+        >
+          {`(() => {
+            const script = document.currentScript;
+            const id = script?.dataset.analyticsId;
+            if (!id) {
+              return;
+            }
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', id);
+          })();`}
+        </script>
+      </>
+    ) : null}
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  </head>
+
+  <body>
+    <NavBar />
+    <main>
+      <slot /> <!-- Your page-specific content -->
+    </main>
+    <Footer />
+
+    {duplicateReportPayload ? (
+      <script
+        is:inline
+        data-duplicate-report={duplicateReportPayload}
+      >
+        (function () {
+          const script = document.currentScript;
+          if (!script) {
+            return;
+          }
+
+          let report;
+          try {
+            report = JSON.parse(script.dataset.duplicateReport || "");
+          } catch (error) {
+            console.error("Duplicate question metadata: unable to parse payload", error);
+            return;
+          }
+
+          if (!report || !Array.isArray(report.entries) || report.entries.length === 0) {
+            return;
+          }
+
+          console.groupCollapsed(report.heading || "Duplicate question metadata detected");
+          for (const entry of report.entries) {
+            const intro = `${entry.label} "${entry.value}" appears in:`;
+            console.warn(intro);
+            if (Array.isArray(entry.sources)) {
+              for (const source of entry.sources) {
+                console.warn(`  - ${source}`);
+              }
+            }
+          }
+          console.groupEnd();
+        })();
+      </script>
+    ) : null}
+
+    <script is:inline>
+      (function () {
+        const STORAGE_KEY = "site-theme";
+        const root = document.documentElement;
+        if (!root) {
+          return;
+        }
+
+        const supportsStorage = (() => {
+          try {
+            const testKey = "__theme_test__";
+            window.localStorage.setItem(testKey, "1");
+            window.localStorage.removeItem(testKey);
+            return true;
+          } catch (error) {
+            return false;
+          }
+        })();
+
+        const readStoredTheme = () => {
+          if (!supportsStorage) {
+            return null;
+          }
+          try {
+            const value = window.localStorage.getItem(STORAGE_KEY);
+            return value === "light" || value === "dark" ? value : null;
+          } catch (error) {
+            return null;
+          }
+        };
+
+        const writeStoredTheme = (theme) => {
+          if (!supportsStorage) {
+            return;
+          }
+          try {
+            window.localStorage.setItem(STORAGE_KEY, theme);
+          } catch (error) {
+            // ignore
+          }
+        };
+
+        const prefersDark = () => {
+          if (typeof window.matchMedia !== "function") {
+            return null;
+          }
+          try {
+            return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          } catch (error) {
+            return null;
+          }
+        };
+
+        const updateButtons = (theme) => {
+          document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+            button.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+            const label = button.querySelector("[data-theme-toggle-label]");
+            if (label) {
+              label.textContent = theme === "dark" ? "Light" : "Dark";
+            }
+            const icon = button.querySelector("[data-theme-toggle-icon]");
+            if (icon) {
+              icon.textContent = theme === "dark" ? "☀️" : "🌙";
+            }
+          });
+        };
+
+        const applyTheme = (theme, persist = true) => {
+          const next = theme === "dark" ? "dark" : "light";
+          root.dataset.theme = next;
+          if (persist) {
+            writeStoredTheme(next);
+          }
+          updateButtons(next);
+          return next;
+        };
+
+        const toggleTheme = () => {
+          const next = root.dataset.theme === "dark" ? "light" : "dark";
+          applyTheme(next);
+        };
+
+        const init = () => {
+          const stored = readStoredTheme();
+          const initial = stored || (prefersDark() === "dark" ? "dark" : "light");
+          applyTheme(initial, false);
+
+          document.addEventListener("click", (event) => {
+            const element = event.target instanceof Element ? event.target.closest("[data-theme-toggle]") : null;
+            if (!element) {
+              return;
+            }
+            event.preventDefault();
+            toggleTheme();
+          });
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", init);
+        } else {
+          init();
+        }
+      })();
+    </script>
+  </body>
+</html>

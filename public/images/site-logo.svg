@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 220" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">Catechize.ing</title>
+  <desc id="logo-desc">Transparent wordmark logo for Catechize.ing.</desc>
+  <g fill="#f2f8f0">
+    <text
+      x="50%"
+      y="108"
+      text-anchor="middle"
+      font-family="Palatino Linotype, Book Antiqua, Georgia, Times New Roman, serif"
+      font-size="88"
+      font-weight="700"
+      letter-spacing="1.5"
+    >
+      Catechize.ing
+    </text>
+    <path d="M120 154h580" fill="none" stroke="#f2f8f0" stroke-width="4" stroke-linecap="round" opacity="0.78" />
+    <path d="M225 154c18-16 39-24 63-24s45 8 63 24" fill="none" stroke="#f2f8f0" stroke-width="3" stroke-linecap="round" opacity="0.38" />
+    <path d="M469 154c18-16 39-24 63-24s45 8 63 24" fill="none" stroke="#f2f8f0" stroke-width="3" stroke-linecap="round" opacity="0.38" />
+  </g>
+</svg>

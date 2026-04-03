@@ -1,0 +1,55 @@
+---
+import { getPublishedQuestions } from "@/lib/questions";
+import { siteSettings } from "@/config/siteSettings";
+
+const questions = getPublishedQuestions().filter((question) => question.published);
+const entries = questions.map((question) => ({
+  id: typeof question.id === "number" ? question.id : null,
+  slug: question.slug,
+  groupCodes: Array.isArray(question.groupCodes) ? question.groupCodes : [],
+}));
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Random Question | {siteSettings.branding.siteName}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <script type="application/json" id="random-entries" set:html={JSON.stringify(entries)}></script>
+    <script is:inline>
+      (function () {
+        const container = document.getElementById("random-entries");
+        if (!container) {
+          window.location.href = "/";
+          return;
+        }
+        let randomEntries;
+        try {
+          randomEntries = JSON.parse(container.textContent || "[]");
+        } catch (error) {
+          randomEntries = [];
+        }
+        if (!Array.isArray(randomEntries) || !randomEntries.length) {
+          window.location.href = "/";
+          return;
+        }
+        const random = randomEntries[Math.floor(Math.random() * randomEntries.length)];
+        if (!random) {
+          window.location.href = "/";
+          return;
+        }
+        const codes = Array.isArray(random.groupCodes) ? random.groupCodes : [];
+        const target =
+          codes.length && typeof random.id === "number"
+            ? `/questions/${codes[0]}${random.id}`
+            : typeof random.id === "number"
+              ? `/questions/${random.id}`
+              : `/questions/${random.slug}`;
+        window.location.replace(target);
+      })();
+    </script>
+  </body>
+</html>

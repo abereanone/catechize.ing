@@ -1,0 +1,146 @@
+---
+import { siteSettings } from "@/config/siteSettings";
+
+const version = siteSettings.version;
+const branding = siteSettings.branding;
+const logoSrc = branding.logoPath;
+const logoAlt = branding.logoAlt || `${branding.siteName} logo`;
+---
+
+<header class="navbar">
+  <a href="/" class="logo">
+    <img src={logoSrc} alt={logoAlt} />
+  </a>
+
+  <nav class="navbar-links">
+    <a href="/">Home</a>
+    <a href="/resources">Resources</a>
+    <a href="/about">About</a>
+    <a href="/search">Search</a>
+  </nav>
+
+  <button
+    class="theme-toggle"
+    type="button"
+    data-theme-toggle
+    aria-pressed="false"
+    aria-label="Toggle color theme"
+  >
+    <span class="theme-toggle-icon" aria-hidden="true" data-theme-toggle-icon>🌙</span>
+    <span class="theme-toggle-label" data-theme-toggle-label>Dark</span>
+  </button>
+
+  <span class="build-version" data-build-version={version} aria-hidden="true"></span>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.3rem 0.9rem;
+    background-color: var(--color-nav-bg);
+    color: var(--color-nav-text);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  .logo img {
+    height: 150px;
+    width: auto;
+    filter: var(--logo-filter);
+  }
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+  }
+
+  .navbar-links a {
+    text-decoration: none;
+    color: var(--color-nav-text);
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 0.01em;
+  }
+
+  .navbar-links a:hover {
+    text-decoration: underline;
+  }
+
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--surface-border);
+    background: transparent;
+    color: var(--color-nav-text);
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .theme-toggle:hover,
+  .theme-toggle:focus-visible {
+    background: var(--surface-bg-muted);
+    border-color: var(--surface-border-strong);
+    outline: none;
+  }
+
+  .theme-toggle-icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .build-version {
+    display: inline-block;
+    font-size: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.25rem 0.85rem;
+      gap: 0.5rem;
+    }
+
+    .logo img {
+      height: 58px;
+      filter: var(--logo-filter);
+    }
+
+    .navbar-links {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-left: 0;
+      flex-wrap: wrap;
+    }
+
+    .navbar-links a {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .theme-toggle {
+      margin-left: 0;
+      padding: 0.3rem 0.65rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>

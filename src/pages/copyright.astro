@@ -1,0 +1,50 @@
+﻿---
+import Main from "@/layouts/Main.astro";
+import BibleReferencesScript from "@/components/BibleReferencesScript.astro";
+import { siteSettings } from "@/config/siteSettings";
+
+const siteName = siteSettings.branding.siteName;
+---
+
+<Main title={`Copyright | ${siteName}`}>
+  <section data-bible-autolink>
+    <h1>Copyright</h1>
+
+    <h2>Matthew 10:8 "...Freely you have received; freely give."</h2>
+
+    <p>
+      Unless otherwise stated all of our website and its content is within the Public Domain and can be
+      used by anyone without restriction. No attribution is necessary but it's a kind thing to do.
+      Feel free to translate or copy or share.
+    </p>
+
+    <p>
+      To avoid confusion, we ask that you do not use the {siteName} branding or logo for
+      adaptations not associated with us (unless such use is covered under fair-use laws).
+    </p>
+
+    <p>
+      Our ministry seeks to abide by and uphold the
+      <a href="https://thedoreanprinciple.org" target="_blank" rel="noopener noreferrer">Dorean Principle</a>.
+    </p>
+
+    <p>
+      Learn more about the importance of freely giving of ministry resources at
+      <a href="https://SellingJesus.org" target="_blank" rel="noopener noreferrer">Selling Jesus</a>.
+    </p>
+
+    <p>
+      Learn more about the importance of removing all copyright restrictions from Christian resources at
+      <a href="https://copy.church" target="_blank" rel="noopener noreferrer">Let's copy, church</a>.
+    </p>
+
+    <h2>Licensing</h2>
+
+    <p>
+      For any content on this website that is subject to copyright protection, please contact the original
+      owner of the copyrighted material regarding licensing.
+    </p>
+  </section>
+
+  <BibleReferencesScript />
+</Main>

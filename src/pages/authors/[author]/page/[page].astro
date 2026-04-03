@@ -1,0 +1,94 @@
+---
+import Main from "@/layouts/Main.astro";
+import QuestionFeed from "@/components/QuestionFeed.astro";
+import { findAuthor, getQuestionsByAuthor, listAuthors, paginateQuestions } from "@/lib/questions";
+import { siteSettings } from "@/config/siteSettings";
+
+if (!siteSettings.enablePagination) {
+  throw new Error("Pagination is disabled.");
+}
+
+export function getStaticPaths() {
+  if (!siteSettings.enablePagination) {
+    return [];
+  }
+
+  const perPage = siteSettings.questionsPerPage;
+  const paths = [];
+
+  listAuthors().forEach((author) => {
+    const questions = getQuestionsByAuthor(author.id);
+    const totalPages = Math.max(1, Math.ceil(questions.length / perPage));
+
+    for (let pageIndex = 2; pageIndex <= totalPages; pageIndex += 1) {
+      paths.push({
+        params: { author: author.id, page: String(pageIndex) },
+      });
+    }
+  });
+
+  return paths;
+}
+
+const { author, page } = Astro.params;
+
+const activeAuthor = findAuthor(author);
+
+if (!activeAuthor) {
+  throw new Error(`Author not found for slug "${author}".`);
+}
+
+const pageNumber = Number.parseInt(Array.isArray(page) ? page[0] : page ?? "", 10);
+
+if (!Number.isInteger(pageNumber) || pageNumber < 1) {
+  throw new Error(`Invalid page "${page}".`);
+}
+
+const matchingQuestions = getQuestionsByAuthor(activeAuthor.id);
+const paginationResult = paginateQuestions(matchingQuestions, pageNumber, siteSettings.questionsPerPage);
+
+if (paginationResult.currentPage !== pageNumber) {
+  throw new Error(`Page "${pageNumber}" is out of range.`);
+}
+
+const pagination = {
+  currentPage: paginationResult.currentPage,
+  pageCount: paginationResult.pageCount,
+  basePath: `/authors/${activeAuthor.id}`,
+  pageSegment: "page",
+  totalItems: paginationResult.totalItems,
+  startIndex: paginationResult.startIndex,
+  endIndex: paginationResult.endIndex,
+};
+---
+
+<Main title={`${activeAuthor.name} Questions - Page ${pagination.currentPage}`}>
+  <QuestionFeed
+    title="Questions & Answers"
+    questions={paginationResult.items}
+    pagination={pagination}
+  >
+    <fragment slot="header">
+      <div class="author-header">
+        <h1 class="page-title">Questions &amp; Answers</h1>
+        <p class="feed-subtitle">
+          By:{" "}
+          {activeAuthor.url ? (
+            <a
+              class="author-name-link"
+              href={activeAuthor.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={activeAuthor.url}
+            >
+              {activeAuthor.name}
+            </a>
+          ) : (
+            activeAuthor.name
+          )}
+        </p>
+        {activeAuthor.bio ? <p class="author-bio">{activeAuthor.bio}</p> : null}
+      </div>
+    </fragment>
+  </QuestionFeed>
+</Main>

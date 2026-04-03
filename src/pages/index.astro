@@ -1,0 +1,61 @@
+---
+import Main from "@/layouts/Main.astro";
+import QuestionFeed from "@/components/QuestionFeed.astro";
+import { getPublishedQuestions, listCategories, paginateQuestions } from "@/lib/questions";
+import { siteSettings } from "@/config/siteSettings";
+
+const allQuestions = getPublishedQuestions();
+const categories = listCategories();
+const enablePagination = siteSettings.enablePagination;
+const perPage = siteSettings.questionsPerPage;
+const siteName = siteSettings.branding.siteName;
+const paginationResult = enablePagination
+  ? paginateQuestions(allQuestions, 1, perPage)
+  : {
+      items: allQuestions,
+      currentPage: 1,
+      pageCount: 1,
+    };
+
+const questions = paginationResult.items;
+const pagination =
+  enablePagination && paginationResult.pageCount > 1
+    ? {
+        currentPage: paginationResult.currentPage,
+        pageCount: paginationResult.pageCount,
+        basePath: "/",
+        pageSegment: "page",
+        totalItems: paginationResult.totalItems,
+        startIndex: paginationResult.startIndex,
+        endIndex: paginationResult.endIndex,
+      }
+    : null;
+---
+
+<Main title={`Questions & Answers | ${siteName}`}>
+  <QuestionFeed
+    title="Questions & Answers"
+    questions={questions}
+    pagination={pagination ?? undefined}
+  >
+    <fragment slot="header">
+      <div class="feed-header">
+        <h1 class="page-title">Questions &amp; Answers</h1>
+        {categories.length ? (
+          <div class="category-meta">
+            <a class="category-chip" href="/categories">Categories</a>
+            <ul class="category-list">
+              {categories.map((category) => (
+                <li>
+                  <a class="category-chip" href={`/categories/${category.id}`}>
+                    {category.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </div>
+    </fragment>
+  </QuestionFeed>
+</Main>

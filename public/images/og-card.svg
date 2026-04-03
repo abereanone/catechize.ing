@@ -1,0 +1,65 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="1120" y2="590" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#17231A" />
+      <stop offset="55%" stop-color="#0F1712" />
+      <stop offset="100%" stop-color="#0A120D" />
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(230 120) rotate(29) scale(360 220)">
+      <stop offset="0%" stop-color="#8FBC8A" stop-opacity="0.24" />
+      <stop offset="100%" stop-color="#8FBC8A" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(970 520) rotate(-18) scale(330 210)">
+      <stop offset="0%" stop-color="#315942" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="#315942" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" rx="40" fill="url(#bg)" />
+  <rect width="1200" height="630" rx="40" fill="url(#glowA)" />
+  <rect width="1200" height="630" rx="40" fill="url(#glowB)" />
+
+  <path d="M96 90H1104" stroke="rgba(143,188,138,0.18)" stroke-width="2" stroke-linecap="round" />
+  <path d="M96 540H1104" stroke="rgba(143,188,138,0.18)" stroke-width="2" stroke-linecap="round" />
+
+  <text
+    x="600"
+    y="235"
+    text-anchor="middle"
+    fill="#F2F8F0"
+    font-family="Palatino Linotype, Book Antiqua, Georgia, Times New Roman, serif"
+    font-size="104"
+    font-weight="700"
+    letter-spacing="1.5"
+  >
+    Catechize.ing
+  </text>
+
+  <path d="M265 276H935" stroke="#8FBC8A" stroke-width="4" stroke-linecap="round" opacity="0.72" />
+  <path d="M368 276C390 256 420 246 456 246C492 246 522 256 544 276" stroke="#B3D2AC" stroke-width="3" stroke-linecap="round" opacity="0.34" />
+  <path d="M656 276C678 256 708 246 744 246C780 246 810 256 832 276" stroke="#B3D2AC" stroke-width="3" stroke-linecap="round" opacity="0.34" />
+
+  <text
+    x="600"
+    y="372"
+    text-anchor="middle"
+    fill="#DCE7DC"
+    font-family="Source Sans 3, Segoe UI, Arial, sans-serif"
+    font-size="42"
+    letter-spacing="0.8"
+  >
+    Questions &amp; Answers from reformed catechisms
+  </text>
+
+  <text
+    x="600"
+    y="442"
+    text-anchor="middle"
+    fill="#95A697"
+    font-family="Source Sans 3, Segoe UI, Arial, sans-serif"
+    font-size="28"
+    letter-spacing="2.4"
+  >
+    STUDY • SEARCH • SHARE
+  </text>
+</svg>

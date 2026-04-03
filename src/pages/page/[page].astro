@@ -1,0 +1,84 @@
+---
+import Main from "@/layouts/Main.astro";
+import QuestionFeed from "@/components/QuestionFeed.astro";
+import { getPublishedQuestions, listCategories, paginateQuestions } from "@/lib/questions";
+import { siteSettings } from "@/config/siteSettings";
+
+if (!siteSettings.enablePagination) {
+  throw new Error("Pagination is disabled.");
+}
+
+const perPage = siteSettings.questionsPerPage;
+const allQuestions = getPublishedQuestions();
+const categories = listCategories();
+
+const { page } = Astro.params;
+const pageNumber = Number.parseInt(Array.isArray(page) ? page[0] : page ?? "", 10);
+
+if (!Number.isInteger(pageNumber) || pageNumber < 1) {
+  throw new Error(`Invalid page number "${page}".`);
+}
+
+const paginationResult = paginateQuestions(allQuestions, pageNumber, perPage);
+
+if (paginationResult.currentPage !== pageNumber) {
+  throw new Error(`Page "${pageNumber}" is out of range.`);
+}
+
+const pagination = {
+  currentPage: paginationResult.currentPage,
+  pageCount: paginationResult.pageCount,
+  basePath: "/",
+  pageSegment: "page",
+  totalItems: paginationResult.totalItems,
+  startIndex: paginationResult.startIndex,
+  endIndex: paginationResult.endIndex,
+};
+
+export function getStaticPaths() {
+  if (!siteSettings.enablePagination) {
+    return [];
+  }
+
+  const perPageValue = siteSettings.questionsPerPage;
+  const questionCount = getPublishedQuestions().length;
+  const totalPages = Math.max(1, Math.ceil(questionCount / perPageValue));
+
+  const paths = [];
+  for (let pageIndex = 2; pageIndex <= totalPages; pageIndex += 1) {
+    paths.push({
+      params: { page: String(pageIndex) },
+    });
+  }
+
+  return paths;
+}
+---
+
+<Main title={`Questions & Answers - Page ${pagination.currentPage}`}>
+  <QuestionFeed
+    title="Questions & Answers"
+    questions={paginationResult.items}
+    pagination={pagination}
+  >
+    <fragment slot="header">
+      <div class="feed-header">
+        <h1 class="page-title">Questions &amp; Answers</h1>
+        {categories.length ? (
+          <div class="category-meta">
+            <a class="category-chip" href="/categories">Categories</a>
+            <ul class="category-list">
+              {categories.map((category) => (
+                <li>
+                  <a class="category-chip" href={`/categories/${category.id}`}>
+                    {category.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+      </div>
+    </fragment>
+  </QuestionFeed>
+</Main>

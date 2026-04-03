@@ -1,0 +1,30 @@
+---
+import Main from "@/layouts/Main.astro";
+import BibleReferencesScript from "@/components/BibleReferencesScript.astro";
+import { siteSettings } from "@/config/siteSettings";
+
+const siteName = siteSettings.branding.siteName;
+---
+
+<Main title={`Bible Reference Test | ${siteName}`}>
+  <section class="test-content" data-bible-autolink>
+    <h1>Scripture Hover Test</h1>
+    <p>
+      This page is used to verify the Bible reference parser. Consider how Romans 8:1 declares that
+      there is now no condemnation for those who are in Christ Jesus, and how Psalm 23:1-3 comforts
+      weary saints. Even brief exhortations such as 1 Thessalonians 5:16-18 and Jude 1:24 remind us of
+      the joyful perseverance and preservation granted to believers.
+    </p>
+    <p>
+      We can also reference smaller works like Obadiah 1:3 or 3 John 4 without specifying a chapter.
+      Longer quotations such as Isaiah 53:4—6 show how the Suffering Servant carries our sorrows,
+      while Revelation 21:1-4 points forward to the consummation of all things in Christ.
+    </p>
+    <p>
+      If this tool works reliably, it can be applied to the full Q&amp;A library so that readers can
+      quickly inspect passages like John 3:16, 3John 8 or Genesis 1:27 as they study abolitionist reasoning.
+    </p>
+  </section>
+
+  <BibleReferencesScript />
+</Main>

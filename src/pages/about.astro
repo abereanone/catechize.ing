@@ -1,0 +1,111 @@
+﻿---
+import Main from "@/layouts/Main.astro";
+import BibleReferencesScript from "@/components/BibleReferencesScript.astro";
+import { siteSettings } from "@/config/siteSettings";
+
+const siteName = siteSettings.branding.siteName;
+---
+
+<Main title={`About | ${siteName}`}>
+  <section data-bible-autolink>
+    <h1>About {siteName}</h1>
+    <p>
+      {siteName} exists to serve all of humanity so that we might see the Church of Christ come to a full understanding
+      of the wisdom and knowledge so freely offered to us through the holy scriptures. Our aim it to make it easy for you
+      to practice learning the catechisms, and to quickly find answers to real-life questions.
+    </p>
+
+    <p>
+      {siteName} is maintained by followers of Christ who desire to see His bride purified and brought to full
+      maturity. All resources are freely offered so that every believer may study, share, and act
+      upon the truth. Our prayer is that these pages would stir repentance where apathy has reigned, embolden
+      redemptive action among God's people, and renew grateful confidence in the gospel--the power of God
+      that compels us to proclaim Christ as Lord over life, law, and love.
+    </p>
+
+    <p>
+      Contact us via email at abereanone (at) pm (dot) me.
+    </p>
+    <p>
+      Donations are never required, but if you want to co-labor with us we will use all the funds for God's
+      glory. We use a secure payment processor called
+      <a href="https://www.zeffy.com/en-US/referral?referredByOrganizationId=4c5e3aa2-763d-407c-973c-19e522a3f5c1" target="blank">Zeffy</a>
+      that does not charge fees to non-profits. You will be prompted to donate to Zeffy as well when you complete your payment. This is optional.
+    </p>
+    <div
+      data-donation-form-root
+      style="margin-top:2rem;padding:1.25rem;border:1px solid var(--card-border);border-radius:18px;background:var(--card-bg);box-shadow:var(--shadow-card);"
+    >
+      <p style="margin-top:0;">
+        The donation form is loaded only when requested to keep third-party content from running by default.
+      </p>
+      <button
+        type="button"
+        data-donation-form-trigger
+        style="padding:0.85rem 1.4rem;border:0;border-radius:999px;background:var(--accent-bg);color:var(--accent-text);font:inherit;font-weight:700;cursor:pointer;"
+      >
+        Show donation form
+      </button>
+      <div
+        data-donation-form-container
+        hidden
+        style="position:relative;overflow:hidden;height:450px;width:100%;margin-top:1.5rem;border-radius:14px;"
+      ></div>
+    </div>
+  </section>
+
+  <BibleReferencesScript />
+  <script is:inline>
+    (() => {
+      const initDonationForm = () => {
+        const root = document.querySelector("[data-donation-form-root]");
+        const trigger = document.querySelector("[data-donation-form-trigger]");
+        const container = document.querySelector("[data-donation-form-container]");
+
+        if (!(root instanceof HTMLElement) || !(trigger instanceof HTMLButtonElement) || !(container instanceof HTMLElement)) {
+          return;
+        }
+
+        let loaded = false;
+
+        trigger.addEventListener("click", () => {
+          if (loaded) {
+            container.hidden = false;
+            container.scrollIntoView({ behavior: "smooth", block: "start" });
+            return;
+          }
+
+          const iframe = document.createElement("iframe");
+          iframe.title = "Donation form powered by Zeffy";
+          iframe.src = "https://www.zeffy.com/embed/donation-form/support-catechizeing";
+          iframe.allowPaymentRequest = true;
+          iframe.setAttribute("allowTransparency", "true");
+          iframe.style.position = "absolute";
+          iframe.style.border = "0";
+          iframe.style.top = "0";
+          iframe.style.left = "0";
+          iframe.style.bottom = "0";
+          iframe.style.right = "0";
+          iframe.style.width = "100%";
+          iframe.style.height = "100%";
+          iframe.style.background = "transparent";
+
+          container.appendChild(iframe);
+          container.hidden = false;
+          trigger.textContent = "Donation form loaded";
+          trigger.disabled = true;
+          trigger.style.opacity = "0.7";
+          trigger.style.cursor = "default";
+          loaded = true;
+          container.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initDonationForm, { once: true });
+      } else {
+        initDonationForm();
+      }
+    })();
+  </script>
+</Main>

@@ -1,0 +1,21 @@
+{
+  "name": "astro-temp",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "build:questions": "node ./scripts/build-questions.mjs",
+    "build:search-index": "node ./scripts/build-questions.mjs",
+    "check:questions": "node ./scripts/check-questions.mjs",
+    "import:catechisms": "node ./scripts/import-catechisms.mjs",
+    "new:question": "node ./scripts/new-question.mjs",
+    "predev": "npm run build:questions",
+    "dev": "astro dev",
+    "prebuild": "npm run build:questions",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.18.1"
+  }
+}

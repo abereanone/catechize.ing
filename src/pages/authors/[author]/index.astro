@@ -1,0 +1,80 @@
+---
+import Main from "@/layouts/Main.astro";
+import QuestionFeed from "@/components/QuestionFeed.astro";
+import { findAuthor, getQuestionsByAuthor, listAuthors, paginateQuestions } from "@/lib/questions";
+import { siteSettings } from "@/config/siteSettings";
+
+export function getStaticPaths() {
+  return listAuthors().map((author) => ({
+    params: { author: author.id },
+  }));
+}
+
+const enablePagination = siteSettings.enablePagination;
+const perPage = siteSettings.questionsPerPage;
+const siteName = siteSettings.branding.siteName;
+
+const { author } = Astro.params;
+const activeAuthor = findAuthor(author);
+
+if (!activeAuthor) {
+  throw new Error(`Author not found for slug "${author}".`);
+}
+
+const matchingQuestions = getQuestionsByAuthor(activeAuthor.id);
+
+const paginationResult = enablePagination
+  ? paginateQuestions(matchingQuestions, 1, perPage)
+  : {
+      items: matchingQuestions,
+      currentPage: 1,
+      pageCount: 1,
+    };
+
+const pagination =
+  enablePagination && paginationResult.pageCount > 1
+    ? {
+        currentPage: paginationResult.currentPage,
+        pageCount: paginationResult.pageCount,
+        basePath: `/authors/${activeAuthor.id}`,
+        pageSegment: "page",
+        totalItems: paginationResult.totalItems,
+        startIndex: paginationResult.startIndex,
+        endIndex: paginationResult.endIndex,
+      }
+    : null;
+---
+
+<Main title={`${activeAuthor.name} Questions - ${siteName}`}>
+  <QuestionFeed
+    title="Questions & Answers"
+    questions={paginationResult.items}
+    pagination={pagination ?? undefined}
+  >
+    <fragment slot="header">
+      <div class="author-header">
+        <h1 class="page-title">Questions &amp; Answers</h1>
+        <p class="feed-subtitle">
+          By:{" "}
+          {activeAuthor.url ? (
+            <a
+              class="author-name-link"
+              href={activeAuthor.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={activeAuthor.url}
+            >
+              {activeAuthor.name}
+            </a>
+          ) : (
+            activeAuthor.name
+          )}
+        </p>
+        {activeAuthor.bio ? <p class="author-bio">{activeAuthor.bio}</p> : null}
+      </div>
+    </fragment>
+    <fragment slot="empty">
+      <p><em>No questions found for this author yet.</em></p>
+    </fragment>
+  </QuestionFeed>
+</Main>

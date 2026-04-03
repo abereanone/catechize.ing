@@ -1,0 +1,50 @@
+---
+import Main from "@/layouts/Main.astro";
+import { siteSettings } from "@/config/siteSettings";
+
+const quickLinks = [
+  { href: "/", label: "Go to the homepage", badge: "" },
+  {
+    href: "/questions/bc-25/",
+    label: "How did Christ, being the Son of God become man?",
+    badge: "#BC25",
+  },
+  {
+    href: "/questions/wsc-105",
+    label: "What do we pray for in the fifth petition?",
+    badge: "#WSC105",
+  },
+  {
+    href: "/questions/wlc-110",
+    label: "What are the reasons annexed to the second commandment, the more to enforce it?",
+    badge: "#WLC110",
+  },
+];
+const siteName = siteSettings.branding.siteName;
+---
+
+<Main title={`Page not found | ${siteName}`}>
+  <section class="stack gap-lg">
+    <h1>Hey, sorry about this, but we could not find that page.</h1>
+    <p>The link may be broken, or the page may have been moved or deleted. Try one of these links below instead!</p>
+
+    <nav aria-label="Helpful links" class="quick-link-nav">
+      <ul class="question-list quick-link-list">
+        {quickLinks.map((link) => (
+          <li>
+            <a class="question-card card-panel" href={link.href}>
+              {link.badge ? <span class="question-id">{link.badge}</span> : null}
+              <span class="question-title">{link.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </section>
+</Main>
+
+<style>
+  nav.quick-link-nav {
+    text-align: left;
+  }
+</style>

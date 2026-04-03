@@ -1,0 +1,52 @@
+---
+import QuestionList from "@/components/QuestionList.astro";
+import Pagination from "@/components/Pagination.astro";
+
+const { title, questions, pagination } = Astro.props;
+const hasQuestions = Array.isArray(questions) && questions.length > 0;
+const showPagination =
+  pagination &&
+  typeof pagination.pageCount === "number" &&
+  typeof pagination.currentPage === "number" &&
+  pagination.pageCount > 1;
+---
+
+<section class="question-feed">
+  <header class="feed-header">
+    <slot name="header">
+      <h1 class="page-title">{title}</h1>
+    </slot>
+  </header>
+
+  {hasQuestions ? (
+    <QuestionList
+      questions={questions}
+      startIndex={pagination && typeof pagination.startIndex === "number" ? pagination.startIndex : 0}
+    />
+  ) : (
+    <div class="card-panel empty-state">
+      <slot name="empty">
+        <p><em>No questions found.</em></p>
+      </slot>
+    </div>
+  )}
+
+  {showPagination ? (
+    <div class="pagination-wrapper">
+      <p class="pagination-summary">
+        Showing{" "}
+        {(pagination.startIndex ?? 0) + 1}
+        {" - "}
+        {Math.min(pagination.endIndex ?? (pagination.startIndex ?? 0), pagination.totalItems ?? 0)}
+        {" of "}
+        {pagination.totalItems ?? 0}
+      </p>
+      <Pagination
+        currentPage={pagination.currentPage}
+        pageCount={pagination.pageCount}
+        basePath={pagination.basePath}
+        pageSegment={pagination.pageSegment}
+      />
+    </div>
+  ) : null}
+</section>

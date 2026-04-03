@@ -1,0 +1,62 @@
+---
+import { siteSettings } from "@/config/siteSettings";
+
+const siteName = siteSettings.branding.siteName;
+const legalText = siteSettings.footer.legalText;
+const legalLinkLabel = siteSettings.footer.legalLinkLabel;
+---
+
+<footer class="site-footer">
+  <div class="footer-search">
+    <a href="/random" class="footer-search-link secondary">Random Answer</a>
+    <a href="/search" class="footer-search-link">Search {siteName}</a>
+  </div>
+  <p>
+    <a href="/about">{siteName}</a> - {legalText}
+    <a href="/copyright">{legalLinkLabel}</a>
+  </p>
+</footer>
+
+<style>
+  .site-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;
+    background: var(--color-footer-bg);
+    color: var(--color-footer-text);
+  }
+
+  .footer-search {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-search {
+    display: inline-flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-search-link {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    background: var(--pill-bg);
+    color: var(--color-footer-text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .footer-search-link.secondary {
+    background: var(--pill-bg-secondary);
+  }
+
+  .footer-search-link:hover {
+    background: var(--pill-bg-hover);
+  }
+
+  .site-footer a {
+    color: var(--color-link);
+  }
+</style>

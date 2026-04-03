@@ -1,0 +1,79 @@
+---
+const {
+  currentPage,
+  pageCount,
+  basePath,
+  pageSegment = "page",
+  labels = { previous: "Previous", next: "Next" },
+} = Astro.props;
+
+const normalizedBase =
+  typeof basePath === "string" && basePath.length
+    ? basePath === "/" || basePath === ""
+      ? "/"
+      : basePath.endsWith("/") && basePath !== "/"
+        ? basePath.slice(0, -1)
+        : basePath
+    : "/";
+
+const totalPages = Number.isFinite(pageCount) ? Math.max(1, Math.floor(pageCount)) : 1;
+const activePage =
+  Number.isFinite(currentPage) && currentPage >= 1
+    ? Math.min(Math.floor(currentPage), totalPages)
+    : 1;
+
+const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+
+function buildHref(page: number): string {
+  if (page <= 1) {
+    return normalizedBase === "" ? "/" : normalizedBase;
+  }
+
+  const prefix = normalizedBase === "/" ? "" : normalizedBase;
+  return `${prefix}/${pageSegment}/${page}`;
+}
+---
+
+{totalPages > 1 ? (
+  <nav class="pagination" aria-label="Pagination">
+    <ul>
+      <li>
+        {activePage > 1 ? (
+          <a class="pagination-link prev" href={buildHref(activePage - 1)}>
+            {labels.previous}
+          </a>
+        ) : (
+          <span class="pagination-link prev disabled" aria-disabled="true">
+            {labels.previous}
+          </span>
+        )}
+      </li>
+
+      {pages.map((page) => (
+        <li>
+          {page === activePage ? (
+            <span class="pagination-link current" aria-current="page">
+              {page}
+            </span>
+          ) : (
+            <a class="pagination-link" href={buildHref(page)}>
+              {page}
+            </a>
+          )}
+        </li>
+      ))}
+
+      <li>
+        {activePage < totalPages ? (
+          <a class="pagination-link next" href={buildHref(activePage + 1)}>
+            {labels.next}
+          </a>
+        ) : (
+          <span class="pagination-link next disabled" aria-disabled="true">
+            {labels.next}
+          </span>
+        )}
+      </li>
+    </ul>
+  </nav>
+) : null}

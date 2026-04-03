@@ -1,0 +1,44 @@
+---
+import Main from "@/layouts/Main.astro";
+import { listAuthors } from "@/lib/questions";
+import { siteSettings } from "@/config/siteSettings";
+
+const authors = listAuthors();
+const siteName = siteSettings.branding.siteName;
+---
+
+<Main title={`Resources | ${siteName}`}>
+  <h1>Resources & Contributors</h1>
+  <p>Here are some additional resources you may benefit from, as well as a list of the authors of the answers on this site.</p>
+  {authors.length ? (
+    <ul class="resource-grid">
+      {authors.map((author) => (
+        <li class="resource-card card-panel">
+          <h2>{author.name}</h2>
+          {author.bio ? <p class="resource-bio">{author.bio}</p> : null}
+
+          <div class="resource-actions">
+            {typeof author.count === "number" && author.count > 0 ? (
+              <a class="resource-link" href={`/authors/${author.id}`}>
+                View Answers ({author.count})
+              </a>
+            ) : null}
+            {author.url ? (
+              <a
+                class="resource-link"
+                href={author.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit website
+              </a>
+            ) : null}
+          </div>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p><em>No resources available yet.</em></p>
+  )}
+  <p>It goes without saying that we do not <em>necessarily</em> agree with everything that every ministry we recommend teaches or does.</p>
+</Main>

@@ -1,0 +1,80 @@
+---
+const {
+  id = "inline-search-box",
+  label = "Search questions",
+  placeholder = "Search questions or topics...",
+} = Astro.props;
+---
+
+<form class="inline-search-box" role="search" action="/search" method="get">
+  <label class="sr-only" for={id}>{label}</label>
+  <input
+    id={id}
+    type="search"
+    name="q"
+    placeholder={placeholder}
+    autocomplete="off"
+    spellcheck="false"
+  />
+  <button type="submit">Search</button>
+</form>
+
+<style>
+  .inline-search-box {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    align-items: center;
+  }
+
+  .inline-search-box input[type="search"] {
+    flex: 1;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.65rem;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1rem;
+  }
+
+  .inline-search-box input[type="search"]::placeholder {
+    color: var(--input-placeholder);
+  }
+
+  .inline-search-box button {
+    border: none;
+    border-radius: 0.65rem;
+    padding: 0.65rem 1.25rem;
+    background: var(--accent-bg);
+    color: var(--accent-text);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .inline-search-box button:hover {
+    background: var(--accent-bg-hover);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  @media (max-width: 600px) {
+    .inline-search-box {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .inline-search-box button {
+      width: 100%;
+    }
+  }
+</style>

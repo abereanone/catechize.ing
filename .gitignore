@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# Astro build output
+dist/
+.astro/
+src/generated/questions.json
+public/assets/search-index.json
+
+# environment files
+.env
+.env.*
+
+# system files
+.DS_Store
+Thumbs.db
+
+# random stuff not needed
+devserver*.err
+devserver*.log

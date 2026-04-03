@@ -1,0 +1,70 @@
+---
+import Main from "@/layouts/Main.astro";
+import QuestionFeed from "@/components/QuestionFeed.astro";
+import {
+  findCategory,
+  getPublishedQuestions,
+  listCategories,
+  paginateQuestions,
+} from "@/lib/questions";
+import { siteSettings } from "@/config/siteSettings";
+
+export function getStaticPaths() {
+  return listCategories().map((category) => ({
+    params: { category: category.id },
+  }));
+}
+
+const enablePagination = siteSettings.enablePagination;
+const perPage = siteSettings.questionsPerPage;
+const siteName = siteSettings.branding.siteName;
+
+const { category } = Astro.params;
+const activeCategory = findCategory(category);
+
+if (!activeCategory) {
+  throw new Error(`Category not found for slug "${category}".`);
+}
+
+const matchingQuestions = getPublishedQuestions(activeCategory.id);
+const paginationResult = enablePagination
+  ? paginateQuestions(matchingQuestions, 1, perPage)
+  : {
+      items: matchingQuestions,
+      currentPage: 1,
+      pageCount: 1,
+    };
+
+const pagination =
+  enablePagination && paginationResult.pageCount > 1
+    ? {
+        currentPage: paginationResult.currentPage,
+        pageCount: paginationResult.pageCount,
+        basePath: `/categories/${activeCategory.id}`,
+        pageSegment: "page",
+        totalItems: paginationResult.totalItems,
+        startIndex: paginationResult.startIndex,
+        endIndex: paginationResult.endIndex,
+      }
+    : null;
+---
+
+<Main title={`${activeCategory.name} Questions - ${siteName}`}>
+  <QuestionFeed
+    title="Questions & Answers"
+    questions={paginationResult.items}
+    pagination={pagination ?? undefined}
+  >
+    <fragment slot="header">
+      <div class="category-header">
+        <h1 class="page-title">Questions &amp; Answers</h1>
+        <p class="feed-subtitle">
+          In the <a class="category-parent-link" href="/categories">Category</a>: {activeCategory.name}
+        </p>
+      </div>
+    </fragment>
+    <fragment slot="empty">
+      <p><em>No questions found in this category yet.</em></p>
+    </fragment>
+  </QuestionFeed>
+</Main>

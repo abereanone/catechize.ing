@@ -1,0 +1,776 @@
+---
+import Main from "@/layouts/Main.astro";
+import type { Question } from "@/lib/questions";
+import {
+  findQuestion,
+  findQuestionByGroupKey,
+  formatQuestionIdentifier,
+  getPublishedQuestions,
+  getQuestionCategories,
+  getRelatedQuestions,
+  getQuestionAuthor,
+  getQuestionsByNumericId,
+  findAuthor,
+} from "@/lib/questions";
+import BibleReferencesScript from "@/components/BibleReferencesScript.astro";
+import InlineSearchBox from "@/components/InlineSearchBox.astro";
+import { siteSettings } from "@/config/siteSettings";
+
+export function getStaticPaths() {
+  return getPublishedQuestions().flatMap((question) => {
+    const entries = [{ params: { slugOrId: question.slug } }];
+    if (typeof question.id === "number") {
+      entries.push({ params: { slugOrId: String(question.id) } });
+      question.groupCodes.forEach((code) => {
+        entries.push({ params: { slugOrId: `${code}${question.id}` } });
+      });
+    }
+    return entries;
+  });
+}
+
+const { slugOrId } = Astro.params;
+
+let question = slugOrId ? findQuestion(slugOrId) : null;
+let activeGroupCode: string | null = null;
+let listingMatches: Question[] | null = null;
+let listingId: number | null = null;
+
+if (!question && slugOrId) {
+  const groupMatch = findQuestionByGroupKey(slugOrId);
+  if (groupMatch) {
+    question = groupMatch;
+    activeGroupCode = resolveGroupCodeFromParam(slugOrId, groupMatch);
+  } else {
+    const maybeId = Number(slugOrId);
+    if (!Number.isNaN(maybeId)) {
+      const matches = getQuestionsByNumericId(maybeId);
+      if (matches.length === 1) {
+        question = matches[0];
+        const codes = Array.isArray(question.groupCodes) ? question.groupCodes : [];
+        activeGroupCode = codes.length ? codes[0] : null;
+      } else if (matches.length) {
+        listingMatches = matches;
+        listingId = maybeId;
+      }
+    }
+  }
+}
+
+if (!question && !listingMatches) {
+  throw new Error(`Question not found for identifier "${slugOrId}".`);
+}
+
+const siteName = siteSettings.branding.siteName;
+const showAuthors = siteSettings.showAuthor;
+const hideAnswersByDefault = siteSettings.hideAnswersByDefault;
+
+let questionSlug = "";
+let useIdLinks = false;
+let questionCategories: ReturnType<typeof getQuestionCategories> = [];
+let author = null;
+let showAuthorCard = false;
+let questionNumber: number | null = null;
+let questionIdentifierLabel: string | null = null;
+let previousQuestion: Question | null = null;
+let nextQuestion: Question | null = null;
+let questionGroupCodes: string[] = [];
+const allPublishedQuestions = getPublishedQuestions();
+
+if (question) {
+  questionSlug = question.slug;
+  questionCategories = getQuestionCategories(question);
+  author = getQuestionAuthor(question);
+  showAuthorCard = showAuthors && !question.suppressAuthor && author;
+  questionGroupCodes = Array.isArray(question.groupCodes) ? [...question.groupCodes] : [];
+
+  if (!activeGroupCode && questionGroupCodes.length === 1) {
+    activeGroupCode = questionGroupCodes[0];
+  }
+
+  const baseQuestions = activeGroupCode
+    ? allPublishedQuestions.filter((entry) => (entry.groupCodes ?? []).includes(activeGroupCode!))
+    : allPublishedQuestions;
+
+  const currentIndex = baseQuestions.findIndex((entry) => entry.slug === question.slug);
+  const fallbackIndex = currentIndex + 1;
+
+  questionNumber =
+    typeof question.id === "number"
+      ? question.id
+      : fallbackIndex > 0
+        ? fallbackIndex
+        : null;
+
+  questionIdentifierLabel = formatQuestionIdentifier(question, {
+    groupCode: activeGroupCode,
+    fallback: questionNumber,
+  });
+
+  useIdLinks = !activeGroupCode && typeof question.id === "number" && slugOrId === String(question.id);
+  previousQuestion = currentIndex > 0 ? baseQuestions[currentIndex - 1] : null;
+  nextQuestion = currentIndex >= 0 && currentIndex < baseQuestions.length - 1 ? baseQuestions[currentIndex + 1] : null;
+}
+
+const showQuestionId = siteSettings.showQuestionId && questionIdentifierLabel !== null;
+
+const buildQuestionHref = (target: typeof question | null) => {
+  if (!target) return "#";
+  if (activeGroupCode && typeof target.id === "number" && (target.groupCodes ?? []).includes(activeGroupCode)) {
+    return `/questions/${activeGroupCode}${target.id}`;
+  }
+  if (!activeGroupCode && useIdLinks && typeof target.id === "number") {
+    return `/questions/${target.id}`;
+  }
+  return `/questions/${target.slug}`;
+};
+
+const buildQuestionSnippet = (text: string | null, maxLength = 60) => {
+  if (!text) {
+    return null;
+  }
+  const normalized = text.replace(/\s+/g, " ").trim();
+  if (!normalized) {
+    return null;
+  }
+  if (normalized.length <= maxLength) {
+    return normalized;
+  }
+  return `${normalized.slice(0, maxLength).trim()}…`;
+};
+
+const listingItems = listingMatches
+  ? [...listingMatches].sort((a, b) => {
+      const codeA = (Array.isArray(a.groupCodes) && a.groupCodes[0]) ? String(a.groupCodes[0]) : "";
+      const codeB = (Array.isArray(b.groupCodes) && b.groupCodes[0]) ? String(b.groupCodes[0]) : "";
+      if (codeA !== codeB) {
+        return codeA.localeCompare(codeB);
+      }
+      const idA = typeof a.id === "number" ? a.id : Number.MAX_SAFE_INTEGER;
+      const idB = typeof b.id === "number" ? b.id : Number.MAX_SAFE_INTEGER;
+      if (idA !== idB) {
+        return idA - idB;
+      }
+      return a.title.localeCompare(b.title);
+    })
+  : null;
+
+const longAuthor = question && question.longAuthorId ? findAuthor(question.longAuthorId) : null;
+const showLongAuthor = Boolean(question && showAuthors && !question.suppressAuthor && longAuthor && question.longHtml);
+const relatedQuestions = question ? getRelatedQuestions(question) : [];
+const questionSnippet = question ? buildQuestionSnippet(question.excerpt, 60) : null;
+const questionOgDescription =
+  questionSnippet ?? (question ? question.title : null) ?? siteSettings.branding.description;
+const canonicalQuestionPath = question ? `/questions/${question.slug}` : undefined;
+const shareUrl = canonicalQuestionPath
+  ? `${siteSettings.openGraph.url}${canonicalQuestionPath}`
+  : siteSettings.openGraph.url;
+const shareText = question ? question.title : siteSettings.branding.siteName;
+const encodedShareUrl = encodeURIComponent(shareUrl);
+const encodedShareText = encodeURIComponent(shareText);
+const encodedEmailSubject = encodeURIComponent(`Question: ${shareText}`);
+const encodedEmailBody = encodeURIComponent(`${shareText}\n\n${shareUrl}`);
+
+function resolveGroupCodeFromParam(param: string | undefined, target: Question | null): string | null {
+  if (!param || !target || typeof target.id !== "number") {
+    return null;
+  }
+  const codes = Array.isArray(target.groupCodes) ? target.groupCodes : [];
+  if (!codes.length) {
+    return null;
+  }
+  const normalized = param.toUpperCase();
+  for (const code of codes) {
+    const key = `${String(code).toUpperCase()}${target.id}`;
+    if (normalized === key) {
+      return String(code);
+    }
+  }
+  return null;
+}
+
+function getQuestionLink(entry: Question, preferredGroup?: string | null) {
+  if (preferredGroup && entry.groupCodes?.includes(preferredGroup) && typeof entry.id === "number") {
+    return `/questions/${preferredGroup}${entry.id}`;
+  }
+  if (entry.groupCodes?.length && typeof entry.id === "number") {
+    return `/questions/${entry.groupCodes[0]}${entry.id}`;
+  }
+  if (typeof entry.id === "number") {
+    return `/questions/${entry.id}`;
+  }
+  return `/questions/${entry.slug}`;
+}
+
+function getPrimaryGroupCode(entry: Question) {
+  return Array.isArray(entry.groupCodes) && entry.groupCodes.length ? entry.groupCodes[0] : null;
+}
+---
+
+{listingItems ? (
+  <Main title={`Question ${listingId} | ${siteName}`}>
+    <section class="question-hub card-panel">
+      <h1>Question #{listingId}</h1>
+      <p>Multiple answers share this identifier. Choose a version below.</p>
+      <ul class="question-list">
+        {listingItems.map((entry) => {
+          const primaryGroup = Array.isArray(entry.groupCodes) && entry.groupCodes.length ? entry.groupCodes[0] : null;
+          const displayLabel =
+            formatQuestionIdentifier(entry, { groupCode: primaryGroup }) ?? formatQuestionIdentifier(entry, {});
+          const entryCategories = getQuestionCategories(entry);
+          const groupName = entryCategories.find((cat) => cat.groupCode === primaryGroup)?.name ?? null;
+          return (
+            <li>
+              <a class="question-card card-panel" href={getQuestionLink(entry, primaryGroup)}>
+                {displayLabel ? <span class="question-id">#{displayLabel}</span> : null}
+                <span class="question-title">
+                  {entry.title}
+                  {groupName ? <span class="question-group-label"> ({groupName})</span> : null}
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  </Main>
+) : question ? (
+  <Main
+    title={`${question.title} - ${siteName}`}
+    openGraph={{
+      title: question.title,
+      description: questionOgDescription,
+      url: canonicalQuestionPath,
+    }}
+  >
+    {previousQuestion || nextQuestion ? (
+      <nav class="question-top-nav" aria-label="Question navigation">
+        {previousQuestion ? (
+          <a class="question-top-link prev" href={buildQuestionHref(previousQuestion)}>
+            Prev
+          </a>
+        ) : (
+          <span aria-hidden="true" class="question-top-link placeholder" />
+        )}
+
+        <a class="question-top-link random-link" href="/random">Random</a>
+        <div class="question-top-search">
+          <InlineSearchBox
+            id={`question-search-${questionSlug}`}
+            label="Search for another question"
+            placeholder="Search other questions..."
+          />
+        </div>
+
+        {nextQuestion ? (
+          <a class="question-top-link next" href={buildQuestionHref(nextQuestion)}>
+            Next
+          </a>
+        ) : (
+          <span aria-hidden="true" class="question-top-link placeholder" />
+        )}
+      </nav>
+    ) : (
+      <InlineSearchBox
+        id={`question-search-${questionSlug}`}
+        label="Search for another question"
+        placeholder="Search other questions..."
+      />
+    )}
+    <article class="question-article card-panel">
+    <section class="question-header">
+      <h1 class="page-title">{question.title}</h1>
+      <div class="question-meta-row">
+        {showQuestionId ? (
+          <p class="question-meta">Question #{questionIdentifierLabel}</p>
+        ) : (
+          <span />
+        )}
+        <div class="question-share" aria-label="Share this question">
+          <span class="question-share-label">Share</span>
+          <div class="question-share-actions">
+            <a
+              class="question-share-link"
+              href={`https://twitter.com/intent/tweet?text=${encodedShareText}&url=${encodedShareUrl}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on X"
+            >
+              <span aria-hidden="true">𝕏</span>
+            </a>
+            <a
+              class="question-share-link"
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on Facebook"
+            >
+              <span aria-hidden="true">f</span>
+            </a>
+            <a
+              class="question-share-link"
+              href={`mailto:?subject=${encodedEmailSubject}&body=${encodedEmailBody}`}
+              aria-label="Share via email"
+            >
+              <span aria-hidden="true">✉</span>
+            </a>
+            <button
+              type="button"
+              class="question-share-link question-share-copy"
+              data-share-copy
+              data-share-url={shareUrl}
+              aria-label="Copy link"
+            >
+              <span aria-hidden="true">⧉</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {hideAnswersByDefault ? (
+      <div class="question-answer-toggle" data-answer-toggle>
+        <button
+          type="button"
+          class="answer-toggle"
+          data-answer-toggle-button
+          aria-expanded="false"
+        >
+          See answer
+        </button>
+        <div class="question-body" data-answer-content hidden data-bible-autolink set:html={question.answerHtml || "<p><em>Content not found.</em></p>"} />
+      </div>
+    ) : (
+      <div
+        class="question-body"
+        data-bible-autolink
+        set:html={question.answerHtml || "<p><em>Content not found.</em></p>"}
+      />
+    )}
+
+    {question.longHtml ? (
+      <div class="long-explanation" data-long-explanation>
+        <button
+          type="button"
+          class="long-toggle"
+          data-long-toggle
+          aria-expanded="false"
+        >
+          Read the long explanation
+        </button>
+        <div class="long-content" data-long-content hidden data-bible-autolink set:html={question.longHtml} />
+        {showLongAuthor ? (
+          <p class="long-author">
+            By <a href={`/authors/${longAuthor!.id}`}>{longAuthor!.name}</a>
+          </p>
+        ) : null}
+      </div>
+    ) : null}
+
+    {relatedQuestions.length ? (
+      <section class="related-questions">
+        <h2>Related questions</h2>
+        <ul class="question-list">
+          {relatedQuestions.map((entry) => {
+            const primaryGroup = getPrimaryGroupCode(entry);
+            const displayLabel = primaryGroup
+              ? formatQuestionIdentifier(entry, { groupCode: primaryGroup })
+              : null;
+            const entryCategories = primaryGroup ? getQuestionCategories(entry) : [];
+            const groupName = primaryGroup
+              ? entryCategories.find((cat) => cat.groupCode === primaryGroup)?.name ?? null
+              : null;
+
+            return (
+              <li>
+                <a class="question-card card-panel" href={getQuestionLink(entry, primaryGroup)}>
+                  {displayLabel ? <span class="question-id">#{displayLabel}</span> : null}
+                  <span class="question-title">
+                    {entry.title}
+                    {groupName ? <span class="question-group-label"> ({groupName})</span> : null}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ) : null}
+    </article>
+
+  {showAuthorCard ? (
+    <div class="resource-card card-panel question-author-card">
+      <h2>{author!.name}</h2>
+      {author!.bio ? <p class="resource-bio">{author!.bio}</p> : null}
+
+      <div class="resource-actions">
+        {typeof author!.count === "number" && author!.count > 0 ? (
+          <a class="resource-link" href={`/authors/${author!.id}`}>
+            View Answers ({author!.count})
+          </a>
+        ) : null}
+        {author!.url ? (
+          <a
+            class="resource-link"
+            href={author!.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit website
+          </a>
+        ) : null}
+      </div>
+    </div>
+  ) : null}
+
+  {questionCategories.length ? (
+    <div class="category-meta category-footer">
+      <a class="category-chip" href="/categories">Categories</a>
+      <ul class="category-list">
+        {questionCategories.map((category) => (
+          <li>
+            <a class="category-chip" href={`/categories/${category.id}`}>{category.name}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ) : (
+    <p class="category-placeholder category-footer">Uncategorized</p>
+  )}
+
+  <BibleReferencesScript />
+
+  {question.longHtml ? (
+    <script type="module" is:inline>
+      const scrollWithOffset = (target) => {
+        const header = document.querySelector(".navbar");
+        const headerHeight = header ? header.getBoundingClientRect().height : 0;
+        const targetTop = window.scrollY + target.getBoundingClientRect().top - headerHeight - 16;
+
+        window.scrollTo({
+          top: Math.max(targetTop, 0),
+          behavior: "smooth",
+        });
+      };
+
+      document.querySelectorAll("[data-long-explanation]").forEach((section) => {
+        const button = section.querySelector("[data-long-toggle]");
+        const content = section.querySelector("[data-long-content]");
+        if (!button || !content) {
+          return;
+        }
+
+        const expandedText = {
+          true: "Hide the long explanation",
+          false: "Read the long explanation",
+        };
+
+        button.addEventListener("click", () => {
+          const isExpanded = button.getAttribute("aria-expanded") === "true";
+          const nextExpanded = !isExpanded;
+
+          button.setAttribute("aria-expanded", String(nextExpanded));
+          button.textContent = expandedText[String(nextExpanded)];
+
+          if (nextExpanded) {
+            content.hidden = false;
+            requestAnimationFrame(() => {
+              scrollWithOffset(content);
+            });
+          } else {
+            content.hidden = true;
+          }
+        });
+      });
+    </script>
+  ) : null}
+  {hideAnswersByDefault ? (
+    <script type="module" is:inline>
+      document.querySelectorAll("[data-answer-toggle]").forEach((section) => {
+        const button = section.querySelector("[data-answer-toggle-button]");
+        const content = section.querySelector("[data-answer-content]");
+        if (!button || !content) {
+          return;
+        }
+
+        button.addEventListener("click", () => {
+          button.setAttribute("aria-expanded", "true");
+          content.hidden = false;
+          button.hidden = true;
+        });
+      });
+    </script>
+  ) : null}
+  <script type="module" is:inline>
+    const copyButtons = document.querySelectorAll("[data-share-copy]");
+
+    const updateCopyState = (button, message) => {
+      const original = button.dataset.copyLabel || button.textContent;
+      button.dataset.copyLabel = original;
+      button.textContent = message;
+      button.classList.add("is-copied");
+      window.setTimeout(() => {
+        button.textContent = original;
+        button.classList.remove("is-copied");
+      }, 1800);
+    };
+
+    const writeTextFallback = (text) => {
+      const input = document.createElement("input");
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      document.body.removeChild(input);
+    };
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const url = button.getAttribute("data-share-url") || window.location.href;
+        try {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(url);
+          } else {
+            writeTextFallback(url);
+          }
+          updateCopyState(button, "Copied");
+        } catch (error) {
+          updateCopyState(button, "Copy failed");
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .question-top-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+
+    .question-top-link {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--surface-border);
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 600;
+      min-width: 90px;
+      text-align: center;
+    }
+
+    .question-top-link:hover {
+      border-color: var(--surface-border-strong);
+    }
+
+    .question-top-link.placeholder {
+      visibility: hidden;
+    }
+
+    .question-top-search {
+      flex: 0 1 360px;
+      min-width: 240px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .question-top-search .inline-search-box {
+      width: 100%;
+      max-width: 360px;
+      padding: 0;
+    }
+
+    .question-top-link.random-link {
+      min-width: auto;
+    }
+
+    @media (max-width: 640px) {
+      .question-top-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .question-top-search {
+        display: none;
+      }
+    }
+
+    .question-hub,
+    .question-hub.card-panel,
+    .question-hub.card-panel:hover,
+    .question-hub.card-panel:focus-within {
+      margin: 0 auto;
+      max-width: 720px;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      backdrop-filter: none;
+      padding: 0;
+      transform: none;
+    }
+
+    .question-hub p {
+      margin-bottom: 1rem;
+    }
+
+    .question-group-label {
+      font-size: 0.9rem;
+      color: var(--question-group-label-color);
+    }
+
+    .long-explanation {
+      margin-top: 1.5rem;
+    }
+
+    .long-toggle {
+      width: 100%;
+      padding: 1.25rem;
+      font-size: 1.25rem;
+      border-radius: 1rem;
+      border: 1px solid var(--long-toggle-border);
+      background: var(--long-toggle-bg, rgba(99, 179, 237, 0.18));
+      color: var(--color-text);
+      cursor: pointer;
+      font-weight: 600;
+      text-align: left;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .long-toggle:hover,
+    .long-toggle:focus-visible {
+      background: var(--long-toggle-bg-hover, rgba(99, 179, 237, 0.28));
+      border-color: var(--long-toggle-border-hover);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .long-content {
+      margin-top: 1rem;
+      padding: 1.25rem;
+      border-radius: 0.9rem;
+      border: 1px solid var(--long-content-border);
+      background: var(--long-content-bg);
+    }
+
+    .question-answer-toggle {
+      margin-top: 1rem;
+    }
+
+    .answer-toggle {
+      width: 100%;
+      padding: 1.1rem 1.25rem;
+      font-size: 1.15rem;
+      border-radius: 0.9rem;
+      border: 1px solid var(--surface-border);
+      background: var(--surface-panel);
+      color: var(--color-text);
+      cursor: pointer;
+      font-weight: 600;
+      text-align: left;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .answer-toggle:hover,
+    .answer-toggle:focus-visible {
+      border-color: var(--surface-border-strong);
+      background: var(--surface-highlight);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .question-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .question-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--surface-border);
+      background: var(--surface-panel);
+    }
+
+    .question-share-label {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .question-share-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .question-share-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: 999px;
+      border: 1px solid var(--surface-border);
+      background: transparent;
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .question-share-link span {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .question-share-link:hover,
+    .question-share-link:focus-visible {
+      border-color: var(--surface-border-strong);
+      background: var(--surface-highlight);
+      outline: none;
+    }
+
+    .question-share-link.is-copied {
+      border-color: var(--surface-border-strong);
+      background: rgba(34, 197, 94, 0.18);
+    }
+
+    @media (max-width: 640px) {
+      .question-meta-row {
+        align-items: flex-start;
+      }
+
+      .question-share {
+        padding: 0.3rem 0.5rem;
+      }
+
+      .question-share-link {
+        width: 34px;
+        height: 34px;
+      }
+
+      .question-share-link span {
+        font-size: 0.95rem;
+      }
+    }
+
+    .question-body[hidden] {
+      display: none;
+    }
+  </style>
+  </Main>
+) : null}
