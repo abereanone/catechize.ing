@@ -35,6 +35,9 @@
   --surface-bg-hover: rgba(68, 111, 74, 0.22);
   --surface-result-bg: rgba(223, 237, 223, 0.05);
   --surface-result-border: rgba(161, 196, 158, 0.1);
+  --tooltip-bg: rgba(244, 248, 241, 0.98);
+  --tooltip-text: #152018;
+  --tooltip-border: rgba(73, 104, 78, 0.28);
 
   /* Inputs */
   --input-bg: #17231a;
@@ -132,6 +135,9 @@
   --surface-bg-hover: rgba(73, 104, 78, 0.18);
   --surface-result-bg: rgba(247, 251, 247, 0.95);
   --surface-result-border: rgba(73, 104, 78, 0.12);
+  --tooltip-bg: rgba(18, 32, 22, 0.97);
+  --tooltip-text: #f2f8f0;
+  --tooltip-border: rgba(120, 157, 123, 0.28);
 
   /* Inputs */
   --input-bg: #f7fbf7;
@@ -521,15 +527,15 @@ ul {
 .bible-tooltip {
   display: none;
   position: absolute;
-  background: rgba(18, 32, 22, 0.97);
-  color: var(--color-link-contrast);
+  background: var(--tooltip-bg);
+  color: var(--tooltip-text);
   padding: 0.75rem 1rem;
   border-radius: var(--radius-tooltip);
   max-width: 420px;
   font-size: 0.95rem;
   line-height: 1.5;
   box-shadow: var(--shadow-tooltip);
-  border: 1px solid rgba(120, 157, 123, 0.28);
+  border: 1px solid var(--tooltip-border);
   z-index: 2000;
 }
 
@@ -668,11 +674,14 @@ ul {
   display: flex;
   justify-content: center;
   margin: 0;
+  width: 100%;
 }
 
 .pagination ul {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   list-style: none;
   padding: 0;
@@ -692,6 +701,15 @@ ul {
   font-size: 0.95rem;
   text-decoration: none;
   transition: var(--transition-border-bg-color);
+}
+
+.pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  padding: 0.4rem 0.2rem;
+  color: var(--color-muted);
 }
 
 .pagination-link:hover,

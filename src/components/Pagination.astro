@@ -22,7 +22,40 @@ const activePage =
     ? Math.min(Math.floor(currentPage), totalPages)
     : 1;
 
-const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+type PaginationItem =
+  | { type: "page"; value: number }
+  | { type: "ellipsis"; key: string };
+
+function getVisiblePages(total: number, current: number): PaginationItem[] {
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, index) => ({
+      type: "page",
+      value: index + 1,
+    }));
+  }
+
+  const visible = new Set<number>([1, total, current - 1, current, current + 1]);
+  const clamped = Array.from(visible)
+    .filter((page) => page >= 1 && page <= total)
+    .sort((a, b) => a - b);
+
+  const items: PaginationItem[] = [];
+
+  for (let index = 0; index < clamped.length; index += 1) {
+    const page = clamped[index];
+    const previous = clamped[index - 1];
+
+    if (index > 0 && previous !== undefined && page - previous > 1) {
+      items.push({ type: "ellipsis", key: `ellipsis-${previous}-${page}` });
+    }
+
+    items.push({ type: "page", value: page });
+  }
+
+  return items;
+}
+
+const paginationItems = getVisiblePages(totalPages, activePage);
 
 function buildHref(page: number): string {
   if (page <= 1) {
@@ -49,16 +82,22 @@ function buildHref(page: number): string {
         )}
       </li>
 
-      {pages.map((page) => (
+      {paginationItems.map((item) => (
         <li>
-          {page === activePage ? (
-            <span class="pagination-link current" aria-current="page">
-              {page}
-            </span>
+          {item.type === "page" ? (
+            item.value === activePage ? (
+              <span class="pagination-link current" aria-current="page">
+                {item.value}
+              </span>
+            ) : (
+              <a class="pagination-link" href={buildHref(item.value)}>
+                {item.value}
+              </a>
+            )
           ) : (
-            <a class="pagination-link" href={buildHref(page)}>
-              {page}
-            </a>
+            <span class="pagination-ellipsis" aria-hidden="true">
+              ...
+            </span>
           )}
         </li>
       ))}
