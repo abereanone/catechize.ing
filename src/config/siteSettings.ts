@@ -14,10 +14,6 @@ export const siteSettings = {
   version: appVersion,
   branding,
   issueReportURL: 'https://github.com/abereanone/catechize.ing/issues/new',
-  footer: {
-    legalText: 'Copyright info',
-    legalLinkLabel: 'click here.',
-  },
   integrations: {
     googleAnalyticsId: 'G-P6JZ4RPS97',
   },

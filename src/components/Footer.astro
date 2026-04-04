@@ -2,8 +2,6 @@
 import { siteSettings } from "@/config/siteSettings";
 
 const siteName = siteSettings.branding.siteName;
-const legalText = siteSettings.footer.legalText;
-const legalLinkLabel = siteSettings.footer.legalLinkLabel;
 const issueReportURL = siteSettings.issueReportURL;
 ---
 
@@ -16,8 +14,8 @@ const issueReportURL = siteSettings.issueReportURL;
     ) : null}
   </div>
   <p>
-    <a href="/about">{siteName}</a> - {legalText}
-    <a href="/copyright">{legalLinkLabel}</a>
+    <a href="/about">{siteName}</a> - 
+    <a href="/copyright">Copyright Info</a>
   </p>
 </footer>
 
