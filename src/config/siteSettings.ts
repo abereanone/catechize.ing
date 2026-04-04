@@ -1,4 +1,4 @@
-const appVersion = '0.1.1';
+const appVersion = '0.1.2';
 const siteName = 'catechize.ing';
 const defaultDescription = 'Questions & Answers from reformed catechisms';
 const branding = {
@@ -13,8 +13,9 @@ const defaultSiteUrl = 'https://catechize.ing';
 export const siteSettings = {
   version: appVersion,
   branding,
+  issueReportURL: 'https://github.com/abereanone/catechize.ing/issues/new',
   footer: {
-    legalText: 'Copyright information',
+    legalText: 'Copyright info',
     legalLinkLabel: 'click here.',
   },
   integrations: {

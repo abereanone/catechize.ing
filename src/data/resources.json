@@ -1,10 +1,58 @@
 [
-      {
+  {
     "id": "mac",
     "name": "Michael Coughlin",
     "url": "https://thingsabove.us/author/mac/",
     "title": "President",
     "bio": "Preacher from Ohio who loves Jesus, my wife, my kids, and my neighbors: including the preborn/voiceless.",
     "sortOrder": 15
+  },
+  {
+    "id": "map1",
+    "name": "Paul's Journeys",
+    "url": "https://garridolecca.github.io/pauls-journeys/",
+    "title": "Website",
+    "bio": "Really cool interactive map of Paul's journeys.",
+    "sortOrder": 122
+  },
+  {
+    "id": "map2",
+    "name": "The Life of Jesus",
+    "url": "https://garridolecca.github.io/life-of-jesus/",
+    "title": "Website",
+    "bio": "Really cool interactive map of the life of Jesus.",
+    "sortOrder": 123
+  },
+  {
+    "id": "map3",
+    "name": "Old Testament",
+    "url": "https://garridolecca.github.io/old-testament-atlas/",
+    "title": "Website",
+    "bio": "Old Testament Map",
+    "sortOrder": 124
+  },
+  {
+    "id": "map4",
+    "name": "Baptist History",
+    "url": "https://garridolecca.github.io/1689-heritage-trail/",
+    "title": "Website",
+    "bio": "Really cool interactive map of Baptist history.",
+    "sortOrder": 125
+  },
+  {
+    "id": "bfg",
+    "name": "Freely Given Books",
+    "url": "https://books.freely.giving/",
+    "title": "Website",
+    "bio": "Free Christian Books!",
+    "sortOrder": 25
+  },
+  {
+    "id": "fb",
+    "name": "Fetch Bible",
+    "url": "https://fetch.bible/",
+    "title": "Website",
+    "bio": "Fetch the Bible for free for your website! over a thousand translations.",
+    "sortOrder": 200
   }
 ]

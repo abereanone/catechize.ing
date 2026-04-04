@@ -1,4 +1,5 @@
 const BIBLE_ID = "eng_bsb";
+export const BIBLE_ABBREVIATION = "BSB";
 const bookCache = new Map<string, any>();
 const referenceCache = new Map<string, string>();
 

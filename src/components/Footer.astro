@@ -4,12 +4,16 @@ import { siteSettings } from "@/config/siteSettings";
 const siteName = siteSettings.branding.siteName;
 const legalText = siteSettings.footer.legalText;
 const legalLinkLabel = siteSettings.footer.legalLinkLabel;
+const issueReportURL = siteSettings.issueReportURL;
 ---
 
 <footer class="site-footer">
   <div class="footer-search">
     <a href="/random" class="footer-search-link secondary">Random Answer</a>
     <a href="/search" class="footer-search-link">Search {siteName}</a>
+    {issueReportURL ? (
+      <a href={issueReportURL} class="footer-search-link secondary" target="_blank" rel="noopener noreferrer">Report an Issue</a>
+    ) : null}
   </div>
   <p>
     <a href="/about">{siteName}</a> - {legalText}
