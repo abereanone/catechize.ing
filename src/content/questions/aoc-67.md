@@ -9,6 +9,3 @@ relatedAnswers:
 ---
 
 Two; Baptism, and the Lord’s Supper.
-
-## Proofs
-- Two; Baptism, and the Lord’s Supper.

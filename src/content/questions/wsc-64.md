@@ -7,6 +7,3 @@ categories:
 ---
 
 The fifth commandment requireth the preserving the honor, and performing the duties, belonging to every one in their several places and relations, as superiors, inferiors, or equals.
-
-## Proofs
-- The fifth commandment requireth the preserving the honor, and performing the duties, belonging to every one in their several places and relations, as superiors, inferiors, or equals.

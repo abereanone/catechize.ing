@@ -7,6 +7,3 @@ categories:
 ---
 
 Some sins in themselves, and by reason of several aggravations, are more heinous in the sight of God than others.
-
-## Proofs
-- Some sins in themselves, and by reason of several aggravations, are more heinous in the sight of God than others.

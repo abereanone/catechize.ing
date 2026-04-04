@@ -9,6 +9,3 @@ relatedAnswers:
 ---
 
 Into three: the first of the eternal Father, and our Creation: the second of the Son and our Redemption: the third of the Holy Ghost, and our Sanctification.
-
-## Proofs
-- Into three: the first of the eternal Father, and our Creation: the second of the Son and our Redemption: the third of the Holy Ghost, and our Sanctification.

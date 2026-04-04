@@ -7,6 +7,3 @@ categories:
 ---
 
 The seventh commandment forbiddeth all unchaste thoughts, words, and actions.
-
-## Proofs
-- The seventh commandment forbiddeth all unchaste thoughts, words, and actions.

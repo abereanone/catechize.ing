@@ -7,6 +7,3 @@ categories:
 ---
 
 The sixth commandment is, Thou shalt not kill.
-
-## Proofs
-- The sixth commandment is, Thou shalt not kill.

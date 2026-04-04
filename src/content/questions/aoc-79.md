@@ -7,6 +7,3 @@ categories:
 ---
 
 Laying on of Hands, as in Hebrews 6:1–2
-
-## Proofs
-- Laying on of Hands, as in Hebrews 6:1–2

@@ -7,6 +7,3 @@ categories:
 ---
 
 Every sin deserveth God’s wrath and curse, both in this life, and that which is to come.
-
-## Proofs
-- Every sin deserveth God’s wrath and curse, both in this life, and that which is to come.

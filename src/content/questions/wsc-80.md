@@ -7,6 +7,3 @@ categories:
 ---
 
 The tenth commandment requireth full contentment with our own condition, with a right and charitable frame of spirit toward our neighbor, and all that is his.
-
-## Proofs
-- The tenth commandment requireth full contentment with our own condition, with a right and charitable frame of spirit toward our neighbor, and all that is his.

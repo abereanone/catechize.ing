@@ -7,6 +7,3 @@ categories:
 ---
 
 The reasons annexed to the second commandment are, God’s sovereignty over us, his propriety in us, and the zeal he hath to his own worship.
-
-## Proofs
-- The reasons annexed to the second commandment are, God’s sovereignty over us, his propriety in us, and the zeal he hath to his own worship.

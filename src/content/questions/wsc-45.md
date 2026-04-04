@@ -7,6 +7,3 @@ categories:
 ---
 
 The first commandment is, Thou shalt have no other gods before me.
-
-## Proofs
-- The first commandment is, Thou shalt have no other gods before me.

@@ -58,7 +58,7 @@ export function createSearchEngine(dataset = []) {
   const invertedIndex = new Map();
 
   dataset.forEach((doc, position) => {
-    const docId = getDocumentId(doc, position);
+    const docId = doc && doc.id != null ? String(doc.id) : `${doc.slug ?? "doc"}-${position}`;
     const normalizedTitle = normalizeForSearch(doc?.title ?? "");
     const normalizedContent = normalizeForSearch(doc?.content ?? "");
     const normalizedCategories = (doc?.categories ?? []).map((category) => normalizeForSearch(category));
@@ -275,22 +275,6 @@ function normalizeForSearch(value) {
 function createWordBoundaryPattern(values) {
   const pattern = values.map(escapeRegExp).join("|");
   return new RegExp(`\\b(?:${pattern})\\b`, "g");
-}
-
-function getDocumentId(doc, position) {
-  if (doc?.slug != null && String(doc.slug).length) {
-    return String(doc.slug);
-  }
-
-  if (doc?.idLabel != null && String(doc.idLabel).length) {
-    return String(doc.idLabel);
-  }
-
-  if (doc?.id != null) {
-    return `${doc.id}-${position}`;
-  }
-
-  return `doc-${position}`;
 }
 
 function buildSnippet(doc, tokens) {

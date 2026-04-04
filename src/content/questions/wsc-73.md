@@ -7,6 +7,3 @@ categories:
 ---
 
 The eighth commandment is, Thou shalt not steal.
-
-## Proofs
-- The eighth commandment is, Thou shalt not steal.

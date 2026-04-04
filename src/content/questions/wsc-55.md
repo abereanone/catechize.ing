@@ -7,6 +7,3 @@ categories:
 ---
 
 The third commandment forbiddeth all profaning or abusing of anything whereby God maketh himself known.
-
-## Proofs
-- The third commandment forbiddeth all profaning or abusing of anything whereby God maketh himself known.

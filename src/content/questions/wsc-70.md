@@ -7,6 +7,3 @@ categories:
 ---
 
 The seventh commandment is, Thou shalt not commit adultery.
-
-## Proofs
-- The seventh commandment is, Thou shalt not commit adultery.

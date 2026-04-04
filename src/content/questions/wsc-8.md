@@ -7,6 +7,3 @@ categories:
 ---
 
 God executeth his decrees in the works of creation and providence.
-
-## Proofs
-- God executeth his decrees in the works of creation and providence.

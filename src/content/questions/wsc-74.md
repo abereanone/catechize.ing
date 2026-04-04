@@ -7,6 +7,3 @@ categories:
 ---
 
 The eighth commandment requireth the lawful procuring and furthering the wealth and outward estate of ourselves and others.
-
-## Proofs
-- The eighth commandment requireth the lawful procuring and furthering the wealth and outward estate of ourselves and others.

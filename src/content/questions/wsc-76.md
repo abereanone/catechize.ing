@@ -7,6 +7,3 @@ categories:
 ---
 
 The ninth commandment is, Thou shalt not bear false witness against thy neighbour.
-
-## Proofs
-- The ninth commandment is, Thou shalt not bear false witness against thy neighbour.

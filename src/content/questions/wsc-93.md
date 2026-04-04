@@ -7,6 +7,3 @@ categories:
 ---
 
 The sacraments of the New Testament are, Baptism, and the Lord’s Supper.
-
-## Proofs
-- The sacraments of the New Testament are, Baptism, and the Lord’s Supper.

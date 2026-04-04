@@ -7,6 +7,3 @@ categories:
 ---
 
 The fifth commandment is, Honour thy father and thy mother; that thy days may be long upon the land which the Lord thy God giveth thee.
-
-## Proofs
-- The fifth commandment is, Honour thy father and thy mother; that thy days may be long upon the land which the Lord thy God giveth thee.

@@ -7,6 +7,3 @@ categories:
 ---
 
 No mere man, since the fall, is able in this life perfectly to keep the commandments of God, but doth daily break them in thought, word, and deed.
-
-## Proofs
-- No mere man, since the fall, is able in this life perfectly to keep the commandments of God, but doth daily break them in thought, word, and deed.

@@ -1,4 +1,4 @@
-const appVersion = '0.1.0';
+const appVersion = '0.1.1';
 const siteName = 'catechize.ing';
 const defaultDescription = 'Questions & Answers from reformed catechisms';
 const branding = {
@@ -33,7 +33,7 @@ export const siteSettings = {
   showAuthor: false,
   hideAnswersByDefault: false,
   enablePagination: true,
-  questionsPerPage: 15,
+  questionsPerPage: 30,
 } as const;
 
 export type SiteSettings = typeof siteSettings;
