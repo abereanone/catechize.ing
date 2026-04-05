@@ -55,7 +55,7 @@ God is the first and chiefest being.
 **A:** No.  
 **Proof:** Who hath first given unto him, and it shall be recompensed unto him again, (Romans 11:35)
 
-### God first in our lives
+### God as first
 
 **Q:** Should God then be first in our thoughts?  
 **A:** Yes.  
@@ -99,7 +99,7 @@ God is the first and chiefest being.
 **A:** Yes.  
 **Proof:** For he is the Most High for evermore, (Psalm 92:8)
 
-### Right response to God
+### God as chiefest
 
 **Q:** Should God then be chiefly loved?  
 **A:** Yes.  

@@ -54,5 +54,13 @@
     "title": "Website",
     "bio": "Fetch the Bible for free for your website! over a thousand translations.",
     "sortOrder": 200
+  },
+  {
+    "id": "bcco",
+    "name": "Baptist Catechism",
+    "url": "https://baptistcatechism.org/beddome/",
+    "title": "Website",
+    "bio": "My friend Conley's website that provided all the data for this one. :)",
+    "sortOrder": 200
   }
 ]
