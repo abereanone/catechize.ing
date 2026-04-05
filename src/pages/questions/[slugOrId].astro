@@ -64,6 +64,7 @@ if (!question && !listingMatches) {
 const siteName = siteSettings.branding.siteName;
 const showAuthors = siteSettings.showAuthor;
 const hideAnswersByDefault = siteSettings.hideAnswersByDefault;
+const longExplanationText = siteSettings.longExplanationText;
 
 let questionSlug = "";
 let useIdLinks = false;
@@ -170,6 +171,8 @@ const encodedShareUrl = encodeURIComponent(shareUrl);
 const encodedShareText = encodeURIComponent(shareText);
 const encodedEmailSubject = encodeURIComponent(`Question: ${shareText}`);
 const encodedEmailBody = encodeURIComponent(`${shareText}\n\n${shareUrl}`);
+const showLongExplanationLabel = `Show ${longExplanationText}`;
+const hideLongExplanationLabel = `Hide ${longExplanationText}`;
 
 function resolveGroupCodeFromParam(param: string | undefined, target: Question | null): string | null {
   if (!param || !target || typeof target.id !== "number") {
@@ -354,9 +357,11 @@ function getPrimaryGroupCode(entry: Question) {
           type="button"
           class="long-toggle"
           data-long-toggle
+          data-show-label={showLongExplanationLabel}
+          data-hide-label={hideLongExplanationLabel}
           aria-expanded="false"
         >
-          Read the long explanation
+          {showLongExplanationLabel}
         </button>
         <div class="long-content" data-long-content hidden data-bible-autolink set:html={question.longHtml} />
         {showLongAuthor ? (
@@ -461,8 +466,8 @@ function getPrimaryGroupCode(entry: Question) {
         }
 
         const expandedText = {
-          true: "Hide the long explanation",
-          false: "Read the long explanation",
+          true: button.getAttribute("data-hide-label") || "Hide details",
+          false: button.getAttribute("data-show-label") || "Show details",
         };
 
         button.addEventListener("click", () => {
