@@ -9,7 +9,7 @@
   },
   {
     "id": "map1",
-    "name": "Paul's Journeys",
+    "name": "Map of Paul's Journeys",
     "url": "https://garridolecca.github.io/pauls-journeys/",
     "title": "Website",
     "bio": "Really cool interactive map of Paul's journeys.",
@@ -17,7 +17,7 @@
   },
   {
     "id": "map2",
-    "name": "The Life of Jesus",
+    "name": "Map of the Life of Jesus",
     "url": "https://garridolecca.github.io/life-of-jesus/",
     "title": "Website",
     "bio": "Really cool interactive map of the life of Jesus.",
@@ -25,7 +25,7 @@
   },
   {
     "id": "map3",
-    "name": "Old Testament",
+    "name": "Map of Old Testament",
     "url": "https://garridolecca.github.io/old-testament-atlas/",
     "title": "Website",
     "bio": "Old Testament Map",
@@ -33,7 +33,7 @@
   },
   {
     "id": "map4",
-    "name": "Baptist History",
+    "name": "Map of Baptist History",
     "url": "https://garridolecca.github.io/1689-heritage-trail/",
     "title": "Website",
     "bio": "Really cool interactive map of Baptist history.",
