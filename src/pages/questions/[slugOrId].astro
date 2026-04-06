@@ -163,6 +163,7 @@ const relatedQuestions = question ? getRelatedQuestions(question) : [];
 const questionSnippet = question ? buildQuestionSnippet(question.excerpt, 60) : null;
 const questionOgDescription =
   questionSnippet ?? (question ? question.title : null) ?? siteSettings.branding.description;
+const renderedLongHtml = question ? formatLongExplanationHtml(question) : "";
 const canonicalQuestionPath = question ? `/questions/${question.slug}` : undefined;
 const shareUrl = canonicalQuestionPath
   ? `${siteSettings.openGraph.url}${canonicalQuestionPath}`
@@ -208,6 +209,22 @@ function getQuestionLink(entry: Question, preferredGroup?: string | null) {
 
 function getPrimaryGroupCode(entry: Question) {
   return Array.isArray(entry.groupCodes) && entry.groupCodes.length ? entry.groupCodes[0] : null;
+}
+
+function formatLongExplanationHtml(entry: Question): string {
+  if (!entry.longHtml) {
+    return "";
+  }
+
+  if (!entry.longHtml.includes("<strong>Q:</strong>") || !entry.longHtml.includes("<strong>Proof:</strong>")) {
+    return entry.longHtml;
+  }
+
+  return entry.longHtml.replace(
+    /<p><strong>Q:<\/strong>\s*([\s\S]*?)<br>\s*<strong>A:<\/strong>\s*([\s\S]*?)<br>\s*<strong>Proof:<\/strong>\s*([\s\S]*?)<\/p>/g,
+    (_match, questionText, answerText, proofText) =>
+      `<div class="exposition-item"><p class="exposition-question">${String(questionText).trim()}</p><p class="exposition-answer"><strong>Answer:</strong> ${String(answerText).trim()}</p><p class="exposition-proof"><strong>Proof:</strong> ${String(proofText).trim()}</p></div>`
+  );
 }
 
 ---
@@ -375,7 +392,7 @@ function getPrimaryGroupCode(entry: Question) {
         >
           {showLongExplanationLabel}
         </button>
-        <div class="long-content" data-long-content hidden data-bible-autolink set:html={question.longHtml} />
+        <div class="long-content" data-long-content hidden data-bible-autolink set:html={renderedLongHtml} />
         {showLongAuthor ? (
           <p class="long-author">
             By <a href={`/authors/${longAuthor!.id}`}>{longAuthor!.name}</a>

@@ -81,6 +81,10 @@
   --long-toggle-border-hover: rgba(161, 196, 158, 0.56);
   --long-content-border: rgba(120, 157, 123, 0.12);
   --long-content-bg: rgba(223, 237, 223, 0.04);
+  --exposition-item-bg: rgba(18, 34, 24, 0.78);
+  --exposition-item-border: rgba(88, 126, 93, 0.24);
+  --exposition-item-question: var(--color-heading);
+  --exposition-item-proof: var(--secondary-text);
 
   /* Misc */
   --question-group-label-color: rgba(255, 255, 255, 0.75);
@@ -179,6 +183,10 @@
   --long-toggle-border-hover: rgba(47, 90, 55, 0.36);
   --long-content-border: rgba(73, 104, 78, 0.12);
   --long-content-bg: rgba(247, 251, 247, 0.92);
+  --exposition-item-bg: rgba(218, 232, 219, 0.62);
+  --exposition-item-border: rgba(73, 104, 78, 0.16);
+  --exposition-item-question: #17311d;
+  --exposition-item-proof: rgba(31, 45, 34, 0.78);
 
   /* Misc */
   --question-group-label-color: rgba(15, 23, 42, 0.65);
@@ -1051,6 +1059,40 @@ ul {
 
 .long-content[hidden] {
   display: none;
+}
+
+.long-content .exposition-item {
+  margin: 0.95rem 0 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--exposition-item-border);
+  background: var(--exposition-item-bg);
+  border-radius: 0.85rem;
+}
+
+.long-content .exposition-item:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.long-content .exposition-question,
+.long-content .exposition-answer,
+.long-content .exposition-proof {
+  margin: 0;
+}
+
+.long-content .exposition-question {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--exposition-item-question);
+}
+
+.long-content .exposition-answer {
+  margin-top: 0.45rem;
+}
+
+.long-content .exposition-proof {
+  margin-top: 0.45rem;
+  color: var(--exposition-item-proof);
+  font-size: 0.98rem;
 }
 
 .long-author {
