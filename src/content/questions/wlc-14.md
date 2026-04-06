@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-11
+  - wsc-8
 ---
 
 God executeth his decrees in the works of creation and providence, according to his infallible foreknowledge, and the free and immutable counsel of his own will.

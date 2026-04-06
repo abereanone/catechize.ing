@@ -4,6 +4,10 @@ title: What is Baptism?
 slug: aoc-68
 categories:
   - aoc
+relatedAnswers:
+  - bc-97
+  - wlc-165
+  - wsc-94
 ---
 
 Immersion or dipping of the Person in Water in the Name of the Father, Son, and Holy Ghost, by such who are duly qualified by Christ.

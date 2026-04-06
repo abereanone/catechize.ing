@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-34
+  - wsc-31
 ---
 
 Effectual calling is the work of God’s almighty power and grace, whereby (out of his free and special love to his elect, and from nothing in them moving him thereunto ) he doth, in his accepted time, invite and draw them to Jesus Christ, by his word and Spirit; savingly enlightening their minds, renewing and powerfully determining their wills, so as they (although in themselves dead in sin) are hereby made willing and able freely to answer his call, and to accept and embrace the grace offered and conveyed therein.

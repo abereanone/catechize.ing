@@ -4,8 +4,6 @@ title: How many things are necessary for thee to know, that thou injoying this c
 slug: aoc-2
 categories:
   - aoc
-relatedAnswers:
-  - hc-2
 ---
 
 Three. The first, what is the greatness of my sin and misery. The second, how I am delivered from all Sin and Misery. The third, what thanks I owe unto God for this delivery.

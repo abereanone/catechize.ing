@@ -4,8 +4,6 @@ title: What special use is there of the moral law to the regenerate?
 slug: wlc-97
 categories:
   - wlc
-relatedAnswers:
-  - bc-46
 ---
 
 Although they that are regenerate, and believe in Christ, be delivered from the moral law as a covenant of works, so as thereby they are neither justified nor condemned; yet, besides the general uses thereof common to them with all men, it is of special use, to show them how much they are bound to Christ for his fulfilling it, and enduring the curse thereof in their stead, and for their good; and thereby to provoke them to more thankfulness, and to express the same in their greater care to conform themselves thereunto as the rule of their obedience.

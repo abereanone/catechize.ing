@@ -4,8 +4,6 @@ title: What is the communion in glory with Christ which the members of the invis
 slug: wlc-83
 categories:
   - wlc
-relatedAnswers:
-  - bc-40
 ---
 
 The members of the invisible church have communicated to them in this life the firstfruits of glory with Christ, as they are members of him their head, and so in him are interested in that glory which he is fully possessed of; and, as an earnest thereof, enjoy the sense of God’s love, peace of conscience, joy in the Holy Ghost, and hope of glory; as, on the contrary, sense of God’s revenging wrath, horror of conscience, and a fearful expectation of judgment, are to the wicked the beginning of their torments which they shall endure after death.

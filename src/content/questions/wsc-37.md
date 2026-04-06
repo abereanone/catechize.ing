@@ -4,6 +4,8 @@ title: What benefits do believers receive from Christ at death?
 slug: wsc-37
 categories:
   - wsc
+relatedAnswers:
+  - bc-40
 ---
 
 The souls of believers are at their death made perfect in holiness and do immediately pass into glory and their bodies, being still united to Christ do rest in their graves till the resurrection.

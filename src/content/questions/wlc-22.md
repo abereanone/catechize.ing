@@ -4,8 +4,6 @@ title: Did all mankind fall in that first transgression ?
 slug: wlc-22
 categories:
   - wlc
-relatedAnswers:
-  - bc-19
 ---
 
 The covenant being made with Adam as a public person, not for himself only, but for his posterity, all mankind descending from him by ordinary generation, sinned in him, and fell with him in that first transgression.

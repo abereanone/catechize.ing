@@ -4,8 +4,6 @@ title: How doth it appear that there is a God?
 slug: wlc-2
 categories:
   - wlc
-relatedAnswers:
-  - bc-3
 ---
 
 The very light of nature in man, and the works of God, declare plainly that there is a God; but his word and Spirit only do sufficiently and effectually reveal him unto men for their salvation.

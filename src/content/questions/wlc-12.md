@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-10
+  - wsc-7
 ---
 
 God’s decrees are the wise, free, and holy acts of the counsel of his will, whereby, from all eternity, he hath, for his own glory, unchangeably foreordained whatsoever comes to pass in time, especially concerning angels and men.

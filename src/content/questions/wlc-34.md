@@ -4,8 +4,6 @@ title: How was the covenant of grace administered under the Old Testament?
 slug: wlc-34
 categories:
   - wlc
-relatedAnswers:
-  - bc-23
 ---
 
 The covenant of grace was administered under the Old Testament, by promises, prophecies, sacrifices, circumcision, the passover, and other types and ordinances, which did all foresignify Christ then to come, and were for that time sufficient to build up the elect in faith in the promised Messiah, by whom they then had full remission of sin, and eternal salvation.

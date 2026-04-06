@@ -4,6 +4,8 @@ title: What are the benefits which in this life do accompany or flow from justif
 slug: wsc-36
 categories:
   - wsc
+relatedAnswers:
+  - bc-39
 ---
 
 The benefits which in this life do accompany or flow from justification, adoption, and sanctification, are, assurance of God’s love, peace of conscience joy in the Holy Ghost increase of grace and perseverance therein to the end.

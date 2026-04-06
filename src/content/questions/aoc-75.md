@@ -4,8 +4,6 @@ title: What is it to be washed with the Blood and Spirit of Christ?
 slug: aoc-75
 categories:
   - aoc
-relatedAnswers:
-  - hc-70
 ---
 
 It is to receive of God Forgiveness of Sins freely, for the Blood of Christ which he shed for us in his Sacrifice upon the Cross; and also to be renewed by the Holy Ghost, and through his sanctifying of us to become Members of Christ, that we may more and more dy to Sin, and live holily and without blame.

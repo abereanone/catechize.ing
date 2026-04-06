@@ -4,6 +4,9 @@ title: How many persons are there in the Godhead?
 slug: wsc-6
 categories:
   - wsc
+relatedAnswers:
+  - bc-9
+  - wlc-9
 ---
 
 There are three persons in the Godhead; the Father, the Son, and the Holy Ghost; and these three are one God, the same in substance, equal in power and glory.

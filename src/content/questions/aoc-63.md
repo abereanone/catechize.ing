@@ -4,8 +4,6 @@ title: But doth not this Doctrine make Men careless and profain?
 slug: aoc-63
 categories:
   - aoc
-relatedAnswers:
-  - hc-64
 ---
 
 No, For neither can it be but they who are incorporated into Christ through Faith, should bring forth the Fruits of Thankfulness.

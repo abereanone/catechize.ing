@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-38
+  - wsc-35
 ---
 
 Sanctification is a work of God’s grace, whereby they whom God hath, before the foundation of the world, chosen to be holy, are in time, through the powerful operation of his Spirit applying the death and resurrection of Christ unto them, renewed in their whole man after the image of God; having the seeds of repentance unto life, and all other saving graces, put into their hearts, and those graces so stirred up, increased, and strengthened, as that they more and more die unto sin, and rise unto newness of life.

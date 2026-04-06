@@ -4,8 +4,6 @@ title: What was the providence of God toward man in the estate in which he was c
 slug: wlc-20
 categories:
   - wlc
-relatedAnswers:
-  - bc-15
 ---
 
 The providence of God toward man in the estate in which he was created, was the placing him in paradise, appointing him to dress it, giving him liberty to eat of the fruit of the earth; putting the creatures under his dominion, and ordaining marriage for his help; affording him communion with himself; instituting the sabbath; entering into a covenant of life with him, upon condition of personal, perfect, and perpetual obedience, of which the tree of life was a pledge; and forbidding to eat of the tree of the knowledge of good and evil, upon the pain of death.

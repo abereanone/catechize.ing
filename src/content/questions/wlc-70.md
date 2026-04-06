@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-36
+  - wsc-33
 ---
 
 Justification is an act of God’s free grace unto sinners, in which he pardoneth all their sins, accepteth and accounteth their persons righteous in his sight; not for any thing wrought in them, or done by them, but only for the perfect obedience and full satisfaction of Christ, by God imputed to them, and received by faith alone.

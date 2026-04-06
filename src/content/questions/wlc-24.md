@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-17
+  - wsc-14
 ---
 
 Sin is any want of conformity unto, or transgression of, any law of God, given as a rule to the reasonable creature.

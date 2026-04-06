@@ -4,6 +4,9 @@ title: What is adoption?
 slug: wsc-34
 categories:
   - wsc
+relatedAnswers:
+  - bc-37
+  - wlc-74
 ---
 
 Adoption is an act of God’s free grace whereby we are received into the number, and have a right to all the privileges, of the sons of God.

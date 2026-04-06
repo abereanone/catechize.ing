@@ -4,8 +4,6 @@ title: What believest thou concerning Remission of Sins?
 slug: aoc-55
 categories:
   - aoc
-relatedAnswers:
-  - hc-56
 ---
 
 That God, for the Satisfaction made by Christ, hath put out all the Remembrance of my Sins, and also of that Corruption within me wherewith I must fight all my life time, and doth freely indow me with the Righteousness of Christ, that I come not at any time into Judgment.

@@ -4,6 +4,8 @@ title: What is the misery of that estate whereinto man fell?
 slug: wsc-19
 categories:
   - wsc
+relatedAnswers:
+  - bc-22
 ---
 
 All mankind by their fall lost communion with God are under his wrath and curse and so made liable to all miseries in this life, to death itself, and to the pains of hell for ever.

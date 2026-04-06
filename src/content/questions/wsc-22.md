@@ -4,6 +4,9 @@ title: How did Christ, being the Son of God, become man?
 slug: wsc-22
 categories:
   - wsc
+relatedAnswers:
+  - bc-25
+  - wlc-37
 ---
 
 Christ, the Son of God, became man, by taking to himself a true body and a reasonable soul being conceived by the power of the Holy Ghost, in the womb of the virgin Mary, and born of her yet without sin.

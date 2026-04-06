@@ -4,8 +4,6 @@ title: What is thy only comfort in Life and Death?
 slug: aoc-1
 categories:
   - aoc
-relatedAnswers:
-  - hc-1
 ---
 
 That both in Soul and Body, whether I live or dye, I am not mine own, but belong wholly unto my most faithful Lord and Saviour Jesus Christ: who by his most precious Blood fully satisfying for all my Sins, hath delivered me from all the power of the Devil, and so preserveth me, that without the will of my Heavenly Father not so much as an Hair may fall from my Head; yea all things must serve for my safety: wherefore by his Spirit also he assureth me of everlasting Life, and maketh me ready and prepared, that henceforth I may live to him.

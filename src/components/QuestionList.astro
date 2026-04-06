@@ -4,6 +4,10 @@ import { siteSettings } from "@/config/siteSettings";
 
 const { questions, startIndex = 0 } = Astro.props;
 const showQuestionId = siteSettings.showQuestionId;
+const highlightReference =
+  typeof Astro.props.highlightReference === "string" && Astro.props.highlightReference.trim().length
+    ? Astro.props.highlightReference.trim()
+    : null;
 const baseIndex =
   typeof startIndex === "number" && Number.isFinite(startIndex) ? Math.max(0, Math.floor(startIndex)) : 0;
 ---
@@ -14,9 +18,12 @@ const baseIndex =
     const displayId =
       formatQuestionIdentifier(q, { groupCode: primaryGroup, fallback: fallbackId }) ??
       (typeof fallbackId === "number" ? fallbackId : null);
+    const href = highlightReference
+      ? `/questions/${q.slug}?ref=${encodeURIComponent(highlightReference)}`
+      : `/questions/${q.slug}`;
     return (
     <li>
-      <a class="question-card card-panel" href={`/questions/${q.slug}`}>
+      <a class="question-card card-panel" href={href}>
         {showQuestionId && displayId !== null ? (
           <span class="question-id">#{displayId}</span>
         ) : null}

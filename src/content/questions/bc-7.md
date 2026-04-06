@@ -6,6 +6,7 @@ categories:
   - bc
 relatedAnswers:
   - wlc-7
+  - wsc-4
 ---
 
 God is a Spirit, infinite, eternal, and unchangeable in his being, wisdom, power, holiness, justice, goodness, and truth.

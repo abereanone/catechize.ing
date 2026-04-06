@@ -4,8 +4,6 @@ title: Do they then believe in the only Saviour Jesus, who seek for happiness an
 slug: aoc-29
 categories:
   - aoc
-relatedAnswers:
-  - hc-30
 ---
 
 No: for although in word they boast themselves of him as their only Saviour, yet indeed they deny the only Saviour Jesus: for it must needs be that either Jesus is not a perfect Saviour, or that those who imbrace him as their Saviour with a true faith, possess all things in him which are required unto Salvation.

@@ -4,8 +4,6 @@ title: 'You told us but now, that those who in Confession and Life declare thems
 slug: aoc-92
 categories:
   - aoc
-relatedAnswers:
-  - hc-83
 ---
 
 Preaching of the Gospel and Ecclesiastical Discipline, by which Heaven is opened to the Believers, and is shut against the Unbelievers.

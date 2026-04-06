@@ -4,8 +4,6 @@ title: What Fruit doth the Ascension of Christ into Heaven bring unto us?
 slug: aoc-48
 categories:
   - aoc
-relatedAnswers:
-  - hc-49
 ---
 
 First that he maketh Intercession to his Father in Heaven for us; next that we have our Flesh in Heaven, that we may be confirmed thereby, as by a sure Pledge, that it shall come to passe that he who is our Head will lift us up, his Members, unto him: thirdly, that he sendeth us his Spirit instead of a Pledge between him and us, by whose forcible working we seek after not earthly but heavenly things, where he himself is sitting at the Right-Hand of God.

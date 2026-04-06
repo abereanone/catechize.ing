@@ -4,8 +4,6 @@ title: Did God then make man so wicked and perverse?
 slug: aoc-6
 categories:
   - aoc
-relatedAnswers:
-  - hc-6
 ---
 
 Not so, but rather he made him good, and to his own Image; that is, indued with true Righteousness and Holiness, that he might rightly know God his Creator, and heartily love him, and live with him blessed for ever, and that to laud and magnify him.

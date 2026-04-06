@@ -4,8 +4,6 @@ title: What is Faith?
 slug: aoc-21
 categories:
   - aoc
-relatedAnswers:
-  - hc-21
 ---
 
 It is not only a knowledg, whereby I surely assent to all things which God hath revealed unto us in his Word, but also an hassured trust kindled in my heart by the Holy Ghost, through the Gospel, whereby I make my repose in God, being assuredly resolved that Remission of Sins, everlasting Righteousness, and life is given not to others only, but to me also, and that freely through the Mercy of God, for for the Merits of Christ alone.

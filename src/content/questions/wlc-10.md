@@ -4,8 +4,6 @@ title: What are the personal properties of the three persons in the Godhead?
 slug: wlc-10
 categories:
   - wlc
-relatedAnswers:
-  - bc-9
 ---
 
 It is proper to the Father to beget the Son, and to the Son to be begotten of the Father, and to the Holy Ghost to proceed from the Father and the Son from all eternity.

@@ -4,8 +4,6 @@ title: What profit takest thou by Christ’s holy Conception and Nativity?
 slug: aoc-35
 categories:
   - aoc
-relatedAnswers:
-  - hc-36
 ---
 
 That he is our Mediator, and doth cover with his Innocency and perfect Holiness my Sins, in which I was conceived, that they may not come in the Sight of God.

@@ -4,8 +4,6 @@ title: Who is the Mediator of the covenant of grace?
 slug: wlc-36
 categories:
   - wlc
-relatedAnswers:
-  - bc-24
 ---
 
 The only Mediator of the covenant of grace is the Lord Jesus Christ, who, being the eternal Son of God, of one substance and equal with the Father, in the fulness of time became man, and so was and continues to be God and man, in two entire distinct natures, and one person, forever.

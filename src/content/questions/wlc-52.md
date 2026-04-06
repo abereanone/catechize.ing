@@ -4,8 +4,6 @@ title: How was Christ exalted in his resurrection?
 slug: wlc-52
 categories:
   - wlc
-relatedAnswers:
-  - bc-31
 ---
 
 Christ was exalted in his resurrection, in that, not having seen corruption in death (of which it was not possible for him to be held), and having the very same body in which he suffered, with the essential properties thereof (but without mortality, and other common infirmities belonging to this life), really united to his soul, he rose again from the dead the third day by his own power; whereby he declared himself to be the Son of God, to have satisfied divine justice, to have vanquished death, and him that had the power of it, and to be Lord of quick and dead: all which he did as a public person, the head of his church, for their justification, quickening in grace, support against enemies, and to assure them of their resurrection from the dead at the last day.

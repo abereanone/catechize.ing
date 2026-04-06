@@ -4,6 +4,9 @@ title: What is God?
 slug: wsc-4
 categories:
   - wsc
+relatedAnswers:
+  - bc-7
+  - wlc-7
 ---
 
 God is a Spirit infinite eternal and unchangeable in his being wisdom power holiness justice, goodness, and truth.

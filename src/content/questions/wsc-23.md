@@ -4,6 +4,8 @@ title: What offices doth Christ execute as our Redeemer?
 slug: wsc-23
 categories:
   - wsc
+relatedAnswers:
+  - bc-26
 ---
 
 Christ, as our Redeemer, executeth the offices of a prophet, of a priest, and of a king, both in his estate of humiliation and exaltation.

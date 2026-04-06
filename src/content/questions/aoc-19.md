@@ -4,8 +4,6 @@ title: Whence knowest thou this?
 slug: aoc-19
 categories:
   - aoc
-relatedAnswers:
-  - hc-19
 ---
 
 Out of the Gospel which God first made known in Paradise, and afterwards did spread it a broad by the Patriarchs and Prophets: shadowed it by Sacrifices and other Ceremonies of the Law; and lastly accomplished it by his only begotten Son Christ our Lord.

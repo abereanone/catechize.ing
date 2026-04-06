@@ -6,6 +6,7 @@ categories:
   - bc
 relatedAnswers:
   - wlc-8
+  - wsc-5
 ---
 
 There is but one only, the living and true God.

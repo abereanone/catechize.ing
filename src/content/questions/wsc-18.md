@@ -4,6 +4,9 @@ title: Wherein consists the sinfulness of that estate whereinto man fell?
 slug: wsc-18
 categories:
   - wsc
+relatedAnswers:
+  - bc-21
+  - wlc-25
 ---
 
 The sinfulness of that estate whereinto man fell, consists in the guilt of Adam’s first sin, the want of original righteousness, and the corruption of his whole nature, which is commonly called original sin; together with all actual transgressions which proceed from it.

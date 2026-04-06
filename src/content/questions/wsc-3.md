@@ -4,6 +4,8 @@ title: What do the Scriptures principally teach?
 slug: wsc-3
 categories:
   - wsc
+relatedAnswers:
+  - wlc-5
 ---
 
 The Scriptures principally teach what man is to believe concerning God, and what duty God requires of man.

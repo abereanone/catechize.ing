@@ -4,8 +4,6 @@ title: What mean those words, The Communion of Saints?
 slug: aoc-54
 categories:
   - aoc
-relatedAnswers:
-  - hc-55
 ---
 
 First, that all and every one who believeth, are in common Partakers of Christ and all his Graces, as being his Members; and then that every one ought readily and chearfully to bestow the Gifts and Graces which they have received to the common Commodity and Safety of all.

@@ -4,8 +4,6 @@ title: Cannot they then be saved which be unthankful, and remain still careless 
 slug: aoc-96
 categories:
   - aoc
-relatedAnswers:
-  - hc-87
 ---
 
 By no means; for as the Scripture beareth Witness, neither unchast Persons, nor Idolaters, nor Adulterers, nor Thievs, nor Covetous nor Drunkards, nor Slanderers, nor Robbers, shall enter in to the Kingdom of God.

@@ -5,7 +5,7 @@ slug: wlc-5
 categories:
   - wlc
 relatedAnswers:
-  - bc-6
+  - wsc-3
 ---
 
 The scriptures principally teach, what man is to believe concerning God, and what duty God requires of man.

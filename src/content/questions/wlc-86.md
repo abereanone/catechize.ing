@@ -4,8 +4,6 @@ title: What is the communion in glory with Christ, which the members of the invi
 slug: wlc-86
 categories:
   - wlc
-relatedAnswers:
-  - bc-40
 ---
 
 The communion in glory with Christ, which the members of the invisible church enjoy immediately after death, is, in that their souls are then made perfect in holiness, and received into the highest heavens, where they behold the face of God in light and glory, waiting for the full redemption of their bodies, which even in death continue united to Christ, and rest in their graves as in their beds, till at the last day they be again united to their souls. Whereas the souls of the wicked are at their death cast into hell, where they remain in torments and utter darkness, and their bodies kept in their graves, as in their prisons, till the resurrection and judgment of the great day.

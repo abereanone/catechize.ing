@@ -4,8 +4,6 @@ title: How did Christ humble himself in his life?
 slug: wlc-48
 categories:
   - wlc
-relatedAnswers:
-  - bc-30
 ---
 
 Christ humbled himself in his life, by subjecting himself to the law, which he perfectly fulfilled; and by conflicting with the indignities of the world, temptations of Satan, and infirmities in his flesh, whether common to the nature of man, or particularly accompanying that his low condition.

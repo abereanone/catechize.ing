@@ -4,8 +4,6 @@ title: Why is it further said, he sitteth at the Right-Hand of God?
 slug: aoc-49
 categories:
   - aoc
-relatedAnswers:
-  - hc-50
 ---
 
 Because Christ therefore is ascended into Heaven, to shew there that he is the Head of his Church, by whom the Father governeth all things.

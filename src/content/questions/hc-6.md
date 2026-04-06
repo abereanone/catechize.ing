@@ -4,8 +4,6 @@ title: Did God, then, create man so wicked and perverse?
 slug: hc-6
 categories:
   - hc
-relatedAnswers:
-  - aoc-6
 ---
 
 No, on the contrary, God created man good and in His image, that is, in true righteousness and holiness, so that he might rightly know God His Creator, heartily love Him, and live with Him in eternal blessedness to praise and glorify Him.

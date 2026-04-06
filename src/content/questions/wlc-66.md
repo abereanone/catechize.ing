@@ -4,8 +4,6 @@ title: What is that union which the elect have with Christ?
 slug: wlc-66
 categories:
   - wlc
-relatedAnswers:
-  - bc-24
 ---
 
 The union which the elect have with Christ is the work of God’s grace, whereby they are spiritually and mystically, yet really and inseparably, joined to Christ as their head and husband; which is done in their effectual calling.

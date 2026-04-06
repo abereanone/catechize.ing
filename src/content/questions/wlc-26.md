@@ -4,8 +4,6 @@ title: How is original sin conveyed from our first parents unto their posterity?
 slug: wlc-26
 categories:
   - wlc
-relatedAnswers:
-  - bc-19
 ---
 
 Original sin is conveyed from our first parents unto their posterity by natural generation, so as all that proceed from them in that way are conceived and born in sin.

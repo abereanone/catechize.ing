@@ -4,8 +4,6 @@ title: Are not by this means the two natures in Christ pulled assunder, if his H
 slug: aoc-47
 categories:
   - aoc
-relatedAnswers:
-  - hc-48
 ---
 
 No; for seeing his Divinity is incomprehensible, and every where present, it followeth necessarily that the same is without the bounds of his humane Nature which he took unto him, and yet is nevertheless in it, and abideth personally united to it.

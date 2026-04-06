@@ -4,8 +4,6 @@ title: Is God, then, not unjust by requiring in His law what man cannot do?
 slug: hc-9
 categories:
   - hc
-relatedAnswers:
-  - aoc-9
 ---
 
 No, for God so created man that he was able to do it. But man, at the instigation of the devil, in deliberate disobedience robbed himself and all his descendants of these gifts.

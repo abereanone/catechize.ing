@@ -4,8 +4,6 @@ title: Why then doth the Holy Ghost call Baptism the washing of the New-birth, a
 slug: aoc-78
 categories:
   - aoc
-relatedAnswers:
-  - hc-73
 ---
 
 God speaketh so not without great cause, to wit, not only to teach us that as the filth of our Body is purged by Water, so our Sins also are purged by the Blood and Spirit of Christ, but much more to assure us by this divine Token and Pledg, that we are as verily washed from our Sins with the inward washing, as we are washed by the outward and visible Water.

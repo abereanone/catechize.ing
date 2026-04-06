@@ -4,8 +4,6 @@ title: How may we know there is a God?
 slug: bc-3
 categories:
   - bc
-relatedAnswers:
-  - wlc-2
 ---
 
 The light of nature in man and the works of God plainly declare there is a God; but his word and Spirit only do it fully and effectually for the salvation of sinners.

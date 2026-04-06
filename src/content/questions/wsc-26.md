@@ -4,6 +4,8 @@ title: How doth Christ execute the office of a king?
 slug: wsc-26
 categories:
   - wsc
+relatedAnswers:
+  - wlc-45
 ---
 
 Christ executeth the office of a king, in subduing us to himself in ruling and defending us and in restraining and conquering all his and our enemies.

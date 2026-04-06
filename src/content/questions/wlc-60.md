@@ -4,8 +4,6 @@ title: Can they who have never heard the gospel, and so know not Jesus Christ, n
 slug: wlc-60
 categories:
   - wlc
-relatedAnswers:
-  - bc-94
 ---
 
 They who, having never heard the gospel, know not Jesus Christ, and believe not in him, cannot be saved, be they never so diligent to frame their lives according to the light of nature, or the laws of that religion which they profess; neither is there salvation in any other, but in Christ alone, who is the Savior only of his body the church.

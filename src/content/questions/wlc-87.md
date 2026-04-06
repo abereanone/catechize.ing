@@ -4,8 +4,6 @@ title: What are we to believe concerning the resurrection?
 slug: wlc-87
 categories:
   - wlc
-relatedAnswers:
-  - bc-41
 ---
 
 We are to believe, that at the last day there shall be a general resurrection of the dead, both of the just and unjust: when they that are then found alive shall in a moment be changed; and the selfsame bodies of the dead which were laid in the grave, being then again united to their souls forever, shall be raised up by the power of Christ. The bodies of the just, by the Spirit of Christ, and by virtue of his resurrection as their head, shall be raised in power, spiritual, incorruptible, and made like to his glorious body; and the bodies of the wicked shall be raised up in dishonor by him, as an offended judge.

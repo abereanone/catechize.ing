@@ -4,8 +4,6 @@ title: How is Christ to be exalted in his coming again to judge the world?
 slug: wlc-56
 categories:
   - wlc
-relatedAnswers:
-  - bc-31
 ---
 
 Christ is to be exalted in his coming again to judge the world, in that he, who was unjustly judged and condemned by wicked men, shall come again at the last day in great power, and in the full manifestation of his own glory, and of his Father’s, with all his holy angels, with a shout, with the voice of the archangel, and with the trumpet of God, to judge the world in righteousness.

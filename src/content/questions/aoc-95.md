@@ -4,8 +4,6 @@ title: Whereas we are delivered from all our Sins and Miseries without any Merit
 slug: aoc-95
 categories:
   - aoc
-relatedAnswers:
-  - hc-86
 ---
 
 Because, after that Christ hath redeemed us with his Blood, he reneweth us also by his Spirit to the Image of himself, that we receiving so great Benefits, should shew our selves all our life time thankfull to God, and honour him; secondly that every one of us be assured of his Faith by his Fruit; and lastly, that by our good Conversation we may win others to Christ.

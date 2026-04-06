@@ -4,8 +4,6 @@ title: Are they also to be admitted to the Lords Supper who in Confession and Li
 slug: aoc-90
 categories:
   - aoc
-relatedAnswers:
-  - hc-82
 ---
 
 No; For by that means the Ordinance of God is profaned, and the Wrath of God is stirred up against the whole Assembly, wherefore the Church by the Commandment of Christ and his Apostles, inspired by the Holy Ghost, using the Keys of the Kingdom of Heaven, ought to drive them from this Supper till they shall repent and change their Manners.

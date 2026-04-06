@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-13
+  - wsc-10
 ---
 
 After God had made all other creatures, he created man male and female; formed the body of the man of the dust of the ground, and the woman of the rib of the man, endued them with living, reasonable, and immortal souls; made them after his own image, in knowledge, righteousness,and holiness; having the law of God written in their hearts, and power to fulfil it, and dominion over the creatures; yet subject to fall.

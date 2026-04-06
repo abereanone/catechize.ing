@@ -4,8 +4,6 @@ title: What Difference is there between the Supper of the Lord, and the Popish M
 slug: aoc-88
 categories:
   - aoc
-relatedAnswers:
-  - hc-80
 ---
 
 The Supper of the Lord testifieth unto us, that we have perfect Forgiveness of all our Sins, for that only Sacrifice of Christ, which himself once fully wrought on the Cross; then also that we by Faith are grafted into Christ, who now according to his Human Nature is only in Heaven at the Right Hand of his Father, and there will be worshipped of us. But in the Mass it is denied that the quick and the dead have Remission of Sins, for the only Passion of Christ, except Christ also be daily offered for them by their Sacrificers: Further, also it is taught, that Christ is bodily under the Forms of Bread and Wine, and therefore is to be worshipped in them: and so the very Foundation of the Mass is nothing else but an utter denial of that only Sacrifice and Passion of Christ Jesus, and an accursed Idolatry.

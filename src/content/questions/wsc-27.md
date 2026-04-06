@@ -4,6 +4,8 @@ title: Wherein did Christ’s humiliation consist?
 slug: wsc-27
 categories:
   - wsc
+relatedAnswers:
+  - bc-30
 ---
 
 Christ’s humiliation consisted in his being born, and that in a low condition made under the law undergoing the miseries of this life the wrath of God and the cursed death of the cross in being buried and continuing under the power of death for a time.

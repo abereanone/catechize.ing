@@ -4,8 +4,6 @@ title: Why was it requisite that the Mediator should be God?
 slug: wlc-38
 categories:
   - wlc
-relatedAnswers:
-  - bc-25
 ---
 
 It was requisite that the Mediator should be God, that he might sustain and keep the human nature from sinking under the infinite wrath of God, and the power of death; give worth and efficacy to his sufferings, obedience, and intercession; and to satisfy God’s justice, procure his favor, purchase a peculiar people, give his Spirit to them, conquer all their enemies, and bring them to everlasting salvation.

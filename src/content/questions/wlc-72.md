@@ -4,8 +4,6 @@ title: What is justifying faith?
 slug: wlc-72
 categories:
   - wlc
-relatedAnswers:
-  - bc-91
 ---
 
 Justifying faith is a saving grace, wrought in the heart of a sinner by the Spirit and word of God, whereby he, being convinced of his sin and misery, and of the disability in himself and all other creatures to recover him out of his lost condition, not only assenteth to the truth of the promise of the gospel, but receiveth and resteth upon Christ and his righteousness, therein held forth, for pardon of sin, and for the accepting and accounting of his person righteous in the sight of God for salvation.

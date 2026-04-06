@@ -4,8 +4,6 @@ title: What is the chief and highest end of man?
 slug: wlc-1
 categories:
   - wlc
-relatedAnswers:
-  - bc-1
 ---
 
 Man’s chief and highest end is to glorify God, and fully to enjoy him forever.

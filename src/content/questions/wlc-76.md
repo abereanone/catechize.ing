@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-92
+  - wsc-87
 ---
 
 Repentance unto life is a saving grace, wrought in the heart of a sinner by the Spirit and word of God, whereby, out of the sight and sense, not only of the danger, but also of the filthiness and odiousness of his sins, and upon the apprehension of God’s mercy in Christ to such as are penitent, he so grieves for and hates his sins, as that he turns from them all to God, purposing and endeavoring constantly to walk with him in all the ways of new obedience.

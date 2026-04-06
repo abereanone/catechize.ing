@@ -35,7 +35,7 @@ const canPreviewVerse = entry.referencePart.includes(":");
         </p>
       )}
     {questions.length ? (
-      <QuestionList questions={questions} />
+      <QuestionList questions={questions} highlightReference={entry.reference} />
     ) : (
       <p><em>No questions found for this reference.</em></p>
     )}

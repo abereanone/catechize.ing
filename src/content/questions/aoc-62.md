@@ -4,8 +4,6 @@ title: How is it that our good Works merit nothing, seeing God promiseth that he
 slug: aoc-62
 categories:
   - aoc
-relatedAnswers:
-  - hc-63
 ---
 
 That Reward is not given of merit, but of Grace.

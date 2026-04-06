@@ -4,6 +4,8 @@ title: What was the sin whereby our first parents fell from the estate wherein t
 slug: wsc-15
 categories:
   - wsc
+relatedAnswers:
+  - bc-18
 ---
 
 The sin whereby our first parents fell from the estate wherein they were created, was their eating the forbidden fruit.

@@ -4,6 +4,8 @@ title: What benefits do believers receive from Christ at the resurrection?
 slug: wsc-38
 categories:
   - wsc
+relatedAnswers:
+  - bc-41
 ---
 
 At the resurrection, believers being raised up in glory shall be openly acknowledged and acquitted in the day of judgment and made perfectly blessed in the full enjoying of God to all eternity.

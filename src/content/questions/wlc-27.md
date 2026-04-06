@@ -4,8 +4,6 @@ title: What misery did the fall bring upon mankind?
 slug: wlc-27
 categories:
   - wlc
-relatedAnswers:
-  - bc-22
 ---
 
 The fall brought upon mankind the loss of communion with God, his displeasure and curse; so as we are by nature children of wrath, bond slaves to Satan, and justly liable to all punishments in this world, and that which is to come.

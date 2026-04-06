@@ -4,6 +4,8 @@ title: Who is the Redeemer of God’s elect?
 slug: wsc-21
 categories:
   - wsc
+relatedAnswers:
+  - bc-24
 ---
 
 The only Redeemer of God’s elect is the Lord Jesus Christ who, being the eternal Son of God, became man and so was, and continueth to be, God and man in two distinct natures, and one person, forever.

@@ -4,8 +4,6 @@ title: What is the communion in glory which the members of the invisible church 
 slug: wlc-82
 categories:
   - wlc
-relatedAnswers:
-  - bc-40
 ---
 
 The communion in glory which the members of the invisible church have with Christ, is in this life, immediately after death, and at last perfected at the resurrection and day of judgment.

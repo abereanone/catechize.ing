@@ -4,8 +4,6 @@ title: Whence ariseth the imperfection of sanctification in believers?
 slug: wlc-78
 categories:
   - wlc
-relatedAnswers:
-  - bc-38
 ---
 
 The imperfection of sanctification in believers ariseth from the remnants of sin abiding in every part of them, and the perpetual lustings of the flesh against the spirit; whereby they are often foiled with temptations, and fall into many sins, are hindered in all their spiritual services, and their best works are imperfect and defiled in the sight of God.

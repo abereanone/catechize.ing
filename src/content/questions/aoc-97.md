@@ -4,8 +4,6 @@ title: Of what Parts consisteth the Conversion of Man unto God?
 slug: aoc-97
 categories:
   - aoc
-relatedAnswers:
-  - hc-88
 ---
 
 It consisteth of the mortifying of the old Man, and a quickning of the new Man.

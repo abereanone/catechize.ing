@@ -4,8 +4,6 @@ title: Is then the outward Baptism of Water the washing away of Sins?
 slug: aoc-77
 categories:
   - aoc
-relatedAnswers:
-  - hc-72
 ---
 
 It is not; for the Blood of Christ alone cleanseth us from all Sin.

@@ -4,8 +4,6 @@ title: Seeing then by the just Judgment of God we are subject both to temporal a
 slug: aoc-12
 categories:
   - aoc
-relatedAnswers:
-  - hc-12
 ---
 
 God will have his Justice satisfied: wherefore it is necessary that we satisfy either by our selves, or by another.

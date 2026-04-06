@@ -4,8 +4,6 @@ title: How understand you that he ascended into Heaven?
 slug: aoc-45
 categories:
   - aoc
-relatedAnswers:
-  - hc-46
 ---
 
 That Christ, his Disciples looking on, was taken up from the Earth into Heaven, and yet still is there for our sakes, and will be until he come again to judge the quick and the dead.

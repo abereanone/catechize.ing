@@ -4,8 +4,6 @@ title: Are all they saved who hear the gospel, and live in the church?
 slug: wlc-61
 categories:
   - wlc
-relatedAnswers:
-  - bc-94
 ---
 
 All that hear the gospel, and live in the visible church, are not saved; but they only who are true members of the church invisible.

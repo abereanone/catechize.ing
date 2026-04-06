@@ -4,8 +4,6 @@ title: Who is the first and chiefest being?
 slug: bc-1
 categories:
   - bc
-relatedAnswers:
-  - wlc-1
 ---
 
 God is the first and chiefest being.

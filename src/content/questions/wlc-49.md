@@ -4,8 +4,6 @@ title: How did Christ humble himself in his death?
 slug: wlc-49
 categories:
   - wlc
-relatedAnswers:
-  - bc-30
 ---
 
 Christ humbled himself in his death, in that having been betrayed by Judas, forsaken by his disciples, scorned and rejected by the world, condemned by Pilate, and tormented by his persecutors; having also conflicted with the terrors of death, and the powers of darkness, felt and borne the weight of God’s wrath, he laid down his life an offering for sin, enduring the painful, shameful, and cursed death of the cross.

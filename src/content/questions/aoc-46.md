@@ -4,8 +4,6 @@ title: Is not Christ with us then until the end of the World, as he hath promise
 slug: aoc-46
 categories:
   - aoc
-relatedAnswers:
-  - hc-47
 ---
 
 Christ is true God, and true Man, and so according to his Manhood is not now on Earth, but according to his Godhead, his Majesty, his Grace, and Spirit is at no time from us.

@@ -4,8 +4,6 @@ title: Of what use is the moral law to all men?
 slug: wlc-95
 categories:
   - wlc
-relatedAnswers:
-  - bc-46
 ---
 
 The moral law is of use to all men, to inform them of the holy nature and will of God, and of their duty, binding them to walk accordingly; to convince them of their disability to keep it, and of the sinful pollution of their nature, hearts, and lives; to humble them in the sense of their sin and misery, and thereby help them to a clearer sight of the need they have of Christ, and of the perfection of his obedience.

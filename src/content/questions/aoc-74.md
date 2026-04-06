@@ -4,8 +4,6 @@ title: How art thou admonished and assured in Baptism, that thou art Partaker of
 slug: aoc-74
 categories:
   - aoc
-relatedAnswers:
-  - hc-69
 ---
 
 Because Christ commanded the outward washing of Water, adjoyning this Promise thereunto, that I am no less assuredly washed by his Blood and Spirit from the uncleanness of my Soul, that is, from all my Sins, than I am washed outwardly with Water, whereby all the Filthiness of the Body useth to be purged.

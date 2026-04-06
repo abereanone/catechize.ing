@@ -4,6 +4,8 @@ title: How are we made partakers of the redemption purchased by Christ?
 slug: wsc-29
 categories:
   - wsc
+relatedAnswers:
+  - bc-32
 ---
 
 We are made partakers of the redemption purchased by Christ, by the effectual application of it to us by his Holy Spirit.

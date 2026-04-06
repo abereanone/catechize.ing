@@ -4,8 +4,6 @@ title: How is the grace of God manifested in the second covenant?
 slug: wlc-32
 categories:
   - wlc
-relatedAnswers:
-  - bc-23
 ---
 
 The grace of God is manifested in the second covenant, in that he freely provideth and offereth to sinners a Mediator, and life and salvation by him; and requiring faith as the condition to interest them in him, promiseth and giveth his Holy Spirit to all his elect, to work in them that faith, with all other saving graces; and to enable them unto all holy obedience, as the evidence of the truth of their faith and thankfulness to God, and as the way which he hath appointed them to salvation.

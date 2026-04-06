@@ -4,8 +4,6 @@ title: What is your only comfort in life and death?
 slug: hc-1
 categories:
   - hc
-relatedAnswers:
-  - aoc-1
 ---
 
 That I am not my own, but belong with body and soul, both in life and in death, to my faithful Saviour Jesus Christ. He has fully paid for all my sins with His precious blood, and has set me free from all the power of the devil. He also preserves me in such a way that without the will of my heavenly Father not a hair can fall from my head; indeed, all things must work together for my salvation. Therefore, by His Holy Spirit He also assures me of eternal life and makes me heartily willing and ready from now on to live for Him.

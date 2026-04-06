@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-20
+  - wsc-17
 ---
 
 The fall brought mankind into an estate of sin and misery.

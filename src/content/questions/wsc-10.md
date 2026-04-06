@@ -4,6 +4,9 @@ title: How did God create man?
 slug: wsc-10
 categories:
   - wsc
+relatedAnswers:
+  - bc-13
+  - wlc-17
 ---
 
 God created man male and female, after his own image, in knowledge, righteousness, and holiness, with dominion over the creatures.

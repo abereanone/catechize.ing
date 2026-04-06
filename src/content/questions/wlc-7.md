@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-7
+  - wsc-4
 ---
 
 God is a Spirit, in and of himself infinite in being, glory, blessedness, and perfection; all-sufficient, eternal, unchangeable, incomprehensible, everywhere present, almighty, knowing all things, most wise, most holy, most just, most merciful and gracious, long-suffering, and abundant in goodness and truth.

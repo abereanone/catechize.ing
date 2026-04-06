@@ -4,6 +4,9 @@ title: What is the work of creation?
 slug: wsc-9
 categories:
   - wsc
+relatedAnswers:
+  - bc-12
+  - wlc-15
 ---
 
 The work of creation is, God’s making all things of nothing, by the word of his power, in the space of six days, and all very good.

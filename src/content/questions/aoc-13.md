@@ -4,8 +4,6 @@ title: Are we able to satisfy by our selves?
 slug: aoc-13
 categories:
   - aoc
-relatedAnswers:
-  - hc-13
 ---
 
 Not a whit. Nay rather we do every day increase our debt.

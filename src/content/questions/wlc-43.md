@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-27
+  - wsc-24
 ---
 
 Christ executeth the office of a prophet, in his revealing to the church, in all ages, by his Spirit and word, in divers ways of administration, the whole will of God, in all things concerning their edification and salvation.

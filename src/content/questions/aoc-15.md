@@ -4,8 +4,6 @@ title: What manner of Mediatour then, and Deliverer must we seek for?
 slug: aoc-15
 categories:
   - aoc
-relatedAnswers:
-  - hc-15
 ---
 
 Such a one verily as is very Man, and perfectly just, and yet in Power above all creatures, that is, one who also is very God.

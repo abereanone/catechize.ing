@@ -4,6 +4,9 @@ title: What are God’s works of providence?
 slug: wsc-11
 categories:
   - wsc
+relatedAnswers:
+  - bc-14
+  - wlc-18
 ---
 
 God’s works of providence are, his most holy wise and powerful preserving and governing all his creatures, and all their actions.

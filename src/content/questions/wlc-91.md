@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-44
+  - wsc-39
 ---
 
 The duty which God requireth of man, is obedience to his revealed will.

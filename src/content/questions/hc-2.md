@@ -4,8 +4,6 @@ title: What do you need to know in order to live and die in the joy of this comf
 slug: hc-2
 categories:
   - hc
-relatedAnswers:
-  - aoc-2
 ---
 
 First, how great my sins and misery are; second, how I am delivered from all my sins and misery; third, how I am to be thankful to God for such deliverance.

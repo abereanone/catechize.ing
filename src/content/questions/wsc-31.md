@@ -4,6 +4,9 @@ title: What is effectual calling?
 slug: wsc-31
 categories:
   - wsc
+relatedAnswers:
+  - bc-34
+  - wlc-67
 ---
 
 Effectual calling is the work of God’s Spirit whereby, convincing us of our sin and misery enlightening our minds in the knowledge of Christ and renewing our wills he doth persuade and enable us to embrace Jesus Christ, freely offered to us in the gospel.

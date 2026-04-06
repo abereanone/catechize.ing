@@ -4,8 +4,6 @@ title: Are all true believers at all times assured of their present being in the
 slug: wlc-81
 categories:
   - wlc
-relatedAnswers:
-  - bc-39
 ---
 
 Assurance of grace and salvation not being of the essence of faith, true believers may wait long before they obtain it; and, after the enjoyment thereof, may have it weakened and intermitted, through manifold distempers, sins, temptations, and desertions; yet are they never left without such a presence and support of the Spirit of God as keeps them from sinking into utter despair.

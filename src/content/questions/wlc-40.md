@@ -4,8 +4,6 @@ title: Why was it requisite that the Mediator should be God and man in one perso
 slug: wlc-40
 categories:
   - wlc
-relatedAnswers:
-  - bc-25
 ---
 
 It was requisite that the Mediator, who was to reconcile God and man, should himself be both God and man, and this in one person, that the proper works of each nature might be accepted of God for us, and relied on by us, as the works of the whole person.

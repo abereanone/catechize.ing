@@ -4,8 +4,6 @@ title: How do we come to be made partakers of the benefits which Christ hath pro
 slug: wlc-58
 categories:
   - wlc
-relatedAnswers:
-  - bc-32
 ---
 
 We are made partakers of the benefits which Christ hath procured, by the application of them unto us, which is the work especially of God the Holy Ghost.

@@ -4,8 +4,6 @@ title: May not true believers, by reason of their imperfections, and the many te
 slug: wlc-79
 categories:
   - wlc
-relatedAnswers:
-  - bc-38
 ---
 
 True believers, by reason of the unchangeable love of God, and his decree and covenant to give them perseverance, their inseparable union with Christ, his continual intercession for them, and the Spirit and seed of God abiding in them, can neither totally nor finally fall away from the state of grace, but are kept by the power of God through faith unto salvation.

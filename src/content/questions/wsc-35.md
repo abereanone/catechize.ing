@@ -4,6 +4,9 @@ title: What is sanctification?
 slug: wsc-35
 categories:
   - wsc
+relatedAnswers:
+  - bc-38
+  - wlc-75
 ---
 
 Sanctification is the work of God’s free grace whereby we are renewed in the whole man after the image of God and are enabled more and more to die unto sin, and live unto righteousness.

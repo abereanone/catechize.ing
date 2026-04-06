@@ -4,6 +4,8 @@ title: How doth the Spirit apply to us the redemption purchased by Christ?
 slug: wsc-30
 categories:
   - wsc
+relatedAnswers:
+  - bc-33
 ---
 
 The Spirit applieth to us the redemption purchased by Christ, by working faith in us and thereby uniting us to Christ in our effectual calling.

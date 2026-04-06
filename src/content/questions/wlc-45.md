@@ -5,7 +5,7 @@ slug: wlc-45
 categories:
   - wlc
 relatedAnswers:
-  - bc-29
+  - wsc-26
 ---
 
 Christ executeth the office of a king, in calling out of the world a people to himself, and giving them officers, laws, and censures, by which he visibly governs them; in bestowing saving grace upon his elect, rewarding their obedience, and correcting them for their sins, preserving and supporting them under all their temptations and sufferings, restraining and overcoming all their enemies, and powerfully ordering all things for his own glory, and their good; and also in taking vengeance on the rest, who know not God, and obey not the gospel.

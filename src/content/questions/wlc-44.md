@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-28
+  - wsc-25
 ---
 
 Christ executeth the office of a priest, in his once offering himself a sacrifice without spot to God, to be a reconciliation for the sins of his people; and in making continual intercession for them.

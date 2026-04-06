@@ -4,6 +4,10 @@ title: Which is the ninth commandment?
 slug: wsc-76
 categories:
   - wsc
+relatedAnswers:
+  - aoc-132
+  - bc-81
+  - wlc-143
 ---
 
 The ninth commandment is, Thou shalt not bear false witness against thy neighbour.

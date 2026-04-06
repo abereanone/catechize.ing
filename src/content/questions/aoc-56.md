@@ -4,8 +4,6 @@ title: What Comfort hast thou by the Resurrection of the Flesh?
 slug: aoc-56
 categories:
   - aoc
-relatedAnswers:
-  - hc-57
 ---
 
 That not only my Soul, after it shall depart out of my Body, shall presently be taken up to Christ, but that this my Flesh also, being raised up by the Power of Christ, shall be again united to my Soul, and shall be made like to the glorious Body of Christ.

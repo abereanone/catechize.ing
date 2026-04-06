@@ -4,8 +4,6 @@ title: How is the covenant of grace administered under the New Testament?
 slug: wlc-35
 categories:
   - wlc
-relatedAnswers:
-  - bc-23
 ---
 
 Under the New Testament, when Christ the substance was exhibited, the same covenant of grace was and still is to be administered in the preaching of the word, and the administration of the sacraments of Baptism and the Lord’s Supper; in which grace and salvation are held forth in more fulness, evidence, and efficacy, to all nations.

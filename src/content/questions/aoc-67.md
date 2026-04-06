@@ -6,6 +6,7 @@ categories:
   - aoc
 relatedAnswers:
   - hc-68
+  - wlc-164
 ---
 
 Two; Baptism, and the Lord’s Supper.

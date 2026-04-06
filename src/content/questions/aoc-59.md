@@ -4,8 +4,6 @@ title: How art thou righteous before God?
 slug: aoc-59
 categories:
   - aoc
-relatedAnswers:
-  - hc-60
 ---
 
 Only by Faith in Christ Jesus. So that although my Concience accuse me that I have grievously trespassed against all the Commandments of God, and have not kept one of them, and further am as yet prone to all Evil; yet notwithstanding if I embrace these Benefits of Christ with a true Confidence and Perswasion of mind, the full and perfect Satisfaction, Righteousness and Holiness of Christ, without any Merit of Mine, of the meer Mercy of God is imputed and given unto me, and that so, as if neither I had committed any Sin, neither any Corruption did stick unto me; yea as if I my self had perfectly accomplished that Obedience which Christ accomplished for me.

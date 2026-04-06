@@ -4,8 +4,6 @@ title: What is the Providence of God?
 slug: aoc-26
 categories:
   - aoc
-relatedAnswers:
-  - hc-27
 ---
 
 The almighty Power of God, every where present, whereby he doth as it were by his hand uphold and govern Heaven and Earth, with all the Creatures therein, so that those things which grow in the Earth, as likewise rain and drowth, fruitfulness and barenness, meat and and drink, health and sickness, riches and poverty; in a word, all things come not rashly and by chance, but by his fatherly Counsel and will.

@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-37
+  - wsc-34
 ---
 
 Adoption is an act of the free grace of God, in and for his only Son Jesus Christ, whereby all those that are justified are received into the number of his children, have his name put upon them, the Spirit of his Son given to them, are under his fatherly care and dispensations, admitted to all the liberties and privileges of the sons of God, made heirs of all the promises, and fellow heirs with Christ in glory.

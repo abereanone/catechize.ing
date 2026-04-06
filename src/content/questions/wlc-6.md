@@ -4,8 +4,6 @@ title: What do the scriptures make known of God?
 slug: wlc-6
 categories:
   - wlc
-relatedAnswers:
-  - bc-6
 ---
 
 The scriptures make known what God is, the persons in the Godhead, his decrees, and the execution of his decrees.

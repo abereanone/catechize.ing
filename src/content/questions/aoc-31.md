@@ -4,8 +4,6 @@ title: But why art thou called a Christian?
 slug: aoc-31
 categories:
   - aoc
-relatedAnswers:
-  - hc-32
 ---
 
 Because through Faith I am a member of Jesus Christ, and partaker of his anointing, that both I may confess his name, and present my self unto him a lively Sacrifice of thankfulness, and also may in this life fight against Sin and Satan with free and good conscience, and afterwards enjoy an everlasting Kingdom with Christ.

@@ -4,6 +4,9 @@ title: What is the duty which God requireth of man?
 slug: wsc-39
 categories:
   - wsc
+relatedAnswers:
+  - bc-44
+  - wlc-91
 ---
 
 The duty which God requireth of man, is obedience to his revealed will.

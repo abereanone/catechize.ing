@@ -4,6 +4,8 @@ title: Wherein consisteth Christ’s exaltation?
 slug: wsc-28
 categories:
   - wsc
+relatedAnswers:
+  - bc-31
 ---
 
 Christ’s exaltation consisteth in his rising again from the dead on the third day in ascending up into heaven in sitting at the right hand of God the Father and in coming to judge the world at the last day.

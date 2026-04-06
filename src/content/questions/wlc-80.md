@@ -4,8 +4,6 @@ title: Can true believers be infallibly assured that they are in the estate of g
 slug: wlc-80
 categories:
   - wlc
-relatedAnswers:
-  - bc-39
 ---
 
 Such as truly believe in Christ, and endeavor to walk in all good conscience before him, may, without extraordinary revelation, by faith grounded upon the truth of God’s promises, and by the Spirit enabling them to discern in themselves those graces to which the promises of life are made, and bearing witness with their spirits that they are the children of God, be infallibly assured that they are in the estate of grace, and shall persevere therein unto salvation.

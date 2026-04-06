@@ -4,8 +4,6 @@ title: And who is that Mediatour which is together both very God, and a very per
 slug: aoc-18
 categories:
   - aoc
-relatedAnswers:
-  - hc-18
 ---
 
 Even our Lord Jesus Christ, who is made to us of God’s Wisdom, Righteousness, Sanctification & Redemption.

@@ -4,8 +4,6 @@ title: Wherein consisted Christ’s humiliation after his death?
 slug: wlc-50
 categories:
   - wlc
-relatedAnswers:
-  - bc-30
 ---
 
 Christ’s humiliation after his death consisted in his being buried, and continuing in the state of the dead, and under the power of death till the third day; which hath been otherwise expressed in these words, he descended into hell.

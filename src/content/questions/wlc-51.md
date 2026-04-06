@@ -4,8 +4,6 @@ title: What was the estate of Christ’s exaltation?
 slug: wlc-51
 categories:
   - wlc
-relatedAnswers:
-  - bc-31
 ---
 
 The estate of Christ’s exaltation comprehendeth his resurrection, ascension, sitting at the right hand of the Father, and his coming again to judge the world.

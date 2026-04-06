@@ -4,8 +4,6 @@ title: Why was our Mediator called Christ?
 slug: wlc-42
 categories:
   - wlc
-relatedAnswers:
-  - bc-26
 ---
 
 Our Mediator was called Christ, because he was anointed with the Holy Ghost above measure; and so set apart, and fully furnished with all authority and ability, to execute the offices of prophet, priest, and king of his church, in the estate both of his humiliation and exaltation.

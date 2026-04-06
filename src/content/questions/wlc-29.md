@@ -4,8 +4,6 @@ title: What are the punishments of sin in the world to come?
 slug: wlc-29
 categories:
   - wlc
-relatedAnswers:
-  - bc-22
 ---
 
 The punishments of sin in the world to come, are everlasting separation from the comfortable presence of God, and most grievous torments in soul and body, without intermission, in hell fire forever.

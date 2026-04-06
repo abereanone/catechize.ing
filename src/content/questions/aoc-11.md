@@ -4,8 +4,6 @@ title: Is not God therefore merciful?
 slug: aoc-11
 categories:
   - aoc
-relatedAnswers:
-  - hc-11
 ---
 
 Yea, Verily he is merciful; but so, that he is also just: wherefore his Justice requireth that the same which is committed against the divine Majesty of God, should also be recompenced with extream, that is, everlasting Punishment both in Body and Soul.
