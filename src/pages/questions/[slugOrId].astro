@@ -209,6 +209,7 @@ function getQuestionLink(entry: Question, preferredGroup?: string | null) {
 function getPrimaryGroupCode(entry: Question) {
   return Array.isArray(entry.groupCodes) && entry.groupCodes.length ? entry.groupCodes[0] : null;
 }
+
 ---
 
 {listingItems ? (
@@ -225,7 +226,11 @@ function getPrimaryGroupCode(entry: Question) {
           const groupName = entryCategories.find((cat) => cat.groupCode === primaryGroup)?.name ?? null;
           return (
             <li>
-              <a class="question-card card-panel" href={getQuestionLink(entry, primaryGroup)}>
+              <a
+                class="question-card card-panel"
+                data-question-group={primaryGroup ? primaryGroup.toLowerCase() : undefined}
+                href={getQuestionLink(entry, primaryGroup)}
+              >
                 {displayLabel ? <span class="question-id">#{displayLabel}</span> : null}
                 <span class="question-title">
                   {entry.title}
@@ -257,7 +262,7 @@ function getPrimaryGroupCode(entry: Question) {
           <span aria-hidden="true" class="question-top-link placeholder" />
         )}
 
-        <a class="question-top-link random-link" href="/random">Random</a>
+        <a class="question-top-link random-link" href="/random">God's Choice</a>
         <div class="question-top-search">
           <InlineSearchBox
             id={`question-search-${questionSlug}`}
@@ -286,7 +291,9 @@ function getPrimaryGroupCode(entry: Question) {
       <h1 class="page-title">{question.title}</h1>
       <div class="question-meta-row">
         {showQuestionId ? (
-          <p class="question-meta">Question #{questionIdentifierLabel}</p>
+          <p class="question-meta">
+            <span class="question-meta-id" data-question-group={activeGroupCode ? activeGroupCode.toLowerCase() : undefined}>#{questionIdentifierLabel}</span>
+          </p>
         ) : (
           <span />
         )}
@@ -299,6 +306,7 @@ function getPrimaryGroupCode(entry: Question) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Share on X"
+              title="Share on X"
             >
               <span aria-hidden="true">𝕏</span>
             </a>
@@ -308,6 +316,7 @@ function getPrimaryGroupCode(entry: Question) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Share on Facebook"
+              title="Share on Facebook"
             >
               <span aria-hidden="true">f</span>
             </a>
@@ -315,6 +324,7 @@ function getPrimaryGroupCode(entry: Question) {
               class="question-share-link"
               href={`mailto:?subject=${encodedEmailSubject}&body=${encodedEmailBody}`}
               aria-label="Share via email"
+              title="Share via email"
             >
               <span aria-hidden="true">✉</span>
             </a>
@@ -324,6 +334,7 @@ function getPrimaryGroupCode(entry: Question) {
               data-share-copy
               data-share-url={shareUrl}
               aria-label="Copy link"
+              title="Copy link"
             >
               <span aria-hidden="true">⧉</span>
             </button>
@@ -389,7 +400,11 @@ function getPrimaryGroupCode(entry: Question) {
 
             return (
               <li>
-                <a class="question-card card-panel" href={getQuestionLink(entry, primaryGroup)}>
+                <a
+                  class="question-card card-panel"
+                  data-question-group={primaryGroup ? primaryGroup.toLowerCase() : undefined}
+                  href={getQuestionLink(entry, primaryGroup)}
+                >
                   {displayLabel ? <span class="question-id">#{displayLabel}</span> : null}
                   <span class="question-title">
                     {entry.title}
@@ -435,7 +450,13 @@ function getPrimaryGroupCode(entry: Question) {
       <ul class="category-list">
         {questionCategories.map((category) => (
           <li>
-            <a class="category-chip" href={`/categories/${category.id}`}>{category.name}</a>
+            <a
+              class="category-chip"
+              data-category-group={category.groupCode ? category.groupCode.toLowerCase() : undefined}
+              href={`/categories/${category.id}`}
+            >
+              {category.name}
+            </a>
           </li>
         ))}
       </ul>
@@ -754,6 +775,12 @@ function getPrimaryGroupCode(entry: Question) {
     .question-share-link.is-copied {
       border-color: var(--surface-border-strong);
       background: rgba(34, 197, 94, 0.18);
+    }
+
+    .question-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
     }
 
     @media (max-width: 640px) {

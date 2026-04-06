@@ -23,7 +23,7 @@ const baseIndex =
       : `/questions/${q.slug}`;
     return (
     <li>
-      <a class="question-card card-panel" href={href}>
+      <a class="question-card card-panel" data-question-group={primaryGroup ? primaryGroup.toLowerCase() : undefined} href={href}>
         {showQuestionId && displayId !== null ? (
           <span class="question-id">#{displayId}</span>
         ) : null}

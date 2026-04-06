@@ -13,7 +13,11 @@ const siteName = siteSettings.branding.siteName;
     <ul class="category-grid">
       {categoryIndex.map((category) => (
         <li>
-          <a class="category-card card-panel" href={`/categories/${category.id}`}>
+          <a
+            class="category-card card-panel"
+            data-category-group={category.groupCode ? category.groupCode.toLowerCase() : undefined}
+            href={`/categories/${category.id}`}
+          >
             <span class="category-name">{category.name}</span>
             <span class="category-count">
               {category.count === 1 ? "1 question" : `${category.count} questions`}

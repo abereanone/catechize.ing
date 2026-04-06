@@ -5,6 +5,7 @@
   /* Typography */
   --font-body: 'Source Sans 3', sans-serif;
   --font-heading: 'Cormorant Garamond', serif;
+  --font-weight-body: 500;
   --font-size-body: 1.15rem;
   --font-size-main: 1.1rem;
   --line-height-body: 1.75;
@@ -84,6 +85,9 @@
   /* Misc */
   --question-group-label-color: rgba(255, 255, 255, 0.75);
   --question-id-color: rgba(255, 255, 255, 0.7);
+  --question-accent-bg: rgba(196, 223, 196, 0.08);
+  --question-accent-border: rgba(120, 157, 123, 0.24);
+  --question-accent-text: var(--question-id-color);
   --logo-filter: invert(0);
 
   /* Shared sizing / effects */
@@ -179,6 +183,9 @@
   /* Misc */
   --question-group-label-color: rgba(15, 23, 42, 0.65);
   --question-id-color: rgba(15, 23, 42, 0.9);
+  --question-accent-bg: rgba(73, 104, 78, 0.08);
+  --question-accent-border: rgba(73, 104, 78, 0.18);
+  --question-accent-text: var(--question-id-color);
   --logo-filter: invert(1);
 }
 
@@ -191,6 +198,7 @@ body {
     var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
   letter-spacing: 0.01em;
@@ -360,6 +368,7 @@ ul {
   text-decoration: none;
   font-weight: 600;
   line-height: 1.5;
+  border-left: 3px solid var(--question-accent-border);
 }
 
 .question-card:hover,
@@ -371,14 +380,153 @@ ul {
 }
 
 .question-card .question-id {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--question-accent-border);
+  background: var(--question-accent-bg);
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--question-id-color);
+  color: var(--question-accent-text);
+  white-space: nowrap;
+}
+
+.question-meta-id {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--question-id-border, var(--question-accent-border));
+  background: var(--question-id-bg, var(--question-accent-bg));
+  color: var(--question-id-pill-color, var(--question-accent-text));
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .question-title {
   flex: 1;
   font-size: 1.15rem;
+}
+
+.question-card[data-question-group="bc"] {
+  --question-accent-bg: rgba(184, 134, 34, 0.14);
+  --question-accent-border: rgba(214, 170, 72, 0.5);
+  --question-accent-text: #f1d48a;
+}
+
+.question-card[data-question-group="wsc"] {
+  --question-accent-bg: rgba(84, 138, 214, 0.14);
+  --question-accent-border: rgba(104, 162, 240, 0.5);
+  --question-accent-text: #a8d0ff;
+}
+
+.question-card[data-question-group="wlc"] {
+  --question-accent-bg: rgba(62, 153, 131, 0.15);
+  --question-accent-border: rgba(88, 193, 168, 0.5);
+  --question-accent-text: #98e5cd;
+}
+
+.question-card[data-question-group="hc"] {
+  --question-accent-bg: rgba(172, 88, 68, 0.15);
+  --question-accent-border: rgba(214, 118, 94, 0.48);
+  --question-accent-text: #f1b4a5;
+}
+
+.question-card[data-question-group="aoc"] {
+  --question-accent-bg: rgba(117, 103, 181, 0.16);
+  --question-accent-border: rgba(146, 128, 222, 0.5);
+  --question-accent-text: #cbc0ff;
+}
+
+.question-meta-id[data-question-group="bc"] {
+  --question-id-bg: rgba(184, 134, 34, 0.14);
+  --question-id-border: rgba(214, 170, 72, 0.5);
+  --question-id-pill-color: #f1d48a;
+}
+
+.question-meta-id[data-question-group="wsc"] {
+  --question-id-bg: rgba(84, 138, 214, 0.14);
+  --question-id-border: rgba(104, 162, 240, 0.5);
+  --question-id-pill-color: #a8d0ff;
+}
+
+.question-meta-id[data-question-group="wlc"] {
+  --question-id-bg: rgba(62, 153, 131, 0.15);
+  --question-id-border: rgba(88, 193, 168, 0.5);
+  --question-id-pill-color: #98e5cd;
+}
+
+.question-meta-id[data-question-group="hc"] {
+  --question-id-bg: rgba(172, 88, 68, 0.15);
+  --question-id-border: rgba(214, 118, 94, 0.48);
+  --question-id-pill-color: #f1b4a5;
+}
+
+.question-meta-id[data-question-group="aoc"] {
+  --question-id-bg: rgba(117, 103, 181, 0.16);
+  --question-id-border: rgba(146, 128, 222, 0.5);
+  --question-id-pill-color: #cbc0ff;
+}
+
+[data-theme='light'] .question-card[data-question-group="bc"] {
+  --question-accent-bg: rgba(184, 134, 34, 0.12);
+  --question-accent-border: rgba(173, 122, 23, 0.34);
+  --question-accent-text: #8a6113;
+}
+
+[data-theme='light'] .question-card[data-question-group="wsc"] {
+  --question-accent-bg: rgba(84, 138, 214, 0.12);
+  --question-accent-border: rgba(68, 123, 198, 0.32);
+  --question-accent-text: #235d96;
+}
+
+[data-theme='light'] .question-card[data-question-group="wlc"] {
+  --question-accent-bg: rgba(62, 153, 131, 0.12);
+  --question-accent-border: rgba(50, 130, 111, 0.32);
+  --question-accent-text: #1d6d5c;
+}
+
+[data-theme='light'] .question-card[data-question-group="hc"] {
+  --question-accent-bg: rgba(172, 88, 68, 0.11);
+  --question-accent-border: rgba(155, 75, 57, 0.3);
+  --question-accent-text: #8b4233;
+}
+
+[data-theme='light'] .question-card[data-question-group="aoc"] {
+  --question-accent-bg: rgba(117, 103, 181, 0.12);
+  --question-accent-border: rgba(100, 87, 162, 0.32);
+  --question-accent-text: #5f4eb0;
+}
+
+[data-theme='light'] .question-meta-id[data-question-group="bc"] {
+  --question-id-bg: rgba(184, 134, 34, 0.12);
+  --question-id-border: rgba(173, 122, 23, 0.34);
+  --question-id-pill-color: #8a6113;
+}
+
+[data-theme='light'] .question-meta-id[data-question-group="wsc"] {
+  --question-id-bg: rgba(84, 138, 214, 0.12);
+  --question-id-border: rgba(68, 123, 198, 0.32);
+  --question-id-pill-color: #235d96;
+}
+
+[data-theme='light'] .question-meta-id[data-question-group="wlc"] {
+  --question-id-bg: rgba(62, 153, 131, 0.12);
+  --question-id-border: rgba(50, 130, 111, 0.32);
+  --question-id-pill-color: #1d6d5c;
+}
+
+[data-theme='light'] .question-meta-id[data-question-group="hc"] {
+  --question-id-bg: rgba(172, 88, 68, 0.11);
+  --question-id-border: rgba(155, 75, 57, 0.3);
+  --question-id-pill-color: #8b4233;
+}
+
+[data-theme='light'] .question-meta-id[data-question-group="aoc"] {
+  --question-id-bg: rgba(117, 103, 181, 0.12);
+  --question-id-border: rgba(100, 87, 162, 0.32);
+  --question-id-pill-color: #5f4eb0;
 }
 
 /* === Question Detail === */
@@ -468,6 +616,79 @@ ul {
 .category-chip:focus-visible {
   background-color: var(--chip-hover-bg);
   border-color: var(--chip-hover-border);
+}
+
+.category-chip[data-category-group="bc"] {
+  background-color: rgba(184, 134, 34, 0.14);
+  border-color: rgba(214, 170, 72, 0.5);
+  color: #f1d48a;
+}
+
+.category-chip[data-category-group="wsc"] {
+  background-color: rgba(84, 138, 214, 0.14);
+  border-color: rgba(104, 162, 240, 0.5);
+  color: #a8d0ff;
+}
+
+.category-chip[data-category-group="wlc"] {
+  background-color: rgba(62, 153, 131, 0.15);
+  border-color: rgba(88, 193, 168, 0.5);
+  color: #98e5cd;
+}
+
+.category-chip[data-category-group="hc"] {
+  background-color: rgba(172, 88, 68, 0.15);
+  border-color: rgba(214, 118, 94, 0.48);
+  color: #f1b4a5;
+}
+
+.category-chip[data-category-group="aoc"] {
+  background-color: rgba(117, 103, 181, 0.16);
+  border-color: rgba(146, 128, 222, 0.5);
+  color: #cbc0ff;
+}
+
+.category-chip[data-category-group="bc"]:hover,
+.category-chip[data-category-group="bc"]:focus-visible,
+.category-chip[data-category-group="wsc"]:hover,
+.category-chip[data-category-group="wsc"]:focus-visible,
+.category-chip[data-category-group="wlc"]:hover,
+.category-chip[data-category-group="wlc"]:focus-visible,
+.category-chip[data-category-group="hc"]:hover,
+.category-chip[data-category-group="hc"]:focus-visible,
+.category-chip[data-category-group="aoc"]:hover,
+.category-chip[data-category-group="aoc"]:focus-visible {
+  filter: brightness(1.06);
+}
+
+[data-theme='light'] .category-chip[data-category-group="bc"] {
+  background-color: rgba(184, 134, 34, 0.12);
+  border-color: rgba(173, 122, 23, 0.34);
+  color: #8a6113;
+}
+
+[data-theme='light'] .category-chip[data-category-group="wsc"] {
+  background-color: rgba(84, 138, 214, 0.12);
+  border-color: rgba(68, 123, 198, 0.32);
+  color: #235d96;
+}
+
+[data-theme='light'] .category-chip[data-category-group="wlc"] {
+  background-color: rgba(62, 153, 131, 0.12);
+  border-color: rgba(50, 130, 111, 0.32);
+  color: #1d6d5c;
+}
+
+[data-theme='light'] .category-chip[data-category-group="hc"] {
+  background-color: rgba(172, 88, 68, 0.11);
+  border-color: rgba(155, 75, 57, 0.3);
+  color: #8b4233;
+}
+
+[data-theme='light'] .category-chip[data-category-group="aoc"] {
+  background-color: rgba(117, 103, 181, 0.12);
+  border-color: rgba(100, 87, 162, 0.32);
+  color: #5f4eb0;
 }
 
 .category-placeholder {
@@ -567,6 +788,66 @@ ul {
   text-decoration: none;
   background-color: var(--category-card-hover-bg);
   border-color: var(--card-hover-border);
+}
+
+.category-card[data-category-group="bc"] {
+  border-left: 3px solid rgba(214, 170, 72, 0.5);
+}
+
+.category-card[data-category-group="wsc"] {
+  border-left: 3px solid rgba(104, 162, 240, 0.5);
+}
+
+.category-card[data-category-group="wlc"] {
+  border-left: 3px solid rgba(88, 193, 168, 0.5);
+}
+
+.category-card[data-category-group="hc"] {
+  border-left: 3px solid rgba(214, 118, 94, 0.48);
+}
+
+.category-card[data-category-group="aoc"] {
+  border-left: 3px solid rgba(146, 128, 222, 0.5);
+}
+
+.category-card[data-category-group="bc"] .category-name {
+  color: #f1d48a;
+}
+
+.category-card[data-category-group="wsc"] .category-name {
+  color: #a8d0ff;
+}
+
+.category-card[data-category-group="wlc"] .category-name {
+  color: #98e5cd;
+}
+
+.category-card[data-category-group="hc"] .category-name {
+  color: #f1b4a5;
+}
+
+.category-card[data-category-group="aoc"] .category-name {
+  color: #cbc0ff;
+}
+
+[data-theme='light'] .category-card[data-category-group="bc"] .category-name {
+  color: #8a6113;
+}
+
+[data-theme='light'] .category-card[data-category-group="wsc"] .category-name {
+  color: #235d96;
+}
+
+[data-theme='light'] .category-card[data-category-group="wlc"] .category-name {
+  color: #1d6d5c;
+}
+
+[data-theme='light'] .category-card[data-category-group="hc"] .category-name {
+  color: #8b4233;
+}
+
+[data-theme='light'] .category-card[data-category-group="aoc"] .category-name {
+  color: #5f4eb0;
 }
 
 .category-grid {

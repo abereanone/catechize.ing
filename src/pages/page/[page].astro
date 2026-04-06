@@ -70,7 +70,11 @@ export function getStaticPaths() {
             <ul class="category-list">
               {categories.map((category) => (
                 <li>
-                  <a class="category-chip" href={`/categories/${category.id}`}>
+                  <a
+                    class="category-chip"
+                    data-category-group={category.groupCode ? category.groupCode.toLowerCase() : undefined}
+                    href={`/categories/${category.id}`}
+                  >
                     {category.name}
                   </a>
                 </li>
