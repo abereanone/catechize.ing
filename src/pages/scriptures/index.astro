@@ -54,6 +54,7 @@ const siteName = siteSettings.branding.siteName;
                     <li
                       data-search-item
                       data-scripture-text={entry.searchText}
+                      data-book-code={entry.bookCode}
                       data-book-search={entry.bookSearchText}
                       data-reference-search={entry.referencePart}
                     >
@@ -158,12 +159,175 @@ const siteName = siteSettings.branding.siteName;
     const hashLinks = [...document.querySelectorAll('a[href^="#"]')];
     let activeTestament = null;
     let browseTestament = null;
+    const singleChapterBooks = new Set(["oba", "phm", "2jn", "3jn", "jud"]);
 
     const normalizeSearchValue = (value) =>
       value
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, " ")
         .trim();
+
+    const parseBookAliases = (value) =>
+      value
+        .split("|")
+        .map((alias) => normalizeSearchValue(alias))
+        .filter(Boolean)
+        .map((alias) => alias.split(/\s+/).filter(Boolean));
+
+    const findMatchedAliasLength = (queryTokens, aliasTokenSets) => {
+      let matchedLength = 0;
+
+      aliasTokenSets.forEach((aliasTokens) => {
+        if (aliasTokens.length > queryTokens.length) {
+          return;
+        }
+
+        const matches = aliasTokens.every((token, index) => queryTokens[index] === token);
+        if (matches) {
+          matchedLength = Math.max(matchedLength, aliasTokens.length);
+        }
+      });
+
+      return matchedLength;
+    };
+
+    const parseReferenceQuery = (tokens, isSingleChapterBook) => {
+      if (!tokens.length) {
+        return null;
+      }
+
+      const numbers = tokens
+        .map((token) => Number.parseInt(token, 10))
+        .filter((value) => Number.isFinite(value));
+
+      if (!numbers.length) {
+        return null;
+      }
+
+      if (numbers.length === 1) {
+        if (isSingleChapterBook) {
+          return { chapter: 1, verse: numbers[0] };
+        }
+        return { chapter: numbers[0], verse: null };
+      }
+
+      return { chapter: numbers[0], verse: numbers[1] };
+    };
+
+    const parseReferenceSegment = (value, isSingleChapterBook) => {
+      const segment = value.trim();
+      if (!segment) {
+        return null;
+      }
+
+      let match = segment.match(/^(\d+)$/);
+      if (match) {
+        const number = Number.parseInt(match[1], 10);
+        if (isSingleChapterBook) {
+          return {
+            startChapter: 1,
+            startVerse: number,
+            endChapter: 1,
+            endVerse: number,
+          };
+        }
+        const chapter = number;
+        return {
+          startChapter: chapter,
+          startVerse: 1,
+          endChapter: chapter,
+          endVerse: Number.MAX_SAFE_INTEGER,
+        };
+      }
+
+      match = segment.match(/^(\d+):(\d+)$/);
+      if (match) {
+        const chapter = Number.parseInt(match[1], 10);
+        const verse = Number.parseInt(match[2], 10);
+        return {
+          startChapter: chapter,
+          startVerse: verse,
+          endChapter: chapter,
+          endVerse: verse,
+        };
+      }
+
+      match = segment.match(/^(\d+):(\d+)-(\d+)$/);
+      if (match) {
+        const chapter = Number.parseInt(match[1], 10);
+        const startVerse = Number.parseInt(match[2], 10);
+        const endVerse = Number.parseInt(match[3], 10);
+        return {
+          startChapter: chapter,
+          startVerse,
+          endChapter: chapter,
+          endVerse,
+        };
+      }
+
+      match = segment.match(/^(\d+)-(\d+)$/);
+      if (match && isSingleChapterBook) {
+        return {
+          startChapter: 1,
+          startVerse: Number.parseInt(match[1], 10),
+          endChapter: 1,
+          endVerse: Number.parseInt(match[2], 10),
+        };
+      }
+
+      match = segment.match(/^(\d+):(\d+)-(\d+):(\d+)$/);
+      if (match) {
+        return {
+          startChapter: Number.parseInt(match[1], 10),
+          startVerse: Number.parseInt(match[2], 10),
+          endChapter: Number.parseInt(match[3], 10),
+          endVerse: Number.parseInt(match[4], 10),
+        };
+      }
+
+      return null;
+    };
+
+    const matchesReferenceQuery = (referencePart, queryReference, isSingleChapterBook) => {
+      if (!queryReference) {
+        return true;
+      }
+
+      const segments = referencePart
+        .split(",")
+        .map((segment) => parseReferenceSegment(segment, isSingleChapterBook))
+        .filter(Boolean);
+
+      if (!segments.length) {
+        return false;
+      }
+
+      return segments.some((segment) => {
+        if (queryReference.verse == null) {
+          return queryReference.chapter >= segment.startChapter && queryReference.chapter <= segment.endChapter;
+        }
+
+        if (queryReference.chapter < segment.startChapter || queryReference.chapter > segment.endChapter) {
+          return false;
+        }
+
+        if (segment.startChapter === segment.endChapter) {
+          return queryReference.chapter === segment.startChapter
+            && queryReference.verse >= segment.startVerse
+            && queryReference.verse <= segment.endVerse;
+        }
+
+        if (queryReference.chapter === segment.startChapter) {
+          return queryReference.verse >= segment.startVerse;
+        }
+
+        if (queryReference.chapter === segment.endChapter) {
+          return queryReference.verse <= segment.endVerse;
+        }
+
+        return queryReference.chapter > segment.startChapter && queryReference.chapter < segment.endChapter;
+      });
+    };
 
     const scrollWithOffset = (target) => {
       if (!target) {
@@ -222,18 +386,24 @@ const siteName = siteSettings.branding.siteName;
       const query = input ? input.value.trim().toLowerCase() : "";
       const hasQuery = query.length > 0;
       const queryTokens = hasQuery ? normalizeSearchValue(query).split(/\s+/).filter(Boolean) : [];
-      const alphaTokens = queryTokens.filter((token) => /[a-z]/.test(token));
-      const numericTokens = queryTokens.filter((token) => /\d/.test(token));
       syncSearchMode(hasQuery);
 
       searchItems.forEach((item) => {
-        const bookSearch = normalizeSearchValue(item.getAttribute("data-book-search") || "");
-        const referenceSearch = normalizeSearchValue(item.getAttribute("data-reference-search") || "");
-        const fullSearch = normalizeSearchValue(item.getAttribute("data-scripture-text") || "");
-        const matchesBook = alphaTokens.length === 0 || alphaTokens.every((token) => bookSearch.includes(token));
-        const matchesReference = numericTokens.length === 0 || numericTokens.every((token) => referenceSearch.includes(token));
-        const matchesFallback = queryTokens.length === 0 || queryTokens.every((token) => fullSearch.includes(token));
-        const matchesQuery = matchesBook && matchesReference && matchesFallback;
+        const aliasTokenSets = parseBookAliases(item.getAttribute("data-book-search") || "");
+        const matchedAliasLength = findMatchedAliasLength(queryTokens, aliasTokenSets);
+        const hasAlphaQuery = queryTokens.some((token) => /[a-z]/.test(token));
+
+        if (hasAlphaQuery && matchedAliasLength === 0) {
+          item.hidden = hasQuery;
+          return;
+        }
+
+        const remainingTokens = matchedAliasLength > 0 ? queryTokens.slice(matchedAliasLength) : queryTokens;
+        const bookCode = String(item.getAttribute("data-book-code") || "");
+        const isSingleChapterBook = singleChapterBooks.has(bookCode);
+        const queryReference = parseReferenceQuery(remainingTokens, isSingleChapterBook);
+        const referencePart = String(item.getAttribute("data-reference-search") || "").trim();
+        const matchesQuery = hasQuery ? matchesReferenceQuery(referencePart, queryReference, isSingleChapterBook) : true;
         item.hidden = hasQuery && !matchesQuery;
       });
 
