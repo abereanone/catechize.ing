@@ -41,10 +41,41 @@ const siteName = siteSettings.branding.siteName;
         <div class="scripture-empty-state" data-testament-empty>
           <p>Select <strong>Old Testament</strong> or <strong>New Testament</strong> to browse the scripture index.</p>
         </div>
+        <div class="scripture-search-results" data-search-results hidden>
+          <div class="scripture-book-groups" data-search-groups>
+            {bookGroups.map((group) => (
+              <section class="scripture-book-group" data-search-group data-book-code={group.bookCode}>
+                <header class="scripture-book-header">
+                  <h2>{group.bookName}</h2>
+                  <p>{group.entries.length === 1 ? "1 reference" : `${group.entries.length} references`}</p>
+                </header>
+                <ul class="scripture-grid">
+                  {group.entries.map((entry) => (
+                    <li
+                      data-search-item
+                      data-scripture-text={entry.searchText}
+                      data-book-search={entry.bookSearchText}
+                      data-reference-search={entry.referencePart}
+                    >
+                      <a class="scripture-card card-panel" href={`/scriptures/${entry.slug}`}>
+                        <span class="scripture-reference">{entry.reference}</span>
+                        <span class="scripture-count">
+                          {entry.questionCount === 1 ? "1 question" : `${entry.questionCount} questions`}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+        </div>
         <div class="scripture-testament-panel" data-testament-panel="ot" hidden>
           <nav class="scripture-book-jump" aria-label="Jump to Old Testament book">
             {oldTestamentGroups.map((group) => (
-              <a href={`#book-${group.bookCode}`}>{group.bookName}</a>
+              <a href={`#book-${group.bookCode}`} data-scripture-jump-link data-book-code={group.bookCode}>
+                {group.bookName}
+              </a>
             ))}
           </nav>
           <div class="scripture-book-groups" data-scripture-groups="ot">
@@ -76,7 +107,9 @@ const siteName = siteSettings.branding.siteName;
         <div class="scripture-testament-panel" data-testament-panel="nt" hidden>
           <nav class="scripture-book-jump" aria-label="Jump to New Testament book">
             {newTestamentGroups.map((group) => (
-              <a href={`#book-${group.bookCode}`}>{group.bookName}</a>
+              <a href={`#book-${group.bookCode}`} data-scripture-jump-link data-book-code={group.bookCode}>
+                {group.bookName}
+              </a>
             ))}
           </nav>
           <div class="scripture-book-groups" data-scripture-groups="nt">
@@ -113,13 +146,24 @@ const siteName = siteSettings.branding.siteName;
 
   <script type="module" is:inline>
     const input = document.querySelector("[data-scripture-filter]");
-    const items = [...document.querySelectorAll("[data-scripture-item]")];
-    const groups = [...document.querySelectorAll("[data-scripture-group]")];
+    const browseItems = [...document.querySelectorAll("[data-scripture-item]")];
+    const browseGroups = [...document.querySelectorAll("[data-scripture-group]")];
+    const searchResults = document.querySelector("[data-search-results]");
+    const searchItems = [...document.querySelectorAll("[data-search-item]")];
+    const searchGroups = [...document.querySelectorAll("[data-search-group]")];
     const buttons = [...document.querySelectorAll("[data-testament-button]")];
     const panels = [...document.querySelectorAll("[data-testament-panel]")];
+    const jumpLinks = [...document.querySelectorAll("[data-scripture-jump-link]")];
     const emptyState = document.querySelector("[data-testament-empty]");
     const hashLinks = [...document.querySelectorAll('a[href^="#"]')];
     let activeTestament = null;
+    let browseTestament = null;
+
+    const normalizeSearchValue = (value) =>
+      value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
 
     const scrollWithOffset = (target) => {
       if (!target) {
@@ -138,6 +182,10 @@ const siteName = siteSettings.branding.siteName;
 
     const syncTestament = (target) => {
       activeTestament = target;
+      browseTestament = target;
+      if (searchResults) {
+        searchResults.hidden = true;
+      }
       buttons.forEach((button) => {
         const isActive = button.getAttribute("data-testament-target") === target;
         button.classList.toggle("is-active", isActive);
@@ -151,9 +199,100 @@ const siteName = siteSettings.branding.siteName;
       }
     };
 
+    const syncSearchMode = (hasQuery) => {
+      if (!hasQuery) {
+        activeTestament = browseTestament;
+        buttons.forEach((button) => {
+          const isActive = button.getAttribute("data-testament-target") === activeTestament;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+        return;
+      }
+
+      activeTestament = null;
+      browseTestament = null;
+      buttons.forEach((button) => {
+        button.classList.remove("is-active");
+        button.setAttribute("aria-pressed", "false");
+      });
+    };
+
+    const applyFilter = () => {
+      const query = input ? input.value.trim().toLowerCase() : "";
+      const hasQuery = query.length > 0;
+      const queryTokens = hasQuery ? normalizeSearchValue(query).split(/\s+/).filter(Boolean) : [];
+      const alphaTokens = queryTokens.filter((token) => /[a-z]/.test(token));
+      const numericTokens = queryTokens.filter((token) => /\d/.test(token));
+      syncSearchMode(hasQuery);
+
+      searchItems.forEach((item) => {
+        const bookSearch = normalizeSearchValue(item.getAttribute("data-book-search") || "");
+        const referenceSearch = normalizeSearchValue(item.getAttribute("data-reference-search") || "");
+        const fullSearch = normalizeSearchValue(item.getAttribute("data-scripture-text") || "");
+        const matchesBook = alphaTokens.length === 0 || alphaTokens.every((token) => bookSearch.includes(token));
+        const matchesReference = numericTokens.length === 0 || numericTokens.every((token) => referenceSearch.includes(token));
+        const matchesFallback = queryTokens.length === 0 || queryTokens.every((token) => fullSearch.includes(token));
+        const matchesQuery = matchesBook && matchesReference && matchesFallback;
+        item.hidden = hasQuery && !matchesQuery;
+      });
+
+      searchGroups.forEach((group) => {
+        const groupItems = [...group.querySelectorAll("[data-search-item]")];
+        const visibleItems = groupItems.filter((item) => !item.hidden);
+        group.classList.toggle("is-hidden", !hasQuery || visibleItems.length === 0);
+      });
+
+      browseItems.forEach((item) => {
+        item.hidden = false;
+      });
+
+      browseGroups.forEach((group) => {
+        const groupItems = [...group.querySelectorAll("[data-scripture-item]")];
+        const visibleItems = groupItems.filter((item) => !item.hidden);
+        const testamentMatches = hasQuery
+          ? true
+          : !activeTestament || group.getAttribute("data-testament") === activeTestament;
+        group.classList.toggle("is-hidden", !testamentMatches || visibleItems.length === 0);
+      });
+
+      jumpLinks.forEach((link) => {
+        const code = link.getAttribute("data-book-code");
+        if (!code) {
+          return;
+        }
+        const group = document.querySelector(`[data-scripture-group][id="book-${code}"]`);
+        link.hidden = !group || group.classList.contains("is-hidden");
+      });
+
+      panels.forEach((panel) => {
+        const jumpNav = panel.querySelector(".scripture-book-jump");
+        if (jumpNav) {
+          const visibleLinks = [...jumpNav.querySelectorAll("[data-scripture-jump-link]")].filter((link) => !link.hidden);
+          jumpNav.hidden = hasQuery || visibleLinks.length === 0;
+        }
+
+        if (hasQuery) {
+          panel.hidden = true;
+        } else {
+          panel.hidden = panel.getAttribute("data-testament-panel") !== activeTestament;
+        }
+      });
+
+      if (searchResults) {
+        const visibleSearchGroups = searchGroups.filter((group) => !group.classList.contains("is-hidden"));
+        searchResults.hidden = !hasQuery || visibleSearchGroups.length === 0;
+      }
+
+      if (emptyState) {
+        emptyState.hidden = hasQuery || Boolean(activeTestament);
+      }
+    };
+
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
         syncTestament(button.getAttribute("data-testament-target"));
+        applyFilter();
       });
     });
 
@@ -175,19 +314,9 @@ const siteName = siteSettings.branding.siteName;
       });
     });
 
-    if (input && items.length) {
+    if (input && searchItems.length) {
       input.addEventListener("input", () => {
-        const query = input.value.trim().toLowerCase();
-        items.forEach((item) => {
-          const text = (item.getAttribute("data-scripture-text") || "").toLowerCase();
-          item.hidden = query.length > 0 && !text.includes(query);
-        });
-
-        groups.forEach((group) => {
-          const visibleItems = group.querySelectorAll("[data-scripture-item]:not([hidden])");
-          const testamentMatches = !activeTestament || group.getAttribute("data-testament") === activeTestament;
-          group.hidden = !testamentMatches || visibleItems.length === 0;
-        });
+        applyFilter();
       });
     }
   </script>
@@ -231,6 +360,10 @@ const siteName = siteSettings.branding.siteName;
     }
 
     .scripture-testament-panel[hidden] {
+      display: none;
+    }
+
+    .scripture-book-group.is-hidden {
       display: none;
     }
 

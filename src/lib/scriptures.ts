@@ -8,6 +8,7 @@ export type ScriptureEntry = {
   reference: string;
   bookCode: string;
   bookName: string;
+  bookSearchText: string;
   referencePart: string;
   questionSlugs: string[];
   questionCount: number;
@@ -229,6 +230,7 @@ function buildScriptureIndex(): ScriptureEntry[] {
       reference: entry.reference,
       bookCode: entry.bookCode,
       bookName: entry.bookName,
+      bookSearchText: entry.bookSearchText,
       referencePart: entry.referencePart,
       questionSlugs: [...entry.questionSlugs],
       questionCount: entry.questionSlugs.size,
@@ -305,6 +307,7 @@ function normalizeReferenceChunk(reference: string) {
   }
 
   const bookName = getDisplayBookName(bookCode);
+  const bookSearchText = buildBookSearchText(bookCode, bookName);
   const referenceText = `${bookName} ${referencePart}`;
   const key = `${bookCode} ${referencePart.toLowerCase()}`;
   const slug = key
@@ -317,17 +320,27 @@ function normalizeReferenceChunk(reference: string) {
     reference: referenceText,
     bookCode,
     bookName,
+    bookSearchText,
     referencePart,
-    searchText: buildSearchText(bookCode, bookName, referencePart),
+    searchText: buildSearchText(bookSearchText, referencePart),
   };
 }
 
-function buildSearchText(bookCode: string, bookName: string, referencePart: string): string {
+function buildBookSearchText(bookCode: string, bookName: string): string {
   const aliases = getBookAliases(bookCode);
-  const variants = new Set<string>([
-    `${bookName} ${referencePart}`,
-    ...aliases.map((alias) => `${alias} ${referencePart}`),
-  ]);
+  return [...new Set([bookName, ...aliases])]
+    .map((value) => value.toLowerCase())
+    .join(" | ");
+}
+
+function buildSearchText(bookSearchText: string, referencePart: string): string {
+  const variants = new Set<string>(
+    bookSearchText
+      .split("|")
+      .map((value) => value.trim())
+      .filter(Boolean)
+      .map((value) => `${value} ${referencePart}`)
+  );
 
   return [...variants]
     .map((value) => value.toLowerCase())
