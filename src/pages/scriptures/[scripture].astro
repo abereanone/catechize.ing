@@ -1,0 +1,78 @@
+---
+import Main from "@/layouts/Main.astro";
+import QuestionList from "@/components/QuestionList.astro";
+import ScripturePreviewScript from "@/components/ScripturePreviewScript.astro";
+import { siteSettings } from "@/config/siteSettings";
+import { findScripture, getScriptureQuestions, listScriptures } from "@/lib/scriptures";
+
+export function getStaticPaths() {
+  return listScriptures().map((entry) => ({
+    params: { scripture: entry.slug },
+  }));
+}
+
+const { scripture } = Astro.params;
+const entry = scripture ? findScripture(scripture) : null;
+
+if (!entry) {
+  throw new Error(`Scripture not found for "${scripture}".`);
+}
+
+const siteName = siteSettings.branding.siteName;
+const questions = getScriptureQuestions(entry);
+const canPreviewVerse = entry.referencePart.includes(":");
+---
+
+<Main title={`${entry.reference} | ${siteName}`}>
+  <section class="card-panel scripture-page">
+    <section class="scripture-verse card-panel" data-scripture-verse data-reference-key={entry.key}>
+      <h2>{entry.reference}</h2>
+      {canPreviewVerse ? (
+        <p class="scripture-verse-body" data-scripture-verse-body>Loading verse text…</p>
+      ) : (
+        <p class="scripture-verse-body">
+          <em>This reference is indexed as a chapter-level citation, so there is no single verse preview to show here.</em>
+        </p>
+      )}
+    {questions.length ? (
+      <QuestionList questions={questions} />
+    ) : (
+      <p><em>No questions found for this reference.</em></p>
+    )}
+    <a class="scripture-back-link" href="/scriptures">Back to Scripture Index</a>
+    </section>
+
+  </section>
+
+  {canPreviewVerse ? <ScripturePreviewScript /> : null}
+
+  <style>
+    .scripture-page {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .scripture-back-link {
+      justify-self: start;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .scripture-verse {
+      display: grid;
+      gap: 0.65rem;
+      margin: 0;
+      padding: 1rem 1.1rem;
+      background: var(--surface-highlight);
+    }
+
+    .scripture-verse h2,
+    .scripture-verse-body {
+      margin: 0;
+    }
+
+    .scripture-verse-body {
+      line-height: 1.75;
+    }
+  </style>
+</Main>

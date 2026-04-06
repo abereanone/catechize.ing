@@ -1,12 +1,36 @@
 import bookMap from "./bookMap.json";
 
+const singleChapterBooks = new Set([
+  "obadiah",
+  "oba",
+  "philemon",
+  "phm",
+  "2jn",
+  "3jn",
+  "jude",
+  "jud",
+]);
+
 const bookPattern = Object.keys(bookMap)
   .sort((a, b) => b.length - a.length)
   .map((book) => book.replace(/\./g, "\\."))
   .join("|");
 
+const singleChapterBookPattern = [...singleChapterBooks]
+  .sort((a, b) => b.length - a.length)
+  .map((book) => book.replace(/\./g, "\\."))
+  .join("|");
+
+const multiVerseSingleChapterRegex = new RegExp(
+  `\\b(${singleChapterBookPattern})\\s+(\\d+(?:[-\\u2013\\u2014]\\d+)?)(?:\\s*,\\s*\\d+(?:[-\\u2013\\u2014]\\d+)?)+`,
+  "gi"
+);
 const multiVerseRegex = new RegExp(
   `\\b(${bookPattern})\\s+(\\d+):(\\d+(?:[-\\u2013\\u2014]\\d+)?)(?:\\s*,\\s*\\d+(?:[-\\u2013\\u2014]\\d+)?)+`,
+  "gi"
+);
+const singleVerseSingleChapterRegex = new RegExp(
+  `\\b(${singleChapterBookPattern})\\s+(\\d+(?:[-\\u2013\\u2014]\\d+)?)\\b`,
   "gi"
 );
 const singleVerseRegex = new RegExp(
@@ -17,7 +41,28 @@ const continuedVerseRegex = /([;]\s*)(\d+:\d+(?:[-\u2013\u2014]\d+)?)(?=(?:\s*[;
 
 export function autoLinkBibleRefs(html: string): string {
   const placeholders: string[] = [];
-  const withMulti = html.replace(
+  const withSingleChapterMulti = html.replace(
+    multiVerseSingleChapterRegex,
+    (match, book: string, firstVerse: string) => {
+      const firstRef = `${book} ${firstVerse}`;
+      let output = `<span class="bible-ref" data-ref="${firstRef}">${book} ${firstVerse}</span>`;
+
+      const rest = match.slice(`${book} ${firstVerse}`.length);
+      const extraMatches = rest.match(/,\s*\d+(?:[-\u2013\u2014]\d+)?/g) ?? [];
+
+      extraMatches.forEach((chunk) => {
+        const verse = chunk.replace(/,\s*/, "");
+        const ref = `${book} ${verse}`;
+        output += `${chunk.replace(verse, "")}<span class="bible-ref" data-ref="${ref}">${verse}</span>`;
+      });
+
+      const token = `__BIBLE_MULTI__${placeholders.length}__`;
+      placeholders.push(output);
+      return token;
+    }
+  );
+
+  const withMulti = withSingleChapterMulti.replace(
     multiVerseRegex,
     (match, book: string, chapter: string, firstVerse: string) => {
       const baseRef = `${book} ${chapter}`;
@@ -39,10 +84,21 @@ export function autoLinkBibleRefs(html: string): string {
     }
   );
 
-  const withSingles = withMulti.replace(singleVerseRegex, (match, book: string, chapter: string, verse: string) => {
-    const ref = `${book} ${chapter}:${verse}`;
-    return `<span class="bible-ref" data-ref="${ref}">${match}</span>`;
-  });
+  const withSingleChapterSingles = withMulti.replace(
+    singleVerseSingleChapterRegex,
+    (match, book: string, verse: string) => {
+      const ref = `${book} ${verse}`;
+      return `<span class="bible-ref" data-ref="${ref}">${match}</span>`;
+    }
+  );
+
+  const withSingles = withSingleChapterSingles.replace(
+    singleVerseRegex,
+    (match, book: string, chapter: string, verse: string) => {
+      const ref = `${book} ${chapter}:${verse}`;
+      return `<span class="bible-ref" data-ref="${ref}">${match}</span>`;
+    }
+  );
 
   const withContinuedVerses = withSingles.replace(
     /((?:<span class="bible-ref" data-ref="([^"]+)">[^<]+<\/span>)(?:[^<]|<(?!span class="bible-ref"))*)/g,
