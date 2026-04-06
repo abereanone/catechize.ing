@@ -18,6 +18,9 @@ There is but one only, the living and true God.
 
 ## Additional Exposition
 
+<a href="https://baptistcatechism.org/beddome/" target="_blank" rel="noopener noreferrer">From Benjamin Beddome</a>
+
+
 ### Section 1
 
 **Q:** Is God the living God?  

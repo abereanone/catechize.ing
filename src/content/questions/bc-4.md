@@ -17,6 +17,9 @@ The holy scriptures of the Old and New Testament are the word of God, and the on
 
 ## Additional Exposition
 
+<a href="https://baptistcatechism.org/beddome/" target="_blank" rel="noopener noreferrer">From Benjamin Beddome</a>
+
+
 ### Section 1
 
 **Q:** Are the scriptures of the Old and New Testament the word of God?  

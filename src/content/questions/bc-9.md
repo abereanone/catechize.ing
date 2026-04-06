@@ -18,6 +18,9 @@ There are three persons in the godhead, the Father, the Son, and the Holy Spirit
 
 ## Additional Exposition
 
+<a href="https://baptistcatechism.org/beddome/" target="_blank" rel="noopener noreferrer">From Benjamin Beddome</a>
+
+
 ### Section 1
 
 **Q:** Is there a plurality in the godhead?  

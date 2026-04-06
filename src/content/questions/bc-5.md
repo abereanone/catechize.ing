@@ -15,6 +15,9 @@ All men are not only permitted, but commanded and exhorted to read, hear, and un
 
 ## Additional Exposition
 
+<a href="https://baptistcatechism.org/beddome/" target="_blank" rel="noopener noreferrer">From Benjamin Beddome</a>
+
+
 ### Practical response
 
 **Q:** Should the scriptures be read?  

@@ -16,6 +16,9 @@ The light of nature in man and the works of God plainly declare there is a God; 
 
 ## Additional Exposition
 
+<a href="https://baptistcatechism.org/beddome/" target="_blank" rel="noopener noreferrer">From Benjamin Beddome</a>
+
+
 ### Section 1
 
 **Q:** Is there a light in man?  

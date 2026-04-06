@@ -16,6 +16,9 @@ Everyone ought to believe there is a God; and it is their great sin and folly wh
 
 ## Additional Exposition
 
+<a href="https://baptistcatechism.org/beddome/" target="_blank" rel="noopener noreferrer">From Benjamin Beddome</a>
+
+
 ### Section 1
 
 **Q:** Are there any that disbelieve the being of a God?  

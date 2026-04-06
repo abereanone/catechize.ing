@@ -204,7 +204,12 @@ function buildScriptureIndex(): ScriptureEntry[] {
   >();
 
   getPublishedQuestions().forEach((question) => {
-    extractProofReferences(question.answerHtml).forEach((reference) => {
+    const references = new Set([
+      ...extractProofReferences(question.answerHtml),
+      ...extractLongAnswerReferences(question.longHtml),
+    ]);
+
+    references.forEach((reference) => {
       const normalized = normalizeReferenceChunk(reference);
       if (!normalized) {
         return;
@@ -268,7 +273,19 @@ function extractProofReferences(answerHtml: string): string[] {
   }
 
   const proofSection = answerHtml.slice(proofsIndex);
-  const plainText = decodeHtml(stripTags(proofSection));
+  return extractParentheticalReferences(proofSection);
+}
+
+function extractLongAnswerReferences(longHtml: string): string[] {
+  if (!longHtml) {
+    return [];
+  }
+
+  return extractParentheticalReferences(longHtml);
+}
+
+function extractParentheticalReferences(html: string): string[] {
+  const plainText = decodeHtml(stripTags(html));
   const matches = [...plainText.matchAll(/\(([^()]+)\)/g)];
   const references: string[] = [];
 

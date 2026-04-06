@@ -26,6 +26,9 @@ God is a Spirit, infinite, eternal, and unchangeable in his being, wisdom, power
 
 ## Additional Exposition
 
+<a href="https://baptistcatechism.org/beddome/" target="_blank" rel="noopener noreferrer">From Benjamin Beddome</a>
+
+
 ### Section 1
 
 **Q:** Is God a Spirit?  

@@ -15,6 +15,9 @@ The holy scriptures chiefly contain what man ought to believe concerning God, an
 
 ## Additional Exposition
 
+<a href="https://baptistcatechism.org/beddome/" target="_blank" rel="noopener noreferrer">From Benjamin Beddome</a>
+
+
 ### Section 1
 
 **Q:** Are men by nature ignorant of God?  

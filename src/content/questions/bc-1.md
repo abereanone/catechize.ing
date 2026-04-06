@@ -15,6 +15,9 @@ God is the first and chiefest being.
 
 ## Additional Exposition
 
+<a href="https://baptistcatechism.org/beddome/" target="_blank" rel="noopener noreferrer">From Benjamin Beddome</a>
+
+
 ### God as first
 
 **Q:** Is God the first of all beings?  
