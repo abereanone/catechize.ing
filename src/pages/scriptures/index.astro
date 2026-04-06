@@ -482,6 +482,10 @@ const siteName = siteSettings.branding.siteName;
     });
 
     if (input && searchItems.length) {
+      window.setTimeout(() => {
+        input.focus();
+      }, 0);
+
       input.addEventListener("input", () => {
         applyFilter();
       });
