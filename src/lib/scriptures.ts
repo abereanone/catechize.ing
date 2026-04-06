@@ -304,6 +304,7 @@ function extractParentheticalReferences(html: string): string[] {
 function normalizeReferenceChunk(reference: string) {
   const cleaned = reference
     .replace(/\u2013|\u2014/g, "-")
+    .replace(/(?:,\s*)?&c\.?/gi, "")
     .replace(/\s+/g, " ")
     .replace(/\s*,\s*/g, ", ")
     .trim()
@@ -387,6 +388,8 @@ function stripTags(value: string): string {
 
 function decodeHtml(value: string): string {
   return value
+    .replace(/&#x([0-9a-f]+);/gi, (_match, hex) => String.fromCodePoint(Number.parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_match, decimal) => String.fromCodePoint(Number.parseInt(decimal, 10)))
     .replace(/&amp;/g, "&")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
