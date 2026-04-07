@@ -1,45 +1,37 @@
 ---
 import Main from "@/layouts/Main.astro";
+import QuestionList from "@/components/QuestionList.astro";
+import { getPublishedQuestions } from "@/lib/questions";
 import { siteSettings } from "@/config/siteSettings";
 
-const quickLinks = [
-  { href: "/", label: "Go to the homepage", badge: "" },
-  {
-    href: "/questions/bc-25/",
-    label: "How did Christ, being the Son of God become man?",
-    badge: "#BC25",
-  },
-  {
-    href: "/questions/wsc-105",
-    label: "What do we pray for in the fifth petition?",
-    badge: "#WSC105",
-  },
-  {
-    href: "/questions/wlc-110",
-    label: "What are the reasons annexed to the second commandment, the more to enforce it?",
-    badge: "#WLC110",
-  },
-];
+const allQuestions = getPublishedQuestions();
+const randomQuestions = [...allQuestions]
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 4);
 const siteName = siteSettings.branding.siteName;
 ---
 
 <Main title={`Page not found | ${siteName}`}>
   <section class="stack gap-lg">
     <h1>Hey, sorry about this, but we could not find that page.</h1>
-    <p>The link may be broken, or the page may have been moved or deleted. Try one of these links below instead!</p>
+    <p>The link may be broken, or the page may have been moved or deleted. Try the homepage or jump into a few random questions instead.</p>
 
     <nav aria-label="Helpful links" class="quick-link-nav">
       <ul class="question-list quick-link-list">
-        {quickLinks.map((link) => (
-          <li>
-            <a class="question-card card-panel" href={link.href}>
-              {link.badge ? <span class="question-id">{link.badge}</span> : null}
-              <span class="question-title">{link.label}</span>
-            </a>
-          </li>
-        ))}
+        <li>
+          <a class="question-card card-panel" href="/">
+            <span class="question-title">Go to the homepage</span>
+          </a>
+        </li>
       </ul>
     </nav>
+
+    {randomQuestions.length ? (
+      <section aria-labelledby="random-questions-title">
+        <h2 id="random-questions-title">Random questions</h2>
+        <QuestionList questions={randomQuestions} />
+      </section>
+    ) : null}
   </section>
 </Main>
 
