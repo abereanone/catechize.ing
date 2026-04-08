@@ -4,6 +4,8 @@ title: What special benefits do the members of the invisible church enjoy by Chr
 slug: wlc-65
 categories:
   - wlc
+relatedAnswers:
+  - bc-118
 ---
 
 The members of the invisible church by Christ enjoy union and communion with him in grace and glory.

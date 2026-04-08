@@ -4,6 +4,8 @@ title: What is the chief end of man?
 slug: wsc-1
 categories:
   - wsc
+relatedAnswers:
+  - bc-115
 ---
 
 Man’s chief end is to glorify God, and to enjoy him for ever.

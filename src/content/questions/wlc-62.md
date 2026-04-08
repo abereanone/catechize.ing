@@ -4,6 +4,8 @@ title: What is the visible church?
 slug: wlc-62
 categories:
   - wlc
+relatedAnswers:
+  - bc-117
 ---
 
 The visible church is a society made up of all such as in all ages and places of the world do profess the true religion, and of their children.
