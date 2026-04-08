@@ -112,10 +112,6 @@ const duplicateReportPayload = duplicateReport ? JSON.stringify(duplicateReport)
       })();
     </script>
     <link rel="stylesheet" href="/styles/theme.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
 
     <!-- Google tag (gtag.js) -->
     {analyticsId ? (
@@ -125,7 +121,7 @@ const duplicateReportPayload = duplicateReport ? JSON.stringify(duplicateReport)
           is:inline
           data-analytics-id={analyticsId}
         >
-          {`(() => {
+          (() => {
             const script = document.currentScript;
             const id = script?.dataset.analyticsId;
             if (!id) {
@@ -135,7 +131,7 @@ const duplicateReportPayload = duplicateReport ? JSON.stringify(duplicateReport)
             function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', id);
-          })();`}
+          })();
         </script>
       </>
     ) : null}
