@@ -1,4 +1,4 @@
-import { BIBLE_ABBREVIATION, getVerse } from "@/lib/bible/bibleClient";
+import { getVerseData } from "@/lib/bible/bibleClient";
 
 export function initScripturePreview() {
   const verseCard = document.querySelector("[data-scripture-verse]");
@@ -9,10 +9,10 @@ export function initScripturePreview() {
     return;
   }
 
-  getVerse(referenceKey)
-    .then((text) => {
-      verseBody.textContent = text
-        ? `${text} (${BIBLE_ABBREVIATION})`
+  getVerseData(referenceKey)
+    .then((verse) => {
+      verseBody.textContent = verse
+        ? `${verse.text} (${verse.version})`
         : "Verse text could not be loaded for this reference.";
     })
     .catch(() => {

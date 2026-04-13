@@ -1,6 +1,6 @@
 import { autoLinkBibleRefs } from "@/lib/bible/autoLinkBibleRefs";
 import { normalizeReference } from "@/lib/bible/normalizeRef";
-import { BIBLE_ABBREVIATION, getVerse } from "@/lib/bible/bibleClient";
+import { getVerseData } from "@/lib/bible/bibleClient";
 
 const verseCache = new Map();
 
@@ -17,14 +17,14 @@ function ensureTooltip(element) {
   return Promise.resolve()
     .then(async () => {
       let verse = verseCache.get(normalized);
-      if (!verse) {
-        verse = await getVerse(normalized);
+      if (verse === undefined) {
+        verse = await getVerseData(normalized);
         verseCache.set(normalized, verse);
       }
 
       const tooltip = document.createElement("div");
       tooltip.className = "bible-tooltip";
-      tooltip.textContent = verse ? `${verse} (${BIBLE_ABBREVIATION})` : "Verse not found.";
+      tooltip.textContent = verse ? `${verse.text} (${verse.version})` : "Verse not found.";
       document.body.appendChild(tooltip);
 
       element.__tooltipElement = tooltip;

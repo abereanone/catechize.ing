@@ -4,13 +4,15 @@
   "version": "0.0.1",
   "scripts": {
     "build:questions": "node ./scripts/build-questions.mjs",
+    "build:bible": "node ./scripts/build-bible-cited.mjs",
     "build:search-index": "node ./scripts/build-questions.mjs",
+    "seed:bsb": "node ./bsb-data-pipeline/scripts/prepare-bsb.mjs",
     "check:questions": "node ./scripts/check-questions.mjs",
     "import:catechisms": "node ./scripts/import-catechisms.mjs",
     "new:question": "node ./scripts/new-question.mjs",
-    "predev": "npm run build:questions",
+    "predev": "npm run build:questions && npm run build:bible",
     "dev": "astro dev",
-    "prebuild": "npm run build:questions",
+    "prebuild": "npm run build:questions && npm run build:bible",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

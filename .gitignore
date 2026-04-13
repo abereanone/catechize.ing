@@ -5,6 +5,7 @@ node_modules/
 dist/
 .astro/
 src/generated/questions.json
+src/generated/bible-cited.json
 public/assets/search-index.json
 
 # environment files
@@ -19,3 +20,4 @@ Thumbs.db
 devserver*.err
 devserver*.log
 .tmp-beddome-import/
+AGENTS.md

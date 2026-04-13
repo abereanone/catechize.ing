@@ -26,7 +26,7 @@ const multiVerseSingleChapterRegex = new RegExp(
   "gi"
 );
 const multiVerseRegex = new RegExp(
-  `\\b(${bookPattern})\\s+(\\d+):(\\d+(?:[-\\u2013\\u2014]\\d+)?)(?:\\s*,\\s*\\d+(?:[-\\u2013\\u2014]\\d+)?)+`,
+  `\\b(${bookPattern})\\s+(\\d+):(\\d+(?:[-\\u2013\\u2014]\\d+)?)(?:\\s*,\\s*\\d+(?::\\d+(?:[-\\u2013\\u2014]\\d+)?)?(?:[-\\u2013\\u2014]\\d+)?)+`,
   "gi"
 );
 const singleVerseSingleChapterRegex = new RegExp(
@@ -37,11 +37,22 @@ const singleVerseRegex = new RegExp(
   `\\b(${bookPattern})\\s+(\\d+):(\\d+(?:[-\\u2013\\u2014]\\d+)?)\\b`,
   "gi"
 );
+const chapterOnlyRegex = new RegExp(`\\b(${bookPattern})\\s+(\\d+)\\b(?!\\s*:)`, "gi");
 const continuedVerseRegex = /([;]\s*)(\d+:\d+(?:[-\u2013\u2014]\d+)?)(?=(?:\s*[;),.]|\s*$))/g;
 
 export function autoLinkBibleRefs(html: string): string {
+  const withChapterOnly = html.replace(chapterOnlyRegex, (match, book: string, chapter: string) => {
+    const normalizedBook = String(book).toLowerCase().replace(/\./g, "");
+    if (singleChapterBooks.has(normalizedBook)) {
+      return match;
+    }
+
+    const ref = `${book} ${chapter}`;
+    return `<span class="bible-ref" data-ref="${ref}">${match}</span>`;
+  });
+
   const placeholders: string[] = [];
-  const withSingleChapterMulti = html.replace(
+  const withSingleChapterMulti = withChapterOnly.replace(
     multiVerseSingleChapterRegex,
     (match, book: string, firstVerse: string) => {
       const firstRef = `${book} ${firstVerse}`;
@@ -70,11 +81,13 @@ export function autoLinkBibleRefs(html: string): string {
       let output = `<span class="bible-ref" data-ref="${firstRef}">${book} ${chapter}:${firstVerse}</span>`;
 
       const rest = match.slice(`${book} ${chapter}:${firstVerse}`.length);
-      const extraMatches = rest.match(/,\s*\d+(?:[-\u2013\u2014]\d+)?/g) ?? [];
+      const extraMatches = rest.match(
+        /,\s*\d+(?::\d+(?:[-\u2013\u2014]\d+)?)?(?:[-\u2013\u2014]\d+)?/g
+      ) ?? [];
 
       extraMatches.forEach((chunk) => {
         const verse = chunk.replace(/,\s*/, "");
-        const ref = `${baseRef}:${verse}`;
+        const ref = verse.includes(":") ? `${book} ${verse}` : `${baseRef}:${verse}`;
         output += `${chunk.replace(verse, "")}<span class="bible-ref" data-ref="${ref}">${verse}</span>`;
       });
 

@@ -5,6 +5,7 @@ slug: wlc-45
 categories:
   - wlc
 relatedAnswers:
+  - bc-29
   - wsc-26
 ---
 
