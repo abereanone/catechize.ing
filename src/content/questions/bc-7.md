@@ -13,7 +13,7 @@ God is a Spirit, infinite, eternal, and unchangeable in his being, wisdom, power
 
 ## Proofs
 - God is a Spirit, (John 4:24)
-- infinite, (Job 11:7, 8, 9)
+- infinite, (Job 11:7-9)
 - eternal, (Psalm 90:2)
 - and unchangeable (James 1:17)
 - in his being, (Exodus 3:14)

@@ -10,7 +10,7 @@ The light of nature in man and the works of God plainly declare there is a God; 
 
 ## Proofs
 - The light of nature in man and the works of God plainly declare there is a God; (Romans 1:19–20; Psalm 19:1–3; Acts 17:24)
-- but his word and Spirit only do it fully and effectually for the salvation of sinners. (1 Corinthians 2:10; 2 Timothy 3:15,16)
+- but his word and Spirit only do it fully and effectually for the salvation of sinners. (1 Corinthians 2:10; 2 Timothy 3:15-16)
 
 <!-- LONG_ANSWER -->
 
