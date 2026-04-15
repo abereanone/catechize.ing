@@ -1,7 +1,38 @@
 [
-  { "id": "bc", "name": "Baptist Catechism", "sortOrder": 10, "groupCode": "bc"},
-  { "id": "wsc", "name": "Westminster Shorter Catechism", "sortOrder": 20, "groupCode": "wsc"},
-  { "id": "wlc", "name": "Westminster Larger Catechism", "sortOrder": 30, "groupCode": "wlc"},
-  { "id": "hc", "name": "Heidelberg Catechism", "sortOrder": 40, "groupCode": "hc"},
-  { "id": "aoc", "name": "An Orthodox Catechism", "sortOrder": 50, "groupCode": "aoc"}
+  {
+    "id": "bc",
+    "name": "Baptist Catechism",
+    "sortOrder": 10,
+    "groupCode": "bc"
+  },
+  {
+    "id": "wsc",
+    "name": "Westminster Shorter Catechism",
+    "sortOrder": 20,
+    "groupCode": "wsc"
+  },
+  {
+    "id": "wlc",
+    "name": "Westminster Larger Catechism",
+    "sortOrder": 30,
+    "groupCode": "wlc"
+  },
+  {
+    "id": "hc",
+    "name": "Heidelberg Catechism",
+    "sortOrder": 40,
+    "groupCode": "hc"
+  },
+  {
+    "id": "aoc",
+    "name": "An Orthodox Catechism",
+    "sortOrder": 50,
+    "groupCode": "aoc"
+  },
+  {
+    "id": "cd",
+    "name": "Canons of Dort",
+    "sortOrder": 45,
+    "groupCode": "cd"
+  }
 ]
