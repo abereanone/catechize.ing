@@ -175,6 +175,7 @@ const encodedEmailSubject = encodeURIComponent(`Question: ${shareText}`);
 const encodedEmailBody = encodeURIComponent(`${shareText}\n\n${shareUrl}`);
 const showLongExplanationLabel = `Show ${longExplanationText}`;
 const hideLongExplanationLabel = `Hide ${longExplanationText}`;
+const RELATED_PREVIEW_LENGTH = 200;
 
 function resolveGroupCodeFromParam(param: string | undefined, target: Question | null): string | null {
   if (!param || !target || typeof target.id !== "number") {
@@ -225,6 +226,30 @@ function formatLongExplanationHtml(entry: Question): string {
     (_match, questionText, answerText, proofText) =>
       `<div class="exposition-item"><p class="exposition-question">${String(questionText).trim()}</p><p class="exposition-answer"><strong>Answer:</strong> ${String(answerText).trim()}</p><p class="exposition-proof"><strong>Proof:</strong> ${String(proofText).trim()}</p></div>`
   );
+}
+
+function stripHtml(value: string): string {
+  return value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): string {
+  const answerHtml = typeof entry.answerHtml === "string" ? entry.answerHtml : "";
+  const answerBeforeProofs = answerHtml.split(/<h2[^>]*>\s*Proofs\s*<\/h2>/i)[0] ?? "";
+  const source = stripHtml(answerBeforeProofs) || (entry.excerpt ?? "").trim();
+
+  if (!source) {
+    return "";
+  }
+
+  if (source.length <= maxLength) {
+    return source;
+  }
+
+  return `${source.slice(0, maxLength).trimEnd()}...`;
 }
 
 ---
@@ -414,6 +439,7 @@ function formatLongExplanationHtml(entry: Question): string {
             const groupName = primaryGroup
               ? entryCategories.find((cat) => cat.groupCode === primaryGroup)?.name ?? null
               : null;
+            const answerPreview = getAnswerPreview(entry);
 
             return (
               <li>
@@ -423,9 +449,12 @@ function formatLongExplanationHtml(entry: Question): string {
                   href={getQuestionLink(entry, primaryGroup)}
                 >
                   {displayLabel ? <span class="question-id">#{displayLabel}</span> : null}
-                  <span class="question-title">
-                    {entry.title}
-                    {groupName ? <span class="question-group-label"> ({groupName})</span> : null}
+                  <span class="question-card-body">
+                    <span class="question-title">
+                      {entry.title}
+                      {groupName ? <span class="question-group-label"> ({groupName})</span> : null}
+                    </span>
+                    {answerPreview ? <span class="question-preview">{answerPreview}</span> : null}
                   </span>
                 </a>
               </li>

@@ -10,6 +10,32 @@ const highlightReference =
     : null;
 const baseIndex =
   typeof startIndex === "number" && Number.isFinite(startIndex) ? Math.max(0, Math.floor(startIndex)) : 0;
+const PREVIEW_LENGTH = 200;
+
+function stripHtml(value: string): string {
+  return value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getAnswerPreview(question: { answerHtml?: string; excerpt?: string }): string {
+  const answerHtml = typeof question.answerHtml === "string" ? question.answerHtml : "";
+  const excerpt = typeof question.excerpt === "string" ? question.excerpt : "";
+  const answerBeforeProofs = answerHtml.split(/<h2[^>]*>\s*Proofs\s*<\/h2>/i)[0] ?? "";
+  const source = stripHtml(answerBeforeProofs) || excerpt.trim();
+
+  if (!source) {
+    return "";
+  }
+
+  if (source.length <= PREVIEW_LENGTH) {
+    return source;
+  }
+
+  return `${source.slice(0, PREVIEW_LENGTH).trimEnd()}...`;
+}
 ---
 <ul class="question-list">
   {questions.map((q, index) => {
@@ -21,13 +47,17 @@ const baseIndex =
     const href = highlightReference
       ? `/questions/${q.slug}?ref=${encodeURIComponent(highlightReference)}`
       : `/questions/${q.slug}`;
+    const answerPreview = getAnswerPreview(q);
     return (
     <li>
       <a class="question-card card-panel" data-question-group={primaryGroup ? primaryGroup.toLowerCase() : undefined} href={href}>
         {showQuestionId && displayId !== null ? (
           <span class="question-id">#{displayId}</span>
         ) : null}
-        <span class="question-title">{q.title}</span>
+        <span class="question-card-body">
+          <span class="question-title">{q.title}</span>
+          {answerPreview ? <span class="question-preview">{answerPreview}</span> : null}
+        </span>
       </a>
     </li>
     );
