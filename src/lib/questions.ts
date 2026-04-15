@@ -38,6 +38,23 @@ type AuthorSummary = {
   sortOrder?: number;
 };
 
+const groupSortOrderMap = new Map<string, number>();
+
+categoriesData.forEach((category, index) => {
+  if (!category.groupCode) {
+    return;
+  }
+
+  const code = String(category.groupCode).toUpperCase();
+  const fallbackOrder = Number.MAX_SAFE_INTEGER - 1000 + index;
+  const order = typeof category.sortOrder === "number" ? category.sortOrder : fallbackOrder;
+  const existing = groupSortOrderMap.get(code);
+
+  if (typeof existing !== "number" || order < existing) {
+    groupSortOrderMap.set(code, order);
+  }
+});
+
 export function slugify(value: string): string {
   return value
     .toLowerCase()
@@ -76,8 +93,23 @@ function sortQuestions(list: Question[]): Question[] {
       return orderA - orderB;
     }
 
+    const groupOrderA = getQuestionGroupOrder(a);
+    const groupOrderB = getQuestionGroupOrder(b);
+
+    if (groupOrderA !== groupOrderB) {
+      return groupOrderA - groupOrderB;
+    }
+
     return a.title.localeCompare(b.title);
   });
+}
+
+function getQuestionGroupOrder(question: Question): number {
+  const orders = question.groupCodes
+    .map((code) => groupSortOrderMap.get(String(code).toUpperCase()))
+    .filter((value): value is number => typeof value === "number");
+
+  return orders.length ? Math.min(...orders) : Number.MAX_SAFE_INTEGER;
 }
 
 const questionsData: Question[] = sortQuestions(

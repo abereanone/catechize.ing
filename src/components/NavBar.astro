@@ -8,7 +8,7 @@ const logoAlt = branding.logoAlt || `${branding.siteName} logo`;
 ---
 
 <header class="navbar">
-  <a href="/" class="logo">
+  <a href="/" class="logo" aria-label="Go to homepage" data-tooltip="Click for homepage">
     <img src={logoSrc} alt={logoAlt} />
   </a>
 
@@ -47,10 +47,44 @@ const logoAlt = branding.logoAlt || `${branding.siteName} logo`;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   }
 
+  .logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
   .logo img {
     height: 150px;
     width: auto;
     filter: var(--logo-filter);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .logo::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: calc(100% + 0.35rem);
+      left: 50%;
+      transform: translateX(-50%) translateY(-2px);
+      opacity: 0;
+      pointer-events: none;
+      background: var(--color-nav-bg);
+      color: var(--color-nav-text);
+      border: 1px solid var(--surface-border);
+      border-radius: 0.35rem;
+      padding: 0.18rem 0.45rem;
+      font-size: 0.75rem;
+      line-height: 1.2;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .logo:hover::after,
+    .logo:focus-visible::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   }
 
   .navbar-links {
