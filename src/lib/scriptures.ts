@@ -1,4 +1,5 @@
 import bookMap from "@/lib/bible/bookMap.json";
+import { autoLinkBibleRefs } from "@/lib/bible/autoLinkBibleRefs";
 import { normalizeReference } from "@/lib/bible/normalizeRef";
 import { findQuestion, getPublishedQuestions, type Question } from "@/lib/questions";
 
@@ -206,7 +207,9 @@ function buildScriptureIndex(): ScriptureEntry[] {
   getPublishedQuestions().forEach((question) => {
     const references = new Set([
       ...extractProofReferences(question.answerHtml),
+      ...extractInlineReferences(question.answerHtml),
       ...extractLongAnswerReferences(question.longHtml),
+      ...extractInlineReferences(question.longHtml),
     ]);
 
     references.forEach((reference) => {
@@ -282,6 +285,16 @@ function extractLongAnswerReferences(longHtml: string): string[] {
   }
 
   return extractParentheticalReferences(longHtml);
+}
+
+function extractInlineReferences(html: string): string[] {
+  if (!html) {
+    return [];
+  }
+
+  const linkedHtml = autoLinkBibleRefs(html);
+  const matches = [...linkedHtml.matchAll(/data-ref="([^"]+)"/g)];
+  return matches.map((match) => String(match[1] ?? "").trim()).filter(Boolean);
 }
 
 function extractParentheticalReferences(html: string): string[] {
