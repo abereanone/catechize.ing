@@ -1,14 +1,36 @@
 import { normalizeReference } from "@/lib/bible/normalizeRef";
 
-function scrollWithOffset(target) {
+const SCROLL_GAP = 24;
+
+function getHeaderOffset() {
   const header = document.querySelector(".navbar");
-  const headerHeight = header ? header.getBoundingClientRect().height : 0;
-  const targetTop = window.scrollY + target.getBoundingClientRect().top - headerHeight - 20;
+  if (!(header instanceof HTMLElement)) {
+    return 0;
+  }
+
+  return header.offsetHeight;
+}
+
+function scrollWithOffset(target) {
+  const targetTop = window.scrollY + target.getBoundingClientRect().top - getHeaderOffset() - SCROLL_GAP;
 
   window.scrollTo({
     top: Math.max(targetTop, 0),
     behavior: "smooth",
   });
+}
+
+function getScrollTarget(target) {
+  if (!(target instanceof HTMLElement)) {
+    return target;
+  }
+
+  const expositionCard = target.closest(".exposition-item");
+  if (expositionCard instanceof HTMLElement) {
+    return expositionCard;
+  }
+
+  return target;
 }
 
 function revealLongExplanation(target) {
@@ -71,9 +93,10 @@ function applyHighlight() {
     const revealedLong = revealLongExplanation(firstMatch);
     const revealedAnswer = revealHiddenAnswer(firstMatch);
     const needsDelay = revealedLong || revealedAnswer;
+    const scrollTarget = getScrollTarget(firstMatch);
 
     window.setTimeout(() => {
-      scrollWithOffset(firstMatch);
+      scrollWithOffset(scrollTarget);
     }, needsDelay ? 80 : 0);
   }
 }
@@ -84,6 +107,7 @@ export function initQuestionReferenceHighlight() {
   };
 
   document.addEventListener("astro:page-load", run);
+  window.addEventListener("load", run, { once: true });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", run, { once: true });
