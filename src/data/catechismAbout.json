@@ -1,0 +1,52 @@
+{
+  "bc": {
+    "title": "About the Baptist Catechism",
+    "paragraphs": [
+      "The Baptist Catechism (1695) is a historic Reformed Baptist teaching tool arranged in question-and-answer form for instruction in core Christian doctrine."
+    ]
+  },
+  "wsc": {
+    "title": "About the Westminster Shorter Catechism",
+    "paragraphs": [
+      "The Westminster Shorter Catechism was prepared by the Westminster Assembly and is widely used for concise instruction in Reformed doctrine and Christian duty."
+    ]
+  },
+  "wlc": {
+    "title": "About the Westminster Larger Catechism",
+    "paragraphs": [
+      "The Westminster Larger Catechism provides fuller doctrinal and practical explanations than the Shorter Catechism and is intended for mature instruction."
+    ]
+  },
+  "hc": {
+    "title": "About the Heidelberg Catechism",
+    "paragraphs": [
+      "The Heidelberg Catechism (1563) is arranged around guilt, grace, and gratitude and was written for pastoral teaching and confessional unity."
+    ]
+  },
+  "aoc": {
+    "title": "About the Orthodox Catechism",
+    "paragraphs": [
+      "An Orthodox Catechism (1680) presents Christian doctrine in a concise question-and-answer pattern for church and household discipleship."
+    ]
+  },
+  "cd": {
+    "title": "About the Canons of Dort",
+    "paragraphs": [
+      "The Canons of Dort (1618-1619) are a confessional response to the Remonstrant controversy and summarize key Reformed teachings on grace and salvation."
+    ]
+  },
+  "gc": {
+    "title": "About the Genevan Catechism",
+    "sourceUrl": "https://www.monergism.com/thethreshold/sdg/calvin/The%20Geneva%20Catechism%20-%20John%20Calvin.pdf",
+    "paragraphs": [
+      "John Calvin's Genevan Catechism was prepared for the Church of Geneva as a form of instruction in the doctrine of Christ.",
+      "In the dedication, Calvin argues that churches should pursue unity in the faith and that catechisms should direct all believers to one Christ, so the church may confess one faith with one mouth.",
+      "He explains that catechetical instruction should be handled carefully so that teachers do not sow confusion or division, but hand on sound doctrine to posterity.",
+      "Calvin also describes catechisms as public testimonies of doctrinal agreement between churches and as a practical means of preserving Christian teaching for future generations.",
+      "In the address to the reader, he says the church has long practiced careful instruction of children through ordered questions and answers that are common and well known among Christians.",
+      "He contrasts that historic practice with later corruption and states his purpose as restoring a useful and ancient discipline for clear Christian instruction.",
+      "The catechism itself is structured in four parts: Faith, the Law, Prayer, and the Word and Sacraments.",
+      "This edition was imported from the Monergism PDF linked on this page."
+    ]
+  }
+}

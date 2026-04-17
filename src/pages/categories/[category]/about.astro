@@ -1,0 +1,52 @@
+---
+import Main from "@/layouts/Main.astro";
+import { findCategory, listCategories } from "@/lib/questions";
+import catechismAboutData from "@/data/catechismAbout.json";
+import { siteSettings } from "@/config/siteSettings";
+
+type CatechismAboutEntry = {
+  title?: string;
+  sourceUrl?: string;
+  paragraphs?: string[];
+};
+
+export function getStaticPaths() {
+  return listCategories().map((category) => ({
+    params: { category: category.id },
+  }));
+}
+
+const { category } = Astro.params;
+const activeCategory = findCategory(category);
+
+if (!activeCategory) {
+  throw new Error(`Category not found for slug "${category}".`);
+}
+
+const aboutMap = catechismAboutData as Record<string, CatechismAboutEntry>;
+const aboutEntry = aboutMap[activeCategory.id] ?? null;
+const title = aboutEntry?.title ?? `About ${activeCategory.name}`;
+const paragraphs = Array.isArray(aboutEntry?.paragraphs) ? aboutEntry.paragraphs.filter(Boolean) : [];
+const siteName = siteSettings.branding.siteName;
+---
+
+<Main title={`${title} - ${siteName}`}>
+  <article class="card-panel">
+    <h1>{title}</h1>
+    <p>
+      <a href={`/categories/${activeCategory.id}`}>Back to {activeCategory.name}</a>
+    </p>
+
+    {paragraphs.length ? (
+      paragraphs.map((paragraph) => <p>{paragraph}</p>)
+    ) : (
+      <p><em>About text for this catechism has not been added yet.</em></p>
+    )}
+
+    {aboutEntry?.sourceUrl ? (
+      <p>
+        Source: <a href={aboutEntry.sourceUrl} target="_blank" rel="noopener noreferrer">{aboutEntry.sourceUrl}</a>
+      </p>
+    ) : null}
+  </article>
+</Main>

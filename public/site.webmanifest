@@ -1,1 +1,30 @@
-{"name":"Catechize.ing","short_name":"Catechize","icons":[{"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},{"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#244431","background_color":"#0f1712","display":"standalone"}
+{
+  "id": "/",
+  "name": "Catechize.ing",
+  "short_name": "Catechize",
+  "description": "Browse catechism questions, scriptures, and references quickly on any device.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#244431",
+  "background_color": "#0f1712",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

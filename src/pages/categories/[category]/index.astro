@@ -61,6 +61,9 @@ const pagination =
         <p class="feed-subtitle">
           In the <a class="category-parent-link" href="/categories">Category</a>: {activeCategory.name}
         </p>
+        <p class="feed-subtitle">
+          <a href={`/categories/${activeCategory.id}/about`}>About this catechism</a>
+        </p>
       </div>
     </fragment>
     <fragment slot="empty">
