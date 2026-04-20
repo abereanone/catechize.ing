@@ -1,6 +1,6 @@
 ---
 id: 22
-title: Did all mankind fall in that first transgression ?
+title: Did all mankind fall in that first transgression?
 slug: wlc-22
 categories:
   - wlc

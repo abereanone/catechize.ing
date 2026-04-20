@@ -1,6 +1,6 @@
 ---
 id: 79
-title: May not true believers, by reason of their imperfections, and the many temptations and sins they are overtaken with, fall away from the state of grace ?
+title: May not true believers, by reason of their imperfections, and the many temptations and sins they are overtaken with, fall away from the state of grace?
 slug: wlc-79
 categories:
   - wlc

@@ -177,11 +177,32 @@ function extractParentheticalReferences(html) {
 
   matches.forEach((match) => {
     const content = String(match[1] ?? "");
+    let lastBook = null;
+
     content
       .split(";")
       .map((part) => part.trim())
       .filter(Boolean)
-      .forEach((part) => references.push(part));
+      .forEach((part) => {
+        const cleanedPart = cleanReference(part).replace(/(?:,\s*)?etc\.?$/i, "").trim();
+        if (!cleanedPart) {
+          return;
+        }
+
+        const explicit = splitReferenceParts(cleanedPart);
+        if (explicit) {
+          lastBook = explicit.book;
+          references.push(cleanedPart);
+          return;
+        }
+
+        if (lastBook && /^\d/.test(cleanedPart)) {
+          references.push(`${lastBook} ${cleanedPart}`);
+          return;
+        }
+
+        references.push(cleanedPart);
+      });
   });
 
   return references;
