@@ -24,6 +24,9 @@ const authorOptions = authors.map((author) => ({ id: author.id, name: author.nam
     <header class="search-header">
       <h1>Search</h1>
       <p>Find questions, answers, and related resources across {siteName}.</p>
+      <p class="search-scripture-note">
+        To search the Scripture Index, <a href="/scriptures"><span data-scripture-action>click/tap</span> here</a>.
+      </p>
     </header>
 
     <form id="search-form" role="search" class="search-form">
@@ -55,6 +58,22 @@ const authorOptions = authors.map((author) => ({ id: author.id, name: author.nam
   </section>
 
   <script type="module" src={searchClientSrc}></script>
+  <script is:inline>
+    const scriptureAction = document.querySelector("[data-scripture-action]");
+    if (scriptureAction && typeof window !== "undefined" && typeof window.matchMedia === "function") {
+      const coarsePointer = window.matchMedia("(pointer: coarse)");
+      const updateActionLabel = () => {
+        scriptureAction.textContent = coarsePointer.matches ? "tap" : "click";
+      };
+
+      updateActionLabel();
+      if (typeof coarsePointer.addEventListener === "function") {
+        coarsePointer.addEventListener("change", updateActionLabel);
+      } else if (typeof coarsePointer.addListener === "function") {
+        coarsePointer.addListener(updateActionLabel);
+      }
+    }
+  </script>
 
   <style>
     .search-page {
@@ -71,6 +90,19 @@ const authorOptions = authors.map((author) => ({ id: author.id, name: author.nam
     .search-header p {
       color: var(--secondary-text);
       margin: 0 0 1.5rem;
+    }
+
+    .search-scripture-note {
+      margin: -0.75rem 0 1.5rem;
+      font-size: 0.98rem;
+      color: var(--secondary-text);
+    }
+
+    .search-scripture-note a {
+      color: var(--color-text);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 0.18em;
     }
 
     .search-form {
