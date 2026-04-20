@@ -69,7 +69,7 @@ function normalizeBookName(bookMap, book) {
 
 function splitReferenceParts(reference) {
   const match = String(reference).match(
-    /^((?:(?:[1-3]|iii|ii|i)\s+)?[a-z.]+(?:\s+[a-z.]+)*)\s+(\d.+)$/i
+    /^((?:(?:[1-3]|iii|ii|i)\s+)?[a-z.]+(?:\s+[a-z.]+)*)\s+(\d.*)$/i
   );
 
   if (!match) {
@@ -221,7 +221,7 @@ function cleanReference(reference) {
     .trim();
 }
 
-function expandReferenceVariants(normalizedReference) {
+function expandReferenceVariants(bookMap, normalizedReference) {
   const variants = new Set();
   const value = normalizeLookupKey(normalizedReference);
   if (!value) {
@@ -255,6 +255,11 @@ function expandReferenceVariants(normalizedReference) {
     .filter(Boolean)
     .forEach((piece) => {
       if (piece.includes(":")) {
+        const explicitBookVariant = normalizeReferenceChunk(bookMap, piece);
+        if (explicitBookVariant) {
+          variants.add(explicitBookVariant);
+          return;
+        }
         variants.add(`${bookCode} ${piece}`);
         return;
       }
@@ -498,7 +503,9 @@ async function run() {
           return;
         }
 
-        expandReferenceVariants(normalizedKey).forEach((variant) => allReferences.add(variant));
+        expandReferenceVariants(bookMap, normalizedKey).forEach((variant) =>
+          allReferences.add(variant)
+        );
       });
     }
   }

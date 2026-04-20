@@ -47,7 +47,7 @@ function normalizeBookName(book: string): string | undefined {
 
 function splitReferenceParts(reference: string): { book: string; chapterAndVerse: string } | null {
   const match = reference.match(
-    /^((?:(?:[1-3]|iii|ii|i)\s+)?[a-z.]+(?:\s+[a-z.]+)*)\s+(\d.+)$/i
+    /^((?:(?:[1-3]|iii|ii|i)\s+)?[a-z.]+(?:\s+[a-z.]+)*)\s+(\d.*)$/i
   );
 
   if (!match) {

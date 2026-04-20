@@ -1,6 +1,6 @@
 ---
 id: 65
-title: What are the Sacraments?
+title: What are the sacraments?
 slug: aoc-65
 categories:
   - aoc
