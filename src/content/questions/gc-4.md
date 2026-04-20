@@ -6,4 +6,4 @@ categories:
   - gc
 ---
 
-Because without it our condition is more miserable than that of brute- beasts.
+Because without it our condition is more miserable than that of brute-beasts.

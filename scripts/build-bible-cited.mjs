@@ -15,7 +15,9 @@ const singleChapterBooks = new Set([
   "oba",
   "philemon",
   "phm",
+  "2 john",
   "2jn",
+  "3 john",
   "3jn",
   "jude",
   "jud",
@@ -33,28 +35,69 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+function normalizeLeadingRomanNumeral(value) {
+  return value.replace(/^(iii|ii|i)\s+/i, (match) => {
+    const numeral = match.trim().toLowerCase();
+    if (numeral === "i") {
+      return "1 ";
+    }
+    if (numeral === "ii") {
+      return "2 ";
+    }
+    if (numeral === "iii") {
+      return "3 ";
+    }
+    return match;
+  });
+}
+
+function normalizeBookKey(book) {
+  return normalizeLeadingRomanNumeral(book)
+    .replace(/\./g, "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
 function normalizeBookName(bookMap, book) {
-  const cleaned = book.replace(/\./g, "");
+  const normalizedKey = normalizeBookKey(book);
   return (
-    bookMap[book] ??
-    bookMap[book.charAt(0).toUpperCase() + book.slice(1)] ??
-    bookMap[cleaned] ??
-    bookMap[cleaned.charAt(0).toUpperCase() + cleaned.slice(1)]
+    bookMap[normalizedKey] ??
+    bookMap[normalizedKey.charAt(0).toUpperCase() + normalizedKey.slice(1)]
   );
+}
+
+function splitReferenceParts(reference) {
+  const match = String(reference).match(
+    /^((?:(?:[1-3]|iii|ii|i)\s+)?[a-z.]+(?:\s+[a-z.]+)*)\s+(\d.+)$/i
+  );
+
+  if (!match) {
+    return null;
+  }
+
+  const book = String(match[1] ?? "").trim();
+  const chapterAndVerse = String(match[2] ?? "").trim().replace(/\s*,\s*/g, ", ");
+
+  if (!book || !chapterAndVerse) {
+    return null;
+  }
+
+  return { book, chapterAndVerse };
 }
 
 function normalizeReference(bookMap, reference) {
   const lower = reference.trim().toLowerCase().replace(/\u2013|\u2014/g, "-");
-  const parts = lower.split(/\s+/);
-
-  if (parts.length < 2) {
+  const parts = splitReferenceParts(lower);
+  if (!parts) {
     return reference;
   }
 
-  const book = parts.slice(0, -1).join(" ");
-  let chapterAndVerse = parts[parts.length - 1];
+  const { book } = parts;
+  const normalizedBookKey = normalizeBookKey(book);
+  let chapterAndVerse = parts.chapterAndVerse;
 
-  if (/^\d+$/.test(chapterAndVerse) && singleChapterBooks.has(book)) {
+  if (/^\d+$/.test(chapterAndVerse) && singleChapterBooks.has(normalizedBookKey)) {
     chapterAndVerse = `1:${chapterAndVerse}`;
   }
 

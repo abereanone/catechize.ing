@@ -5,20 +5,68 @@ const singleChapterBooks = new Set([
   "oba",
   "philemon",
   "phm",
+  "2 john",
   "2jn",
+  "3 john",
   "3jn",
   "jude",
   "jud",
 ]);
 
+function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function normalizeLeadingRomanNumeral(value: string): string {
+  return value.replace(/^(iii|ii|i)\s+/i, (match) => {
+    const numeral = match.trim().toLowerCase();
+    if (numeral === "i") {
+      return "1 ";
+    }
+    if (numeral === "ii") {
+      return "2 ";
+    }
+    if (numeral === "iii") {
+      return "3 ";
+    }
+    return match;
+  });
+}
+
+function normalizeBookKey(book: string): string {
+  return normalizeLeadingRomanNumeral(book)
+    .replace(/\./g, "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function toBookPattern(book: string): string {
+  let pattern = escapeRegex(book).replace(/\s+/g, "\\s+");
+
+  pattern = pattern
+    .replace(/^1(?=\\s\+)/, "(?:1|i)")
+    .replace(/^2(?=\\s\+)/, "(?:2|ii)")
+    .replace(/^3(?=\\s\+)/, "(?:3|iii)")
+    .replace(/^1(?=[a-z])/, "(?:1|i)")
+    .replace(/^2(?=[a-z])/, "(?:2|ii)")
+    .replace(/^3(?=[a-z])/, "(?:3|iii)");
+
+  if (/[a-z]$/i.test(book)) {
+    pattern += "\\.?";
+  }
+
+  return pattern;
+}
+
 const bookPattern = Object.keys(bookMap)
   .sort((a, b) => b.length - a.length)
-  .map((book) => book.replace(/\./g, "\\."))
+  .map((book) => toBookPattern(book))
   .join("|");
 
 const singleChapterBookPattern = [...singleChapterBooks]
   .sort((a, b) => b.length - a.length)
-  .map((book) => book.replace(/\./g, "\\."))
+  .map((book) => toBookPattern(book))
   .join("|");
 
 const multiVerseSingleChapterRegex = new RegExp(
@@ -42,7 +90,7 @@ const continuedVerseRegex = /([;]\s*)(\d+:\d+(?:[-\u2013\u2014]\d+)?)(?=(?:\s*[;
 
 export function autoLinkBibleRefs(html: string): string {
   const withChapterOnly = html.replace(chapterOnlyRegex, (match, book: string, chapter: string) => {
-    const normalizedBook = String(book).toLowerCase().replace(/\./g, "");
+    const normalizedBook = normalizeBookKey(String(book));
     if (singleChapterBooks.has(normalizedBook)) {
       return match;
     }
