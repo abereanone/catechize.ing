@@ -426,6 +426,26 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
       </div>
     ) : null}
 
+    {previousQuestion || nextQuestion ? (
+      <nav class="question-bottom-nav" aria-label="Question pagination">
+        {previousQuestion ? (
+          <a class="question-top-link prev" href={buildQuestionHref(previousQuestion)}>
+            Prev
+          </a>
+        ) : (
+          <span aria-hidden="true" class="question-top-link placeholder" />
+        )}
+
+        {nextQuestion ? (
+          <a class="question-top-link next" href={buildQuestionHref(nextQuestion)}>
+            Next
+          </a>
+        ) : (
+          <span aria-hidden="true" class="question-top-link placeholder" />
+        )}
+      </nav>
+    ) : null}
+
     {relatedQuestions.length ? (
       <section class="related-questions">
         <h2>Related questions</h2>
@@ -492,7 +512,7 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
 
   {questionCategories.length ? (
     <div class="category-meta category-footer">
-      <a class="category-chip" href="/categories">Categories</a>
+      <a class="category-chip" href="/categories">All Categories</a>
       <ul class="category-list">
         {questionCategories.map((category) => (
           <li>
@@ -660,6 +680,24 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
 
     .question-top-link.random-link {
       min-width: auto;
+    }
+
+    .question-bottom-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .question-bottom-nav .question-top-link.prev {
+      margin-right: auto;
+    }
+
+    .question-bottom-nav .question-top-link.next {
+      margin-left: auto;
     }
 
     @media (max-width: 640px) {
