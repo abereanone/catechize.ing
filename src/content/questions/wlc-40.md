@@ -1,6 +1,6 @@
 ---
 id: 40
-title: Why was it requisite that the Mediator should be God and man in one person ?
+title: Why was it requisite that the Mediator should be God and man in one person?
 slug: wlc-40
 categories:
   - wlc

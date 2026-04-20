@@ -30,12 +30,6 @@
     "groupCode": "aoc"
   },
   {
-    "id": "cd",
-    "name": "Canons of Dort",
-    "sortOrder": 45,
-    "groupCode": "cd"
-  },
-  {
     "id": "gc",
     "name": "Genevan Catechism",
     "sortOrder": 60,
