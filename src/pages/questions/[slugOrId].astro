@@ -24,6 +24,7 @@ export function getStaticPaths() {
       entries.push({ params: { slugOrId: String(question.id) } });
       question.groupCodes.forEach((code) => {
         entries.push({ params: { slugOrId: `${code}${question.id}` } });
+        entries.push({ params: { slugOrId: `${String(code).toLowerCase()}${question.id}` } });
       });
     }
     return entries;
