@@ -64,6 +64,67 @@ async function getBibleLookup(): Promise<Map<string, VerseEntry>> {
   return bibleLookupPromise;
 }
 
+function getSingleChapterVerseKeys(reference: string): string[] {
+  const match = reference.match(/^([1-3]?[a-z]+)\s+(\d+):(.+)$/);
+  if (!match) {
+    return [];
+  }
+
+  const bookCode = match[1];
+  const chapter = match[2];
+  const versePart = match[3];
+  if (!bookCode || !chapter || !versePart) {
+    return [];
+  }
+
+  const keys: string[] = [];
+  const segments = versePart
+    .split(",")
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+
+  for (const segment of segments) {
+    const rangeMatch = segment.match(/^(\d+)(?:-(\d+))?$/);
+    if (!rangeMatch) {
+      return [];
+    }
+
+    const start = Number.parseInt(rangeMatch[1] ?? "", 10);
+    const end = rangeMatch[2] ? Number.parseInt(rangeMatch[2], 10) : start;
+    if (Number.isNaN(start) || Number.isNaN(end) || start <= 0 || end <= 0) {
+      return [];
+    }
+
+    const rangeStart = Math.min(start, end);
+    const rangeEnd = Math.max(start, end);
+    for (let verse = rangeStart; verse <= rangeEnd; verse += 1) {
+      keys.push(`${bookCode} ${chapter}:${verse}`);
+    }
+  }
+
+  return keys;
+}
+
+function getComposedVerseData(
+  bibleLookup: Map<string, VerseEntry>,
+  reference: string
+): VerseData | null {
+  const verseKeys = getSingleChapterVerseKeys(reference);
+  if (verseKeys.length <= 1) {
+    return null;
+  }
+
+  const verses = verseKeys.map((key) => toVerseData(bibleLookup.get(key)));
+  if (verses.some((verse) => !verse)) {
+    return null;
+  }
+
+  return {
+    text: verses.map((verse) => verse!.text).join(" "),
+    version: verses.find((verse) => verse?.version)?.version ?? BIBLE_ABBREVIATION,
+  };
+}
+
 export async function getVerseData(rawReference: string): Promise<VerseData | null> {
   const normalizedReference = normalizeLookupKey(rawReference);
 
@@ -72,7 +133,9 @@ export async function getVerseData(rawReference: string): Promise<VerseData | nu
   }
 
   const bibleLookup = await getBibleLookup();
-  const verseData = toVerseData(bibleLookup.get(normalizedReference));
+  const verseData =
+    toVerseData(bibleLookup.get(normalizedReference)) ??
+    getComposedVerseData(bibleLookup, normalizedReference);
   referenceCache.set(normalizedReference, verseData);
   return verseData;
 }
