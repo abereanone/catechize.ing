@@ -172,7 +172,10 @@ function decodeHtml(value) {
 
 function extractParentheticalReferences(html) {
   const plainText = decodeHtml(stripTags(String(html ?? "")));
-  const matches = [...plainText.matchAll(/\(([^()]+)\)/g)];
+  const matches = [
+    ...plainText.matchAll(/\(([^()]+)\)/g),
+    ...plainText.matchAll(/\[([^\[\]]+)\]/g),
+  ];
   const references = [];
 
   matches.forEach((match) => {
