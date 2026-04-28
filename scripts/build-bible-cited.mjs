@@ -8,7 +8,7 @@ const questionsFile = path.join(rootDir, "src", "generated", "questions.json");
 const bookMapFile = path.join(rootDir, "src", "lib", "bible", "bookMap.json");
 const sourceBibleFile = path.join(rootDir, "bsb-data-pipeline", "bsb.json");
 const outputFile = path.join(rootDir, "src", "generated", "bible-cited.json");
-const chapterPreviewVerseLimit = 15;
+const chapterPreviewVerseLimit = 3;
 
 const singleChapterBooks = new Set([
   "obadiah",
