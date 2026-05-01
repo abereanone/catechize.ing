@@ -75,7 +75,7 @@ export function normalizeReference(reference: string): string {
   const normalizedBookKey = normalizeBookKey(book);
   let chapterAndVerse = parts.chapterAndVerse;
 
-  if (/^\d+$/.test(chapterAndVerse) && singleChapterBooks.has(normalizedBookKey)) {
+  if (!chapterAndVerse.includes(":") && singleChapterBooks.has(normalizedBookKey)) {
     chapterAndVerse = `1:${chapterAndVerse}`;
   }
 
@@ -84,7 +84,7 @@ export function normalizeReference(reference: string): string {
     return reference;
   }
 
-  if (/^\d+$/.test(chapterAndVerse) && singleChapterBooks.has(normalizedBook)) {
+  if (!chapterAndVerse.includes(":") && singleChapterBooks.has(normalizedBook)) {
     chapterAndVerse = `1:${chapterAndVerse}`;
   }
 

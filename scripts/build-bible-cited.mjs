@@ -11,23 +11,12 @@ const outputFile = path.join(rootDir, "src", "generated", "bible-cited.json");
 const chapterPreviewVerseLimit = 3;
 
 const singleChapterBooks = new Set([
-  "obadiah",
   "oba",
-  "philemon",
   "phm",
-  "2 john",
   "2jn",
-  "3 john",
   "3jn",
-  "jude",
   "jud",
 ]);
-
-const bsbCodeOverrides = {
-  mrk: "MAR",
-  nah: "NAM",
-  phm: "PHL",
-};
 
 let referencePattern = null;
 
@@ -97,7 +86,12 @@ function normalizeReference(bookMap, reference) {
   const normalizedBookKey = normalizeBookKey(book);
   let chapterAndVerse = parts.chapterAndVerse;
 
-  if (/^\d+$/.test(chapterAndVerse) && singleChapterBooks.has(normalizedBookKey)) {
+  const bookCode = normalizeBookName(bookMap, book);  
+  
+  if (
+    singleChapterBooks.has(bookCode) &&
+    !chapterAndVerse.includes(":")
+  ) {
     chapterAndVerse = `1:${chapterAndVerse}`;
   }
 
@@ -132,17 +126,13 @@ function normalizeReferenceChunk(bookMap, reference) {
   }
 
   const normalizedReference = normalizeReference(bookMap, cleaned);
-  const match = normalizedReference.match(getReferencePattern(bookMap));
-  if (!match) {
-    return null;
-  }
+  const parts = normalizedReference.split(" ");
+  if (parts.length < 2) return null;
 
-  const rawBook = String(match[1] ?? "").toLowerCase();
-  const referencePart = String(match[2] ?? "").trim();
-  const bookCode = bookMap[rawBook];
-  if (!bookCode || !referencePart) {
-    return null;
-  }
+  const bookCode = parts[0];
+  const referencePart = parts.slice(1).join(" ").trim();
+
+  if (!bookCode || !referencePart) return null;
 
   return `${bookCode} ${referencePart.toLowerCase()}`;
 }
@@ -274,7 +264,7 @@ function expandReferenceVariants(bookMap, normalizedReference) {
 }
 
 function toBsbBookCode(bookCode) {
-  return bsbCodeOverrides[bookCode] ?? String(bookCode).toUpperCase();
+  return String(bookCode).toLowerCase();
 }
 
 function normalizeVersion(value) {
@@ -380,7 +370,7 @@ function resolveVerseData(bible, normalizedReference) {
       return;
     }
 
-    if (bookCode === "PSA" && segment.toLowerCase() === "title") {
+    if (bookCode === "psa" && segment.toLowerCase() === "title") {
       appendVerse(chapterValue, 1);
       return;
     }
@@ -545,7 +535,7 @@ async function run() {
     `Generated ${Object.keys(verses).length} cited verse lookups (${missingCount} unresolved references skipped).`
   );
 
-  if (process.env.DEBUG_MISSING_BIBLE_REFS === "1" && missingReferences.length) {
+  if (missingReferences.length) {
     console.log("Unresolved references:");
     missingReferences.forEach((reference) => console.log(`- ${reference}`));
   }
