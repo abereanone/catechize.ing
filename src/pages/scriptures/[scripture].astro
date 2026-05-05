@@ -21,6 +21,8 @@ if (!entry) {
 const siteName = siteSettings.branding.siteName;
 const questions = getScriptureQuestions(entry);
 const canPreviewVerse = entry.referencePart.includes(":");
+const chapterNumber = entry.referencePart.match(/^\d+/)?.[0] ?? "";
+const chapterUrl = `https://confess.catechize.ing/bible/${entry.bookCode}/${chapterNumber}/`;
 ---
 
 <Main title={`${entry.reference} | ${siteName}`}>
@@ -31,7 +33,10 @@ const canPreviewVerse = entry.referencePart.includes(":");
         <p class="scripture-verse-body" data-scripture-verse-body>Loading verse text…</p>
       ) : (
         <p class="scripture-verse-body">
-          <em>This reference is indexed as a chapter-level citation, so there is no single verse preview to show here.</em>
+          <em>
+            This reference is indexed as a chapter-level citation,
+            <a href={chapterUrl} target="_blank" rel="noopener noreferrer">click here to read that chapter.</a>
+          </em>
         </p>
       )}
     {questions.length ? (
