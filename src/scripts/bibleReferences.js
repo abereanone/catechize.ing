@@ -4,6 +4,34 @@ import { getVerseData } from "@/lib/bible/bibleClient";
 
 const verseCache = new Map();
 
+function formatVerseText(verse) {
+  if (!verse) {
+    return "Verse not found.";
+  }
+
+  if (Array.isArray(verse.parts) && verse.parts.length > 0) {
+    const partsText = verse.parts
+      .map((part) => {
+        const reference = String(part?.reference || "").trim();
+        const text = String(part?.text || "").trim();
+        const version = String(part?.version || "BSB").trim();
+        if (!text) {
+          return "";
+        }
+
+        return reference ? `${reference} (${version}) - ${text}` : `${text} (${version})`;
+      })
+      .filter(Boolean)
+      .join(" ");
+
+    if (partsText) {
+      return partsText;
+    }
+  }
+
+  return `${verse.text} (${verse.version})`;
+}
+
 function ensureTooltip(element) {
   if (element.__tooltipElement) {
     const tooltip = element.__tooltipElement;
@@ -24,7 +52,7 @@ function ensureTooltip(element) {
 
       const tooltip = document.createElement("div");
       tooltip.className = "bible-tooltip";
-      tooltip.textContent = verse ? `${verse.text} (${verse.version})` : "Verse not found.";
+      tooltip.textContent = formatVerseText(verse);
       document.body.appendChild(tooltip);
 
       element.__tooltipElement = tooltip;

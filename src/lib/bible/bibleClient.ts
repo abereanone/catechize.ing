@@ -4,6 +4,13 @@ const referenceCache = new Map<string, VerseData | null>();
 export type VerseData = {
   text: string;
   version: string;
+  parts?: VerseDataPart[];
+};
+
+export type VerseDataPart = {
+  reference?: string;
+  text: string;
+  version: string;
 };
 
 type VerseEntry =
@@ -11,6 +18,11 @@ type VerseEntry =
   | {
       text?: string;
       version?: string;
+      parts?: Array<{
+        reference?: string;
+        text?: string;
+        version?: string;
+      }>;
     };
 
 type CitedBibleData = {
@@ -45,10 +57,36 @@ function toVerseData(entry: VerseEntry | undefined): VerseData | null {
     return null;
   }
 
+  const parts = Array.isArray(entry.parts)
+    ? entry.parts
+        .map((part): VerseDataPart | null => {
+          if (!part || typeof part.text !== "string") {
+            return null;
+          }
+
+          const partText = part.text.trim();
+          if (!partText) {
+            return null;
+          }
+
+          const reference =
+            typeof part.reference === "string" && part.reference.trim()
+              ? part.reference.trim()
+              : undefined;
+          const version =
+            typeof part.version === "string" && part.version.trim()
+              ? part.version.trim()
+              : BIBLE_ABBREVIATION;
+
+          return { reference, text: partText, version };
+        })
+        .filter((part): part is VerseDataPart => Boolean(part))
+    : [];
+
   const rawVersion = typeof entry.version === "string" ? entry.version.trim() : "";
   const version = rawVersion || BIBLE_ABBREVIATION;
 
-  return { text, version };
+  return { text, version, parts: parts.length ? parts : undefined };
 }
 
 async function getBibleLookup(): Promise<Map<string, VerseEntry>> {
@@ -119,9 +157,20 @@ function getComposedVerseData(
     return null;
   }
 
+  const parts = verses.map((verse, index) => ({
+    reference: verseKeys[index],
+    text: verse!.text,
+    version: verse!.version,
+  }));
+  const versions = [...new Set(parts.map((part) => part.version).filter(Boolean))];
+
   return {
     text: verses.map((verse) => verse!.text).join(" "),
-    version: verses.find((verse) => verse?.version)?.version ?? BIBLE_ABBREVIATION,
+    version:
+      versions.length > 1
+        ? versions.join("/")
+        : verses.find((verse) => verse?.version)?.version ?? BIBLE_ABBREVIATION,
+    parts: versions.length > 1 ? parts : undefined,
   };
 }
 
@@ -133,9 +182,9 @@ export async function getVerseData(rawReference: string): Promise<VerseData | nu
   }
 
   const bibleLookup = await getBibleLookup();
-  const verseData =
-    toVerseData(bibleLookup.get(normalizedReference)) ??
-    getComposedVerseData(bibleLookup, normalizedReference);
+  const directVerseData = toVerseData(bibleLookup.get(normalizedReference));
+  const composedVerseData = getComposedVerseData(bibleLookup, normalizedReference);
+  const verseData = composedVerseData?.parts ? composedVerseData : directVerseData ?? composedVerseData;
   referenceCache.set(normalizedReference, verseData);
   return verseData;
 }

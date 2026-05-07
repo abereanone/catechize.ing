@@ -161,7 +161,12 @@ export function autoLinkBibleRefs(html: string): string {
     }
   );
 
-  const withContinuedVerses = withSingles.replace(
+  const withRestoredMulti = withSingles.replace(/__BIBLE_MULTI__(\d+)__/g, (match, index) => {
+    const idx = Number(index);
+    return Number.isNaN(idx) ? match : placeholders[idx] ?? match;
+  });
+
+  const withContinuedVerses = withRestoredMulti.replace(
     /((?:<span class="bible-ref" data-ref="([^"]+)">[^<]+<\/span>)(?:[^<]|<(?!span class="bible-ref"))*)/g,
     (segment) => {
       let lastBook: string | null = null;
@@ -184,8 +189,5 @@ export function autoLinkBibleRefs(html: string): string {
     }
   );
 
-  return withContinuedVerses.replace(/__BIBLE_MULTI__(\d+)__/g, (match, index) => {
-    const idx = Number(index);
-    return Number.isNaN(idx) ? match : placeholders[idx] ?? match;
-  });
+  return withContinuedVerses;
 }

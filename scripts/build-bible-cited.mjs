@@ -8,6 +8,7 @@ const questionsFile = path.join(rootDir, "src", "generated", "questions.json");
 const bookMapFile = path.join(rootDir, "src", "lib", "bible", "bookMap.json");
 const sourceBibleFile = path.join(rootDir, "bsb-data-pipeline", "bsb.json");
 const outputFile = path.join(rootDir, "src", "generated", "bible-cited.json");
+const bibleAbbreviation = "BSB";
 const chapterPreviewVerseLimit = 3;
 
 const singleChapterBooks = new Set([
@@ -290,6 +291,16 @@ function getEntryParts(entry) {
   return { text: "", version: "" };
 }
 
+function normalizeVersionLabel(value) {
+  const version = normalizeVersion(value);
+  return version || bibleAbbreviation;
+}
+
+function summarizeVersionLabels(versions) {
+  const labels = [...new Set(versions.map(normalizeVersionLabel).filter(Boolean))];
+  return labels.length > 1 ? labels.join("/") : labels[0] ?? bibleAbbreviation;
+}
+
 function resolveVerseData(bible, normalizedReference) {
   const normalizedKey = normalizeLookupKey(normalizedReference);
   const chapterOnlyMatch = normalizedKey.match(/^([a-z0-9]+)\s+(\d+)$/);
@@ -358,6 +369,7 @@ function resolveVerseData(bible, normalizedReference) {
   }
 
   const verseTextParts = [];
+  const verseParts = [];
   let version = "";
   const segments = String(match[3])
     .split(",")
@@ -450,7 +462,13 @@ function resolveVerseData(bible, normalizedReference) {
       version = entryVersion;
     }
 
-    verseTextParts.push(`${verseValue} ${cleaned}`);
+    const verseText = `${verseValue} ${cleaned}`;
+    verseTextParts.push(verseText);
+    verseParts.push({
+      reference: `${bookCode} ${chapterValue}:${verseValue}`,
+      text: verseText,
+      version: normalizeVersionLabel(entryVersion),
+    });
   }
 
   for (const segment of segments) {
@@ -467,7 +485,14 @@ function resolveVerseData(bible, normalizedReference) {
     appendSegment(chapterNumber, segment);
   }
 
-  return { text: verseTextParts.join(" "), version };
+  const versions = verseParts.map((part) => part.version);
+  const hasMixedVersions = new Set(versions).size > 1;
+
+  return {
+    text: verseTextParts.join(" "),
+    version: hasMixedVersions ? summarizeVersionLabels(versions) : version,
+    parts: hasMixedVersions ? verseParts : undefined,
+  };
 }
 
 async function run() {
@@ -516,6 +541,15 @@ async function run() {
         missingReferences.push(reference);
         return;
       }
+      if (verseData.parts?.length) {
+        verses[reference] = {
+          text: verseData.text,
+          version: verseData.version,
+          parts: verseData.parts,
+        };
+        return;
+      }
+
       verses[reference] = verseData.version
         ? { text: verseData.text, version: verseData.version }
         : verseData.text;
