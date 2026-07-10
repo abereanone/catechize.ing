@@ -8,44 +8,28 @@
     "sortOrder": 15
   },
   {
-    "id": "map1",
-    "name": "Map of Paul's Journeys",
-    "url": "https://garridolecca.github.io/pauls-journeys/",
-    "title": "Website",
-    "bio": "Really cool interactive map of Paul's journeys.",
-    "sortOrder": 122
-  },
-  {
-    "id": "map2",
-    "name": "Map of the Life of Jesus",
-    "url": "https://garridolecca.github.io/life-of-jesus/",
-    "title": "Website",
-    "bio": "Really cool interactive map of the life of Jesus.",
-    "sortOrder": 123
-  },
-  {
-    "id": "map3",
-    "name": "Map of Old Testament",
-    "url": "https://garridolecca.github.io/old-testament-atlas/",
-    "title": "Website",
-    "bio": "Old Testament Map",
-    "sortOrder": 124
-  },
-  {
-    "id": "map4",
-    "name": "Map of Baptist History",
-    "url": "https://garridolecca.github.io/1689-heritage-trail/",
-    "title": "Website",
-    "bio": "Really cool interactive map of Baptist history.",
-    "sortOrder": 125
-  },
-  {
     "id": "bfg",
     "name": "Freely Given Books",
     "url": "https://books.freely.giving/",
     "title": "Website",
     "bio": "Free Christian Books!",
     "sortOrder": 25
+  },
+  {
+    "id": "usa",
+    "name": "United States Catechism",
+    "url": "https://usa.catechize.ing/",
+    "title": "Website",
+    "bio": "Free USA catechism for kids and adults!",
+    "sortOrder": 20
+  },
+  {
+    "id": "confessions",
+    "name": "Reformed Confessions",
+    "url": "https://confess.catechize.ing/",
+    "title": "Website",
+    "bio": "Historic confessions, indexed by scripture!",
+    "sortOrder": 35
   },
   {
     "id": "fb",

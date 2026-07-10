@@ -4,32 +4,35 @@ import { getVerseData } from "@/lib/bible/bibleClient";
 
 const verseCache = new Map();
 
-function formatVerseText(verse) {
+function formatVerseText(reference, verse) {
+  const displayReference = String(reference || "").trim();
+
   if (!verse) {
-    return "Verse not found.";
+    return displayReference ? `${displayReference} - Verse not found.` : "Verse not found.";
   }
 
   if (Array.isArray(verse.parts) && verse.parts.length > 0) {
     const partsText = verse.parts
       .map((part) => {
-        const reference = String(part?.reference || "").trim();
+        const partReference = String(part?.reference || "").trim();
         const text = String(part?.text || "").trim();
         const version = String(part?.version || "BSB").trim();
         if (!text) {
           return "";
         }
 
-        return reference ? `${reference} (${version}) - ${text}` : `${text} (${version})`;
+        return partReference ? `${partReference} (${version}) - ${text}` : `${text} (${version})`;
       })
       .filter(Boolean)
       .join(" ");
 
     if (partsText) {
-      return partsText;
+      return displayReference ? `${displayReference} - ${partsText}` : partsText;
     }
   }
 
-  return `${verse.text} (${verse.version})`;
+  const verseText = `${verse.text} (${verse.version})`;
+  return displayReference ? `${displayReference} - ${verseText}` : verseText;
 }
 
 function ensureTooltip(element) {
@@ -52,7 +55,7 @@ function ensureTooltip(element) {
 
       const tooltip = document.createElement("div");
       tooltip.className = "bible-tooltip";
-      tooltip.textContent = formatVerseText(verse);
+      tooltip.textContent = formatVerseText(element.dataset.ref, verse);
       document.body.appendChild(tooltip);
 
       element.__tooltipElement = tooltip;
