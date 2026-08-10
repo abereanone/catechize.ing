@@ -1,0 +1,458 @@
+{
+  "bc-1": {
+    "duration": 21.1,
+    "bytes": 526389
+  },
+  "bc-2": {
+    "duration": 38.1,
+    "bytes": 935159
+  },
+  "bc-3": {
+    "duration": 57.8,
+    "bytes": 1405979
+  },
+  "bc-4": {
+    "duration": 39.5,
+    "bytes": 967115
+  },
+  "bc-5": {
+    "duration": 44.7,
+    "bytes": 1093777
+  },
+  "bc-6": {
+    "duration": 32.1,
+    "bytes": 790352
+  },
+  "bc-7": {
+    "duration": 35.3,
+    "bytes": 868047
+  },
+  "bc-8": {
+    "duration": 20.3,
+    "bytes": 508201
+  },
+  "bc-9": {
+    "duration": 52.3,
+    "bytes": 1276214
+  },
+  "bc-10": {
+    "duration": 40,
+    "bytes": 979659
+  },
+  "bc-11": {
+    "duration": 23.6,
+    "bytes": 586570
+  },
+  "bc-12": {
+    "duration": 38.1,
+    "bytes": 935144
+  },
+  "bc-13": {
+    "duration": 40,
+    "bytes": 980281
+  },
+  "bc-14": {
+    "duration": 38.4,
+    "bytes": 941422
+  },
+  "bc-15": {
+    "duration": 62.8,
+    "bytes": 1526415
+  },
+  "bc-16": {
+    "duration": 48.6,
+    "bytes": 1185335
+  },
+  "bc-17": {
+    "duration": 24.1,
+    "bytes": 597834
+  },
+  "bc-18": {
+    "duration": 36.6,
+    "bytes": 899473
+  },
+  "bc-19": {
+    "duration": 66.6,
+    "bytes": 1618529
+  },
+  "bc-20": {
+    "duration": 30.2,
+    "bytes": 745200
+  },
+  "bc-21": {
+    "duration": 65.7,
+    "bytes": 1595975
+  },
+  "bc-22": {
+    "duration": 56.6,
+    "bytes": 1378417
+  },
+  "bc-23": {
+    "duration": 77.7,
+    "bytes": 1885625
+  },
+  "bc-24": {
+    "duration": 67.1,
+    "bytes": 1629798
+  },
+  "bc-25": {
+    "duration": 46.1,
+    "bytes": 1127009
+  },
+  "bc-26": {
+    "duration": 53.9,
+    "bytes": 1312584
+  },
+  "bc-27": {
+    "duration": 34,
+    "bytes": 834856
+  },
+  "bc-28": {
+    "duration": 61,
+    "bytes": 1483107
+  },
+  "bc-29": {
+    "duration": 63.5,
+    "bytes": 1544543
+  },
+  "bc-30": {
+    "duration": 78.8,
+    "bytes": 1911300
+  },
+  "bc-31": {
+    "duration": 74.2,
+    "bytes": 1800957
+  },
+  "bc-32": {
+    "duration": 40.2,
+    "bytes": 983453
+  },
+  "bc-33": {
+    "duration": 60.8,
+    "bytes": 1478738
+  },
+  "bc-34": {
+    "duration": 62.9,
+    "bytes": 1530109
+  },
+  "bc-35": {
+    "duration": 56.4,
+    "bytes": 1373422
+  },
+  "bc-36": {
+    "duration": 54.1,
+    "bytes": 1317573
+  },
+  "bc-37": {
+    "duration": 39.1,
+    "bytes": 957705
+  },
+  "bc-38": {
+    "duration": 56,
+    "bytes": 1363964
+  },
+  "bc-39": {
+    "duration": 80.9,
+    "bytes": 1961525
+  },
+  "bc-40": {
+    "duration": 70.4,
+    "bytes": 1710076
+  },
+  "bc-41": {
+    "duration": 89.6,
+    "bytes": 2170882
+  },
+  "bc-42": {
+    "duration": 51.2,
+    "bytes": 1249266
+  },
+  "bc-43": {
+    "duration": 60.9,
+    "bytes": 1482493
+  },
+  "bc-44": {
+    "duration": 26.3,
+    "bytes": 650532
+  },
+  "bc-45": {
+    "duration": 26.6,
+    "bytes": 658703
+  },
+  "bc-46": {
+    "duration": 25.5,
+    "bytes": 632353
+  },
+  "bc-47": {
+    "duration": 34.3,
+    "bytes": 843625
+  },
+  "bc-48": {
+    "duration": 44.7,
+    "bytes": 1093777
+  },
+  "bc-49": {
+    "duration": 37.4,
+    "bytes": 918243
+  },
+  "bc-50": {
+    "duration": 31.4,
+    "bytes": 772769
+  },
+  "bc-51": {
+    "duration": 51.7,
+    "bytes": 1261165
+  },
+  "bc-52": {
+    "duration": 83.1,
+    "bytes": 2015374
+  },
+  "bc-53": {
+    "duration": 41.2,
+    "bytes": 1009802
+  },
+  "bc-54": {
+    "duration": 161.7,
+    "bytes": 3899945
+  },
+  "bc-55": {
+    "duration": 67.3,
+    "bytes": 1635449
+  },
+  "bc-56": {
+    "duration": 31.2,
+    "bytes": 768396
+  },
+  "bc-57": {
+    "duration": 39.1,
+    "bytes": 958997
+  },
+  "bc-58": {
+    "duration": 45.7,
+    "bytes": 1117588
+  },
+  "bc-59": {
+    "duration": 41.9,
+    "bytes": 1026066
+  },
+  "bc-60": {
+    "duration": 48.1,
+    "bytes": 1175279
+  },
+  "bc-61": {
+    "duration": 64.3,
+    "bytes": 1562109
+  },
+  "bc-62": {
+    "duration": 162,
+    "bytes": 3908093
+  },
+  "bc-63": {
+    "duration": 62.7,
+    "bytes": 1524484
+  },
+  "bc-64": {
+    "duration": 44.6,
+    "bytes": 1090039
+  },
+  "bc-65": {
+    "duration": 83.7,
+    "bytes": 2027908
+  },
+  "bc-66": {
+    "duration": 103.4,
+    "bytes": 2500628
+  },
+  "bc-67": {
+    "duration": 43.4,
+    "bytes": 1062442
+  },
+  "bc-68": {
+    "duration": 56.1,
+    "bytes": 1367110
+  },
+  "bc-69": {
+    "duration": 48.5,
+    "bytes": 1183428
+  },
+  "bc-70": {
+    "duration": 62.5,
+    "bytes": 1519468
+  },
+  "bc-71": {
+    "duration": 58.5,
+    "bytes": 1424182
+  },
+  "bc-72": {
+    "duration": 31,
+    "bytes": 763367
+  },
+  "bc-73": {
+    "duration": 48.4,
+    "bytes": 1182174
+  },
+  "bc-74": {
+    "duration": 46.2,
+    "bytes": 1128885
+  },
+  "bc-75": {
+    "duration": 26.6,
+    "bytes": 658674
+  },
+  "bc-76": {
+    "duration": 35.1,
+    "bytes": 863067
+  },
+  "bc-77": {
+    "duration": 23.7,
+    "bytes": 588469
+  },
+  "bc-78": {
+    "duration": 23.1,
+    "bytes": 574030
+  },
+  "bc-79": {
+    "duration": 44.4,
+    "bytes": 1085623
+  },
+  "bc-80": {
+    "duration": 38.6,
+    "bytes": 947071
+  },
+  "bc-81": {
+    "duration": 34.2,
+    "bytes": 839854
+  },
+  "bc-82": {
+    "duration": 41.3,
+    "bytes": 1011647
+  },
+  "bc-83": {
+    "duration": 59.3,
+    "bytes": 1442981
+  },
+  "bc-84": {
+    "duration": 52.5,
+    "bytes": 1280592
+  },
+  "bc-85": {
+    "duration": 39.9,
+    "bytes": 977165
+  },
+  "bc-86": {
+    "duration": 69.4,
+    "bytes": 1684353
+  },
+  "bc-87": {
+    "duration": 80.7,
+    "bytes": 1956459
+  },
+  "bc-88": {
+    "duration": 43.9,
+    "bytes": 1073722
+  },
+  "bc-89": {
+    "duration": 51.6,
+    "bytes": 1257393
+  },
+  "bc-90": {
+    "duration": 102.9,
+    "bytes": 2490640
+  },
+  "bc-91": {
+    "duration": 60.8,
+    "bytes": 1478077
+  },
+  "bc-92": {
+    "duration": 66.4,
+    "bytes": 1613495
+  },
+  "bc-93": {
+    "duration": 79.7,
+    "bytes": 1932667
+  },
+  "bc-94": {
+    "duration": 54.7,
+    "bytes": 1332641
+  },
+  "bc-95": {
+    "duration": 56,
+    "bytes": 1364651
+  },
+  "bc-96": {
+    "duration": 72.1,
+    "bytes": 1749584
+  },
+  "bc-97": {
+    "duration": 77.6,
+    "bytes": 1881812
+  },
+  "bc-98": {
+    "duration": 49.9,
+    "bytes": 1216652
+  },
+  "bc-99": {
+    "duration": 78.2,
+    "bytes": 1896282
+  },
+  "bc-100": {
+    "duration": 91.8,
+    "bytes": 2222260
+  },
+  "bc-101": {
+    "duration": 94.4,
+    "bytes": 2286222
+  },
+  "bc-102": {
+    "duration": 126.2,
+    "bytes": 3048556
+  },
+  "bc-103": {
+    "duration": 55,
+    "bytes": 1339541
+  },
+  "bc-104": {
+    "duration": 75.9,
+    "bytes": 1842361
+  },
+  "bc-105": {
+    "duration": 60,
+    "bytes": 1459882
+  },
+  "bc-106": {
+    "duration": 49.4,
+    "bytes": 1206637
+  },
+  "bc-107": {
+    "duration": 82.8,
+    "bytes": 2005982
+  },
+  "bc-108": {
+    "duration": 96.7,
+    "bytes": 2341388
+  },
+  "bc-109": {
+    "duration": 94.8,
+    "bytes": 2294995
+  },
+  "bc-110": {
+    "duration": 49.4,
+    "bytes": 1206629
+  },
+  "bc-111": {
+    "duration": 72.9,
+    "bytes": 1768994
+  },
+  "bc-112": {
+    "duration": 99.8,
+    "bytes": 2414734
+  },
+  "bc-113": {
+    "duration": 60.3,
+    "bytes": 1468056
+  },
+  "bc-114": {
+    "duration": 114.5,
+    "bytes": 2768964
+  }
+}

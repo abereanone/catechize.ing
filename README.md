@@ -4,7 +4,7 @@ Static Astro site for catechize.ing, publishing question-and-answer content, cat
 
 ## Stack
 
-- [Astro](https://astro.build/) 5.x
+- [Astro](https://astro.build/) 6.x
 - TypeScript project configuration (`tsconfig.json`)
 - Markdown content in `src/content/questions/`
 - Generated question/search artifacts for fast page rendering
@@ -18,9 +18,14 @@ Static Astro site for catechize.ing, publishing question-and-answer content, cat
 |   |-- assets/search-client.js    # Search UI source file
 |   `-- styles/theme.css           # Shared theme styles
 |-- scripts/
+|   |-- lib/questions-core.mjs     # Shared question parsing/serialising
 |   |-- build-questions.mjs        # Generates question/search artifacts
+|   |-- build-bible-cited.mjs      # Generates the cited-scripture artifact
+|   |-- build-audio-manifest.mjs   # Ad hoc; writes src/generated/audio.json
 |   |-- check-questions.mjs        # Validates question files without writing
-|   `-- new-question.mjs           # Scaffolds a new question file
+|   |-- import-catechisms.mjs      # Ad hoc bulk import
+|   |-- new-question.mjs           # Scaffolds a new question file
+|   `-- stage-audio.mjs            # Ad hoc; renames recordings by question slug
 |-- src/
 |   |-- components/                # Reusable UI pieces
 |   |-- config/                    # Site-wide settings
@@ -28,7 +33,9 @@ Static Astro site for catechize.ing, publishing question-and-answer content, cat
 |   |-- data/
 |   |   |-- categories.json        # Optional category sort/group config
 |   |   `-- resources.json         # Optional author/resource metadata
-|   |-- generated/questions.json   # Generated on build/dev; ignored by git
+|   |-- generated/                 # questions.json + bible-cited.json are
+|   |                              # rebuilt on build/dev and ignored by git;
+|   |                              # audio.json is committed
 |   |-- layouts/
 |   |-- lib/
 |   `-- pages/
@@ -133,15 +140,39 @@ Example effect:
 
 - `npm run dev` - rebuild generated content, then start the local Astro dev server.
 - `npm run build:questions` - validate question files and regenerate `src/generated/questions.json` plus `public/assets/search-index.json`.
+- `npm run build:bible` - regenerate `src/generated/bible-cited.json`.
 - `npm run check:questions` - validate question files without writing generated output.
 - `npm run new:question -- "Title"` - scaffold a new question Markdown file with the next numeric ID.
+- `npm run import:catechisms` - bulk-import catechism content into question files.
+- `npm run seed:bsb` - prepare the BSB Bible dataset in `bsb-data-pipeline/`.
 - `npm run build` - production build.
 - `npm run preview` - preview the production build locally.
 - `npm run astro ...` - run the Astro CLI directly.
 
+Ad-hoc tools, run directly rather than through npm. These depend on local files
+that are not in the repo, so they must never run as part of a build:
+
+- `node ./scripts/stage-audio.mjs --src "<album folder>"` - copy the Baptist
+  Catechism recordings into `.audio-staging/` renamed by question slug
+  (`bc-1.mp3` .. `bc-114.mp3`). Dry run unless given `--apply`.
+- `node ./scripts/build-audio-manifest.mjs` - read durations from the staged
+  files with `ffprobe` and write `src/generated/audio.json`. Unlike the other
+  generated artifacts this one is committed, because a build cannot recreate it.
+
 ## Deployment
 
-The repo includes `wrangler.toml` for Cloudflare Workers.
+The site runs on Cloudflare Workers via `worker.js`, which serves the built
+static output and handles the `/api/search` endpoint.
+
+**There is no Wrangler config checked into this repo.** `npx wrangler deploy`
+will not work on a fresh clone until one is supplied. A working config needs:
+
+- `main` pointing at `worker.js`
+- a static assets binding named `ASSETS` (see `env.ASSETS` in `worker.js`)
+  serving the `dist/` directory produced by `npm run build`
+- a `compatibility_date`
+
+Once that exists:
 
 ```bash
 npm run build
