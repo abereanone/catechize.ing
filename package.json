@@ -14,10 +14,15 @@
     "dev": "astro dev",
     "prebuild": "npm run build:questions && npm run build:bible",
     "build": "astro build",
+    "build:worker": "esbuild worker.js --bundle --format=esm --target=es2022 --platform=neutral --outfile=dist/_worker.js",
+    "postbuild": "npm run build:worker",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^6.2.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
   }
 }

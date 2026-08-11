@@ -162,22 +162,41 @@ that are not in the repo, so they must never run as part of a build:
 ## Deployment
 
 The site runs on Cloudflare Workers via `worker.js`, which serves the built
-static output and handles the `/api/search` endpoint.
-
-**There is no Wrangler config checked into this repo.** `npx wrangler deploy`
-will not work on a fresh clone until one is supplied. A working config needs:
-
-- `main` pointing at `worker.js`
-- a static assets binding named `ASSETS` (see `env.ASSETS` in `worker.js`)
-  serving the `dist/` directory produced by `npm run build`
-- a `compatibility_date`
-
-Once that exists:
+static output, the `/api/search` endpoint, and `/audio/*`. Configuration lives
+in `wrangler.jsonc`.
 
 ```bash
 npm run build
 npx wrangler deploy
 ```
+
+The Cloudflare login is a member of several accounts, so `account_id` is pinned
+in `wrangler.jsonc`; without it wrangler cannot choose one non-interactively.
+
+To exercise the audio routes locally you need the real bucket, since a local R2
+simulator is empty:
+
+```bash
+npx wrangler dev --remote
+```
+
+## Audio
+
+Recordings of the Baptist Catechism, one track per question for `bc-1` through
+`bc-114`. `bc-115`+ and every other catechism have no audio and render nothing.
+
+- Files live in the private R2 bucket `catechize-audio` under `bc/bc-<n>.mp3`.
+  The bucket has no public access and no custom domain.
+- `worker.js` serves them same-origin at `/audio/bc-<n>.mp3`. Same-origin
+  matters: browsers ignore an anchor's `download` attribute across origins, so
+  a bucket custom domain would turn the download links into playback.
+- Range requests are passed through to R2 so seeking works.
+- `?download=<filename>` adds a `Content-Disposition` header for a real save
+  with a readable filename.
+- `src/generated/audio.json` supplies durations; `src/lib/audio.ts` resolves a
+  question to a track.
+- `siteSettings.enableAudio` gates the whole feature. While it is `false` the
+  players and `/listen` render nothing.
 
 ## Notes for Future Updates
 

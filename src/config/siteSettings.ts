@@ -29,6 +29,14 @@ export const siteSettings = {
   },
   showQuestionId: true,
   showAuthor: false,
+  // Baptist Catechism recordings by James Scott Orrick. Off until distribution
+  // permission is confirmed; flipping this reveals the players and /listen.
+  enableAudio: false as boolean,
+  audioCredit: {
+    title: "The Baptist Catechism Set to Music",
+    author: "James Scott Orrick",
+    url: "https://www.jimorrick.com/",
+  },
   hideAnswersByDefault: false,
   enablePagination: true,
   questionsPerPage: 30,

@@ -1,0 +1,126 @@
+---
+import Main from "@/layouts/Main.astro";
+import { formatDuration, formatTotalDuration, isAudioEnabled, listAudioQuestions } from "@/lib/audio";
+import { getPublishedQuestions } from "@/lib/questions";
+import { siteSettings } from "@/config/siteSettings";
+
+const enabled = isAudioEnabled();
+const entries = enabled ? listAudioQuestions(getPublishedQuestions()) : [];
+const totalSeconds = entries.reduce((sum, entry) => sum + entry.track.duration, 0);
+const credit = siteSettings.audioCredit;
+
+const title = "Listen";
+const description = credit
+  ? `${credit.title} — the Baptist Catechism sung, one track per question.`
+  : "The Baptist Catechism sung, one track per question.";
+---
+
+<Main title={title} description={description}>
+  <article class="question-article card-panel">
+    <section class="question-header">
+      <h1 class="page-title">{title}</h1>
+    </section>
+
+    {
+      enabled && entries.length ? (
+        <Fragment>
+          <p class="listen-intro">
+            {credit ? (
+              <Fragment>
+                <em>{credit.title}</em> by{" "}
+                <a href={credit.url} target="_blank" rel="noopener noreferrer">
+                  {credit.author}
+                </a>{" "}
+                — {entries.length} tracks, {formatTotalDuration(totalSeconds)}.
+              </Fragment>
+            ) : (
+              <Fragment>
+                {entries.length} tracks, {formatTotalDuration(totalSeconds)}.
+              </Fragment>
+            )}
+          </p>
+
+          <ol class="listen-list">
+            {entries.map(({ question, track }) => (
+              <li class="listen-item">
+                <div class="listen-item-head">
+                  <a class="listen-item-title" href={`/questions/${question.slug}`}>
+                    <span class="listen-item-id">#{question.id}</span>
+                    {question.title}
+                  </a>
+                  <span class="listen-item-duration">{formatDuration(track.duration)}</span>
+                </div>
+                <audio class="listen-item-player" controls preload="none" src={track.src} />
+                <a class="listen-item-download" href={track.downloadHref} download={track.downloadFilename}>
+                  Download
+                </a>
+              </li>
+            ))}
+          </ol>
+        </Fragment>
+      ) : (
+        <p class="listen-intro">Recordings are not available yet.</p>
+      )
+    }
+  </article>
+</Main>
+
+<style>
+  .listen-intro {
+    margin-bottom: 1.5rem;
+  }
+
+  .listen-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .listen-item {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
+    border-radius: 0.5rem;
+  }
+
+  .listen-item-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .listen-item-title {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .listen-item-title:hover {
+    text-decoration: underline;
+  }
+
+  .listen-item-id {
+    opacity: 0.6;
+    margin-right: 0.4rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .listen-item-duration {
+    opacity: 0.7;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .listen-item-player {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .listen-item-download {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+  }
+</style>

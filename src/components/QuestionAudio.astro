@@ -1,0 +1,91 @@
+---
+import { formatDuration, getAudioTrack } from "@/lib/audio";
+import { siteSettings } from "@/config/siteSettings";
+import type { Question } from "@/lib/questions";
+
+interface Props {
+  question: Question;
+}
+
+const { question } = Astro.props;
+const track = getAudioTrack(question);
+const credit = siteSettings.audioCredit;
+---
+
+{
+  track ? (
+    <section class="question-audio" aria-label="Sung version of this answer">
+      <div class="question-audio-head">
+        <span class="question-audio-label">Sing it</span>
+        <span class="question-audio-duration">{formatDuration(track.duration)}</span>
+      </div>
+
+      {/* preload="none" keeps this off the critical path: no bytes move until play. */}
+      <audio class="question-audio-player" controls preload="none" src={track.src}>
+        <a href={track.src}>Download the recording</a>
+      </audio>
+
+      <div class="question-audio-foot">
+        <a class="question-audio-download" href={track.downloadHref} download={track.downloadFilename}>
+          Download
+        </a>
+        {credit ? (
+          <span class="question-audio-credit">
+            From <em>{credit.title}</em> by{" "}
+            <a href={credit.url} target="_blank" rel="noopener noreferrer">
+              {credit.author}
+            </a>
+          </span>
+        ) : null}
+      </div>
+    </section>
+  ) : null
+}
+
+<style>
+  .question-audio {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
+    border-radius: 0.5rem;
+  }
+
+  .question-audio-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .question-audio-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.8rem;
+  }
+
+  .question-audio-duration {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.7;
+    font-size: 0.85rem;
+  }
+
+  .question-audio-player {
+    width: 100%;
+  }
+
+  .question-audio-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .question-audio-credit {
+    opacity: 0.75;
+  }
+</style>

@@ -15,6 +15,7 @@ import {
 import BibleReferencesScript from "@/components/BibleReferencesScript.astro";
 import InlineSearchBox from "@/components/InlineSearchBox.astro";
 import QuestionReferenceHighlightScript from "@/components/QuestionReferenceHighlightScript.astro";
+import QuestionAudio from "@/components/QuestionAudio.astro";
 import { siteSettings } from "@/config/siteSettings";
 
 export function getStaticPaths() {
@@ -405,6 +406,8 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
         set:html={question.answerHtml || "<p><em>Content not found.</em></p>"}
       />
     )}
+
+    <QuestionAudio question={question} />
 
     {question.longHtml ? (
       <div class="long-explanation" data-long-explanation>

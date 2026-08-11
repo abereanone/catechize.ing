@@ -1,0 +1,23 @@
+name = "catechize-ing"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-04-29"
+
+# This is a Pages project, not a Worker. Server-side code runs only from
+# dist/_worker.js, which `npm run build` bundles from worker.js -- see the
+# postbuild script in package.json.
+
+# Catechism recordings, keyed bc/bc-1.mp3 .. bc/bc-114.mp3. The bucket has no
+# public access and no custom domain: the worker is the only way in.
+[[r2_buckets]]
+binding = "AUDIO"
+bucket_name = "catechize-audio"
+
+# Pages keeps production and preview separate, and a binding declared at the
+# top level does not reach preview deployments on its own.
+[[env.preview.r2_buckets]]
+binding = "AUDIO"
+bucket_name = "catechize-audio"
+
+[[env.production.r2_buckets]]
+binding = "AUDIO"
+bucket_name = "catechize-audio"
