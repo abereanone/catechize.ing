@@ -1,0 +1,149 @@
+---
+// Where this question is answered in the confessions.
+//
+// The mapping is owned and published by confess.catechize.ing; see
+// scripts/sync-confession-links.mjs. Links go straight to the paragraph anchor
+// on that site — the trailing slash matters, it is the form that is served
+// without a redirect.
+//
+// A question that a confession has no paragraph for is shown too, when another
+// confession carries it. For the Baptist Catechism those are the places where
+// the 1689 dropped something Westminster had, which is worth seeing.
+
+import { getConfessionLinks, type ConfessionEntry } from "@/lib/confessionLinks";
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const entries: ConfessionEntry[] = getConfessionLinks(slug);
+---
+
+{
+  entries.length > 0 && (
+    <section class="confession-links">
+      <h2>In the confessions</h2>
+
+      <ul class="confession-list">
+        {entries.map((entry) => (
+          <li class="confession-entry" data-confidence={entry.confidence}>
+            <p class="confession-name">
+              <a href={entry.confessionUrl}>{entry.confession}</a>
+              {entry.confidence === "medium" && <span class="hint">suggested</span>}
+            </p>
+
+            {entry.links.length > 0 ? (
+              <ul class="paragraph-list">
+                {entry.links.map((link) => (
+                  <li>
+                    <a class="paragraph" href={link.url}>
+                      <span class="citation">{link.citation}</span>
+                      <span class="chapter-title">{link.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="no-counterpart">
+                No paragraph here answers this question
+                {entry.elsewhere && (
+                  <>
+                    {" — but "}
+                    <strong>{`${entry.elsewhere.doc} ${entry.elsewhere.refs.join(", ")}`}</strong>
+                    {" does."}
+                  </>
+                )}
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+<style>
+  .confession-links {
+    margin-top: 2.5rem;
+  }
+
+  .confession-links h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .confession-list,
+  .paragraph-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .confession-list {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .confession-name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin: 0 0 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  .hint {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
+
+  .paragraph-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .paragraph {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .paragraph:hover,
+  .paragraph:focus-visible {
+    opacity: 1;
+  }
+
+  /* A suggested link reads as a suggestion: dashed rather than a colour of its
+     own, which would compete with the question group accents. */
+  .confession-entry[data-confidence="medium"] .paragraph {
+    border-style: dashed;
+  }
+
+  .citation {
+    flex: none;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .chapter-title {
+    opacity: 0.75;
+  }
+
+  .no-counterpart {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.75;
+  }
+</style>

@@ -16,6 +16,7 @@ import BibleReferencesScript from "@/components/BibleReferencesScript.astro";
 import InlineSearchBox from "@/components/InlineSearchBox.astro";
 import QuestionReferenceHighlightScript from "@/components/QuestionReferenceHighlightScript.astro";
 import QuestionAudio from "@/components/QuestionAudio.astro";
+import ConfessionLinks from "@/components/ConfessionLinks.astro";
 import { siteSettings } from "@/config/siteSettings";
 
 export function getStaticPaths() {
@@ -449,6 +450,8 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
         )}
       </nav>
     ) : null}
+
+    {question ? <ConfessionLinks slug={question.slug} /> : null}
 
     {relatedQuestions.length ? (
       <section class="related-questions">

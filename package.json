@@ -10,14 +10,15 @@
     "check:questions": "node ./scripts/check-questions.mjs",
     "import:catechisms": "node ./scripts/import-catechisms.mjs",
     "new:question": "node ./scripts/new-question.mjs",
-    "predev": "npm run build:questions && npm run build:bible",
+    "predev": "npm run build:questions && npm run build:bible && npm run sync:confession-links",
     "dev": "astro dev",
-    "prebuild": "npm run build:questions && npm run build:bible",
+    "prebuild": "npm run build:questions && npm run build:bible && npm run sync:confession-links",
     "build": "astro build",
     "build:worker": "esbuild worker.js --bundle --format=esm --target=es2022 --platform=neutral --outfile=dist/_worker.js",
     "postbuild": "npm run build:worker",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sync:confession-links": "node ./scripts/sync-confession-links.mjs"
   },
   "dependencies": {
     "astro": "^6.2.1"
