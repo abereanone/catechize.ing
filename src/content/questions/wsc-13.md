@@ -6,6 +6,9 @@ categories:
   - wsc
 relatedAnswers:
   - bc-16
+  - wlc-21
+  - aoc-7
+  - hc-7
 ---
 
 Our first parents, being left to the freedom of their own will, fell from the estate wherein they were created, by sinning against God.

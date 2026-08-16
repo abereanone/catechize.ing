@@ -7,6 +7,10 @@ categories:
 relatedAnswers:
   - bc-94
   - wlc-155
+  - wlc-158
+  - wlc-159
+  - hc-65
+  - aoc-64
 ---
 
 The Spirit of God maketh the reading, but especially the preaching of the Word, an effectual means of convincing and converting sinners, and of building them up in holiness and comfort, through faith, unto salvation.

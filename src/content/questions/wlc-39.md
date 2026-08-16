@@ -4,6 +4,15 @@ title: Why was it requisite that the Mediator should be man?
 slug: wlc-39
 categories:
   - wlc
+relatedAnswers:
+  - hc-16
+  - gc-51
+  - hc-15
+  - aoc-16
+  - gc-52
+  - aoc-15
+  - aoc-17
+  - hc-17
 ---
 
 It was requisite that the Mediator should be man, that he might advance our nature, perform obedience to the law, suffer and make intercession for us in our nature, have a fellow feeling of our infirmities; that we might receive the adoption of sons, and have comfort and access with boldness unto the throne of grace.

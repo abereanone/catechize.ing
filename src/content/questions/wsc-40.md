@@ -6,6 +6,8 @@ categories:
   - wsc
 relatedAnswers:
   - bc-45
+  - wlc-92
+  - gc-131
 ---
 
 The rule which God at first revealed to man for his obedience, was the moral law.

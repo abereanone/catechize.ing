@@ -4,6 +4,15 @@ title: Seing there is but one only substance of God, why namest thou those three
 slug: aoc-24
 categories:
   - aoc
+relatedAnswers:
+  - hc-25
+  - gc-19
+  - gc-20
+  - wlc-9
+  - bc-9
+  - wsc-6
+  - wlc-11
+  - wlc-10
 ---
 
 Because God hath so manifested himself in his Word, that these three distinct Persons are that one true everlasting God.

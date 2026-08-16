@@ -4,6 +4,15 @@ title: Why must he also be very God?
 slug: aoc-17
 categories:
   - aoc
+relatedAnswers:
+  - hc-17
+  - wlc-38
+  - gc-51
+  - gc-52
+  - wlc-40
+  - wlc-39
+  - hc-15
+  - hc-16
 ---
 
 That he might by the Power of his Godhead sustain in his flesh the burthen of God’s wrath, and might recover and restore unto us that Righteousness and Life which we lost.

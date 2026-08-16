@@ -7,6 +7,10 @@ categories:
 relatedAnswers:
   - bc-9
   - wsc-6
+  - gc-20
+  - hc-25
+  - aoc-24
+  - gc-19
 ---
 
 There be three persons in the Godhead, the Father, the Son, and the Holy Ghost; and these three are one true, eternal God, the same in substance, equal in power and glory; although distinguished by their personal properties.

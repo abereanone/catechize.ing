@@ -5,7 +5,10 @@ slug: aoc-69
 categories:
   - aoc
 relatedAnswers:
-  - bc-103
+  - bc-98
+  - wsc-95
+  - wlc-166
+  - gc-339
 ---
 
 Those who do actually profess Repentance towards God, Faith in, and Obedience to our Lord Jesus Christ.

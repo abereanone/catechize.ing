@@ -4,6 +4,11 @@ title: What is the form and end of this Ordinance?
 slug: aoc-80
 categories:
   - aoc
+relatedAnswers:
+  - wlc-154
+  - bc-93
+  - wsc-88
+  - gc-309
 ---
 
 Christ’s Ministers laying their hands solemnly upon the Head of the Baptised, with Prayer to Almighty God for an increase of the Graces and Gifts of the Holy Ghost, to inable us to hold fast the Faith which we now visibly own, having entred into the Church by Holy Baptism, and also be helped thereby to maintain a constant War against the World, Flesh, and the Devil.

@@ -4,6 +4,14 @@ title: How did God create angels?
 slug: wlc-16
 categories:
   - wlc
+relatedAnswers:
+  - gc-27
+  - bc-12
+  - wsc-9
+  - gc-26
+  - gc-25
+  - hc-26
+  - aoc-25
 ---
 
 God created all the angels spirits, immortal, holy, excelling in knowledge, mighty in power, to execute his commandments, and to praise his name, yet subject to change.

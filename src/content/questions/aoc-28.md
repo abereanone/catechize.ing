@@ -4,6 +4,11 @@ title: Why is the Son of God called Jesus, that is, a Saviour?
 slug: aoc-28
 categories:
   - aoc
+relatedAnswers:
+  - hc-29
+  - wlc-41
+  - gc-32
+  - gc-33
 ---
 
 Because he saveth us from our sins; neither ought any safety to be sought for from any other, nor can elsewhere be found.

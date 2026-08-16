@@ -6,6 +6,14 @@ categories:
   - wlc
 relatedAnswers:
   - bc-115
+  - wsc-1
+  - gc-1
+  - gc-3
+  - gc-5
+  - gc-299
+  - gc-2
+  - gc-4
+  - gc-6
 ---
 
 Man’s chief and highest end is to glorify God, and fully to enjoy him forever.

@@ -4,6 +4,13 @@ title: Are then the Bread and Wine made the very Body and Blood of Christ?
 slug: aoc-86
 categories:
   - aoc
+relatedAnswers:
+  - hc-78
+  - hc-79
+  - gc-355
+  - gc-354
+  - gc-356
+  - gc-353
 ---
 
 No, verily; but as the Water of Baptism is not turned into the Blood of Christ, but is only a Signe and Pledge of those things that are sealed to us in Baptism; so neither is the Bread of the Lords Supper the very Body of Christ, although according to the manner of sacraments, and that Form of speaking of them which is usual unto the Holy Ghost, the Bread is called the Body of Christ.

@@ -4,6 +4,15 @@ title: Seeing then that only Faith maketh us Partakers of Christ and his Benefit
 slug: aoc-64
 categories:
   - aoc
+relatedAnswers:
+  - hc-65
+  - gc-112
+  - gc-113
+  - wlc-155
+  - bc-94
+  - wsc-89
+  - wlc-158
+  - wlc-159
 ---
 
 From the Holy Ghost who kindleth it in our Hearts by the preaching of the Gospel, and other Ordinances, and confirmeth it by the use of the sacraments.

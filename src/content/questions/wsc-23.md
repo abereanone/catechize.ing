@@ -6,6 +6,11 @@ categories:
   - wsc
 relatedAnswers:
   - bc-26
+  - gc-45
+  - gc-40
+  - gc-41
+  - hc-31
+  - aoc-30
 ---
 
 Christ, as our Redeemer, executeth the offices of a prophet, of a priest, and of a king, both in his estate of humiliation and exaltation.

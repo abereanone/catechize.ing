@@ -7,6 +7,8 @@ categories:
 relatedAnswers:
   - bc-34
   - wlc-67
+  - wlc-68
+  - wlc-66
 ---
 
 Effectual calling is the work of God’s Spirit whereby, convincing us of our sin and misery enlightening our minds in the knowledge of Christ and renewing our wills he doth persuade and enable us to embrace Jesus Christ, freely offered to us in the gospel.

@@ -4,6 +4,10 @@ title: Is then Salvation restored by Christ to all men who perished in Adam?
 slug: aoc-20
 categories:
   - aoc
+relatedAnswers:
+  - hc-20
+  - wlc-59
+  - wlc-60
 ---
 
 Not to all: but to those only who by a true Faith are ingrafted into him, and receive his benefits.

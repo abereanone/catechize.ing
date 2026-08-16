@@ -8,6 +8,7 @@ relatedAnswers:
   - aoc-129
   - bc-78
   - wlc-140
+  - gc-204
 ---
 
 The eighth commandment is, Thou shalt not steal.

@@ -4,6 +4,18 @@ title: Wherein do justification and sanctification differ?
 slug: wlc-77
 categories:
   - wlc
+relatedAnswers:
+  - bc-36
+  - wsc-33
+  - bc-38
+  - wsc-35
+  - aoc-59
+  - hc-60
+  - gc-115
+  - gc-118
+  - hc-59
+  - aoc-58
+  - gc-114
 ---
 
 Although sanctification be inseparably joined with justification, yet they differ, in that God in justification imputeth the righteousness of Christ; in sanctification his Spirit infuseth grace, and enableth to the exercise thereof; in the former, sin is pardoned; in the other, it is subdued: the one doth equally free all believers from the revenging wrath of God, and that perfectly in this life, that they never fall into condemnation; the other is neither equal in all, nor in this life perfect in any, but growing up to perfection.

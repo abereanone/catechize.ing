@@ -6,6 +6,8 @@ categories:
   - wsc
 relatedAnswers:
   - bc-32
+  - wlc-58
+  - wlc-57
 ---
 
 We are made partakers of the redemption purchased by Christ, by the effectual application of it to us by his Holy Spirit.

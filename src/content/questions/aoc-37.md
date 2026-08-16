@@ -4,6 +4,12 @@ title: For what cause should he suffer under Pilate, as being his Judg?
 slug: aoc-37
 categories:
   - aoc
+relatedAnswers:
+  - hc-38
+  - gc-56
+  - gc-57
+  - gc-58
+  - gc-59
 ---
 
 That he being innocent and condemned before a civil Judg might deliver us from the severe Judgment of God which remained for all men.

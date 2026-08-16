@@ -9,6 +9,11 @@ relatedAnswers:
   - hc-114
   - wlc-149
   - wsc-82
+  - hc-5
+  - hc-8
+  - gc-226
+  - gc-224
+  - gc-225
 ---
 
 No truly: for by nature I am prone to the hatred of God, and of my Neighbours.

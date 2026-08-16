@@ -7,6 +7,7 @@ categories:
 relatedAnswers:
   - bc-7
   - wlc-7
+  - bc-1
 ---
 
 God is a Spirit infinite eternal and unchangeable in his being wisdom power holiness justice, goodness, and truth.

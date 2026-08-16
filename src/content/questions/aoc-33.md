@@ -4,6 +4,9 @@ title: Wherefore callest thou him our Lord?
 slug: aoc-33
 categories:
   - aoc
+relatedAnswers:
+  - hc-34
+  - gc-48
 ---
 
 Because he redeeming and ransoming both our Body and Soul from Sin, not with Gold nor Silver, but with his precious Blood, and delivering us from all the Power of the Devil, hath set us free to serve him.

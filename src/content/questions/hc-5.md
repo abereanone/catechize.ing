@@ -4,6 +4,16 @@ title: Can you keep all this perfectly?
 slug: hc-5
 categories:
   - hc
+relatedAnswers:
+  - aoc-5
+  - aoc-136
+  - bc-87
+  - wsc-82
+  - wlc-149
+  - gc-226
+  - aoc-8
+  - gc-224
+  - gc-225
 ---
 
 No, I am inclined by nature to hate God and my neighbour.

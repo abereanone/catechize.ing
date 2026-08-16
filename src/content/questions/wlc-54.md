@@ -4,6 +4,12 @@ title: How is Christ exalted in his sitting at the right hand of God?
 slug: wlc-54
 categories:
   - wlc
+relatedAnswers:
+  - aoc-49
+  - gc-81
+  - hc-50
+  - gc-80
+  - gc-82
 ---
 
 Christ is exalted in his sitting at the right hand of God, in that as God-man he is advanced to the highest favor with God the Father, with all fulness of joy, glory, and power over all things in heaven and earth; and doth gather and defend his church, and subdue their enemies; furnisheth his ministers and people with gifts and graces, and maketh intercession for them.

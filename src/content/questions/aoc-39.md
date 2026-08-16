@@ -4,6 +4,10 @@ title: Why was it necessary for Christ to humble himself unto death?
 slug: aoc-39
 categories:
   - aoc
+relatedAnswers:
+  - hc-40
+  - wlc-49
+  - gc-62
 ---
 
 Because the Justice and Truth of God could by no other means be satisfied for our sins, but by the very death of the Son of God.

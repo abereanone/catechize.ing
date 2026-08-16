@@ -7,6 +7,7 @@ categories:
 relatedAnswers:
   - bc-56
   - wlc-109
+  - gc-147
 ---
 
 The second commandment forbiddeth the worshipping of God by images, or any other way not appointed in his Word.

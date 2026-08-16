@@ -6,6 +6,10 @@ categories:
   - bc
 relatedAnswers:
   - wlc-3
+  - gc-301
+  - gc-300
+  - wlc-4
+  - wsc-2
 ---
 
 The holy scriptures of the Old and New Testament are the word of God, and the only certain rule of faith and obedience.

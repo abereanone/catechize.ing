@@ -7,6 +7,9 @@ categories:
 relatedAnswers:
   - bc-28
   - wlc-44
+  - gc-38
+  - gc-43
+  - wlc-55
 ---
 
 Christ executeth the office of a priest, in his once offering up of himself a sacrifice to satisfy divine justice and reconcile us to God and in making continual intercession for us.

@@ -4,6 +4,9 @@ title: What benefits hath Christ procured by his mediation?
 slug: wlc-57
 categories:
   - wlc
+relatedAnswers:
+  - bc-32
+  - wsc-29
 ---
 
 Christ, by his mediation, hath procured redemption, with all other benefits of the covenant of grace.

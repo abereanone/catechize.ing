@@ -7,6 +7,8 @@ categories:
 relatedAnswers:
   - bc-27
   - wlc-43
+  - gc-39
+  - gc-44
 ---
 
 Christ executeth the office of a prophet, in revealing to us, by his Word and Spirit the will of God for our salvation.

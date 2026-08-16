@@ -9,6 +9,7 @@ relatedAnswers:
   - bc-55
   - hc-96
   - wlc-108
+  - gc-149
 ---
 
 The second commandment requireth the receiving, observing, and keeping pure and entire, all such religious worship and ordinances as God hath appointed in his Word.

@@ -6,6 +6,9 @@ categories:
   - wlc
 relatedAnswers:
   - bc-4
+  - gc-301
+  - gc-300
+  - wsc-2
 ---
 
 The holy scriptures of the Old and New Testaments are the word of God, the only rule of faith and obedience.

@@ -4,6 +4,11 @@ title: How doth it appear that the scriptures are the word of God?
 slug: wlc-4
 categories:
   - wlc
+relatedAnswers:
+  - bc-4
+  - gc-301
+  - gc-300
+  - wsc-2
 ---
 
 The scriptures manifest themselves to be the word of God, by their majesty and purity; by the consent of all the parts, and the scope of the whole, which is to give all glory to God; by their light and power to convince and convert sinners, to comfort and build up believers unto salvation: but the Spirit of God bearing witness by and with the scriptures in the heart of man, is alone able fully to persuade it that they are the very word of God.

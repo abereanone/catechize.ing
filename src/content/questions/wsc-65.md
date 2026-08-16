@@ -6,6 +6,10 @@ categories:
   - wsc
 relatedAnswers:
   - bc-70
+  - wlc-128
+  - wlc-132
+  - wlc-130
+  - gc-192
 ---
 
 The fifth commandment forbiddeth the neglecting of, or doing anything against, the honor and duty which belongeth to every one in their several places and relations.

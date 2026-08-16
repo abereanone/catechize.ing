@@ -4,6 +4,14 @@ title: What is God’s providence towards the angels?
 slug: wlc-19
 categories:
   - wlc
+relatedAnswers:
+  - bc-14
+  - wsc-11
+  - aoc-26
+  - hc-27
+  - gc-23
+  - gc-28
+  - gc-24
 ---
 
 God by his providence permitted some of the angels, wilfully and irrecoverably, to fall into sin and damnation, limiting and ordering that, and all their sins, to his own glory; and established the rest in holiness and happiness; employing them all, at his pleasure, in the administrations of his power, mercy, and justice.

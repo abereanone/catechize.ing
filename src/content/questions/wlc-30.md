@@ -4,6 +4,9 @@ title: Doth God leave all mankind to perish in the estate of sin and misery?
 slug: wlc-30
 categories:
   - wlc
+relatedAnswers:
+  - bc-23
+  - wsc-20
 ---
 
 God doth not leave all men to perish in the estate of sin and misery, into which they fell by the breach of the first covenant, commonly called the Covenant of Works; but of his mere love and mercy delivereth his elect out of it, and bringeth them into an estate of salvation by the second covenant, commonly called the Covenant of Grace.

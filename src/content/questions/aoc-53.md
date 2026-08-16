@@ -4,6 +4,19 @@ title: What believest thou concerning the Holy and Catholick Church of Christ?
 slug: aoc-53
 categories:
   - aoc
+relatedAnswers:
+  - hc-54
+  - gc-96
+  - gc-93
+  - gc-99
+  - gc-95
+  - gc-97
+  - gc-92
+  - gc-94
+  - wlc-65
+  - bc-118
+  - wlc-64
+  - wlc-62
 ---
 
 I believe that the Son of God doth from the beginning of the World to the End thereof, gather, defend, and preserve unto himself by his Spirit and Word, out of whole Mankind, a Company chosen to everlasting Life, and agreeing in true Faith; and that I am a lively Member of that Company, and so shal remain for ever.

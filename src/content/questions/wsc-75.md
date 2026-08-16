@@ -9,6 +9,8 @@ relatedAnswers:
   - bc-80
   - hc-110
   - wlc-142
+  - gc-206
+  - gc-205
 ---
 
 The eighth commandment forbiddeth whatsoever doth, or may, unjustly hinder our own, or our neighbour’s, wealth or outward estate.

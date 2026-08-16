@@ -7,6 +7,8 @@ categories:
 relatedAnswers:
   - bc-21
   - wsc-18
+  - aoc-7
+  - hc-7
 ---
 
 The sinfulness of that estate whereinto man fell, consisteth in the guilt of Adam’s first sin, the want of that righteousness wherein he was created, and the corruption of his nature, whereby he is utterly indisposed, disabled, and made opposite unto all that is spiritually good, and wholly inclined to all evil, and that continually; which is commonly called Original Sin, and from which do proceed all actual transgressions.

@@ -7,6 +7,7 @@ categories:
 relatedAnswers:
   - bc-60
   - wlc-113
+  - gc-160
 ---
 
 The third commandment forbiddeth all profaning or abusing of anything whereby God maketh himself known.

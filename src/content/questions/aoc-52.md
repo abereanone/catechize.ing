@@ -4,6 +4,12 @@ title: What believest thou concerning the Holy Ghost?
 slug: aoc-52
 categories:
   - aoc
+relatedAnswers:
+  - hc-53
+  - gc-89
+  - gc-91
+  - gc-88
+  - gc-90
 ---
 
 First, that He is true and Coeternal God, with the eternal Father, and the Son; secondly, that he is also given unto me, to make me, through a true Faith, Partaker of Christ and all his Benefits, to comfort me, and to abide with me for ever.

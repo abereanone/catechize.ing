@@ -6,6 +6,11 @@ categories:
   - wsc
 relatedAnswers:
   - bc-24
+  - wlc-36
+  - gc-30
+  - aoc-18
+  - hc-18
+  - gc-31
 ---
 
 The only Redeemer of God’s elect is the Lord Jesus Christ who, being the eternal Son of God, became man and so was, and continueth to be, God and man in two distinct natures, and one person, forever.

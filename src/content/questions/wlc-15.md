@@ -7,6 +7,11 @@ categories:
 relatedAnswers:
   - bc-12
   - wsc-9
+  - gc-27
+  - gc-25
+  - gc-26
+  - hc-26
+  - aoc-25
 ---
 
 The work of creation is that wherein God did in the beginning, by the word of his power, make of nothing the world, and all things therein, for himself, within the space of six days, and all very good.

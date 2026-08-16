@@ -4,6 +4,11 @@ title: How doth Christ make intercession?
 slug: wlc-55
 categories:
   - wlc
+relatedAnswers:
+  - bc-28
+  - wsc-25
+  - gc-43
+  - gc-38
 ---
 
 Christ maketh intercession, by his appearing in our nature continually before the Father in heaven, in the merit of his obedience and sacrifice on earth, declaring his will to have it applied to all believers; answering all accusations against them, and procuring for them quiet of conscience, notwithstanding daily failings, access with boldness to the throne of grace, and acceptance of their persons and services.

@@ -6,6 +6,8 @@ categories:
   - wsc
 relatedAnswers:
   - wlc-5
+  - bc-6
+  - wlc-6
 ---
 
 The Scriptures principally teach what man is to believe concerning God, and what duty God requires of man.

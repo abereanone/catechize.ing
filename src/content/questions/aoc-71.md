@@ -4,6 +4,18 @@ title: Doth the Scripture any where expressly forbid the Baptizing of Infants?
 slug: aoc-71
 categories:
   - aoc
+relatedAnswers:
+  - bc-99
+  - hc-74
+  - gc-333
+  - gc-337
+  - gc-338
+  - gc-339
+  - gc-336
+  - gc-334
+  - gc-335
+  - wsc-95
+  - wlc-166
 ---
 
 It is sufficient that the Divine Oracle commands the baptizing of Believers, unless we will make our selves wiser than what is written. Nadab and Abihu were not forbidden to offer strange Fire, yet for so doing they incurred God’s Wrath, because they were commanded to take Fire from the Altar.

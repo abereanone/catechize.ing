@@ -4,6 +4,8 @@ title: From where do you know your sins and misery?
 slug: hc-3
 categories:
   - hc
+relatedAnswers:
+  - aoc-3
 ---
 
 From the law of God.

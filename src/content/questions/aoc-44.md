@@ -4,6 +4,11 @@ title: What doth the Resurrection of Christ profit us?
 slug: aoc-44
 categories:
   - aoc
+relatedAnswers:
+  - wlc-52
+  - hc-45
+  - gc-74
+  - gc-73
 ---
 
 First, by his Resurrection he vanquished death, that he might make us partakers of that Righteousness which he had gotten us by his death. Again, we are now also stirred up by his Power to a new Life. Lastly, the Resurrection of our head, Christ, is a Pledge unto us of our glorious Resurrection.

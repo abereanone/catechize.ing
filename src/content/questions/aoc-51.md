@@ -4,6 +4,13 @@ title: What Comfort hast thou by the coming of Christ again to judge the quick a
 slug: aoc-51
 categories:
   - aoc
+relatedAnswers:
+  - hc-52
+  - wlc-56
+  - gc-86
+  - gc-83
+  - gc-87
+  - wlc-88
 ---
 
 That in all my Miseries and Persecutions, I look with my Head lifted up, for the very same who before yielded himself unto the Judgment of God for me, and took away all Malediction from me, to come Judge from Heaven to throw all his and my Enemies into everlasting Pains; but to translate me with all his chosen unto himself, into Celestiall Joys, and everlasting Glory.

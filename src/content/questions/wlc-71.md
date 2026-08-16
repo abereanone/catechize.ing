@@ -4,6 +4,16 @@ title: How is justification an act of God’s free grace?
 slug: wlc-71
 categories:
   - wlc
+relatedAnswers:
+  - bc-36
+  - wsc-33
+  - hc-60
+  - aoc-59
+  - gc-118
+  - gc-114
+  - hc-59
+  - aoc-58
+  - gc-115
 ---
 
 Although Christ, by his obedience and death, did make a proper, real, and full satisfaction to God’s justice in the behalf of them that are justified; yet inasmuch as God accepteth the satisfaction from a surety, which he might have demanded of them, and did provide this surety, his own only Son, imputing his righteousness to them, and requiring nothing of them for their justification but faith, which also is his gift, their justification is to them of free grace.

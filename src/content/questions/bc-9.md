@@ -7,6 +7,12 @@ categories:
 relatedAnswers:
   - wlc-9
   - wsc-6
+  - gc-20
+  - hc-25
+  - gc-19
+  - aoc-24
+  - wlc-10
+  - wlc-11
 ---
 
 There are three persons in the godhead, the Father, the Son, and the Holy Spirit; and these three are one God, the same in essence, equal in power and glory.

@@ -4,6 +4,10 @@ title: What particular use is there of the moral law to unregenerate men?
 slug: wlc-96
 categories:
   - wlc
+relatedAnswers:
+  - gc-227
+  - gc-229
+  - gc-228
 ---
 
 The moral law is of use to unregenerate men, to awaken their consciences to flee from wrath to come, and to drive them to Christ; or, upon their continuance in the estate and way of sin, to leave them inexcusable, and under the curse thereof.

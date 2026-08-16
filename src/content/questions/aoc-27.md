@@ -4,6 +4,9 @@ title: What doth this knowledg of the Creation and Providence of God profit us?
 slug: aoc-27
 categories:
   - aoc
+relatedAnswers:
+  - hc-28
+  - gc-29
 ---
 
 That in adversity we may be patient, and thankful in prosperity, and have hereafter our chiefest hope reposed in God our most faithful Father; being sure that there is nothing which may withdraw us from his love; forasmuch as all creatures are so in his Power, that without his Will they are not able not only to do any thing, but not so much as once to move.

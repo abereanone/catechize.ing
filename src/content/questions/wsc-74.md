@@ -7,6 +7,9 @@ categories:
 relatedAnswers:
   - bc-79
   - wlc-141
+  - hc-111
+  - aoc-131
+  - gc-207
 ---
 
 The eighth commandment requireth the lawful procuring and furthering the wealth and outward estate of ourselves and others.

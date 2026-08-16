@@ -4,6 +4,12 @@ title: But since that Christ died for us, why must we also die?
 slug: aoc-41
 categories:
   - aoc
+relatedAnswers:
+  - hc-42
+  - gc-63
+  - wlc-85
+  - gc-64
+  - wlc-84
 ---
 
 Our death is not a satisfaction for our Sins, but the abolishing of Sin, and our passage into everlasting Life.

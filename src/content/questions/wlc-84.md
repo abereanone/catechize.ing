@@ -4,6 +4,11 @@ title: Shall all men die?
 slug: wlc-84
 categories:
   - wlc
+relatedAnswers:
+  - aoc-41
+  - hc-42
+  - gc-63
+  - gc-64
 ---
 
 Death being threatened as the wages of sin, it is appointed unto all men once to die; for that all have sinned.

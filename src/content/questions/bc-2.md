@@ -4,6 +4,10 @@ title: Ought everyone to believe there is a God?
 slug: bc-2
 categories:
   - bc
+relatedAnswers:
+  - wlc-2
+  - gc-6
+  - gc-14
 ---
 
 Everyone ought to believe there is a God; and it is their great sin and folly who do not.

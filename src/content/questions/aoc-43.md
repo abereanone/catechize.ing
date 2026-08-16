@@ -6,6 +6,12 @@ categories:
   - aoc
 relatedAnswers:
   - hc-44
+  - gc-65
+  - gc-66
+  - gc-69
+  - gc-70
+  - gc-68
+  - gc-67
 ---
 
 That in my greatest pains and most grevious temptations I may support my self with this comfort, that my Lord Jesus Christ hath delivered me (by the unspeakable distresses, torments and terrors of his Soul, into which he was plunged both before, and then especially when he hanged on the Cross) from the straits and torments of Hell.

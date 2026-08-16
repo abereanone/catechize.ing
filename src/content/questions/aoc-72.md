@@ -4,6 +4,19 @@ title: May not the Infant Seed of Believers under the Gospel be baptized as well
 slug: aoc-72
 categories:
   - aoc
+relatedAnswers:
+  - bc-99
+  - hc-74
+  - gc-333
+  - gc-337
+  - gc-338
+  - gc-335
+  - gc-339
+  - gc-334
+  - gc-336
+  - wsc-95
+  - bc-98
+  - wlc-166
 ---
 
 No; For Abraham had a Command then from God to circumcise his Infant Seed, but Believers have no Command to baptise their Infants Seed under the Gospel.

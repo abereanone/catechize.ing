@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-117
+  - gc-100
 ---
 
 The visible church hath the privilege of being under God’s special care and government; of being protected and preserved in all ages, not withstanding the opposition of all enemies; and of enjoying the communion of saints, the ordinary means of salvation, and offers of grace by Christ to all the members of it in the ministry of the gospel, testifying, that whosoever believes in him shall be saved, and excluding none that will come unto him.

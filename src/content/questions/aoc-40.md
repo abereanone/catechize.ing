@@ -4,6 +4,10 @@ title: To what end was he buried also?
 slug: aoc-40
 categories:
   - aoc
+relatedAnswers:
+  - hc-41
+  - wlc-50
+  - gc-62
 ---
 
 That thereby he might manifest that he was dead indeed.

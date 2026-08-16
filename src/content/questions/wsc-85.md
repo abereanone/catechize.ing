@@ -6,6 +6,9 @@ categories:
   - wsc
 relatedAnswers:
   - bc-90
+  - wlc-153
+  - hc-12
+  - aoc-12
 ---
 
 To escape the wrath and curse of God, due to us for sin, God requireth of us faith in Jesus Christ, repentance unto life, with the diligent use of all the outward means whereby Christ communicateth to us the benefits of redemption.

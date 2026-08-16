@@ -6,6 +6,8 @@ categories:
   - wsc
 relatedAnswers:
   - bc-30
+  - wlc-46
+  - wlc-47
 ---
 
 Christ’s humiliation consisted in his being born, and that in a low condition made under the law undergoing the miseries of this life the wrath of God and the cursed death of the cross in being buried and continuing under the power of death for a time.

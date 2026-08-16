@@ -7,6 +7,7 @@ categories:
 relatedAnswers:
   - bc-10
   - wlc-12
+  - wlc-13
 ---
 
 The decrees of God are, his eternal purpose, according to the counsel of his will, whereby, for his own glory, he hath foreordained whatsoever comes to pass.

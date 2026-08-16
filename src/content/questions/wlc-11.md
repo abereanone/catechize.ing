@@ -4,6 +4,13 @@ title: How doth it appear that the Son and the Holy Ghost are God equal with the
 slug: wlc-11
 categories:
   - wlc
+relatedAnswers:
+  - aoc-24
+  - gc-19
+  - hc-25
+  - wsc-6
+  - bc-9
+  - gc-20
 ---
 
 The scriptures manifest that the Son and the Holy Ghost are God equal with the Father, ascribing unto them such names, attributes, works, and worship, as are proper to God only.

@@ -4,6 +4,10 @@ title: What other commodity receive we by the Death of Christ?
 slug: aoc-42
 categories:
   - aoc
+relatedAnswers:
+  - gc-71
+  - hc-43
+  - gc-72
 ---
 
 That by the virtue of his Death our old man is crucified, slain, and buried together with him, (figured out in holy Baptism) that henceforth evil lusts and desires may not reign in us, but we may offer our selves unto him a Sacrifice of thanksgiving.

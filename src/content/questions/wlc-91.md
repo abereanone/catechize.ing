@@ -7,6 +7,11 @@ categories:
 relatedAnswers:
   - bc-44
   - wsc-39
+  - gc-129
+  - gc-130
+  - gc-296
+  - gc-7
+  - gc-297
 ---
 
 The duty which God requireth of man, is obedience to his revealed will.

@@ -4,6 +4,12 @@ title: What shall immediately follow after the resurrection?
 slug: wlc-88
 categories:
   - wlc
+relatedAnswers:
+  - aoc-51
+  - hc-52
+  - gc-83
+  - gc-86
+  - gc-87
 ---
 
 Immediately after the resurrection shall follow the general and final judgment of angels and men; the day and hour whereof no man knows, that all may watch and pray, and be ever ready for the coming of the Lord.

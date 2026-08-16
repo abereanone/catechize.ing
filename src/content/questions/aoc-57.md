@@ -4,6 +4,15 @@ title: What Comfort takest thou of the Article of everlasting Life?
 slug: aoc-57
 categories:
   - aoc
+relatedAnswers:
+  - hc-58
+  - gc-107
+  - gc-110
+  - gc-106
+  - wsc-38
+  - wlc-90
+  - bc-41
+  - gc-109
 ---
 
 That forasmuch as I feel already in my Heart the beginning of everlasting Life, it shall at length come to pass that after this Life I shall enjoy full and perfect Bliss, wherein I may magnify God for ever, which Blessedness verily neither Eye hath seen, nor Ear heard, neither hath any Man in thought conceived it.

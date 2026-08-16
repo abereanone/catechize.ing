@@ -4,6 +4,10 @@ title: For what cause is Christ called the only begotten Son of God, when we als
 slug: aoc-32
 categories:
   - aoc
+relatedAnswers:
+  - hc-33
+  - gc-46
+  - gc-47
 ---
 
 Because Christ alone is the eternal and natural Son of the eternal Father, and we are but Sons adopted of the Father by Grace for his sake.

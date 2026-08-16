@@ -4,6 +4,16 @@ title: What believest thou when thou sayest, He was conceived by the Holy Ghost,
 slug: aoc-34
 categories:
   - aoc
+relatedAnswers:
+  - hc-35
+  - gc-50
+  - gc-53
+  - wsc-22
+  - wlc-37
+  - bc-25
+  - gc-49
+  - gc-54
+  - wlc-47
 ---
 
 That the Son of God, who is and continueth true and everlasting God, took the very Nature of man, of the flesh and blood of the Virgin Mary, through the working of the Holy-Ghost, that withal he might be the true Seed of David, like unto his Brethren in all things Sin excepted.

@@ -7,6 +7,13 @@ categories:
 relatedAnswers:
   - bc-25
   - wlc-37
+  - gc-53
+  - hc-35
+  - aoc-34
+  - gc-50
+  - gc-54
+  - gc-49
+  - wlc-47
 ---
 
 Christ, the Son of God, became man, by taking to himself a true body and a reasonable soul being conceived by the power of the Holy Ghost, in the womb of the virgin Mary, and born of her yet without sin.

@@ -4,6 +4,12 @@ title: What rule hath God given to direct us how we may glorify and enjoy him?
 slug: wsc-2
 categories:
   - wsc
+relatedAnswers:
+  - wlc-3
+  - bc-4
+  - gc-300
+  - gc-301
+  - wlc-4
 ---
 
 The Word of God, which is contained in the Scriptures of the Old and New Testaments, is the only rule to direct us how we may glorify and enjoy him.

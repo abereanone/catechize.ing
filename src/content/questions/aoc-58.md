@@ -4,6 +4,17 @@ title: But when thou believest all these things, what profit redoundeth thence u
 slug: aoc-58
 categories:
   - aoc
+relatedAnswers:
+  - hc-59
+  - gc-114
+  - gc-115
+  - wlc-70
+  - bc-36
+  - wsc-33
+  - hc-60
+  - gc-118
+  - wlc-71
+  - wlc-77
 ---
 
 That I am righteous in Christ before God, and an Heir of eternal Life.

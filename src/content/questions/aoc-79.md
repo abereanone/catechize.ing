@@ -4,6 +4,11 @@ title: What Principle of Christ’s Doctrine in the holy Scripture followeth Bap
 slug: aoc-79
 categories:
   - aoc
+relatedAnswers:
+  - bc-93
+  - wsc-88
+  - wlc-154
+  - gc-309
 ---
 
 Laying on of Hands, as in Hebrews 6:1–2

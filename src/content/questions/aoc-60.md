@@ -4,6 +4,11 @@ title: Why affirmest thou that thou art made Righteous by Faith only?
 slug: aoc-60
 categories:
   - aoc
+relatedAnswers:
+  - hc-61
+  - wlc-73
+  - gc-119
+  - gc-120
 ---
 
 Not for that I please God through the Worthiness of meer Faith, but because only the Satisfaction, Righteousness and Holiness of Christ is my Righteousness before God, and I cannot take hold of it, or apply it unto my self any other way than by Faith.

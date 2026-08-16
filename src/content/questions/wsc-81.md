@@ -8,6 +8,9 @@ relatedAnswers:
   - aoc-135
   - bc-86
   - wlc-148
+  - gc-214
+  - gc-215
+  - gc-216
 ---
 
 The tenth commandment forbiddeth all discontentment with our own estate, envying or grieving at the good of our neighbor, and all inordinate motions and affections to anything that is his.

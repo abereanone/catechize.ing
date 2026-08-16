@@ -7,6 +7,8 @@ categories:
 relatedAnswers:
   - bc-13
   - wlc-17
+  - hc-6
+  - aoc-6
 ---
 
 God created man male and female, after his own image, in knowledge, righteousness, and holiness, with dominion over the creatures.

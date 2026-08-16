@@ -7,6 +7,7 @@ categories:
 relatedAnswers:
   - bc-53
   - wlc-106
+  - gc-142
 ---
 
 These words, before me, in the first commandment teach us, that God, who seeth all things, taketh notice of, and is much displeased with, the sin of having any other God.

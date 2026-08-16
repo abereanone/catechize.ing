@@ -6,6 +6,15 @@ categories:
   - aoc
 relatedAnswers:
   - hc-31
+  - wlc-42
+  - gc-34
+  - gc-36
+  - gc-35
+  - bc-26
+  - wsc-23
+  - gc-45
+  - gc-41
+  - gc-40
 ---
 
 Because he was ordained of the Father, and anointed of the holy Ghost the chief Prophet and Teacher, who hath opened unto us the secret Counsel, & all the will of his Father concerning our Redemption, and the high Preist, who with that one only Sacrifice of his Body hath redeemed us, and doth continually make Intercession to his Father for us; and a King, who ruleth us by his Word and Spirit, and defendeth and maintaineth that Salvation which he hath purchased for us.

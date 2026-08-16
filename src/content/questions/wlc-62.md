@@ -6,6 +6,17 @@ categories:
   - wlc
 relatedAnswers:
   - bc-117
+  - gc-100
+  - gc-93
+  - gc-96
+  - gc-99
+  - hc-54
+  - aoc-53
+  - gc-94
+  - gc-97
+  - gc-92
+  - gc-95
+  - bc-118
 ---
 
 The visible church is a society made up of all such as in all ages and places of the world do profess the true religion, and of their children.

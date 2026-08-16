@@ -4,6 +4,10 @@ title: But is there any more in it, that he was fastened to the Cross, than if h
 slug: aoc-38
 categories:
   - aoc
+relatedAnswers:
+  - hc-39
+  - gc-60
+  - gc-61
 ---
 
 There is more: for by this I am assured that he took upon himself the curse which did ly on me; for the death of the Cross was accursed of God.

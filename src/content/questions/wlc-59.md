@@ -4,6 +4,9 @@ title: Who are made partakers of redemption through Christ?
 slug: wlc-59
 categories:
   - wlc
+relatedAnswers:
+  - hc-20
+  - aoc-20
 ---
 
 Redemption is certainly applied, and effectually communicated, to all those for whom Christ hath purchased it; who are in time by the Holy Ghost enabled to believe in Christ according to the gospel.

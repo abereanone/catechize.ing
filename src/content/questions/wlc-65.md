@@ -6,6 +6,7 @@ categories:
   - wlc
 relatedAnswers:
   - bc-118
+  - aoc-53
 ---
 
 The members of the invisible church by Christ enjoy union and communion with him in grace and glory.

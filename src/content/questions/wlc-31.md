@@ -4,6 +4,9 @@ title: With whom was the covenant of grace made?
 slug: wlc-31
 categories:
   - wlc
+relatedAnswers:
+  - bc-23
+  - wsc-20
 ---
 
 The covenant of grace was made with Christ as the second Adam, and in him with all the elect as his seed.

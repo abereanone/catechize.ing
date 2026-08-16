@@ -8,6 +8,9 @@ relatedAnswers:
   - bc-59
   - hc-99
   - wlc-112
+  - aoc-114
+  - gc-162
+  - gc-163
 ---
 
 The third commandment requireth the holy and reverend use of God’s names, titles, attributes, ordinances, Word, and works.
