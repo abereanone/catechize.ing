@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Redirect aliases and the client-side shuffler carry no unique content.
+Disallow: /q/
+Disallow: /random
+
+Sitemap: https://catechize.ing/sitemap-index.xml

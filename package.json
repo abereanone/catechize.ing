@@ -21,6 +21,7 @@
     "sync:confession-links": "node ./scripts/sync-confession-links.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^6.2.1"
   },
   "devDependencies": {
