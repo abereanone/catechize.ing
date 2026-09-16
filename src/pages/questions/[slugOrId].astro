@@ -334,58 +334,6 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
     <article class="question-article card-panel">
     <section class="question-header">
       <h1 class="page-title">{question.title}</h1>
-      <div class="question-meta-row">
-        {showQuestionId ? (
-          <p class="question-meta">
-            <span class="question-meta-id" data-question-group={activeGroupCode ? activeGroupCode.toLowerCase() : undefined}>#{questionIdentifierLabel}</span>
-          </p>
-        ) : (
-          <span />
-        )}
-        <div class="question-share" aria-label="Share this question">
-          <span class="question-share-label">Share</span>
-          <div class="question-share-actions">
-            <a
-              class="question-share-link"
-              href={`https://twitter.com/intent/tweet?text=${encodedShareText}&url=${encodedShareUrl}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Share on X"
-              title="Share on X"
-            >
-              <span aria-hidden="true">𝕏</span>
-            </a>
-            <a
-              class="question-share-link"
-              href={`https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Share on Facebook"
-              title="Share on Facebook"
-            >
-              <span aria-hidden="true">f</span>
-            </a>
-            <a
-              class="question-share-link"
-              href={`mailto:?subject=${encodedEmailSubject}&body=${encodedEmailBody}`}
-              aria-label="Share via email"
-              title="Share via email"
-            >
-              <span aria-hidden="true">✉</span>
-            </a>
-            <button
-              type="button"
-              class="question-share-link question-share-copy"
-              data-share-copy
-              data-share-url={shareUrl}
-              aria-label="Copy link"
-              title="Copy link"
-            >
-              <span aria-hidden="true">⧉</span>
-            </button>
-          </div>
-        </div>
-      </div>
     </section>
 
     {hideAnswersByDefault ? (
@@ -407,6 +355,62 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
         set:html={question.answerHtml || "<p><em>Content not found.</em></p>"}
       />
     )}
+
+    {/* Below the answer and the audio: the id and the share controls both refer to
+        the whole Q&A, so they belong after it rather than between the question and
+        its answer. */}
+    <div class="question-meta-row">
+      {showQuestionId ? (
+        <p class="question-meta">
+          <span class="question-meta-id" data-question-group={activeGroupCode ? activeGroupCode.toLowerCase() : undefined}>#{questionIdentifierLabel}</span>
+        </p>
+      ) : (
+        <span />
+      )}
+      <div class="question-share" aria-label="Share this question">
+        <span class="question-share-label">Share</span>
+        <div class="question-share-actions">
+          <a
+            class="question-share-link"
+            href={`https://twitter.com/intent/tweet?text=${encodedShareText}&url=${encodedShareUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on X"
+            title="Share on X"
+          >
+            <span aria-hidden="true">𝕏</span>
+          </a>
+          <a
+            class="question-share-link"
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on Facebook"
+            title="Share on Facebook"
+          >
+            <span aria-hidden="true">f</span>
+          </a>
+          <a
+            class="question-share-link"
+            href={`mailto:?subject=${encodedEmailSubject}&body=${encodedEmailBody}`}
+            aria-label="Share via email"
+            title="Share via email"
+          >
+            <span aria-hidden="true">✉</span>
+          </a>
+          <button
+            type="button"
+            class="question-share-link question-share-copy"
+            data-share-copy
+            data-share-url={shareUrl}
+            aria-label="Copy link"
+            title="Copy link"
+          >
+            <span aria-hidden="true">⧉</span>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <QuestionAudio question={question} />
 
@@ -807,7 +811,8 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
       justify-content: flex-start;
       gap: 0.6rem;
       flex-wrap: wrap;
-      margin-bottom: 1rem;
+      /* Was margin-bottom, from when this sat above the answer. */
+      margin-top: 1.1rem;
     }
 
     .question-share {
