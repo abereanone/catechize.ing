@@ -86,7 +86,7 @@ if (question) {
   questionSlug = question.slug;
   questionCategories = getQuestionCategories(question);
   author = getQuestionAuthor(question);
-  showAuthorCard = showAuthors && !question.suppressAuthor && author;
+  showAuthorCard = showAuthors && !question.suppressAuthor && !!author;
   questionGroupCodes = Array.isArray(question.groupCodes) ? [...question.groupCodes] : [];
 
   if (!activeGroupCode && questionGroupCodes.length === 1) {
