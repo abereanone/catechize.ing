@@ -198,6 +198,7 @@ function buildScriptureIndex(): ScriptureEntry[] {
       reference: string;
       bookCode: string;
       bookName: string;
+      bookSearchText: string;
       referencePart: string;
       questionSlugs: Set<string>;
       searchText: string;

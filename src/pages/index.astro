@@ -9,13 +9,11 @@ const categories = listCategories();
 const enablePagination = siteSettings.enablePagination;
 const perPage = siteSettings.questionsPerPage;
 const siteName = siteSettings.branding.siteName;
-const paginationResult = enablePagination
-  ? paginateQuestions(allQuestions, 1, perPage)
-  : {
-      items: allQuestions,
-      currentPage: 1,
-      pageCount: 1,
-    };
+const paginationResult = paginateQuestions(
+  allQuestions,
+  1,
+  enablePagination ? perPage : Math.max(1, allQuestions.length)
+);
 
 const questions = paginationResult.items;
 const pagination =

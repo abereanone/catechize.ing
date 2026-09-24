@@ -302,7 +302,7 @@ export function findQuestion(slug: string): Question | null {
 }
 
 export function getRelatedQuestions(question: Question): Question[] {
-  const related = [];
+  const related: Question[] = [];
   const seen = new Set<string>();
 
   question.relatedAnswers.forEach((slug) => {

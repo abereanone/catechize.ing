@@ -1,4 +1,6 @@
-import bookMap from "./bookMap.json";
+import bookMapData from "./bookMap.json";
+
+const bookMap: Record<string, string> = bookMapData;
 
 const singleChapterBooks = new Set([
   "obadiah",

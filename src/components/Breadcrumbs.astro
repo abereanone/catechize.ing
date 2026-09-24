@@ -1,4 +1,9 @@
 ---
+interface Props {
+  categories: string[];
+  title?: string;
+}
+
 const { categories, title } = Astro.props;
 ---
 <nav class="breadcrumbs">

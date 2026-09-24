@@ -23,13 +23,11 @@ if (!activeAuthor) {
 
 const matchingQuestions = getQuestionsByAuthor(activeAuthor.id);
 
-const paginationResult = enablePagination
-  ? paginateQuestions(matchingQuestions, 1, perPage)
-  : {
-      items: matchingQuestions,
-      currentPage: 1,
-      pageCount: 1,
-    };
+const paginationResult = paginateQuestions(
+  matchingQuestions,
+  1,
+  enablePagination ? perPage : Math.max(1, matchingQuestions.length)
+);
 
 const pagination =
   enablePagination && paginationResult.pageCount > 1

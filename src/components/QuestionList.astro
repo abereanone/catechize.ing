@@ -1,6 +1,13 @@
 ---
 import { formatQuestionIdentifier } from "@/lib/questions";
+import type { Question } from "@/lib/questions";
 import { siteSettings } from "@/config/siteSettings";
+
+interface Props {
+  questions: Question[];
+  startIndex?: number;
+  highlightReference?: string;
+}
 
 const { questions, startIndex = 0 } = Astro.props;
 const showQuestionId = siteSettings.showQuestionId;
