@@ -14,6 +14,11 @@ const siteName = siteSettings.branding.siteName;
     <ul class="resource-grid">
       {authors.map((author) => (
         <li class="resource-card card-panel">
+          {author.photo ? (
+            <img class="resource-photo" src={author.photo} alt={author.name} width="96" height="96" loading="lazy" />
+          ) : author.logo ? (
+            <img class="resource-logo" src={author.logo} alt={`${author.name} logo`} height="64" loading="lazy" />
+          ) : null}
           <h2>{author.name}</h2>
           {author.bio ? <p class="resource-bio">{author.bio}</p> : null}
 

@@ -1,6 +1,7 @@
 [
   {
     "id": "mac",
+    "photo": "/images/resources/mac.jpg",
     "name": "Michael Coughlin",
     "url": "https://thingsabove.us/author/mac/",
     "title": "President",
@@ -8,7 +9,17 @@
     "sortOrder": 15
   },
   {
+    "id": "mac-links",
+    "photo": "/images/resources/mac.jpg",
+    "name": "Sites managed by the curator of catechize.ing",
+    "url": "https://michaelcoughlin.net/links",
+    "title": "Link Directory",
+    "bio": "A directory of the other websites Michael Coughlin builds and maintains.",
+    "sortOrder": 16
+  },
+  {
     "id": "bfg",
+    "logo": "/images/resources/bfg.png",
     "name": "Freely Given Books",
     "url": "https://books.freely.giving/",
     "title": "Website",
@@ -17,6 +28,7 @@
   },
   {
     "id": "usa",
+    "logo": "/images/resources/usa.png",
     "name": "United States Catechism",
     "url": "https://usa.catechize.ing/",
     "title": "Website",
@@ -25,6 +37,7 @@
   },
   {
     "id": "confessions",
+    "logo": "/images/resources/confessions.png",
     "name": "Reformed Confessions",
     "url": "https://confess.catechize.ing/",
     "title": "Website",
@@ -33,6 +46,7 @@
   },
   {
     "id": "fb",
+    "logo": "/images/resources/fb.png",
     "name": "Fetch Bible",
     "url": "https://fetch.bible/",
     "title": "Website",
@@ -41,6 +55,7 @@
   },
   {
     "id": "bcco",
+    "logo": "/images/resources/bcco.png",
     "name": "Baptist Catechism",
     "url": "https://baptistcatechism.org/",
     "title": "Website",

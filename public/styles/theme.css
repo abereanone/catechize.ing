@@ -984,6 +984,24 @@ ul {
   font-size: 1.35rem;
 }
 
+.resource-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.resource-logo {
+  align-self: flex-start;
+  height: 64px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  padding: 6px;
+  background: #fff;
+  border-radius: 12px;
+}
+
 .resource-bio {
   margin: 0;
   font-size: 1rem;
