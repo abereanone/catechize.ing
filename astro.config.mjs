@@ -13,6 +13,9 @@ const stripFileExtension = (rawUrl) => {
 
 export default defineConfig({
   site: "https://catechize.ing",
+  // Astro 7 defaults to "jsx", which drops the line break between text and an inline
+  // tag ("enjoy<a>x</a>and" renders as "enjoyxand"). true keeps the Astro 6 behaviour.
+  compressHTML: true,
   integrations: [
     sitemap({
       filter: (page) => {
