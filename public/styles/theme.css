@@ -432,37 +432,43 @@ ul {
   color: var(--secondary-text);
 }
 
-.question-card[data-question-group="bc"] {
+.question-card[data-question-group="bc"],
+.question-article[data-question-group="bc"] {
   --question-accent-bg: rgba(184, 134, 34, 0.14);
   --question-accent-border: rgba(214, 170, 72, 0.5);
   --question-accent-text: #f1d48a;
 }
 
-.question-card[data-question-group="wsc"] {
+.question-card[data-question-group="wsc"],
+.question-article[data-question-group="wsc"] {
   --question-accent-bg: rgba(84, 138, 214, 0.14);
   --question-accent-border: rgba(104, 162, 240, 0.5);
   --question-accent-text: #a8d0ff;
 }
 
-.question-card[data-question-group="wlc"] {
+.question-card[data-question-group="wlc"],
+.question-article[data-question-group="wlc"] {
   --question-accent-bg: rgba(62, 153, 131, 0.15);
   --question-accent-border: rgba(88, 193, 168, 0.5);
   --question-accent-text: #98e5cd;
 }
 
-.question-card[data-question-group="hc"] {
+.question-card[data-question-group="hc"],
+.question-article[data-question-group="hc"] {
   --question-accent-bg: rgba(172, 88, 68, 0.15);
   --question-accent-border: rgba(214, 118, 94, 0.48);
   --question-accent-text: #f1b4a5;
 }
 
-.question-card[data-question-group="aoc"] {
+.question-card[data-question-group="aoc"],
+.question-article[data-question-group="aoc"] {
   --question-accent-bg: rgba(117, 103, 181, 0.16);
   --question-accent-border: rgba(146, 128, 222, 0.5);
   --question-accent-text: #cbc0ff;
 }
 
-.question-card[data-question-group="cd"] {
+.question-card[data-question-group="cd"],
+.question-article[data-question-group="cd"] {
   --question-accent-bg: rgba(255, 138, 61, 0.2);
   --question-accent-border: rgba(255, 171, 84, 0.64);
   --question-accent-text: #ffd38f;
@@ -504,37 +510,43 @@ ul {
   --question-id-pill-color: #ffd38f;
 }
 
-[data-theme='light'] .question-card[data-question-group="bc"] {
+[data-theme='light'] .question-card[data-question-group="bc"],
+[data-theme='light'] .question-article[data-question-group="bc"] {
   --question-accent-bg: rgba(184, 134, 34, 0.12);
   --question-accent-border: rgba(173, 122, 23, 0.34);
   --question-accent-text: #8a6113;
 }
 
-[data-theme='light'] .question-card[data-question-group="wsc"] {
+[data-theme='light'] .question-card[data-question-group="wsc"],
+[data-theme='light'] .question-article[data-question-group="wsc"] {
   --question-accent-bg: rgba(84, 138, 214, 0.12);
   --question-accent-border: rgba(68, 123, 198, 0.32);
   --question-accent-text: #235d96;
 }
 
-[data-theme='light'] .question-card[data-question-group="wlc"] {
+[data-theme='light'] .question-card[data-question-group="wlc"],
+[data-theme='light'] .question-article[data-question-group="wlc"] {
   --question-accent-bg: rgba(62, 153, 131, 0.12);
   --question-accent-border: rgba(50, 130, 111, 0.32);
   --question-accent-text: #1d6d5c;
 }
 
-[data-theme='light'] .question-card[data-question-group="hc"] {
+[data-theme='light'] .question-card[data-question-group="hc"],
+[data-theme='light'] .question-article[data-question-group="hc"] {
   --question-accent-bg: rgba(172, 88, 68, 0.11);
   --question-accent-border: rgba(155, 75, 57, 0.3);
   --question-accent-text: #8b4233;
 }
 
-[data-theme='light'] .question-card[data-question-group="aoc"] {
+[data-theme='light'] .question-card[data-question-group="aoc"],
+[data-theme='light'] .question-article[data-question-group="aoc"] {
   --question-accent-bg: rgba(117, 103, 181, 0.12);
   --question-accent-border: rgba(100, 87, 162, 0.32);
   --question-accent-text: #5f4eb0;
 }
 
-[data-theme='light'] .question-card[data-question-group="cd"] {
+[data-theme='light'] .question-card[data-question-group="cd"],
+[data-theme='light'] .question-article[data-question-group="cd"] {
   --question-accent-bg: rgba(245, 114, 37, 0.14);
   --question-accent-border: rgba(224, 98, 24, 0.38);
   --question-accent-text: #8e3f00;
@@ -614,6 +626,22 @@ ul {
 
 .question-article .question-body {
   margin-bottom: 0;
+}
+
+/* Catechism colour: the article takes the same accent variables as the list cards. */
+.question-article[data-question-group] {
+  border-left: 4px solid var(--question-accent-border);
+}
+
+.question-article[data-question-group] > .question-body,
+.question-article[data-question-group] .question-answer-toggle > .question-body {
+  padding: 0.9rem 1.1rem;
+  border-radius: 0.9rem;
+  background: var(--question-accent-bg);
+}
+
+.question-card .question-group-label {
+  color: var(--question-accent-text);
 }
 
 .question-header h1 {
