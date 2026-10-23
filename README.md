@@ -4,7 +4,7 @@ Static Astro site for catechize.ing, publishing question-and-answer content, cat
 
 ## Stack
 
-- [Astro](https://astro.build/) 6.x
+- [Astro](https://astro.build/) 7.x
 - TypeScript project configuration (`tsconfig.json`)
 - Markdown content in `src/content/questions/`
 - Generated question/search artifacts for fast page rendering
@@ -25,7 +25,8 @@ Static Astro site for catechize.ing, publishing question-and-answer content, cat
 |   |-- check-questions.mjs        # Validates question files without writing
 |   |-- import-catechisms.mjs      # Ad hoc bulk import
 |   |-- new-question.mjs           # Scaffolds a new question file
-|   `-- stage-audio.mjs            # Ad hoc; renames recordings by question slug
+|   |-- stage-audio.mjs            # Ad hoc; renames recordings by question slug
+|   `-- sync-confession-links.mjs  # Copies the catechism -> confession map into src/data
 |-- src/
 |   |-- components/                # Reusable UI pieces
 |   |-- config/                    # Site-wide settings
@@ -87,7 +88,7 @@ They are intended to be untracked build artifacts, not source files.
 
 ## Local Development
 
-Requirements: Node.js 18.20.8+ and npm.
+Requirements: Node.js 22.22.0+ (Astro 7) and npm.
 
 ```bash
 npm install
@@ -147,6 +148,9 @@ Example effect:
 - `npm run seed:bsb` - prepare the BSB Bible dataset in `bsb-data-pipeline/`.
 - `npm run build` - production build.
 - `npm run preview` - preview the production build locally.
+- `npm run build:search-index` - alias of `build:questions`.
+- `npm run sync:confession-links` - refresh `src/data/confession-links.json` from confess.catechize.ing (runs before `dev` and `build`).
+- `npm run check:types` - run `astro check` (rebuilds the generated artifacts first).
 - `npm run astro ...` - run the Astro CLI directly.
 
 Ad-hoc tools, run directly rather than through npm. These depend on local files
@@ -161,23 +165,22 @@ that are not in the repo, so they must never run as part of a build:
 
 ## Deployment
 
-The site runs on Cloudflare Workers via `worker.js`, which serves the built
-static output, the `/api/search` endpoint, and `/audio/*`. Configuration lives
-in `wrangler.jsonc`.
+The site is a Cloudflare **Pages** project built from GitHub: pushing to `main`
+is what makes a change live. `npm run build` writes the static site to `dist/`,
+and its `postbuild` step (`npm run build:worker`) bundles `worker.js` into
+`dist/_worker.js`. That Pages worker serves `/audio/*` from R2 and passes every
+other request to the static assets. Configuration lives in `wrangler.toml`
+(`pages_build_output_dir = "dist"`, plus the `AUDIO` R2 binding for production
+and preview).
+
+Locally, `wrangler pages dev` only has an empty R2 simulator, so the audio routes
+can only be exercised against a real deployment (a Pages preview deploy uses the
+`env.preview` binding to the same bucket). The rest of the Pages behaviour can be
+previewed with:
 
 ```bash
 npm run build
-npx wrangler deploy
-```
-
-The Cloudflare login is a member of several accounts, so `account_id` is pinned
-in `wrangler.jsonc`; without it wrangler cannot choose one non-interactively.
-
-To exercise the audio routes locally you need the real bucket, since a local R2
-simulator is empty:
-
-```bash
-npx wrangler dev --remote
+npx wrangler pages dev dist
 ```
 
 ## Audio
@@ -202,7 +205,7 @@ Recordings of the Baptist Catechism, one track per question for `bc-1` through
 
 - `src/lib/questions.ts` reads from `src/generated/questions.json`, not directly from the Markdown files.
 - Search UI source lives in `public/assets/search-client.js`.
-- `worker.js` uses `public/assets/search-index.json` for the `/api/search` endpoint.
+- Search runs in the browser: `public/assets/search-client.js` loads `public/assets/search-index.json`. `worker.js` has no search endpoint.
 - The source of truth for question content is always `src/content/questions/*.md`.
 - If the generated JSON files are removed from git, `npm run dev` and `npm run build` will recreate them automatically.
 
