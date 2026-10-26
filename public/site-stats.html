@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>catechize.ing Website Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap">
+<style>
+  /* Layout: one reading column, short sections, each ending in a "so what" line. Colors and fonts follow the church site (laruebaptist.org). */
+  :root {
+    --brand: #1f4e5f;
+    --accent: #c08a3e;
+    --bg: #ffffff;
+    --bg-soft: #f4f6f7;
+    --text: #1a2226;
+    --text-soft: #51606a;
+    --border: #e2e8eb;
+    --bar-main: #1f4e5f;
+    --bar-other: #b7c4ca;
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --brand: #7fb5c5;
+      --accent: #d9a85c;
+      --bg: #0f1517;
+      --bg-soft: #161e21;
+      --text: #e8edef;
+      --text-soft: #9fb0b8;
+      --border: #2a363b;
+      --bar-main: #6fa9ba;
+      --bar-other: #3b4a50;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --brand: #7fb5c5;
+    --accent: #d9a85c;
+    --bg: #0f1517;
+    --bg-soft: #161e21;
+    --text: #e8edef;
+    --text-soft: #9fb0b8;
+    --border: #2a363b;
+    --bar-main: #6fa9ba;
+    --bar-other: #3b4a50;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.65;
+    padding-block: 2rem 4rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.25rem; }
+  h1, h2 { font-family: var(--serif); color: var(--brand); text-wrap: balance; margin: 0; line-height: 1.2; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.5rem); font-weight: 700; }
+  h2 { font-size: 1.5rem; font-weight: 600; }
+  p { margin: 0; max-width: 65ch; }
+  .eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 0.5rem; }
+  section { display: flex; flex-direction: column; gap: 1rem; }
+
+  dl.period { display: grid; grid-template-columns: max-content 1fr; gap: 0.15rem 1rem; margin: 1rem 0 0; font-size: 0.92rem; }
+  dl.period dt { font-weight: 600; }
+  dl.period dd { margin: 0; color: var(--text-soft); }
+
+  .summary { background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; }
+  .summary h2 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+  .summary ul { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .summary li { max-width: 62ch; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
+  .stat { border-top: 3px solid var(--brand); padding-top: 0.6rem; min-width: 0; }
+  .stat .num { font-family: var(--serif); font-size: 2.4rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .stat .label { color: var(--text-soft); font-size: 0.92rem; }
+
+  .bars { display: flex; flex-direction: column; gap: 0.7rem; margin: 0; padding: 0; list-style: none; }
+  .bars li { display: grid; grid-template-columns: minmax(0, 21rem) minmax(0, 1fr) 3.6rem; gap: 0.75rem; align-items: center; font-size: 0.95rem; }
+  .bars .name { min-width: 0; overflow-wrap: anywhere; }
+  .bars .track { background: var(--bg-soft); border-radius: 4px; height: 14px; }
+  /* Bars are drawn with borders, not fills, so they still print when the browser's "Background graphics" option is off. */
+  .bars .fill { display: block; box-sizing: border-box; height: 14px; border: 7px solid var(--bar-main); border-radius: 4px; }
+  .bars .fill.other { border-color: var(--bar-other); }
+  .bars .val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  @media (max-width: 640px) {
+    .bars li { grid-template-columns: minmax(0, 1fr) 3.4rem; row-gap: 0.25rem; }
+    .bars .track { grid-column: 1 / -1; order: 3; }
+  }
+  @media print {
+    @page { size: letter; margin: 0.5in; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+      --brand: #1f4e5f; --accent: #c08a3e; --bg: #ffffff; --bg-soft: #f4f6f7; --text: #1a2226;
+      --text-soft: #51606a; --border: #e2e8eb; --bar-main: #1f4e5f; --bar-other: #b7c4ca;
+      color-scheme: light;
+    }
+    body { padding: 0; font-size: 13px; line-height: 1.5; }
+    .page { max-width: none; gap: 1.25rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.3rem; break-after: avoid; }
+    section { gap: 0.7rem; }
+    .summary { padding: 0.9rem 1.2rem; }
+    .stat .num { font-size: 1.9rem; }
+    .bars { gap: 0.45rem; }
+    .bars li { grid-template-columns: minmax(0, 23rem) minmax(0, 1fr) 3rem; font-size: 0.9rem; }
+    .summary, .stats, .bars, .sowhat, .foot { break-inside: avoid; }
+    .newpage { break-before: page; }
+  }
+
+  .sowhat { border-left: 3px solid var(--accent); padding-left: 0.9rem; max-width: 62ch; }
+  .foot { color: var(--text-soft); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  ol.next { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; max-width: 62ch; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="eyebrow">catechize.ing · catechize.ing</div>
+    <h1>How people are using catechize.ing</h1>
+    <dl class="period">
+      <dt>Period covered</dt><dd>September 26, 2026 – October 25, 2026 (the last 30 days)</dd>
+      <dt>Compared with</dt><dd>August 27, 2026 – September 25, 2026</dd>
+      <dt>Numbers pulled</dt><dd>October 26, 2026</dd>
+    </dl>
+  </header>
+
+  <div class="summary">
+    <h2>The short version</h2>
+    <ul>
+      <li>About <strong>75 visits</strong> in the last 30 days.</li>
+      <li>The most-viewed pages are <strong>Home page</strong>, <strong>Category pages</strong> and <strong>About</strong>.</li>
+      <li>72% of visitors typed the address or used a bookmark, and 14% arrived from Google.</li>
+      <li>33% of visitors are on a phone or tablet.</li>
+      <li>Pages load fast for 90% of visitors.</li>
+    </ul>
+  </div>
+
+  <section>
+    <h2>How many people visit</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">~75</div><div class="label">visits, the last 30 days</div></div>
+      <div class="stat"><div class="num">~18</div><div class="label">visits in an average week</div></div>
+      <div class="stat"><div class="num">~50</div><div class="label">visits in the period before</div></div>
+    </div>
+    <p class="sowhat">A visit is one person arriving at the site and looking around.</p>
+  </section>
+
+  <section>
+    <h2>What people look at</h2>
+    <ul class="bars" aria-label="Most viewed pages">
+      <li><span class="name">Home page</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">60</span></li>
+      <li><span class="name">Category pages</span><span class="track"><span class="fill" style="width:87%"></span></span><span class="val">52</span></li>
+      <li><span class="name">About</span><span class="track"><span class="fill" style="width:35%"></span></span><span class="val">21</span></li>
+      <li><span class="name">Question and answer pages</span><span class="track"><span class="fill" style="width:35%"></span></span><span class="val">21</span></li>
+      <li><span class="name">Resources</span><span class="track"><span class="fill" style="width:22%"></span></span><span class="val">13</span></li>
+      <li><span class="name">Scripture pages</span><span class="track"><span class="fill" style="width:20%"></span></span><span class="val">12</span></li>
+    </ul>
+
+  </section>
+
+  <section class="newpage">
+    <h2>How people find us</h2>
+    <ul class="bars" aria-label="How visitors arrived">
+      <li><span class="name">Typed the address, bookmark, or a link in a text or email</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">53</span></li>
+      <li><span class="name">Google search</span><span class="track"><span class="fill" style="width:19%"></span></span><span class="val">10</span></li>
+      <li><span class="name">github.com</span><span class="track"><span class="fill" style="width:19%"></span></span><span class="val">10</span></li>
+      <li><span class="name">DuckDuckGo search</span><span class="track"><span class="fill" style="width:3%"></span></span><span class="val">1</span></li>
+    </ul>
+    <p class="sowhat">67% of visits are on a computer and 33% on a phone or tablet.</p>
+  </section>
+
+  <section>
+    <h2>How fast the pages load</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">90%</div><div class="label">of visits see the main content quickly</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">respond quickly to taps and clicks</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">stay steady without things jumping</div></div>
+    </div>
+    <p class="sowhat">Pages load fast for most visitors.</p>
+  </section>
+
+  <div class="foot">
+    <p>Numbers come from Cloudflare, covering September 26, 2026 – October 25, 2026. All figures are rounded estimates. The tool does not use cookies or track individuals.</p>
+  </div>
+</div>
+</body>
+</html>
