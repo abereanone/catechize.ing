@@ -43,7 +43,7 @@ There are three persons in the godhead, the Father, the Son, and the Holy Spirit
 
 **Q:** Is the Son a distinct person from the Father and Spirit?  
 **A:** Yes.  
-**Proof:** The Lord, (i.e. the Father) said unto my Lord, (i.e. the Son) sit thou at my right hand, (Exodus 1)
+**Proof:** The Lord, (i.e. the Father) said unto my Lord, (i.e. the Son) sit thou at my right hand, (Psalm 110:1)
 
 **Q:** And is the Spirit a distinct person, both from the Father and the Son?  
 **A:** Yes.  
@@ -99,7 +99,7 @@ There are three persons in the godhead, the Father, the Son, and the Holy Spirit
 
 **Q:** Is the Son omniscient?  
 **A:** Yes.  
-**Proof:** Thou knowest all things, (John 21:18)
+**Proof:** Thou knowest all things, (John 21:17)
 
 **Q:** And is the Spirit so?  
 **A:** Yes.  
@@ -129,7 +129,7 @@ There are three persons in the godhead, the Father, the Son, and the Holy Spirit
 
 **Q:** And the Spirit?  
 **A:** Yes.  
-**Proof:** Grace and peace be unto you from the seven Spirits which are before the throne,* (Revelation 1:4)
+**Proof:** Grace and peace be unto you from the seven Spirits which are before the throne, (Revelation 1:4)
 
 **Q:** Are we baptized in the name of all the three persons in the Trinity?  
 **A:** Yes.  

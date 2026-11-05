@@ -462,11 +462,11 @@ function resolveVerseData(bible, normalizedReference) {
       version = entryVersion;
     }
 
-    const verseText = `${verseValue} ${cleaned}`;
-    verseTextParts.push(verseText);
+    // The tooltip already shows the reference, so the first verse gets no number.
+    verseTextParts.push(verseTextParts.length ? `${verseValue} ${cleaned}` : cleaned);
     verseParts.push({
       reference: `${bookCode} ${chapterValue}:${verseValue}`,
-      text: verseText,
+      text: cleaned,
       version: normalizeVersionLabel(entryVersion),
     });
   }

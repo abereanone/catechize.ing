@@ -271,7 +271,7 @@ God is a Spirit, infinite, eternal, and unchangeable in his being, wisdom, power
 
 **Q:** Is God holy?  
 **A:** Yes.  
-**Proof:** He is the holy one of Israel, (Isaiah 41:21)
+**Proof:** He is the holy one of Israel, (Isaiah 41:14)
 
 **Q:** Is he supremely holy?  
 **A:** Yes.  
@@ -373,7 +373,7 @@ God is a Spirit, infinite, eternal, and unchangeable in his being, wisdom, power
 
 **Q:** Is God unchangeable in his truth?  
 **A:** Yes.  
-**Proof:** The truth of the Lord endureth for ever, (Exodus 7:2)
+**Proof:** The truth of the Lord endureth for ever, (Psalm 117:2)
 
 **Q:** Should we therefore believe God?  
 **A:** Yes.  

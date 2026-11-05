@@ -82,7 +82,7 @@ The holy scriptures chiefly contain what man ought to believe concerning God, an
 
 **Q:** Can men know God aright without his word?  
 **A:** No.  
-**Proof:** Remember that at that time ye were without God in the world, (Ephesians 2:13)
+**Proof:** Remember that at that time ye were without God in the world, (Ephesians 2:12)
 
 **Q:** May all that may be known of God without the word, be better known in and by the word?  
 **A:** Yes.  
