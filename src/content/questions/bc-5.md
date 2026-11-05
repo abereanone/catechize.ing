@@ -11,7 +11,7 @@ relatedAnswers:
 All men are not only permitted, but commanded and exhorted to read, hear, and understand the holy scriptures.
 
 ## Proofs
-- All men are not only permitted, but commanded and exhorted to read, hear, and understand the holy scriptures. (John 5:38; 17:17–18; Revelation 1:3; Acts 8:30)
+- All men are not only permitted, but commanded and exhorted to read, hear, and understand the holy scriptures. (John 5:39; Deuteronomy 17:18–19; Revelation 1:3; Acts 8:30)
 
 <!-- LONG_ANSWER -->
 
