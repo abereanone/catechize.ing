@@ -212,3 +212,14 @@ Recordings of the Baptist Catechism, one track per question for `bc-1` through
 ## License
 
 MIT - see `LICENSE`.
+
+## Shared question tooling
+
+The question scripts are the same code in every question site (catechize.ing, abolition.ing, suffering.catechize.ing, usa):
+`scripts/lib/questions-core.mjs`, `build-questions.mjs`, `check-questions.mjs`, `new-question.mjs`, `shared-tooling.mjs` and `src/lib/question-schema.js`.
+
+- **Change them in catechize.ing only**, then run `node scripts/shared-tooling.mjs sync` there and commit in each site it lists.
+- `npm run check:questions` (also run by CI) fails if this site's copies differ from the shared version recorded in `scripts/shared-tooling.lock.json`.
+- `node scripts/shared-tooling.mjs status` compares every site on this machine.
+- Anything that must differ for one site goes in `scripts/site.config.mjs`, which is never copied. Today that is `longAnswers`: whether the site shows the part of a question after `<!-- LONG_ANSWER -->`.
+- A new site: add its folder name to `SITES` in `scripts/shared-tooling.mjs` (in catechize.ing), give it a `scripts/site.config.mjs`, and run sync.

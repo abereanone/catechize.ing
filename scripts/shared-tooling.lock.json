@@ -1,0 +1,11 @@
+{
+  "source": "catechize.ing",
+  "files": {
+    "scripts/shared-tooling.mjs": "bc64f9d1fddec3e0",
+    "scripts/lib/questions-core.mjs": "47be168e0708aeee",
+    "scripts/build-questions.mjs": "5db4e918ed3f3903",
+    "scripts/check-questions.mjs": "4d8dcad94478fc68",
+    "scripts/new-question.mjs": "7091b1cb7431581a",
+    "src/lib/question-schema.js": "abe0ffbec1ce50a0"
+  }
+}

@@ -10,6 +10,8 @@ import rehypeRaw from "rehype-raw";
 import rehypeStringify from "rehype-stringify";
 
 import { QUESTION_LONG_ANSWER_MARKER, questionFrontmatterSchema } from "../../src/lib/question-schema.js";
+// The one place a site may differ from the others; see scripts/shared-tooling.mjs.
+import siteConfig from "../site.config.mjs";
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 export const ROOT_DIR = path.resolve(currentDir, "..", "..");
@@ -43,6 +45,14 @@ export function splitQuestionBody(body = "", sourceLabel = "question") {
       answerMarkdown: normalized,
       longMarkdown: "",
     };
+  }
+
+  // A site whose pages have no place for a long answer must not quietly drop one.
+  if (siteConfig.longAnswers === false) {
+    throw new Error(
+      `${sourceLabel} has a ${QUESTION_LONG_ANSWER_MARKER} section, but this site does not show long answers ` +
+        `(longAnswers is false in scripts/site.config.mjs).`
+    );
   }
 
   const secondMarkerIndex = normalized.indexOf(
