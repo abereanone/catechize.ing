@@ -1,11 +1,12 @@
 {
   "source": "catechize.ing",
   "files": {
-    "scripts/shared-tooling.mjs": "3208fdfbf5dc5cea",
+    "scripts/shared-tooling.mjs": "2f34122b4d67ade9",
     "scripts/lib/questions-core.mjs": "47be168e0708aeee",
     "scripts/build-questions.mjs": "5db4e918ed3f3903",
     "scripts/check-questions.mjs": "4d8dcad94478fc68",
     "scripts/new-question.mjs": "7091b1cb7431581a",
-    "src/lib/question-schema.js": "abe0ffbec1ce50a0"
+    "src/lib/question-schema.js": "abe0ffbec1ce50a0",
+    "src/components/QuestionCount.astro": "7627d25c4d0ae061"
   }
 }

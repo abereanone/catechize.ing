@@ -47,6 +47,7 @@ export const SHARED_FILES = [
   "scripts/check-questions.mjs",
   "scripts/new-question.mjs",
   "src/lib/question-schema.js",
+  "src/components/QuestionCount.astro",
 ];
 
 const LOCK = "scripts/shared-tooling.lock.json";

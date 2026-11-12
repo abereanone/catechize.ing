@@ -177,4 +177,26 @@ const logoAlt = branding.logoAlt || `${branding.siteName} logo`;
       font-size: 0.85rem;
     }
   }
+  /* Phones: logo and theme toggle on the first row, the links in a row of their own
+     underneath. Side by side, the links stacked into a column and pushed the toggle
+     off the right edge of the screen. */
+  @media (max-width: 520px) {
+    .navbar {
+      flex-wrap: wrap;
+      row-gap: 0.1rem;
+      padding-bottom: 0.4rem;
+    }
+
+    .theme-toggle {
+      order: 2;
+      margin-left: auto;
+    }
+
+    .navbar-links {
+      order: 3;
+      flex-basis: 100%;
+      justify-content: space-between;
+      gap: 0.4rem;
+    }
+  }
 </style>

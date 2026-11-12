@@ -1,0 +1,86 @@
+---
+// The site's total question count, as a pill beside the homepage heading.
+// On the first page of a visit it counts up from 0 over 2.5 seconds, the way
+// books.freelygiv.ing counts its books; after that, and with reduced motion or
+// no JavaScript, it simply shows the number the page was built with.
+//
+// Shared by every question site: edit it in catechize.ing, then run
+// `node scripts/shared-tooling.mjs sync` there.
+interface Props {
+  count: number;
+  /** What is being counted, for screen readers and the hover title. */
+  label?: string;
+}
+
+const { count, label = "questions" } = Astro.props;
+const shown = count.toLocaleString("en-US");
+---
+
+<span class="question-count" title={`${shown} ${label}`}>
+  <span
+    class="question-count-number"
+    aria-hidden="true"
+    data-question-count={count}
+    style={`min-width: ${shown.length}ch`}>{shown}</span
+  >
+  <span class="question-count-sr">{shown} {label}</span>
+</span>
+<script is:inline>
+  (function () {
+    var el = document.querySelector("[data-question-count]");
+    if (!el) return;
+    var total = Number(el.getAttribute("data-question-count"));
+    try {
+      if (sessionStorage.getItem("questionCountSeen")) return;
+      sessionStorage.setItem("questionCountSeen", "1");
+    } catch (e) {
+      return;
+    }
+    if (!(total > 0) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var start = null;
+    el.textContent = "0";
+    requestAnimationFrame(function step(now) {
+      if (start === null) start = now;
+      var p = Math.min((now - start) / 2500, 1);
+      el.textContent = Math.round(total * (1 - Math.pow(1 - p, 3))).toLocaleString("en-US");
+      if (p < 1) requestAnimationFrame(step);
+    });
+  })();
+</script>
+
+<style>
+  .question-count {
+    display: inline-block;
+    margin-left: 0.45em;
+    padding: 0.14em 0.6em;
+    border-radius: 999px;
+    border: 1px solid var(--surface-border-strong);
+    background: var(--accent-bg);
+    color: var(--accent-text);
+    font-family: var(--font-body);
+    font-size: 0.52em;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    vertical-align: 0.3em;
+    white-space: nowrap;
+  }
+
+  .question-count-number {
+    display: inline-block;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .question-count-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
