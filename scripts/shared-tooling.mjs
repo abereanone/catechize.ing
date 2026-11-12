@@ -68,6 +68,25 @@ function readLock(root) {
 }
 const differing = (a, b) => SHARED_FILES.filter((f) => a[f] !== b[f]);
 
+// Sites that run Prettier format their own files to their own settings, and those
+// settings differ from site to site. The shared files have one form everywhere, so
+// each such site leaves them out of its formatting (they are formatted, if at all,
+// in SOURCE). sync keeps this list in every site that has a .prettierignore.
+const IGNORE_NOTE = `# Shared question tooling: the same file in every question site, changed only in ${SOURCE} (see scripts/shared-tooling.mjs).`;
+function ensurePrettierIgnore(root) {
+  const path = join(root, ".prettierignore");
+  if (!existsSync(path)) return false;
+  const text = readFileSync(path, "utf8");
+  const lines = lf(text).split("\n");
+  const missing = SHARED_FILES.filter((f) => !lines.includes(f));
+  if (!missing.length) return false;
+  let out = lf(text).replace(/\n*$/, "\n");
+  if (!lines.includes(IGNORE_NOTE)) out += `\n${IGNORE_NOTE}\n`;
+  out += missing.join("\n") + "\n";
+  writeFileSync(path, text.includes("\r\n") ? out.replace(/\n/g, "\r\n") : out);
+  return true;
+}
+
 function check() {
   const lock = readLock(ROOT);
   if (!lock) {
@@ -137,6 +156,7 @@ function sync() {
     const lockPath = join(root, LOCK);
     const lockChanged = !existsSync(lockPath) || lf(readFileSync(lockPath, "utf8")) !== lock;
     if (lockChanged) writeFileSync(lockPath, lock);
+    if (ensurePrettierIgnore(root)) copied.push(".prettierignore");
     const config = existsSync(join(root, "scripts/site.config.mjs")) ? "" : "  (needs scripts/site.config.mjs)";
     console.log(`${site.padEnd(26)} ${copied.length ? `updated: ${copied.join(", ")}` : lockChanged ? "lock written" : "already in step"}${config}`);
   }
