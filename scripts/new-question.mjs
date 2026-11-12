@@ -40,7 +40,8 @@ const frontmatter = serializeQuestionFrontmatter({
   id: nextId,
   title,
   categories: ["Biblical"],
-  authorId: "chatgpt",
+  // The site's own default (scripts/site.config.mjs), else the curator.
+  authorId: siteConfig.defaultAuthorId ?? "mac",
 });
 
 // Only sites that show long answers get the long section in a new file.
