@@ -101,12 +101,18 @@ function hideTooltip(element) {
 
 // Mouse, keyboard and touch, the same way heritagerestored.org does it: a reference opens on hover or
 // focus and pins open on click/tap, Enter or Space; a second tap, a tap anywhere else, or Escape closes it.
+// A touch skips the hover/focus opening: when a hover handler changes the page, iPhones treat the tap as a
+// hover and send no click, so the verse would open unpinned and never close.
 let pinnedRef = null;
+let shownRef = null;
+let lastTouch = 0;
+const touchedRecently = () => Date.now() - lastTouch < 1000;
 
 function showRef(element) {
-  if (pinnedRef && pinnedRef !== element) {
-    hideRef(pinnedRef);
+  if (shownRef && shownRef !== element) {
+    hideRef(shownRef);
   }
+  shownRef = element;
   element.__tooltipActive = true;
   element.setAttribute("aria-expanded", "true");
   element.dataset.bibleTooltipState = "pending";
@@ -122,6 +128,9 @@ function hideRef(element) {
   if (pinnedRef === element) {
     pinnedRef = null;
   }
+  if (shownRef === element) {
+    shownRef = null;
+  }
 }
 
 function enhanceElement(element) {
@@ -133,13 +142,18 @@ function enhanceElement(element) {
   element.setAttribute("tabindex", "0");
   element.setAttribute("aria-expanded", "false");
 
+  element.addEventListener("pointerdown", (event) => {
+    if (event.pointerType !== "mouse") lastTouch = Date.now();
+  });
   element.addEventListener("mouseenter", () => {
-    if (!pinnedRef) showRef(element);
+    if (!pinnedRef && !touchedRecently()) showRef(element);
   });
   element.addEventListener("mouseleave", () => {
     if (pinnedRef !== element) hideRef(element);
   });
-  element.addEventListener("focus", () => showRef(element));
+  element.addEventListener("focus", () => {
+    if (!touchedRecently()) showRef(element);
+  });
   element.addEventListener("blur", () => {
     if (pinnedRef !== element) hideRef(element);
   });
@@ -190,21 +204,21 @@ export function initBibleReferences() {
   window.__bibleReferencesInitialized = true;
   document.addEventListener("astro:page-load", scan);
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && pinnedRef) hideRef(pinnedRef);
+    if (event.key === "Escape" && shownRef) hideRef(shownRef);
   });
   // pointerdown rather than click: iPhones send no click for a tap on plain text, so a document-level
   // click listener would never hear the tap that should close the verse.
   document.addEventListener(
     "pointerdown",
     (event) => {
-      if (!pinnedRef) return;
-      const tip = pinnedRef.__tooltipElement;
-      if (!pinnedRef.contains(event.target) && !(tip && tip.contains(event.target))) hideRef(pinnedRef);
+      if (!shownRef) return;
+      const tip = shownRef.__tooltipElement;
+      if (!shownRef.contains(event.target) && !(tip && tip.contains(event.target))) hideRef(shownRef);
     },
     true,
   );
   document.addEventListener("astro:before-swap", () => {
-    if (pinnedRef) hideRef(pinnedRef);
+    if (shownRef) hideRef(shownRef);
   });
 
   if (document.readyState === "loading") {
