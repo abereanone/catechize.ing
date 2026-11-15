@@ -213,7 +213,11 @@ export function initBibleReferences() {
     (event) => {
       if (!shownRef) return;
       const tip = shownRef.__tooltipElement;
-      if (!shownRef.contains(event.target) && !(tip && tip.contains(event.target))) hideRef(shownRef);
+      // A tap on the verse box closes it too (on a phone the box covers the text right below the
+      // reference, so that is where "tapping off" lands); only a link inside the box is left to work.
+      if (shownRef.contains(event.target)) return;
+      if (tip && tip.contains(event.target) && event.target.closest && event.target.closest("a")) return;
+      hideRef(shownRef);
     },
     true,
   );
