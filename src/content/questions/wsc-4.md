@@ -10,7 +10,7 @@ relatedAnswers:
   - bc-1
 ---
 
-God is a Spirit infinite eternal and unchangeable in his being wisdom power holiness justice, goodness, and truth.
+God is a Spirit, infinite, eternal, and unchangeable, in his being, wisdom, power, holiness, justice, goodness, and truth.
 
 ## Proofs
 - God is a Spirit (John 4:24)
