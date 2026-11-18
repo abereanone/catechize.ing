@@ -86,7 +86,9 @@ for (const file of walk(root)) {
   let changed = false;
   // <a ...>link text</a>; only the href value inside the opening tag is changed.
   // `</a\s*>`: formatted HTML (Prettier) can split the closing tag across lines.
-  const out = html.replace(/<a\b([^>]*)>([\s\S]*?)<\/a\s*>/gi, (whole, attrs, inner) => {
+  // The match is the opening tag plus the text after it up to the next <a or </a> (not consumed), so an
+  // unclosed or nested <a> in old markup cannot hide the links that follow it.
+  const out = html.replace(/<a\b([^>]*)>((?:(?!<a\b|<\/a\s*>)[\s\S])*)/gi, (whole, attrs, inner) => {
     if (/\bdata-no-go\b/i.test(attrs)) return whole;
     // A link already pointing at a go address (an earlier run, or a no-build site): only make sure it opens in a new tab.
     const cur = attrs.match(/\bhref\s*=\s*(["'])([^"']+)\1/i)?.[2];
