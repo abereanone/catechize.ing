@@ -999,6 +999,15 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  position: relative;
+}
+
+/* Whole card opens the resource's website (one link per card). */
+.resource-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
 }
 
 .resource-card.card-panel:hover,
