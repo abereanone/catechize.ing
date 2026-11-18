@@ -97,6 +97,9 @@ for (const file of walk(root)) {
     let host;
     try { host = new URL(url).hostname.toLowerCase(); } catch { return whole; }
     if (own.has(host)) return whole;
+    // Cloudflare's _redirects only accepts https:// (or same-site) destinations, so in built-in mode an
+    // http:// link stays as it is (still opening in a new tab) rather than becoming a rule Cloudflare drops.
+    if (local && url.toLowerCase().startsWith("http://")) { const t = newTab(whole, attrs); if (t !== whole) { tabbed++; changed = true; } return t; }
     const name = nameFor(url);
     const rec = (links[name] ||= { url, text: "", where, pages: [] });
     if (!rec.text) rec.text = text(inner) || text(attrs.match(/\b(?:aria-label|title)\s*=\s*(["'])(.*?)\1/i)?.[2] || "");
