@@ -1,6 +1,7 @@
 import { autoLinkBibleRefs } from "@/lib/bible/autoLinkBibleRefs";
 import { normalizeReference } from "@/lib/bible/normalizeRef";
 import { getVerseData } from "@/lib/bible/bibleClient";
+import { setVerseText } from "@/lib/bible/pluralYou.js";
 
 const verseCache = new Map();
 
@@ -55,7 +56,7 @@ function ensureTooltip(element) {
 
       const tooltip = document.createElement("div");
       tooltip.className = "bible-tooltip";
-      tooltip.textContent = formatVerseText(element.dataset.ref, verse);
+      setVerseText(tooltip, formatVerseText(element.dataset.ref, verse));
       document.body.appendChild(tooltip);
 
       element.__tooltipElement = tooltip;

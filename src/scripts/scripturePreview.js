@@ -1,4 +1,5 @@
 import { getVerseData } from "@/lib/bible/bibleClient";
+import { setVerseText } from "@/lib/bible/pluralYou.js";
 
 function formatVerseText(verse) {
   if (!verse) {
@@ -39,7 +40,7 @@ export function initScripturePreview() {
 
   getVerseData(referenceKey)
     .then((verse) => {
-      verseBody.textContent = formatVerseText(verse);
+      setVerseText(verseBody, formatVerseText(verse));
     })
     .catch(() => {
       verseBody.textContent = "Verse text could not be loaded for this reference.";
