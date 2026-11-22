@@ -1,0 +1,143 @@
+---
+import InlineSearchBox from "@/components/InlineSearchBox.astro";
+
+interface Props {
+  variant: "top" | "bottom";
+  prevHref?: string | null;
+  nextHref?: string | null;
+  searchId?: string;
+  /** Label for the /random link. */
+  randomLabel?: string;
+}
+
+const {
+  variant,
+  prevHref = null,
+  nextHref = null,
+  searchId,
+  randomLabel = "God's Choice",
+} = Astro.props;
+
+const isTop = variant === "top";
+const navClass = isTop ? "question-top-nav" : "question-bottom-nav";
+const navLabel = isTop ? "Question navigation" : "Question pagination";
+---
+
+<nav class={navClass} aria-label={navLabel}>
+  {
+    prevHref ? (
+      <a class="question-top-link prev" href={prevHref}>
+        Prev
+      </a>
+    ) : (
+      <span aria-hidden="true" class="question-top-link placeholder" />
+    )
+  }
+
+  {
+    isTop ? (
+      <>
+        <a class="question-top-link random-link" href="/random">
+          {randomLabel}
+        </a>
+        <div class="question-top-search">
+          <InlineSearchBox
+            id={searchId}
+            label="Search for another question"
+            placeholder="Search other questions..."
+          />
+        </div>
+      </>
+    ) : null
+  }
+
+  {
+    nextHref ? (
+      <a class="question-top-link next" href={nextHref}>
+        Next
+      </a>
+    ) : (
+      <span aria-hidden="true" class="question-top-link placeholder" />
+    )
+  }
+</nav>
+
+<style is:global>
+  /* is:global preserves the previous behaviour: these rules were emitted unscoped
+     because the <style> lived inside a template expression. .question-top-search
+     .inline-search-box also reaches into InlineSearchBox, which scoping would break. */
+  .question-top-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .question-top-link {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--surface-border);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+    min-width: 90px;
+    text-align: center;
+  }
+
+  .question-top-link:hover {
+    border-color: var(--surface-border-strong);
+  }
+
+  .question-top-link.placeholder {
+    visibility: hidden;
+  }
+
+  .question-top-search {
+    flex: 0 1 360px;
+    min-width: 240px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .question-top-search .inline-search-box {
+    width: 100%;
+    max-width: 360px;
+    padding: 0;
+  }
+
+  .question-top-link.random-link {
+    min-width: auto;
+  }
+
+  .question-bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .question-bottom-nav .question-top-link.prev {
+    margin-right: auto;
+  }
+
+  .question-bottom-nav .question-top-link.next {
+    margin-left: auto;
+  }
+
+  @media (max-width: 640px) {
+    .question-top-nav {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .question-top-search {
+      display: none;
+    }
+  }
+</style>
