@@ -13,6 +13,7 @@ import {
   findAuthor,
 } from "@/lib/questions";
 import BibleReferencesScript from "@/components/BibleReferencesScript.astro";
+import QuestionSwipe from "@/components/QuestionSwipe.astro";
 import InlineSearchBox from "@/components/InlineSearchBox.astro";
 import QuestionReferenceHighlightScript from "@/components/QuestionReferenceHighlightScript.astro";
 import QuestionAudio from "@/components/QuestionAudio.astro";
@@ -298,6 +299,11 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
       url: canonicalQuestionPath,
     }}
   >
+    <QuestionSwipe
+      prevHref={previousQuestion ? buildQuestionHref(previousQuestion) : null}
+      nextHref={nextQuestion ? buildQuestionHref(nextQuestion) : null}
+    />
+
     {previousQuestion || nextQuestion ? (
       <nav class="question-top-nav" aria-label="Question navigation">
         {previousQuestion ? (

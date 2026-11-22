@@ -1,0 +1,170 @@
+---
+// Phones: swipe left/right, or tap the see-through edge arrows, to move between
+// questions. Replaces the Prev/Next pills on small screens (God's Choice stays).
+// Shared by the catechism template family (abolition.ing, catechize.ing,
+// suffering.catechize.ing, usa, dorean.ing, biblicalcounsel.ing): keep this file
+// identical across all six.
+interface Props {
+  prevHref?: string | null;
+  nextHref?: string | null;
+}
+
+const { prevHref = null, nextHref = null } = Astro.props;
+---
+
+{
+  prevHref ? (
+    <a
+      href={prevHref}
+      class="question-swipe-arrow prev"
+      data-swipe-prev
+      aria-label="Previous question"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 5l-7 7 7 7" />
+      </svg>
+    </a>
+  ) : null
+}
+{
+  nextHref ? (
+    <a href={nextHref} class="question-swipe-arrow next" data-swipe-next aria-label="Next question">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  ) : null
+}
+
+<script>
+  // A clearly sideways swipe follows the matching arrow. Left alone: swipes from
+  // the screen edge (Android back), text selections, form controls, buttons and
+  // the audio player.
+  const phone = window.matchMedia("(max-width: 640px)");
+  const prevArrow = document.querySelector<HTMLAnchorElement>("[data-swipe-prev]");
+  const nextArrow = document.querySelector<HTMLAnchorElement>("[data-swipe-next]");
+  let start: { x: number; y: number; time: number } | null = null;
+
+  document.addEventListener(
+    "touchstart",
+    (event) => {
+      start = null;
+      if (!phone.matches || event.touches.length !== 1) return;
+      const target = event.target;
+      if (
+        target instanceof Element &&
+        target.closest(
+          "input, select, textarea, button, audio, .question-audio, dialog, [contenteditable]"
+        )
+      ) {
+        return;
+      }
+      const t = event.touches[0];
+      if (t.clientX < 25 || t.clientX > window.innerWidth - 25) return;
+      start = { x: t.clientX, y: t.clientY, time: Date.now() };
+    },
+    { passive: true }
+  );
+
+  document.addEventListener(
+    "touchend",
+    (event) => {
+      if (!start) return;
+      const t = event.changedTouches[0];
+      const dx = t.clientX - start.x;
+      const dy = t.clientY - start.y;
+      const quick = Date.now() - start.time < 800;
+      start = null;
+      if (!quick || Math.abs(dx) < 80 || Math.abs(dx) < Math.abs(dy) * 2) return;
+      const selection = window.getSelection();
+      if (selection && !selection.isCollapsed && selection.toString().trim()) return;
+      (dx < 0 ? nextArrow : prevArrow)?.click();
+    },
+    { passive: true }
+  );
+
+  document.addEventListener(
+    "touchcancel",
+    () => {
+      start = null;
+    },
+    { passive: true }
+  );
+
+  // Fade the arrows while scrolling so they don't sit over the text.
+  let scrollTimer = 0;
+  window.addEventListener(
+    "scroll",
+    () => {
+      document.documentElement.classList.add("question-swipe-scrolling");
+      clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(
+        () => document.documentElement.classList.remove("question-swipe-scrolling"),
+        500
+      );
+    },
+    { passive: true }
+  );
+</script>
+
+<style is:global>
+  .question-swipe-arrow {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    /* Swipe and the arrows replace Prev/Next; God's Choice stays. Doubled
+       classes outrank the pages' own scoped nav rules. */
+    .question-top-nav .question-top-link.prev.prev,
+    .question-top-nav .question-top-link.next.next,
+    .question-top-nav .question-top-link.placeholder.placeholder,
+    .question-bottom-nav.question-bottom-nav {
+      display: none;
+    }
+
+    .question-top-nav.question-top-nav {
+      justify-content: center;
+    }
+
+    .question-swipe-arrow {
+      display: grid;
+      place-items: center;
+      position: fixed;
+      top: 50%;
+      z-index: 900;
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-top: -1.25rem;
+      border-radius: 999px;
+      border: 1px solid var(--surface-border);
+      background: var(--color-bg);
+      color: var(--color-link);
+      opacity: 0.55;
+      transition: opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .question-swipe-arrow.prev {
+      left: 0.35rem;
+    }
+
+    .question-swipe-arrow.next {
+      right: 0.35rem;
+    }
+
+    .question-swipe-arrow svg {
+      width: 1.3rem;
+      height: 1.3rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    html.question-swipe-scrolling .question-swipe-arrow {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+</style>
