@@ -179,8 +179,6 @@ const encodedShareUrl = encodeURIComponent(shareUrl);
 const encodedShareText = encodeURIComponent(shareText);
 const encodedEmailSubject = encodeURIComponent(`Question: ${shareText}`);
 const encodedEmailBody = encodeURIComponent(`${shareText}\n\n${shareUrl}`);
-const showLongExplanationLabel = `Show ${longExplanationText}`;
-const hideLongExplanationLabel = `Hide ${longExplanationText}`;
 const RELATED_PREVIEW_LENGTH = 200;
 
 function resolveGroupCodeFromParam(param: string | undefined, target: Question | null): string | null {
@@ -401,24 +399,17 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
     />
 
     {question.longHtml ? (
-      <div class="long-explanation" data-long-explanation>
-        <button
-          type="button"
-          class="long-toggle"
-          data-long-toggle
-          data-show-label={showLongExplanationLabel}
-          data-hide-label={hideLongExplanationLabel}
-          aria-expanded="false"
-        >
-          {showLongExplanationLabel}
-        </button>
-        <div class="long-content" data-long-content hidden data-bible-autolink set:html={renderedLongHtml} />
+      <>
+        <details class="long-explanation">
+          <summary class="long-toggle">{longExplanationText}</summary>
+          <div class="long-content" data-bible-autolink set:html={renderedLongHtml} />
+        </details>
         {showLongAuthor ? (
           <p class="long-author">
             By <a href={`/authors/${longAuthor!.id}`}>{longAuthor!.name}</a>
           </p>
         ) : null}
-      </div>
+      </>
     ) : null}
 
     {previousQuestion || nextQuestion ? (
@@ -532,35 +523,6 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
         });
       };
 
-      document.querySelectorAll("[data-long-explanation]").forEach((section) => {
-        const button = section.querySelector("[data-long-toggle]");
-        const content = section.querySelector("[data-long-content]");
-        if (!button || !content) {
-          return;
-        }
-
-        const expandedText = {
-          true: button.getAttribute("data-hide-label") || "Hide details",
-          false: button.getAttribute("data-show-label") || "Show details",
-        };
-
-        button.addEventListener("click", () => {
-          const isExpanded = button.getAttribute("aria-expanded") === "true";
-          const nextExpanded = !isExpanded;
-
-          button.setAttribute("aria-expanded", String(nextExpanded));
-          button.textContent = expandedText[String(nextExpanded)];
-
-          if (nextExpanded) {
-            content.hidden = false;
-            requestAnimationFrame(() => {
-              scrollWithOffset(content);
-            });
-          } else {
-            content.hidden = true;
-          }
-        });
-      });
     </script>
   ) : null}
   {hideAnswersByDefault ? (
@@ -650,33 +612,38 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
     }
 
     .long-toggle {
-      width: 100%;
-      padding: 1.25rem;
-      font-size: 1.25rem;
-      border-radius: 1rem;
-      border: 1px solid var(--long-toggle-border);
-      background: var(--long-toggle-bg, rgba(99, 179, 237, 0.18));
-      color: var(--color-text);
       cursor: pointer;
+      padding: 0.9rem 1.15rem;
+      border-radius: 0.8rem;
+      border: 1px solid var(--surface-border-strong);
+      background: var(--surface-bg-muted);
+      color: var(--color-link);
       font-weight: 600;
-      text-align: left;
-      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      transition: var(--transition-border-bg-color);
     }
 
     .long-toggle:hover,
     .long-toggle:focus-visible {
-      background: var(--long-toggle-bg-hover, rgba(99, 179, 237, 0.28));
-      border-color: var(--long-toggle-border-hover);
-      transform: translateY(-1px);
+      background: var(--surface-bg-hover);
+      color: var(--color-link-hover);
       outline: none;
     }
 
+    .long-explanation[open] .long-toggle {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
     .long-content {
-      margin-top: 1rem;
-      padding: 1.25rem;
-      border-radius: 0.9rem;
-      border: 1px solid var(--long-content-border);
-      background: var(--long-content-bg);
+      padding: 0.4rem 1.25rem 1rem;
+      border: 1px solid var(--surface-border-strong);
+      border-top: none;
+      border-bottom-left-radius: 0.8rem;
+      border-bottom-right-radius: 0.8rem;
+    }
+
+    .long-content > :first-child {
+      margin-top: 0.8rem;
     }
 
     .question-answer-toggle {
