@@ -35,7 +35,6 @@ export const siteSettings = {
   audioCredit: {
     title: "The Baptist Catechism Set to Music",
     author: "James Scott Orrick",
-    url: "https://www.jimorrick.com/",
   },
   hideAnswersByDefault: false,
   enablePagination: true,

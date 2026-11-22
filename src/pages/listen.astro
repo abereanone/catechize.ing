@@ -27,11 +27,7 @@ const description = credit
           <p class="listen-intro">
             {credit ? (
               <Fragment>
-                <em>{credit.title}</em> by{" "}
-                <a href={credit.url} target="_blank" rel="noopener noreferrer">
-                  {credit.author}
-                </a>{" "}
-                — {entries.length} tracks, {formatTotalDuration(totalSeconds)}.
+                <em>{credit.title}</em> by {credit.author} — {entries.length} tracks, {formatTotalDuration(totalSeconds)}.
               </Fragment>
             ) : (
               <Fragment>

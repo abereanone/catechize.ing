@@ -43,10 +43,7 @@ const credit = siteSettings.audioCredit;
 
       {credit ? (
         <p class="question-audio-credit">
-          From <em>{credit.title}</em> by{" "}
-          <a href={credit.url} target="_blank" rel="noopener noreferrer">
-            {credit.author}
-          </a>
+          From <em>{credit.title}</em> by {credit.author}
         </p>
       ) : null}
     </section>
