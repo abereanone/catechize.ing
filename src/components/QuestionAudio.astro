@@ -5,42 +5,100 @@ import type { Question } from "@/lib/questions";
 
 interface Props {
   question: Question;
+  /** The next question's page, when it also has a recording. */
+  nextHref?: string | null;
 }
 
-const { question } = Astro.props;
+const { question, nextHref = null } = Astro.props;
 const track = getAudioTrack(question);
 const credit = siteSettings.audioCredit;
 ---
 
 {
   track ? (
-    <section class="question-audio" aria-label="Sung version of this answer">
+    <section class="question-audio" aria-label="Sung version of this answer" data-question-audio data-next-href={nextHref ?? undefined}>
       <div class="question-audio-head">
         <span class="question-audio-label">Sing it</span>
         <span class="question-audio-duration">{formatDuration(track.duration)}</span>
       </div>
 
       {/* preload="none" keeps this off the critical path: no bytes move until play. */}
-      <audio class="question-audio-player" controls preload="none" src={track.src}>
+      <audio class="question-audio-player" controls preload="none" src={track.src} data-question-audio-player>
         <a href={track.src}>Download the recording</a>
       </audio>
 
+      <button type="button" class="question-audio-resume" data-question-audio-resume hidden>
+        ▶ Keep listening
+      </button>
+
       <div class="question-audio-foot">
+        <label class="question-audio-continuous">
+          <input type="checkbox" data-question-audio-continuous />
+          Continuous play
+        </label>
         <a class="question-audio-download" href={track.downloadHref} download={track.downloadFilename}>
           Download
         </a>
-        {credit ? (
-          <span class="question-audio-credit">
-            From <em>{credit.title}</em> by{" "}
-            <a href={credit.url} target="_blank" rel="noopener noreferrer">
-              {credit.author}
-            </a>
-          </span>
-        ) : null}
       </div>
+
+      {credit ? (
+        <p class="question-audio-credit">
+          From <em>{credit.title}</em> by{" "}
+          <a href={credit.url} target="_blank" rel="noopener noreferrer">
+            {credit.author}
+          </a>
+        </p>
+      ) : null}
     </section>
   ) : null
 }
+
+<script>
+  // Continuous play: off by default, remembered on this device. When a track
+  // ends, go to the next question with ?autoplay=1. A browser may refuse to
+  // start sound on a fresh page; then a "Keep listening" button takes the tap.
+  const KEY = "catechism-audio:continuous";
+  const root = document.querySelector<HTMLElement>("[data-question-audio]");
+  const player = root?.querySelector<HTMLAudioElement>("[data-question-audio-player]");
+  const toggle = root?.querySelector<HTMLInputElement>("[data-question-audio-continuous]");
+  const resume = root?.querySelector<HTMLButtonElement>("[data-question-audio-resume]");
+
+  if (root && player && toggle && resume) {
+    try {
+      toggle.checked = localStorage.getItem(KEY) === "1";
+    } catch {}
+    toggle.addEventListener("change", () => {
+      try {
+        localStorage.setItem(KEY, toggle.checked ? "1" : "0");
+      } catch {}
+    });
+
+    player.addEventListener("ended", () => {
+      const next = root.dataset.nextHref;
+      if (!toggle.checked || !next) return;
+      const url = new URL(next, location.href);
+      url.searchParams.set("autoplay", "1");
+      location.assign(url.toString());
+    });
+
+    const url = new URL(location.href);
+    if (url.searchParams.get("autoplay") === "1") {
+      url.searchParams.delete("autoplay");
+      history.replaceState(history.state, "", url.toString());
+      player.preload = "auto";
+      player.play().catch(() => {
+        resume.hidden = false;
+      });
+      resume.addEventListener("click", () => {
+        resume.hidden = true;
+        void player.play();
+      });
+      player.addEventListener("play", () => {
+        resume.hidden = true;
+      });
+    }
+  }
+</script>
 
 <style>
   .question-audio {
@@ -75,17 +133,50 @@ const credit = siteSettings.audioCredit;
     width: 100%;
   }
 
+  .question-audio-resume {
+    display: block;
+    width: 100%;
+    margin-top: 0.6rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .question-audio-resume[hidden] {
+    display: none;
+  }
+
   .question-audio-foot {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: 0.5rem 1rem;
     margin-top: 0.6rem;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .question-audio-continuous {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+  }
+
+  .question-audio-continuous input {
+    width: 1.05rem;
+    height: 1.05rem;
+    margin: 0;
   }
 
   .question-audio-credit {
+    margin: 0.5rem 0 0;
+    font-size: 0.85rem;
     opacity: 0.75;
   }
 </style>

@@ -1,10 +1,12 @@
 # Audio feature
 
 Recordings of the Baptist Catechism set to music by James Scott Orrick, one
-track per question. Built, deployed, and switched off.
+track per question.
 
-**Status: waiting on distribution permission from Orrick.** Nothing is publicly
-reachable until that arrives.
+**Status: live.** Orrick granted distribution permission; switched on 2026-11-22.
+Question pages have a **Continuous play** checkbox (off by default, remembered
+per device in localStorage) that moves to the next question when a track ends.
+If the browser blocks sound on the new page, a Keep listening button appears.
 
 ---
 

@@ -16,6 +16,7 @@ import BibleReferencesScript from "@/components/BibleReferencesScript.astro";
 import InlineSearchBox from "@/components/InlineSearchBox.astro";
 import QuestionReferenceHighlightScript from "@/components/QuestionReferenceHighlightScript.astro";
 import QuestionAudio from "@/components/QuestionAudio.astro";
+import { hasAudio } from "@/lib/audio";
 import ConfessionLinks from "@/components/ConfessionLinks.astro";
 import { siteSettings } from "@/config/siteSettings";
 
@@ -407,7 +408,10 @@ function getAnswerPreview(entry: Question, maxLength = RELATED_PREVIEW_LENGTH): 
       </div>
     </div>
 
-    <QuestionAudio question={question} />
+    <QuestionAudio
+      question={question}
+      nextHref={nextQuestion && hasAudio(nextQuestion.slug) ? buildQuestionHref(nextQuestion) : null}
+    />
 
     {question.longHtml ? (
       <div class="long-explanation" data-long-explanation>
