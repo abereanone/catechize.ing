@@ -1013,7 +1013,23 @@ ul {
 .resource-card.card-panel:hover,
 .resource-card.card-panel:focus-within {
   background-color: var(--resource-card-hover-bg);
-  border-color: var(--card-hover-border);
+  border-color: currentColor;
+  box-shadow: 0 0 0 1px currentColor;
+}
+
+.resource-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.resource-card:hover .resource-card-link,
+.resource-card-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.resource-card-link:focus-visible {
+  outline: none;
 }
 
 .resource-card h2 {

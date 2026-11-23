@@ -19,21 +19,16 @@ const siteName = siteSettings.branding.siteName;
           ) : author.logo ? (
             <img class="resource-logo" src={author.logo} alt={`${author.name} logo`} height="64" loading="lazy" />
           ) : null}
-          <h2>{author.name}</h2>
-          {author.bio ? <p class="resource-bio">{author.bio}</p> : null}
-
-          <div class="resource-actions">
+          <h2>
             {author.url ? (
-              <a
-                class="resource-link resource-card-link"
-                href={author.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visit website
+              <a class="resource-card-link" href={author.url} target="_blank" rel="noopener noreferrer">
+                {author.name}
               </a>
-            ) : null}
-          </div>
+            ) : (
+              author.name
+            )}
+          </h2>
+          {author.bio ? <p class="resource-bio">{author.bio}</p> : null}
         </li>
       ))}
     </ul>
