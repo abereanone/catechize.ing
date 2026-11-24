@@ -13,6 +13,18 @@ interface Props {
   tone: Tone;
 }
 const { slug, title, alt, tone } = Astro.props;
+
+// Share links for computers (phones get the Share image button's own menu). {u} and {t} are
+// filled with the page address and the question; the click fills in the look chosen since.
+const shareLinks = [
+  ["Facebook", "https://www.facebook.com/sharer/sharer.php?u={u}"],
+  ["X", "https://x.com/intent/post?text={t}&url={u}"],
+  ["Bluesky", "https://bsky.app/intent/compose?text={t}%20{u}"],
+  ["Email", "mailto:?subject={t}&body={u}"],
+];
+const pageUrl = new URL(`${Astro.url.pathname}?bg=${tone}`, Astro.site).href;
+const fill = (tpl: string) =>
+  tpl.replace("{u}", encodeURIComponent(pageUrl)).replace("{t}", encodeURIComponent(title));
 const urls = Object.fromEntries(
   TONES.flatMap((t) => [
     [t, quoteImage(slug, t)],
@@ -67,6 +79,21 @@ const urls = Object.fromEntries(
     >
       Download
     </a>
+    <p class="share-card-social">
+      Share link:
+      {
+        shareLinks.map(([name, tpl]) => (
+          <a
+            href={fill(tpl)}
+            data-share-link={tpl}
+            target={tpl.startsWith("mailto") ? undefined : "_blank"}
+            rel="noopener"
+          >
+            {name}
+          </a>
+        ))
+      }
+    </p>
     <p class="share-card-status" role="status" aria-live="polite"></p>
   </figcaption>
 </figure>
@@ -157,6 +184,15 @@ const urls = Object.fromEntries(
         return false;
       }
     })();
+
+    // The share links carry the look chosen now.
+    figure.querySelectorAll<HTMLAnchorElement>("[data-share-link]").forEach((a) =>
+      a.addEventListener("click", () => {
+        a.href = a.dataset
+          .shareLink!.replace("{u}", encodeURIComponent(link()))
+          .replace("{t}", encodeURIComponent(share.dataset.cardText!));
+      })
+    );
 
     share.addEventListener("click", async () => {
       const t = tone;
@@ -288,6 +324,21 @@ const urls = Object.fromEntries(
     text-align: center;
     font-size: 0.85rem;
     color: var(--color-muted);
+  }
+  .share-card-social {
+    flex-basis: 100%;
+    margin: 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+  .share-card-social a {
+    margin-left: 0.6rem;
+  }
+  @media (pointer: coarse) {
+    .share-card-social {
+      display: none;
+    }
   }
   .share-card-status:empty {
     display: none;
