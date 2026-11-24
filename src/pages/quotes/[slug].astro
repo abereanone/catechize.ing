@@ -1,0 +1,96 @@
+---
+// One question as a share image: /quotes/<slug>. Reached from the image icon in a question's
+// Share row and from the Images page.
+import Main from "@/layouts/Main.astro";
+import QuestionCard from "@/components/QuestionCard.astro";
+import QuestionSwipe from "@/components/QuestionSwipe.astro";
+import { siteSettings } from "@/config/siteSettings";
+import data from "@/data/quote-cards.json";
+import { defaultTone, quoteImage, type Tone } from "@/lib/quoteImages";
+
+const cards = data.cards;
+
+// Cards in question order; previous/next follow it (wrapping at the ends).
+export function getStaticPaths() {
+  const ordered = data.cards; // by topic, then question (export.mjs)
+  return ordered.map((card, i) => ({
+    params: { slug: card.slug },
+    props: {
+      card,
+      nextCard: ordered[(i + 1) % ordered.length],
+      prev: ordered[(i - 1 + ordered.length) % ordered.length].slug,
+      next: ordered[(i + 1) % ordered.length].slug,
+    },
+  }));
+}
+
+const { card, prev, next, nextCard } = Astro.props;
+const tone: Tone = defaultTone(card.id);
+const siteName = siteSettings.branding.siteName;
+---
+
+<Main
+  title={`${card.question} | ${siteName}`}
+  description={card.answer}
+  openGraph={{
+    title: card.question,
+    description: card.answer,
+    url: `/quotes/${card.slug}`,
+    image: quoteImage(card.slug, tone),
+    imageAlt: `${card.question} ${card.answer}`,
+  }}
+>
+  <QuestionSwipe prevHref={`/quotes/${prev}`} nextHref={`/quotes/${next}`} />
+  <QuestionCard
+    slug={card.slug}
+    title={card.question}
+    alt={`${card.question} ${card.answer}`}
+    tone={tone}
+  />
+  <nav class="quote-links" aria-label="Images">
+    <a class="step" href={`/quotes/${prev}`} rel="prev">← Previous</a>
+    <a href={`/questions/${card.slug}`}>Question {card.id}</a>
+    <a href="/quotes">All images</a>
+    <a class="step" href={`/quotes/${next}`} rel="next">Next →</a>
+  </nav>
+  <link rel="prefetch" href={quoteImage(nextCard.slug, defaultTone(nextCard.id), true)} />
+  <link rel="prefetch" href={`/quotes/${next}`} />
+</Main>
+
+<script>
+  // Keep the chosen look (?bg=) when moving to the previous or next image.
+  const keep = () => {
+    const bg = new URLSearchParams(location.search).get("bg");
+    document
+      .querySelectorAll<HTMLAnchorElement>(
+        "a[rel=prev], a[rel=next], a[data-swipe-prev], a[data-swipe-next]"
+      )
+      .forEach((a) => {
+        const u = new URL(a.href);
+        if (bg) u.searchParams.set("bg", bg);
+        else u.searchParams.delete("bg");
+        a.href = u.href;
+      });
+  };
+  keep();
+  document.addEventListener("click", (e) => {
+    if ((e.target as Element).closest(".share-card-tone")) setTimeout(keep);
+  });
+</script>
+
+<style>
+  .quote-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1.25rem;
+    font-size: 0.95rem;
+  }
+  /* Phones use the swipe arrows instead (QuestionSwipe, same breakpoint). */
+  @media (max-width: 640px) {
+    .quote-links .step {
+      display: none;
+    }
+  }
+</style>

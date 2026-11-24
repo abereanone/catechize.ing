@@ -1,0 +1,338 @@
+---
+// Every question as a shareable image, with filters: look (Mixed / Dark / Light / Solid), topic
+// (the site's sections; on catechize.ing its catechisms), keyword chips (the most common meaningful
+// words, larger when more common) and Scripture book. Filters combine and live in the address
+// (?topic=&word=&book=&look=), so a filtered view can be shared. Topic and Scripture are left out
+// on sites without them. Data: src/data/quote-cards.json (C:/code/quote-cards/export.mjs).
+// Shared by the catechism template family: keep this file identical across the six sites.
+import Main from "@/layouts/Main.astro";
+import { siteSettings } from "@/config/siteSettings";
+import data from "@/data/quote-cards.json";
+import { defaultTone, quoteImage, QUOTE_IMAGE_BASE, TONES, TONE_LABELS } from "@/lib/quoteImages";
+
+const siteName = siteSettings.branding.siteName;
+const cards = data.cards; // in the order export.mjs gives: by topic, then question
+const label = data.topicLabel;
+const maxN = Math.max(...data.keywords.map((k) => k.n));
+const minN = Math.min(...data.keywords.map((k) => k.n));
+const size = (n: number) =>
+  (0.8 + (maxN === minN ? 0.2 : ((n - minN) / (maxN - minN)) * 0.45)).toFixed(2);
+const first = cards[0];
+---
+
+<Main
+  title={`Images | ${siteName}`}
+  description={`Questions and answers from ${siteName} as images to download and share.`}
+  openGraph={{ image: quoteImage(first.slug, defaultTone(first.id)), imageAlt: first.question }}
+>
+  <h1>Images</h1>
+
+  <div class="qf">
+    <div class="qf-row" role="group" aria-label="Look">
+      <button type="button" class="qf-chip" data-look="mixed" aria-pressed="true">Mixed</button>
+      {
+        TONES.map((t) => (
+          <button type="button" class="qf-chip" data-look={t} aria-pressed="false">
+            {TONE_LABELS[t]}
+          </button>
+        ))
+      }
+    </div>
+    <details class="qf-more">
+      <summary class="qf-chip">Filter<span class="qf-active"></span></summary>
+      <div class="qf-panel">
+        {
+          data.topics.length > 0 && (
+            <>
+              {/* Phones: topics as a list (the chips took several rows); wider screens: chips. */}
+              <label class="qf-select qf-topic-select">
+                <span>{label}</span>
+                <select data-topic-select>
+                  <option value="">All</option>
+                  {data.topics.map((t) => (
+                    <option value={t.id}>
+                      {t.name} ({t.n})
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <div class="qf-row qf-topic-chips" role="group" aria-label={label}>
+                <button type="button" class="qf-chip" data-topic="" aria-pressed="true">
+                  All
+                </button>
+                {data.topics.map((t) => (
+                  <button type="button" class="qf-chip" data-topic={t.id} aria-pressed="false">
+                    {t.name}
+                  </button>
+                ))}
+              </div>
+            </>
+          )
+        }
+        <div class="qf-row qf-words" role="group" aria-label="Keyword">
+          {
+            data.keywords.map((k) => (
+              <button
+                type="button"
+                class="qf-word"
+                data-word={k.word}
+                aria-pressed="false"
+                style={`font-size:${size(k.n)}rem`}
+              >
+                {k.word}
+              </button>
+            ))
+          }
+        </div>
+        {
+          data.books.length > 0 && (
+            <label class="qf-select">
+              <span>Scripture</span>
+              <select data-book>
+                <option value="">All books</option>
+                {data.books.map((b) => (
+                  <option value={b.name}>
+                    {b.name} ({b.n})
+                  </option>
+                ))}
+              </select>
+            </label>
+          )
+        }
+      </div>
+    </details>
+  </div>
+
+  {
+    /* Each card carries only its slug, first look, topics, keyword chips and Scripture books; the
+      script builds image addresses from data-base (page weight: catechize.ing has 600+ cards). */
+  }
+  <ul class="quote-grid" data-base={QUOTE_IMAGE_BASE}>
+    {
+      cards.map((c) => (
+        <li
+          data-slug={c.slug}
+          data-tone={defaultTone(c.id)}
+          data-topics={c.topics.join("|")}
+          data-words={c.words.join("|")}
+          data-books={c.books.join("|")}
+        >
+          <a href={`/quotes/${c.slug}`}>
+            <img
+              src={quoteImage(c.slug, defaultTone(c.id), true)}
+              alt={c.question}
+              width="480"
+              height="480"
+              loading="lazy"
+            />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="qf-none" hidden>
+    No images match. <button type="button" class="qf-clear">Clear filters</button>
+  </p>
+</Main>
+
+<script>
+  const state = { look: "mixed", topic: "", word: "", book: "" };
+  // Wide screens show the filters open; phones keep them folded behind the Filter button.
+  const more = document.querySelector<HTMLDetailsElement>(".qf-more")!;
+  if (matchMedia("(min-width: 641px)").matches) more.open = true;
+  const grid = document.querySelector<HTMLElement>(".quote-grid")!;
+  const items = [...grid.querySelectorAll<HTMLLIElement>("li")];
+  const none = document.querySelector<HTMLElement>(".qf-none")!;
+  const bookSelect = document.querySelector<HTMLSelectElement>("[data-book]");
+  const topicSelect = document.querySelector<HTMLSelectElement>("[data-topic-select]");
+  const has = (list: string | undefined, v: string) => (list || "").split("|").includes(v);
+
+  function apply(remember: boolean) {
+    let shown = 0;
+    for (const li of items) {
+      const d = li.dataset;
+      const ok =
+        (!state.topic || has(d.topics, state.topic)) &&
+        (!state.word || has(d.words, state.word)) &&
+        (!state.book || has(d.books, state.book));
+      li.hidden = !ok;
+      if (ok) shown++;
+      const img = li.querySelector("img")!;
+      const look = state.look === "mixed" ? d.tone : state.look;
+      const src = `${grid.dataset.base}/${d.slug}-${look}-480.jpg`;
+      if (img.getAttribute("src") !== src) img.src = src;
+      li.querySelector("a")!.href =
+        `/quotes/${d.slug}${state.look === "mixed" ? "" : `?bg=${state.look}`}`;
+    }
+    none.hidden = shown > 0;
+    const press = (sel: string, key: string, value: string) =>
+      document
+        .querySelectorAll<HTMLButtonElement>(sel)
+        .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset[key] === value)));
+    press("[data-look]", "look", state.look);
+    press("[data-topic]", "topic", state.topic);
+    press("[data-word]", "word", state.word);
+    if (bookSelect) bookSelect.value = state.book;
+    if (topicSelect) topicSelect.value = state.topic;
+    const active = [
+      state.topic && document.querySelector(`[data-topic="${state.topic}"]`)?.textContent?.trim(),
+      state.word,
+      state.book,
+    ].filter(Boolean);
+    document.querySelector(".qf-active")!.textContent = active.length
+      ? `: ${active.join(", ")}`
+      : "";
+    if (remember) {
+      const u = new URL(location.href);
+      for (const [k, v] of Object.entries(state)) {
+        if (v && !(k === "look" && v === "mixed")) u.searchParams.set(k, v);
+        else u.searchParams.delete(k);
+      }
+      history.replaceState(null, "", u);
+    }
+  }
+
+  const q = new URLSearchParams(location.search);
+  for (const k of Object.keys(state) as (keyof typeof state)[]) if (q.get(k)) state[k] = q.get(k)!;
+  apply(false);
+
+  document.addEventListener("click", (e) => {
+    const b = (e.target as Element).closest<HTMLButtonElement>("button");
+    if (!b) return;
+    if (b.dataset.look) state.look = b.dataset.look;
+    else if (b.dataset.topic !== undefined) state.topic = b.dataset.topic;
+    else if (b.dataset.word) state.word = state.word === b.dataset.word ? "" : b.dataset.word;
+    else if (b.classList.contains("qf-clear"))
+      Object.assign(state, { topic: "", word: "", book: "" });
+    else return;
+    apply(true);
+  });
+  topicSelect?.addEventListener("change", () => {
+    state.topic = topicSelect.value;
+    apply(true);
+  });
+  bookSelect?.addEventListener("change", () => {
+    state.book = bookSelect.value;
+    apply(true);
+  });
+</script>
+
+<style>
+  .qf {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .qf-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .qf-chip,
+  .qf-word {
+    font: inherit;
+    border: 1px solid var(--surface-border);
+    background: var(--surface-bg-muted);
+    color: var(--color-text);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .qf-chip {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.75rem;
+  }
+  .qf-word {
+    padding: 0.15rem 0.6rem;
+    line-height: 1.5;
+  }
+  .qf-words {
+    align-items: center;
+    gap: 0.35rem 0.45rem;
+  }
+  .qf-chip[aria-pressed="true"],
+  .qf-word[aria-pressed="true"] {
+    background: var(--surface-bg-strong);
+    border-color: var(--surface-border-strong);
+    color: var(--color-heading);
+  }
+  .qf-more > summary {
+    display: inline-block;
+    list-style: none;
+  }
+  .qf-more > summary::-webkit-details-marker {
+    display: none;
+  }
+  .qf-more[open] > summary {
+    background: var(--surface-bg-strong);
+    color: var(--color-heading);
+  }
+  .qf-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .qf-select {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .qf-select select {
+    font: inherit;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--surface-border);
+    background: var(--surface-bg-muted);
+    color: var(--color-text);
+    /* Long option names (usa: "Courts, States, and Constitutional Order") must not widen the page. */
+    flex: 1;
+    min-width: 0;
+    max-width: min(100%, 24rem);
+  }
+  /* The list itself needs a solid colour: with the see-through one above, the browser draws
+     the open list on white while the text stays the theme's (light text on white in dark mode). */
+  .qf-select select option {
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+  .qf-topic-select {
+    display: none;
+  }
+  @media (max-width: 640px) {
+    .qf-topic-select {
+      display: flex;
+    }
+    .qf-topic-chips {
+      display: none;
+    }
+  }
+  .quote-grid {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(46%, 220px), 1fr));
+    gap: 0.9rem;
+  }
+  .quote-grid li[hidden] {
+    display: none;
+  }
+  .quote-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--surface-border);
+  }
+  .qf-clear {
+    font: inherit;
+    background: none;
+    border: 0;
+    color: var(--color-link);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+  }
+</style>
