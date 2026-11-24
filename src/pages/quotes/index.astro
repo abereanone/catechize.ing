@@ -13,6 +13,8 @@ import { defaultTone, quoteImage, QUOTE_IMAGE_BASE, TONES, TONE_LABELS } from "@
 const siteName = siteSettings.branding.siteName;
 const cards = data.cards; // in the order export.mjs gives: by topic, then question
 const label = data.topicLabel;
+// Typed: on sites without Scripture proofs (usa, abolition.ing) the list is empty in the JSON.
+const books: { name: string; n: number }[] = data.books;
 const maxN = Math.max(...data.keywords.map((k) => k.n));
 const minN = Math.min(...data.keywords.map((k) => k.n));
 const size = (n: number) =>
@@ -85,12 +87,12 @@ const first = cards[0];
           }
         </div>
         {
-          data.books.length > 0 && (
+          books.length > 0 && (
             <label class="qf-select">
               <span>Scripture</span>
               <select data-book>
                 <option value="">All books</option>
-                {data.books.map((b) => (
+                {books.map((b) => (
                   <option value={b.name}>
                     {b.name} ({b.n})
                   </option>

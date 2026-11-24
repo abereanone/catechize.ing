@@ -48,7 +48,7 @@ const urls = Object.fromEntries(
           type="button"
           class="share-card-tone"
           data-tone={t}
-          aria-pressed={String(t === tone)}
+          aria-pressed={t === tone ? "true" : "false"}
         >
           {TONE_LABELS[t]}
         </button>
