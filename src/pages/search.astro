@@ -12,7 +12,10 @@ const authors = listAuthors().filter((author) => author.count > 0);
 const authorOptions = authors.map((author) => ({ id: author.id, name: author.name }));
 ---
 
-<Main title={`Search | ${siteName}`} description={`Search across ${siteName} questions and answers.`}>
+<Main
+  title={`Search | ${siteName}`}
+  description={`Search across ${siteName} questions and answers.`}
+>
   <section
     class="search-page"
     data-search-root
@@ -25,7 +28,9 @@ const authorOptions = authors.map((author) => ({ id: author.id, name: author.nam
       <h1>Search</h1>
       <p>Find questions, answers, and related resources across {siteName}.</p>
       <p class="search-scripture-note">
-        To search the Scripture Index, <a href="/scriptures"><span data-scripture-action>click/tap</span> here</a>.
+        To search the Scripture Index, <a href="/scriptures"
+          ><span data-scripture-action>click/tap</span> here</a
+        >.
       </p>
     </header>
 
@@ -42,25 +47,35 @@ const authorOptions = authors.map((author) => ({ id: author.id, name: author.nam
       <button type="submit">Search</button>
     </form>
 
-    {authors.length ? (
-      <div class="author-filter" data-author-filter>
-        <button type="button" class="author-pill is-active" data-author="">All authors</button>
-        {authors.map((author) => (
-          <button type="button" class="author-pill" data-author={author.id}>
-            {author.name}
+    {
+      authors.length ? (
+        <div class="author-filter" data-author-filter>
+          <button type="button" class="author-pill is-active" data-author="">
+            All authors
           </button>
-        ))}
-      </div>
-    ) : null}
+          {authors.map((author) => (
+            <button type="button" class="author-pill" data-author={author.id}>
+              {author.name}
+            </button>
+          ))}
+        </div>
+      ) : null
+    }
 
-    <div id="search-meta" class="search-meta" aria-live="polite">Type a phrase to begin searching.</div>
+    <div id="search-meta" class="search-meta" aria-live="polite">
+      Type a phrase to begin searching.
+    </div>
     <div id="search-results" class="search-results" aria-live="polite"></div>
   </section>
 
   <script type="module" src={searchClientSrc}></script>
   <script is:inline>
     const scriptureAction = document.querySelector("[data-scripture-action]");
-    if (scriptureAction && typeof window !== "undefined" && typeof window.matchMedia === "function") {
+    if (
+      scriptureAction &&
+      typeof window !== "undefined" &&
+      typeof window.matchMedia === "function"
+    ) {
       const coarsePointer = window.matchMedia("(pointer: coarse)");
       const updateActionLabel = () => {
         scriptureAction.textContent = coarsePointer.matches ? "tap" : "click";
@@ -160,7 +175,10 @@ const authorOptions = authors.map((author) => ({ id: author.id, name: author.nam
       border-radius: 999px;
       font-size: 0.95rem;
       cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
     }
 
     .author-pill.is-active {

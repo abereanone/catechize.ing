@@ -35,28 +35,28 @@ the whole go-live procedure.
 
 ### The files
 
-| Where | What |
-| --- | --- |
+| Where                       | What                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------ |
 | R2 bucket `catechize-audio` | 114 MP3s under `bc/bc-1.mp3` .. `bc/bc-114.mp3`. No public access, no custom domain. |
-| `.audio-staging/bc/` | Local renamed copies, gitignored, 152 MB. Source of the upload. |
-| Proton Drive iTunes library | The originals. Never modified. |
+| `.audio-staging/bc/`        | Local renamed copies, gitignored, 152 MB. Source of the upload.                      |
+| Proton Drive iTunes library | The originals. Never modified.                                                       |
 
-Disc 1 track *N* maps to `bc-N`; disc 2 track *N* maps to `bc-(N + 61)`. Every
+Disc 1 track _N_ maps to `bc-N`; disc 2 track _N_ maps to `bc-(N + 61)`. Every
 track title was checked against the question `title:` frontmatter — a clean 1:1
 across all 114. `bc-115` through `bc-118` postdate the album and have no audio,
 as does every other catechism on the site.
 
 ### The code
 
-| File | Role |
-| --- | --- |
-| `scripts/stage-audio.mjs` | Copies the album into `.audio-staging/` renamed by question slug. Dry run unless `--apply`. Never renames the originals — they live in an iTunes library. |
-| `scripts/build-audio-manifest.mjs` | Reads durations via `ffprobe`, writes `src/generated/audio.json`. |
-| `src/generated/audio.json` | 114 entries of duration + byte size. **Committed**, unlike the other generated artifacts, because a build cannot recreate it. |
-| `src/lib/audio.ts` | Resolves a question to a track; builds the download filename. |
-| `src/components/QuestionAudio.astro` | Player under each answer. `preload="none"`. |
-| `src/pages/listen.astro` | Play-all page, all 114 tracks. |
-| `worker.js` | Serves `/audio/*` from R2. |
+| File                                 | Role                                                                                                                                                      |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `scripts/stage-audio.mjs`            | Copies the album into `.audio-staging/` renamed by question slug. Dry run unless `--apply`. Never renames the originals — they live in an iTunes library. |
+| `scripts/build-audio-manifest.mjs`   | Reads durations via `ffprobe`, writes `src/generated/audio.json`.                                                                                         |
+| `src/generated/audio.json`           | 114 entries of duration + byte size. **Committed**, unlike the other generated artifacts, because a build cannot recreate it.                             |
+| `src/lib/audio.ts`                   | Resolves a question to a track; builds the download filename.                                                                                             |
+| `src/components/QuestionAudio.astro` | Player under each answer. `preload="none"`.                                                                                                               |
+| `src/pages/listen.astro`             | Play-all page, all 114 tracks.                                                                                                                            |
+| `worker.js`                          | Serves `/audio/*` from R2.                                                                                                                                |
 
 Both scripts are ad hoc. They depend on local files that are not in the repo and
 must never run during a build.

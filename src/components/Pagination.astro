@@ -22,9 +22,7 @@ const activePage =
     ? Math.min(Math.floor(currentPage), totalPages)
     : 1;
 
-type PaginationItem =
-  | { type: "page"; value: number }
-  | { type: "ellipsis"; key: string };
+type PaginationItem = { type: "page"; value: number } | { type: "ellipsis"; key: string };
 
 function getVisiblePages(total: number, current: number): PaginationItem[] {
   if (total <= 7) {
@@ -67,52 +65,54 @@ function buildHref(page: number): string {
 }
 ---
 
-{totalPages > 1 ? (
-  <nav class="pagination" aria-label="Pagination">
-    <ul>
-      <li>
-        {activePage > 1 ? (
-          <a class="pagination-link prev" href={buildHref(activePage - 1)}>
-            {labels.previous}
-          </a>
-        ) : (
-          <span class="pagination-link prev disabled" aria-disabled="true">
-            {labels.previous}
-          </span>
-        )}
-      </li>
-
-      {paginationItems.map((item) => (
+{
+  totalPages > 1 ? (
+    <nav class="pagination" aria-label="Pagination">
+      <ul>
         <li>
-          {item.type === "page" ? (
-            item.value === activePage ? (
-              <span class="pagination-link current" aria-current="page">
-                {item.value}
-              </span>
-            ) : (
-              <a class="pagination-link" href={buildHref(item.value)}>
-                {item.value}
-              </a>
-            )
+          {activePage > 1 ? (
+            <a class="pagination-link prev" href={buildHref(activePage - 1)}>
+              {labels.previous}
+            </a>
           ) : (
-            <span class="pagination-ellipsis" aria-hidden="true">
-              ...
+            <span class="pagination-link prev disabled" aria-disabled="true">
+              {labels.previous}
             </span>
           )}
         </li>
-      ))}
 
-      <li>
-        {activePage < totalPages ? (
-          <a class="pagination-link next" href={buildHref(activePage + 1)}>
-            {labels.next}
-          </a>
-        ) : (
-          <span class="pagination-link next disabled" aria-disabled="true">
-            {labels.next}
-          </span>
-        )}
-      </li>
-    </ul>
-  </nav>
-) : null}
+        {paginationItems.map((item) => (
+          <li>
+            {item.type === "page" ? (
+              item.value === activePage ? (
+                <span class="pagination-link current" aria-current="page">
+                  {item.value}
+                </span>
+              ) : (
+                <a class="pagination-link" href={buildHref(item.value)}>
+                  {item.value}
+                </a>
+              )
+            ) : (
+              <span class="pagination-ellipsis" aria-hidden="true">
+                ...
+              </span>
+            )}
+          </li>
+        ))}
+
+        <li>
+          {activePage < totalPages ? (
+            <a class="pagination-link next" href={buildHref(activePage + 1)}>
+              {labels.next}
+            </a>
+          ) : (
+            <span class="pagination-link next disabled" aria-disabled="true">
+              {labels.next}
+            </span>
+          )}
+        </li>
+      </ul>
+    </nav>
+  ) : null
+}

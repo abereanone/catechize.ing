@@ -26,7 +26,9 @@ if (!activeCategory) {
 const aboutMap = catechismAboutData as Record<string, CatechismAboutEntry>;
 const aboutEntry = aboutMap[activeCategory.id] ?? null;
 const title = aboutEntry?.title ?? `About ${activeCategory.name}`;
-const paragraphs = Array.isArray(aboutEntry?.paragraphs) ? aboutEntry.paragraphs.filter(Boolean) : [];
+const paragraphs = Array.isArray(aboutEntry?.paragraphs)
+  ? aboutEntry.paragraphs.filter(Boolean)
+  : [];
 const siteName = siteSettings.branding.siteName;
 ---
 
@@ -37,16 +39,25 @@ const siteName = siteSettings.branding.siteName;
       <a href={`/categories/${activeCategory.id}`}>Back to {activeCategory.name}</a>
     </p>
 
-    {paragraphs.length ? (
-      paragraphs.map((paragraph) => <p>{paragraph}</p>)
-    ) : (
-      <p><em>About text for this catechism has not been added yet.</em></p>
-    )}
+    {
+      paragraphs.length ? (
+        paragraphs.map((paragraph) => <p>{paragraph}</p>)
+      ) : (
+        <p>
+          <em>About text for this catechism has not been added yet.</em>
+        </p>
+      )
+    }
 
-    {aboutEntry?.sourceUrl ? (
-      <p>
-        Source: <a href={aboutEntry.sourceUrl} target="_blank" rel="noopener noreferrer">{aboutEntry.sourceUrl}</a>
-      </p>
-    ) : null}
+    {
+      aboutEntry?.sourceUrl ? (
+        <p>
+          Source:{" "}
+          <a href={aboutEntry.sourceUrl} target="_blank" rel="noopener noreferrer">
+            {aboutEntry.sourceUrl}
+          </a>
+        </p>
+      ) : null
+    }
   </article>
 </Main>

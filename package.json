@@ -20,7 +20,9 @@
     "astro": "astro",
     "sync:confession-links": "node ./scripts/sync-confession-links.mjs",
     "precheck:types": "npm run build:questions && npm run build:bible && npm run sync:confession-links",
-    "check:types": "astro check"
+    "check:types": "astro check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -37,6 +39,8 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "esbuild": "^0.28.2",
+    "prettier": "^3.10.1",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript": "^6.0.3"
   }
 }

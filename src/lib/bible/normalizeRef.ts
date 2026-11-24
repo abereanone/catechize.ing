@@ -48,16 +48,16 @@ function normalizeBookName(book: string): string | undefined {
 }
 
 function splitReferenceParts(reference: string): { book: string; chapterAndVerse: string } | null {
-  const match = reference.match(
-    /^((?:(?:[1-3]|iii|ii|i)\s+)?[a-z.]+(?:\s+[a-z.]+)*)\s+(\d.*)$/i
-  );
+  const match = reference.match(/^((?:(?:[1-3]|iii|ii|i)\s+)?[a-z.]+(?:\s+[a-z.]+)*)\s+(\d.*)$/i);
 
   if (!match) {
     return null;
   }
 
   const book = String(match[1] ?? "").trim();
-  const chapterAndVerse = String(match[2] ?? "").trim().replace(/\s*,\s*/g, ", ");
+  const chapterAndVerse = String(match[2] ?? "")
+    .trim()
+    .replace(/\s*,\s*/g, ", ");
 
   if (!book || !chapterAndVerse) {
     return null;
@@ -67,7 +67,10 @@ function splitReferenceParts(reference: string): { book: string; chapterAndVerse
 }
 
 export function normalizeReference(reference: string): string {
-  const lower = reference.trim().toLowerCase().replace(/\u2013|\u2014/g, "-");
+  const lower = reference
+    .trim()
+    .toLowerCase()
+    .replace(/\u2013|\u2014/g, "-");
   const parts = splitReferenceParts(lower);
   if (!parts) {
     return reference;

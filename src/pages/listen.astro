@@ -1,6 +1,11 @@
 ---
 import Main from "@/layouts/Main.astro";
-import { formatDuration, formatTotalDuration, isAudioEnabled, listAudioQuestions } from "@/lib/audio";
+import {
+  formatDuration,
+  formatTotalDuration,
+  isAudioEnabled,
+  listAudioQuestions,
+} from "@/lib/audio";
 import { getPublishedQuestions } from "@/lib/questions";
 import { siteSettings } from "@/config/siteSettings";
 
@@ -27,7 +32,8 @@ const description = credit
           <p class="listen-intro">
             {credit ? (
               <Fragment>
-                <em>{credit.title}</em> by {credit.author} — {entries.length} tracks, {formatTotalDuration(totalSeconds)}.
+                <em>{credit.title}</em> by {credit.author} — {entries.length} tracks,{" "}
+                {formatTotalDuration(totalSeconds)}.
               </Fragment>
             ) : (
               <Fragment>
@@ -47,7 +53,11 @@ const description = credit
                   <span class="listen-item-duration">{formatDuration(track.duration)}</span>
                 </div>
                 <audio class="listen-item-player" controls preload="none" src={track.src} />
-                <a class="listen-item-download" href={track.downloadHref} download={track.downloadFilename}>
+                <a
+                  class="listen-item-download"
+                  href={track.downloadHref}
+                  download={track.downloadFilename}
+                >
                   Download
                 </a>
               </li>

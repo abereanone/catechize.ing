@@ -16,14 +16,25 @@ const credit = siteSettings.audioCredit;
 
 {
   track ? (
-    <section class="question-audio" aria-label="Sung version of this answer" data-question-audio data-next-href={nextHref ?? undefined}>
+    <section
+      class="question-audio"
+      aria-label="Sung version of this answer"
+      data-question-audio
+      data-next-href={nextHref ?? undefined}
+    >
       <div class="question-audio-head">
         <span class="question-audio-label">Sing it</span>
         <span class="question-audio-duration">{formatDuration(track.duration)}</span>
       </div>
 
       {/* preload="none" keeps this off the critical path: no bytes move until play. */}
-      <audio class="question-audio-player" controls preload="none" src={track.src} data-question-audio-player>
+      <audio
+        class="question-audio-player"
+        controls
+        preload="none"
+        src={track.src}
+        data-question-audio-player
+      >
         <a href={track.src}>Download the recording</a>
       </audio>
 
@@ -36,7 +47,11 @@ const credit = siteSettings.audioCredit;
           <input type="checkbox" data-question-audio-continuous />
           Continuous play
         </label>
-        <a class="question-audio-download" href={track.downloadHref} download={track.downloadFilename}>
+        <a
+          class="question-audio-download"
+          href={track.downloadHref}
+          download={track.downloadFilename}
+        >
           Download
         </a>
       </div>

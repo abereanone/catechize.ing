@@ -5,16 +5,17 @@ import { getPublishedQuestions } from "@/lib/questions";
 import { siteSettings } from "@/config/siteSettings";
 
 const allQuestions = getPublishedQuestions();
-const randomQuestions = [...allQuestions]
-  .sort(() => Math.random() - 0.5)
-  .slice(0, 4);
+const randomQuestions = [...allQuestions].sort(() => Math.random() - 0.5).slice(0, 4);
 const siteName = siteSettings.branding.siteName;
 ---
 
 <Main title={`Page not found | ${siteName}`}>
   <section class="stack gap-lg">
     <h1>Hey, sorry about this, but we could not find that page.</h1>
-    <p>The link may be broken, or the page may have been moved or deleted. Try the homepage or jump into a few random questions instead.</p>
+    <p>
+      The link may be broken, or the page may have been moved or deleted. Try the homepage or jump
+      into a few random questions instead.
+    </p>
 
     <nav aria-label="Helpful links" class="quick-link-nav">
       <ul class="question-list quick-link-list">
@@ -26,12 +27,14 @@ const siteName = siteSettings.branding.siteName;
       </ul>
     </nav>
 
-    {randomQuestions.length ? (
-      <section aria-labelledby="random-questions-title">
-        <h2 id="random-questions-title">Random questions</h2>
-        <QuestionList questions={randomQuestions} />
-      </section>
-    ) : null}
+    {
+      randomQuestions.length ? (
+        <section aria-labelledby="random-questions-title">
+          <h2 id="random-questions-title">Random questions</h2>
+          <QuestionList questions={randomQuestions} />
+        </section>
+      ) : null
+    }
   </section>
 </Main>
 

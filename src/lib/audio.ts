@@ -38,7 +38,9 @@ export function isAudioEnabled(): boolean {
  * Returns null when the feature is off, or when a question simply has no
  * recording -- bc-115..118 postdate the album, and no other catechism has one.
  */
-export function getAudioTrack(question: Pick<Question, "id" | "slug" | "title">): AudioTrack | null {
+export function getAudioTrack(
+  question: Pick<Question, "id" | "slug" | "title">
+): AudioTrack | null {
   if (!isAudioEnabled()) {
     return null;
   }
@@ -83,7 +85,9 @@ export function formatTotalDuration(seconds: number): string {
 }
 
 /** Every question that has a recording, in catechism order. */
-export function listAudioQuestions(questions: Question[]): Array<{ question: Question; track: AudioTrack }> {
+export function listAudioQuestions(
+  questions: Question[]
+): Array<{ question: Question; track: AudioTrack }> {
   if (!isAudioEnabled()) {
     return [];
   }

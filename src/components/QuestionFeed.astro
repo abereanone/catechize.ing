@@ -18,35 +18,42 @@ const showPagination =
     </slot>
   </header>
 
-  {hasQuestions ? (
-    <QuestionList
-      questions={questions}
-      startIndex={pagination && typeof pagination.startIndex === "number" ? pagination.startIndex : 0}
-    />
-  ) : (
-    <div class="card-panel empty-state">
-      <slot name="empty">
-        <p><em>No questions found.</em></p>
-      </slot>
-    </div>
-  )}
-
-  {showPagination ? (
-    <div class="pagination-wrapper">
-      <p class="pagination-summary">
-        Showing{" "}
-        {(pagination.startIndex ?? 0) + 1}
-        {" - "}
-        {Math.min(pagination.endIndex ?? (pagination.startIndex ?? 0), pagination.totalItems ?? 0)}
-        {" of "}
-        {pagination.totalItems ?? 0}
-      </p>
-      <Pagination
-        currentPage={pagination.currentPage}
-        pageCount={pagination.pageCount}
-        basePath={pagination.basePath}
-        pageSegment={pagination.pageSegment}
+  {
+    hasQuestions ? (
+      <QuestionList
+        questions={questions}
+        startIndex={
+          pagination && typeof pagination.startIndex === "number" ? pagination.startIndex : 0
+        }
       />
-    </div>
-  ) : null}
+    ) : (
+      <div class="card-panel empty-state">
+        <slot name="empty">
+          <p>
+            <em>No questions found.</em>
+          </p>
+        </slot>
+      </div>
+    )
+  }
+
+  {
+    showPagination ? (
+      <div class="pagination-wrapper">
+        <p class="pagination-summary">
+          Showing {(pagination.startIndex ?? 0) + 1}
+          {" - "}
+          {Math.min(pagination.endIndex ?? pagination.startIndex ?? 0, pagination.totalItems ?? 0)}
+          {" of "}
+          {pagination.totalItems ?? 0}
+        </p>
+        <Pagination
+          currentPage={pagination.currentPage}
+          pageCount={pagination.pageCount}
+          basePath={pagination.basePath}
+          pageSegment={pagination.pageSegment}
+        />
+      </div>
+    ) : null
+  }
 </section>

@@ -53,8 +53,8 @@ async function main() {
   await removeExistingImportedFiles();
 
   for (const question of importedQuestions) {
-    const relatedAnswers = [...(relatedAnswersBySlug.get(question.slug) ?? [])].sort((left, right) =>
-      left.localeCompare(right)
+    const relatedAnswers = [...(relatedAnswersBySlug.get(question.slug) ?? [])].sort(
+      (left, right) => left.localeCompare(right)
     );
     const frontmatter = {
       id: question.id,
@@ -64,7 +64,9 @@ async function main() {
       relatedAnswers,
     };
 
-    const document = [serializeQuestionFrontmatter(frontmatter), buildMarkdownBody(question)].join("\n\n");
+    const document = [serializeQuestionFrontmatter(frontmatter), buildMarkdownBody(question)].join(
+      "\n\n"
+    );
     const targetPath = path.join(QUESTION_CONTENT_DIR, `${question.slug}.md`);
     await fs.writeFile(targetPath, `${document.trim()}\n`, "utf8");
   }
@@ -75,9 +77,7 @@ async function main() {
 }
 
 async function assertSourceRepo() {
-  const stats = await fs
-    .stat(SOURCE_ROOT)
-    .catch(() => null);
+  const stats = await fs.stat(SOURCE_ROOT).catch(() => null);
 
   if (!stats?.isDirectory()) {
     throw new Error(

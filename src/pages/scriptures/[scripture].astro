@@ -29,24 +29,33 @@ const chapterUrl = `https://confess.catechize.ing/bible/${entry.bookCode}/${chap
   <section class="card-panel scripture-page">
     <section class="scripture-verse card-panel" data-scripture-verse data-reference-key={entry.key}>
       <h2>{entry.reference}</h2>
-      {canPreviewVerse ? (
-        <p class="scripture-verse-body" data-scripture-verse-body>Loading verse text…</p>
-      ) : (
-        <p class="scripture-verse-body">
-          <em>
-            This reference is indexed as a chapter-level citation,
-            <a href={chapterUrl} target="_blank" rel="noopener noreferrer">click here to read that chapter.</a>
-          </em>
-        </p>
-      )}
-    {questions.length ? (
-      <QuestionList questions={questions} highlightReference={entry.reference} />
-    ) : (
-      <p><em>No questions found for this reference.</em></p>
-    )}
-    <a class="scripture-back-link" href="/scriptures">Back to Scripture Index</a>
+      {
+        canPreviewVerse ? (
+          <p class="scripture-verse-body" data-scripture-verse-body>
+            Loading verse text…
+          </p>
+        ) : (
+          <p class="scripture-verse-body">
+            <em>
+              This reference is indexed as a chapter-level citation,
+              <a href={chapterUrl} target="_blank" rel="noopener noreferrer">
+                click here to read that chapter.
+              </a>
+            </em>
+          </p>
+        )
+      }
+      {
+        questions.length ? (
+          <QuestionList questions={questions} highlightReference={entry.reference} />
+        ) : (
+          <p>
+            <em>No questions found for this reference.</em>
+          </p>
+        )
+      }
+      <a class="scripture-back-link" href="/scriptures">Back to Scripture Index</a>
     </section>
-
   </section>
 
   {canPreviewVerse ? <ScripturePreviewScript /> : null}

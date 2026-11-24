@@ -169,7 +169,7 @@ function getComposedVerseData(
     version:
       versions.length > 1
         ? versions.join("/")
-        : verses.find((verse) => verse?.version)?.version ?? BIBLE_ABBREVIATION,
+        : (verses.find((verse) => verse?.version)?.version ?? BIBLE_ABBREVIATION),
     parts: versions.length > 1 ? parts : undefined,
   };
 }
@@ -184,7 +184,9 @@ export async function getVerseData(rawReference: string): Promise<VerseData | nu
   const bibleLookup = await getBibleLookup();
   const directVerseData = toVerseData(bibleLookup.get(normalizedReference));
   const composedVerseData = getComposedVerseData(bibleLookup, normalizedReference);
-  const verseData = composedVerseData?.parts ? composedVerseData : directVerseData ?? composedVerseData;
+  const verseData = composedVerseData?.parts
+    ? composedVerseData
+    : (directVerseData ?? composedVerseData);
   referenceCache.set(normalizedReference, verseData);
   return verseData;
 }

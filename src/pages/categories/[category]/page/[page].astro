@@ -43,14 +43,18 @@ if (!activeCategory) {
   throw new Error(`Category not found for slug "${category}".`);
 }
 
-const pageNumber = Number.parseInt(Array.isArray(page) ? page[0] : page ?? "", 10);
+const pageNumber = Number.parseInt(Array.isArray(page) ? page[0] : (page ?? ""), 10);
 
 if (!Number.isInteger(pageNumber) || pageNumber < 1) {
   throw new Error(`Invalid page "${page}".`);
 }
 
 const matchingQuestions = getPublishedQuestions(activeCategory.id);
-const paginationResult = paginateQuestions(matchingQuestions, pageNumber, siteSettings.questionsPerPage);
+const paginationResult = paginateQuestions(
+  matchingQuestions,
+  pageNumber,
+  siteSettings.questionsPerPage
+);
 
 if (paginationResult.currentPage !== pageNumber) {
   throw new Error(`Page "${pageNumber}" is out of range.`);
@@ -77,7 +81,9 @@ const pagination = {
       <div class="category-header">
         <h1 class="page-title">Questions &amp; Answers</h1>
         <p class="feed-subtitle">
-          In the <a class="category-parent-link" href="/categories">Category</a>: {activeCategory.name}
+          In the <a class="category-parent-link" href="/categories">Category</a>: {
+            activeCategory.name
+          }
         </p>
         <p class="feed-subtitle">
           <a href={`/categories/${activeCategory.id}/about`}>About this catechism</a>

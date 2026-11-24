@@ -129,9 +129,8 @@ export function autoLinkBibleRefs(html: string): string {
       let output = `<span class="bible-ref" data-ref="${firstRef}">${book} ${chapter}:${firstVerse}</span>`;
 
       const rest = match.slice(`${book} ${chapter}:${firstVerse}`.length);
-      const extraMatches = rest.match(
-        /,\s*\d+(?::\d+(?:[-\u2013\u2014]\d+)?)?(?:[-\u2013\u2014]\d+)?/g
-      ) ?? [];
+      const extraMatches =
+        rest.match(/,\s*\d+(?::\d+(?:[-\u2013\u2014]\d+)?)?(?:[-\u2013\u2014]\d+)?/g) ?? [];
 
       extraMatches.forEach((chunk) => {
         const verse = chunk.replace(/,\s*/, "");
@@ -163,7 +162,7 @@ export function autoLinkBibleRefs(html: string): string {
 
   const withRestoredMulti = withSingles.replace(/__BIBLE_MULTI__(\d+)__/g, (match, index) => {
     const idx = Number(index);
-    return Number.isNaN(idx) ? match : placeholders[idx] ?? match;
+    return Number.isNaN(idx) ? match : (placeholders[idx] ?? match);
   });
 
   const withContinuedVerses = withRestoredMulti.replace(
@@ -178,14 +177,17 @@ export function autoLinkBibleRefs(html: string): string {
         lastBook = bookMatch?.[1] ?? null;
       }
 
-      return segment.replace(continuedVerseRegex, (match, separator: string, chapterVerse: string) => {
-        if (!lastBook) {
-          return match;
-        }
+      return segment.replace(
+        continuedVerseRegex,
+        (match, separator: string, chapterVerse: string) => {
+          if (!lastBook) {
+            return match;
+          }
 
-        const ref = `${lastBook} ${chapterVerse}`;
-        return `${separator}<span class="bible-ref" data-ref="${ref}">${chapterVerse}</span>`;
-      });
+          const ref = `${lastBook} ${chapterVerse}`;
+          return `${separator}<span class="bible-ref" data-ref="${ref}">${chapterVerse}</span>`;
+        }
+      );
     }
   );
 

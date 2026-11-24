@@ -71,7 +71,9 @@ function normalizeQuestion(entry: Partial<Question>): Question {
     id: typeof entry.id === "number" ? entry.id : null,
     slug: String(entry.slug ?? ""),
     title: String(entry.title ?? ""),
-    categories: Array.isArray(entry.categories) ? entry.categories.map((value) => String(value)) : [],
+    categories: Array.isArray(entry.categories)
+      ? entry.categories.map((value) => String(value))
+      : [],
     authorId: entry.authorId ? String(entry.authorId) : null,
     published: entry.published !== false,
     longAuthorId: entry.longAuthorId ? String(entry.longAuthorId) : null,
@@ -82,7 +84,9 @@ function normalizeQuestion(entry: Partial<Question>): Question {
     excerpt: String(entry.excerpt ?? ""),
     answerHtml: String(entry.answerHtml ?? ""),
     longHtml: String(entry.longHtml ?? ""),
-    groupCodes: Array.isArray(entry.groupCodes) ? entry.groupCodes.map((value) => String(value)) : [],
+    groupCodes: Array.isArray(entry.groupCodes)
+      ? entry.groupCodes.map((value) => String(value))
+      : [],
   };
 }
 

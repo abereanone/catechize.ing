@@ -87,7 +87,9 @@ async function main() {
 
   const stagedStat = await stat(args.staged).catch(() => null);
   if (!stagedStat?.isDirectory()) {
-    throw new Error(`Staged audio not found: ${args.staged}\nRun scripts/stage-audio.mjs --apply first.`);
+    throw new Error(
+      `Staged audio not found: ${args.staged}\nRun scripts/stage-audio.mjs --apply first.`
+    );
   }
 
   const files = (await readdir(args.staged)).filter((name) => SLUG_PATTERN.test(name));

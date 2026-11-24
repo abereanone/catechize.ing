@@ -8,7 +8,6 @@ import { siteSettings } from "@/config/siteSettings";
 import data from "@/data/quote-cards.json";
 import { defaultTone, quoteImage, type Tone } from "@/lib/quoteImages";
 
-
 // Cards in question order; previous/next follow it (wrapping at the ends).
 export function getStaticPaths() {
   const ordered = data.cards; // by topic, then question (export.mjs)

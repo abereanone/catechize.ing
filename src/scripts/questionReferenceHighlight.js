@@ -12,7 +12,8 @@ function getHeaderOffset() {
 }
 
 function scrollWithOffset(target) {
-  const targetTop = window.scrollY + target.getBoundingClientRect().top - getHeaderOffset() - SCROLL_GAP;
+  const targetTop =
+    window.scrollY + target.getBoundingClientRect().top - getHeaderOffset() - SCROLL_GAP;
 
   window.scrollTo({
     top: Math.max(targetTop, 0),
@@ -95,9 +96,12 @@ function applyHighlight() {
     const needsDelay = revealedLong || revealedAnswer;
     const scrollTarget = getScrollTarget(firstMatch);
 
-    window.setTimeout(() => {
-      scrollWithOffset(scrollTarget);
-    }, needsDelay ? 80 : 0);
+    window.setTimeout(
+      () => {
+        scrollWithOffset(scrollTarget);
+      },
+      needsDelay ? 80 : 0
+    );
   }
 }
 

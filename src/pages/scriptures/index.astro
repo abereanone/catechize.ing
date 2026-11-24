@@ -5,9 +5,45 @@ import { siteSettings } from "@/config/siteSettings";
 
 const bookGroups = listScriptureBookGroups();
 const oldTestamentCodes = new Set([
-  "gen", "exo", "lev", "num", "deu", "jos", "jdg", "rut", "1sa", "2sa", "1ki", "2ki", "1ch",
-  "2ch", "ezr", "neh", "est", "job", "psa", "pro", "ecc", "sng", "isa", "jer", "lam", "ezk",
-  "dan", "hos", "jol", "amo", "oba", "jon", "mic", "nah", "hab", "zep", "hag", "zec", "mal",
+  "gen",
+  "exo",
+  "lev",
+  "num",
+  "deu",
+  "jos",
+  "jdg",
+  "rut",
+  "1sa",
+  "2sa",
+  "1ki",
+  "2ki",
+  "1ch",
+  "2ch",
+  "ezr",
+  "neh",
+  "est",
+  "job",
+  "psa",
+  "pro",
+  "ecc",
+  "sng",
+  "isa",
+  "jer",
+  "lam",
+  "ezk",
+  "dan",
+  "hos",
+  "jol",
+  "amo",
+  "oba",
+  "jon",
+  "mic",
+  "nah",
+  "hab",
+  "zep",
+  "hag",
+  "zec",
+  "mal",
 ]);
 const oldTestamentGroups = bookGroups.filter((group) => oldTestamentCodes.has(group.bookCode));
 const newTestamentGroups = bookGroups.filter((group) => !oldTestamentCodes.has(group.bookCode));
@@ -19,127 +55,181 @@ const siteName = siteSettings.branding.siteName;
     <h1>Scripture Index</h1>
     <p>Browse the scripture references cited in proof sections and see which questions use them.</p>
 
-    {bookGroups.length ? (
-      <>
-        <div class="scripture-testament-picker" aria-label="Choose testament">
-          <button type="button" class="scripture-testament-button" data-testament-button data-testament-target="ot">
-            Old Testament
-          </button>
-          <button type="button" class="scripture-testament-button" data-testament-button data-testament-target="nt">
-            New Testament
-          </button>
-        </div>
-        <label class="scripture-filter">
-          <span class="scripture-filter-label">Filter references</span>
-          <input
-            type="search"
-            class="scripture-filter-input"
-            placeholder="Search references, e.g. Exodus 1 or ex 1"
-            data-scripture-filter
-          />
-        </label>
-        <div class="scripture-search-results" data-search-results hidden>
-          <div class="scripture-book-groups" data-search-groups>
-            {bookGroups.map((group) => (
-              <section class="scripture-book-group" data-search-group data-book-code={group.bookCode}>
-                <header class="scripture-book-header">
-                  <h2>{group.bookName}</h2>
-                  <p>{group.entries.length === 1 ? "1 reference" : `${group.entries.length} references`}</p>
-                </header>
-                <ul class="scripture-grid">
-                  {group.entries.map((entry) => (
-                    <li
-                      data-search-item
-                      data-scripture-text={entry.searchText}
-                      data-book-code={entry.bookCode}
-                      data-book-search={entry.bookSearchText}
-                      data-reference-search={entry.referencePart}
-                    >
-                      <a class="scripture-card card-panel" href={`/scriptures/${entry.slug}`}>
-                        <span class="scripture-reference">{entry.reference}</span>
-                        <span class="scripture-count">
-                          {entry.questionCount === 1 ? "1 question" : `${entry.questionCount} questions`}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
+    {
+      bookGroups.length ? (
+        <>
+          <div class="scripture-testament-picker" aria-label="Choose testament">
+            <button
+              type="button"
+              class="scripture-testament-button"
+              data-testament-button
+              data-testament-target="ot"
+            >
+              Old Testament
+            </button>
+            <button
+              type="button"
+              class="scripture-testament-button"
+              data-testament-button
+              data-testament-target="nt"
+            >
+              New Testament
+            </button>
           </div>
-        </div>
-        <div class="scripture-testament-panel" data-testament-panel="ot" hidden>
-          <nav class="scripture-book-jump" aria-label="Jump to Old Testament book">
-            {oldTestamentGroups.map((group) => (
-              <a href={`#book-${group.bookCode}`} data-scripture-jump-link data-book-code={group.bookCode}>
-                {group.bookName}
-              </a>
-            ))}
-          </nav>
-          <div class="scripture-book-groups" data-scripture-groups="ot">
-            {oldTestamentGroups.map((group) => (
-              <section class="scripture-book-group" data-scripture-group data-testament="ot" id={`book-${group.bookCode}`}>
-                <header class="scripture-book-header">
-                  <h2>{group.bookName}</h2>
-                  <p>{group.entries.length === 1 ? "1 reference" : `${group.entries.length} references`}</p>
-                </header>
-                <ul class="scripture-grid">
-                  {group.entries.map((entry) => (
-                    <li data-scripture-item data-scripture-text={entry.searchText}>
-                      <a class="scripture-card card-panel" href={`/scriptures/${entry.slug}`}>
-                        <span class="scripture-reference">{entry.reference}</span>
-                        <span class="scripture-count">
-                          {entry.questionCount === 1 ? "1 question" : `${entry.questionCount} questions`}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <p class="scripture-back-top">
-                  <a href="#scripture-index-top">Back to top</a>
-                </p>
-              </section>
-            ))}
+          <label class="scripture-filter">
+            <span class="scripture-filter-label">Filter references</span>
+            <input
+              type="search"
+              class="scripture-filter-input"
+              placeholder="Search references, e.g. Exodus 1 or ex 1"
+              data-scripture-filter
+            />
+          </label>
+          <div class="scripture-search-results" data-search-results hidden>
+            <div class="scripture-book-groups" data-search-groups>
+              {bookGroups.map((group) => (
+                <section
+                  class="scripture-book-group"
+                  data-search-group
+                  data-book-code={group.bookCode}
+                >
+                  <header class="scripture-book-header">
+                    <h2>{group.bookName}</h2>
+                    <p>
+                      {group.entries.length === 1
+                        ? "1 reference"
+                        : `${group.entries.length} references`}
+                    </p>
+                  </header>
+                  <ul class="scripture-grid">
+                    {group.entries.map((entry) => (
+                      <li
+                        data-search-item
+                        data-scripture-text={entry.searchText}
+                        data-book-code={entry.bookCode}
+                        data-book-search={entry.bookSearchText}
+                        data-reference-search={entry.referencePart}
+                      >
+                        <a class="scripture-card card-panel" href={`/scriptures/${entry.slug}`}>
+                          <span class="scripture-reference">{entry.reference}</span>
+                          <span class="scripture-count">
+                            {entry.questionCount === 1
+                              ? "1 question"
+                              : `${entry.questionCount} questions`}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
           </div>
-        </div>
-        <div class="scripture-testament-panel" data-testament-panel="nt" hidden>
-          <nav class="scripture-book-jump" aria-label="Jump to New Testament book">
-            {newTestamentGroups.map((group) => (
-              <a href={`#book-${group.bookCode}`} data-scripture-jump-link data-book-code={group.bookCode}>
-                {group.bookName}
-              </a>
-            ))}
-          </nav>
-          <div class="scripture-book-groups" data-scripture-groups="nt">
-            {newTestamentGroups.map((group) => (
-              <section class="scripture-book-group" data-scripture-group data-testament="nt" id={`book-${group.bookCode}`}>
-                <header class="scripture-book-header">
-                  <h2>{group.bookName}</h2>
-                  <p>{group.entries.length === 1 ? "1 reference" : `${group.entries.length} references`}</p>
-                </header>
-                <ul class="scripture-grid">
-                  {group.entries.map((entry) => (
-                    <li data-scripture-item data-scripture-text={entry.searchText}>
-                      <a class="scripture-card card-panel" href={`/scriptures/${entry.slug}`}>
-                        <span class="scripture-reference">{entry.reference}</span>
-                        <span class="scripture-count">
-                          {entry.questionCount === 1 ? "1 question" : `${entry.questionCount} questions`}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <p class="scripture-back-top">
-                  <a href="#scripture-index-top">Back to top</a>
-                </p>
-              </section>
-            ))}
+          <div class="scripture-testament-panel" data-testament-panel="ot" hidden>
+            <nav class="scripture-book-jump" aria-label="Jump to Old Testament book">
+              {oldTestamentGroups.map((group) => (
+                <a
+                  href={`#book-${group.bookCode}`}
+                  data-scripture-jump-link
+                  data-book-code={group.bookCode}
+                >
+                  {group.bookName}
+                </a>
+              ))}
+            </nav>
+            <div class="scripture-book-groups" data-scripture-groups="ot">
+              {oldTestamentGroups.map((group) => (
+                <section
+                  class="scripture-book-group"
+                  data-scripture-group
+                  data-testament="ot"
+                  id={`book-${group.bookCode}`}
+                >
+                  <header class="scripture-book-header">
+                    <h2>{group.bookName}</h2>
+                    <p>
+                      {group.entries.length === 1
+                        ? "1 reference"
+                        : `${group.entries.length} references`}
+                    </p>
+                  </header>
+                  <ul class="scripture-grid">
+                    {group.entries.map((entry) => (
+                      <li data-scripture-item data-scripture-text={entry.searchText}>
+                        <a class="scripture-card card-panel" href={`/scriptures/${entry.slug}`}>
+                          <span class="scripture-reference">{entry.reference}</span>
+                          <span class="scripture-count">
+                            {entry.questionCount === 1
+                              ? "1 question"
+                              : `${entry.questionCount} questions`}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                  <p class="scripture-back-top">
+                    <a href="#scripture-index-top">Back to top</a>
+                  </p>
+                </section>
+              ))}
+            </div>
           </div>
-        </div>
-      </>
-    ) : (
-      <p><em>No scripture references are indexed yet.</em></p>
-    )}
+          <div class="scripture-testament-panel" data-testament-panel="nt" hidden>
+            <nav class="scripture-book-jump" aria-label="Jump to New Testament book">
+              {newTestamentGroups.map((group) => (
+                <a
+                  href={`#book-${group.bookCode}`}
+                  data-scripture-jump-link
+                  data-book-code={group.bookCode}
+                >
+                  {group.bookName}
+                </a>
+              ))}
+            </nav>
+            <div class="scripture-book-groups" data-scripture-groups="nt">
+              {newTestamentGroups.map((group) => (
+                <section
+                  class="scripture-book-group"
+                  data-scripture-group
+                  data-testament="nt"
+                  id={`book-${group.bookCode}`}
+                >
+                  <header class="scripture-book-header">
+                    <h2>{group.bookName}</h2>
+                    <p>
+                      {group.entries.length === 1
+                        ? "1 reference"
+                        : `${group.entries.length} references`}
+                    </p>
+                  </header>
+                  <ul class="scripture-grid">
+                    {group.entries.map((entry) => (
+                      <li data-scripture-item data-scripture-text={entry.searchText}>
+                        <a class="scripture-card card-panel" href={`/scriptures/${entry.slug}`}>
+                          <span class="scripture-reference">{entry.reference}</span>
+                          <span class="scripture-count">
+                            {entry.questionCount === 1
+                              ? "1 question"
+                              : `${entry.questionCount} questions`}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                  <p class="scripture-back-top">
+                    <a href="#scripture-index-top">Back to top</a>
+                  </p>
+                </section>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <p>
+          <em>No scripture references are indexed yet.</em>
+        </p>
+      )
+    }
   </section>
 
   <script type="module" is:inline>
@@ -301,17 +391,25 @@ const siteName = siteSettings.branding.siteName;
 
       return segments.some((segment) => {
         if (queryReference.verse == null) {
-          return queryReference.chapter >= segment.startChapter && queryReference.chapter <= segment.endChapter;
+          return (
+            queryReference.chapter >= segment.startChapter &&
+            queryReference.chapter <= segment.endChapter
+          );
         }
 
-        if (queryReference.chapter < segment.startChapter || queryReference.chapter > segment.endChapter) {
+        if (
+          queryReference.chapter < segment.startChapter ||
+          queryReference.chapter > segment.endChapter
+        ) {
           return false;
         }
 
         if (segment.startChapter === segment.endChapter) {
-          return queryReference.chapter === segment.startChapter
-            && queryReference.verse >= segment.startVerse
-            && queryReference.verse <= segment.endVerse;
+          return (
+            queryReference.chapter === segment.startChapter &&
+            queryReference.verse >= segment.startVerse &&
+            queryReference.verse <= segment.endVerse
+          );
         }
 
         if (queryReference.chapter === segment.startChapter) {
@@ -322,7 +420,10 @@ const siteName = siteSettings.branding.siteName;
           return queryReference.verse <= segment.endVerse;
         }
 
-        return queryReference.chapter > segment.startChapter && queryReference.chapter < segment.endChapter;
+        return (
+          queryReference.chapter > segment.startChapter &&
+          queryReference.chapter < segment.endChapter
+        );
       });
     };
 
@@ -395,12 +496,15 @@ const siteName = siteSettings.branding.siteName;
           return;
         }
 
-        const remainingTokens = matchedAliasLength > 0 ? queryTokens.slice(matchedAliasLength) : queryTokens;
+        const remainingTokens =
+          matchedAliasLength > 0 ? queryTokens.slice(matchedAliasLength) : queryTokens;
         const bookCode = String(item.getAttribute("data-book-code") || "");
         const isSingleChapterBook = singleChapterBooks.has(bookCode);
         const queryReference = parseReferenceQuery(remainingTokens, isSingleChapterBook);
         const referencePart = String(item.getAttribute("data-reference-search") || "").trim();
-        const matchesQuery = hasQuery ? matchesReferenceQuery(referencePart, queryReference, isSingleChapterBook) : true;
+        const matchesQuery = hasQuery
+          ? matchesReferenceQuery(referencePart, queryReference, isSingleChapterBook)
+          : true;
         item.hidden = hasQuery && !matchesQuery;
       });
 
@@ -435,7 +539,9 @@ const siteName = siteSettings.branding.siteName;
       panels.forEach((panel) => {
         const jumpNav = panel.querySelector(".scripture-book-jump");
         if (jumpNav) {
-          const visibleLinks = [...jumpNav.querySelectorAll("[data-scripture-jump-link]")].filter((link) => !link.hidden);
+          const visibleLinks = [...jumpNav.querySelectorAll("[data-scripture-jump-link]")].filter(
+            (link) => !link.hidden
+          );
           jumpNav.hidden = hasQuery || visibleLinks.length === 0;
         }
 
@@ -447,7 +553,9 @@ const siteName = siteSettings.branding.siteName;
       });
 
       if (searchResults) {
-        const visibleSearchGroups = searchGroups.filter((group) => !group.classList.contains("is-hidden"));
+        const visibleSearchGroups = searchGroups.filter(
+          (group) => !group.classList.contains("is-hidden")
+        );
         searchResults.hidden = !hasQuery || visibleSearchGroups.length === 0;
       }
 

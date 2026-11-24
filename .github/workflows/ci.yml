@@ -23,5 +23,8 @@ jobs:
       - name: Validate question corpus
         run: npm run check:questions
 
+      - name: Check formatting
+        run: npm run format:check
+
       - name: Type check
         run: npm run check:types

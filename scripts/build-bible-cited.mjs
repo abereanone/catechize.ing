@@ -11,13 +11,7 @@ const outputFile = path.join(rootDir, "src", "generated", "bible-cited.json");
 const bibleAbbreviation = "BSB";
 const chapterPreviewVerseLimit = 3;
 
-const singleChapterBooks = new Set([
-  "oba",
-  "phm",
-  "2jn",
-  "3jn",
-  "jud",
-]);
+const singleChapterBooks = new Set(["oba", "phm", "2jn", "3jn", "jud"]);
 
 let referencePattern = null;
 
@@ -67,7 +61,9 @@ function splitReferenceParts(reference) {
   }
 
   const book = String(match[1] ?? "").trim();
-  const chapterAndVerse = String(match[2] ?? "").trim().replace(/\s*,\s*/g, ", ");
+  const chapterAndVerse = String(match[2] ?? "")
+    .trim()
+    .replace(/\s*,\s*/g, ", ");
 
   if (!book || !chapterAndVerse) {
     return null;
@@ -77,7 +73,10 @@ function splitReferenceParts(reference) {
 }
 
 function normalizeReference(bookMap, reference) {
-  const lower = reference.trim().toLowerCase().replace(/\u2013|\u2014/g, "-");
+  const lower = reference
+    .trim()
+    .toLowerCase()
+    .replace(/\u2013|\u2014/g, "-");
   const parts = splitReferenceParts(lower);
   if (!parts) {
     return reference;
@@ -87,12 +86,9 @@ function normalizeReference(bookMap, reference) {
   const normalizedBookKey = normalizeBookKey(book);
   let chapterAndVerse = parts.chapterAndVerse;
 
-  const bookCode = normalizeBookName(bookMap, book);  
-  
-  if (
-    singleChapterBooks.has(bookCode) &&
-    !chapterAndVerse.includes(":")
-  ) {
+  const bookCode = normalizeBookName(bookMap, book);
+
+  if (singleChapterBooks.has(bookCode) && !chapterAndVerse.includes(":")) {
     chapterAndVerse = `1:${chapterAndVerse}`;
   }
 
@@ -178,7 +174,9 @@ function extractParentheticalReferences(html) {
       .map((part) => part.trim())
       .filter(Boolean)
       .forEach((part) => {
-        const cleanedPart = cleanReference(part).replace(/(?:,\s*)?etc\.?$/i, "").trim();
+        const cleanedPart = cleanReference(part)
+          .replace(/(?:,\s*)?etc\.?$/i, "")
+          .trim();
         if (!cleanedPart) {
           return;
         }
@@ -298,7 +296,7 @@ function normalizeVersionLabel(value) {
 
 function summarizeVersionLabels(versions) {
   const labels = [...new Set(versions.map(normalizeVersionLabel).filter(Boolean))];
-  return labels.length > 1 ? labels.join("/") : labels[0] ?? bibleAbbreviation;
+  return labels.length > 1 ? labels.join("/") : (labels[0] ?? bibleAbbreviation);
 }
 
 function resolveVerseData(bible, normalizedReference) {
@@ -391,7 +389,11 @@ function resolveVerseData(bible, normalizedReference) {
     if (ffMatch) {
       const start = Number.parseInt(ffMatch[1], 10);
       if (!Number.isNaN(start) && start > 0) {
-        for (let verseNumber = start; verseNumber <= chapterEntriesForValue.length; verseNumber += 1) {
+        for (
+          let verseNumber = start;
+          verseNumber <= chapterEntriesForValue.length;
+          verseNumber += 1
+        ) {
           appendVerse(chapterValue, verseNumber);
         }
       }
@@ -507,7 +509,9 @@ async function run() {
   const bible = JSON.parse(bibleRaw);
 
   if (!Array.isArray(questions)) {
-    throw new Error("src/generated/questions.json must be an array. Run npm run build:questions first.");
+    throw new Error(
+      "src/generated/questions.json must be an array. Run npm run build:questions first."
+    );
   }
 
   const allReferences = new Set();

@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap");
 
 /* === Brand & Design Tokens === */
 :root {
   color-scheme: dark;
 
   /* Typography */
-  --font-body: 'Source Sans 3', sans-serif;
-  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: "Source Sans 3", sans-serif;
+  --font-heading: "Cormorant Garamond", serif;
   --font-weight-body: 500;
   --font-size-body: 1.15rem;
   --font-size-main: 1.1rem;
@@ -108,18 +108,12 @@
 
   --transition-theme: background-color 0.2s ease, color 0.2s ease;
   --transition-surface:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease;
+    transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
   --transition-border-bg: background-color 0.2s ease, border-color 0.2s ease;
-  --transition-border-bg-color:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease;
+  --transition-border-bg-color: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   color-scheme: light;
 
   /* Core colors */
@@ -204,8 +198,7 @@ body {
   background:
     radial-gradient(circle at top, rgba(88, 131, 93, 0.16), transparent 34%),
     radial-gradient(circle at bottom right, rgba(28, 63, 37, 0.16), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.04)),
-    var(--color-bg);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.04)), var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
   font-weight: var(--font-weight-body);
@@ -510,79 +503,79 @@ ul {
   --question-id-pill-color: #ffd38f;
 }
 
-[data-theme='light'] .question-card[data-question-group="bc"],
-[data-theme='light'] .question-article[data-question-group="bc"] {
+[data-theme="light"] .question-card[data-question-group="bc"],
+[data-theme="light"] .question-article[data-question-group="bc"] {
   --question-accent-bg: rgba(184, 134, 34, 0.12);
   --question-accent-border: rgba(173, 122, 23, 0.34);
   --question-accent-text: #8a6113;
 }
 
-[data-theme='light'] .question-card[data-question-group="wsc"],
-[data-theme='light'] .question-article[data-question-group="wsc"] {
+[data-theme="light"] .question-card[data-question-group="wsc"],
+[data-theme="light"] .question-article[data-question-group="wsc"] {
   --question-accent-bg: rgba(84, 138, 214, 0.12);
   --question-accent-border: rgba(68, 123, 198, 0.32);
   --question-accent-text: #235d96;
 }
 
-[data-theme='light'] .question-card[data-question-group="wlc"],
-[data-theme='light'] .question-article[data-question-group="wlc"] {
+[data-theme="light"] .question-card[data-question-group="wlc"],
+[data-theme="light"] .question-article[data-question-group="wlc"] {
   --question-accent-bg: rgba(62, 153, 131, 0.12);
   --question-accent-border: rgba(50, 130, 111, 0.32);
   --question-accent-text: #1d6d5c;
 }
 
-[data-theme='light'] .question-card[data-question-group="hc"],
-[data-theme='light'] .question-article[data-question-group="hc"] {
+[data-theme="light"] .question-card[data-question-group="hc"],
+[data-theme="light"] .question-article[data-question-group="hc"] {
   --question-accent-bg: rgba(172, 88, 68, 0.11);
   --question-accent-border: rgba(155, 75, 57, 0.3);
   --question-accent-text: #8b4233;
 }
 
-[data-theme='light'] .question-card[data-question-group="aoc"],
-[data-theme='light'] .question-article[data-question-group="aoc"] {
+[data-theme="light"] .question-card[data-question-group="aoc"],
+[data-theme="light"] .question-article[data-question-group="aoc"] {
   --question-accent-bg: rgba(117, 103, 181, 0.12);
   --question-accent-border: rgba(100, 87, 162, 0.32);
   --question-accent-text: #5f4eb0;
 }
 
-[data-theme='light'] .question-card[data-question-group="cd"],
-[data-theme='light'] .question-article[data-question-group="cd"] {
+[data-theme="light"] .question-card[data-question-group="cd"],
+[data-theme="light"] .question-article[data-question-group="cd"] {
   --question-accent-bg: rgba(245, 114, 37, 0.14);
   --question-accent-border: rgba(224, 98, 24, 0.38);
   --question-accent-text: #8e3f00;
 }
 
-[data-theme='light'] .question-meta-id[data-question-group="bc"] {
+[data-theme="light"] .question-meta-id[data-question-group="bc"] {
   --question-id-bg: rgba(184, 134, 34, 0.12);
   --question-id-border: rgba(173, 122, 23, 0.34);
   --question-id-pill-color: #8a6113;
 }
 
-[data-theme='light'] .question-meta-id[data-question-group="wsc"] {
+[data-theme="light"] .question-meta-id[data-question-group="wsc"] {
   --question-id-bg: rgba(84, 138, 214, 0.12);
   --question-id-border: rgba(68, 123, 198, 0.32);
   --question-id-pill-color: #235d96;
 }
 
-[data-theme='light'] .question-meta-id[data-question-group="wlc"] {
+[data-theme="light"] .question-meta-id[data-question-group="wlc"] {
   --question-id-bg: rgba(62, 153, 131, 0.12);
   --question-id-border: rgba(50, 130, 111, 0.32);
   --question-id-pill-color: #1d6d5c;
 }
 
-[data-theme='light'] .question-meta-id[data-question-group="hc"] {
+[data-theme="light"] .question-meta-id[data-question-group="hc"] {
   --question-id-bg: rgba(172, 88, 68, 0.11);
   --question-id-border: rgba(155, 75, 57, 0.3);
   --question-id-pill-color: #8b4233;
 }
 
-[data-theme='light'] .question-meta-id[data-question-group="aoc"] {
+[data-theme="light"] .question-meta-id[data-question-group="aoc"] {
   --question-id-bg: rgba(117, 103, 181, 0.12);
   --question-id-border: rgba(100, 87, 162, 0.32);
   --question-id-pill-color: #5f4eb0;
 }
 
-[data-theme='light'] .question-meta-id[data-question-group="cd"] {
+[data-theme="light"] .question-meta-id[data-question-group="cd"] {
   --question-id-bg: rgba(245, 114, 37, 0.14);
   --question-id-border: rgba(224, 98, 24, 0.38);
   --question-id-pill-color: #8e3f00;
@@ -744,37 +737,37 @@ ul {
   filter: brightness(1.06);
 }
 
-[data-theme='light'] .category-chip[data-category-group="bc"] {
+[data-theme="light"] .category-chip[data-category-group="bc"] {
   background-color: rgba(184, 134, 34, 0.12);
   border-color: rgba(173, 122, 23, 0.34);
   color: #8a6113;
 }
 
-[data-theme='light'] .category-chip[data-category-group="wsc"] {
+[data-theme="light"] .category-chip[data-category-group="wsc"] {
   background-color: rgba(84, 138, 214, 0.12);
   border-color: rgba(68, 123, 198, 0.32);
   color: #235d96;
 }
 
-[data-theme='light'] .category-chip[data-category-group="wlc"] {
+[data-theme="light"] .category-chip[data-category-group="wlc"] {
   background-color: rgba(62, 153, 131, 0.12);
   border-color: rgba(50, 130, 111, 0.32);
   color: #1d6d5c;
 }
 
-[data-theme='light'] .category-chip[data-category-group="hc"] {
+[data-theme="light"] .category-chip[data-category-group="hc"] {
   background-color: rgba(172, 88, 68, 0.11);
   border-color: rgba(155, 75, 57, 0.3);
   color: #8b4233;
 }
 
-[data-theme='light'] .category-chip[data-category-group="aoc"] {
+[data-theme="light"] .category-chip[data-category-group="aoc"] {
   background-color: rgba(117, 103, 181, 0.12);
   border-color: rgba(100, 87, 162, 0.32);
   color: #5f4eb0;
 }
 
-[data-theme='light'] .category-chip[data-category-group="cd"] {
+[data-theme="light"] .category-chip[data-category-group="cd"] {
   background-color: rgba(245, 114, 37, 0.14);
   border-color: rgba(224, 98, 24, 0.38);
   color: #8e3f00;
@@ -824,7 +817,9 @@ ul {
   color: var(--color-link);
   cursor: pointer;
   border-bottom: 1px dotted currentColor;
-  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-bottom-color 0.2s ease;
 }
 
 .bible-ref:hover,
@@ -927,27 +922,27 @@ ul {
   color: #ffd38f;
 }
 
-[data-theme='light'] .category-card[data-category-group="bc"] .category-name {
+[data-theme="light"] .category-card[data-category-group="bc"] .category-name {
   color: #8a6113;
 }
 
-[data-theme='light'] .category-card[data-category-group="wsc"] .category-name {
+[data-theme="light"] .category-card[data-category-group="wsc"] .category-name {
   color: #235d96;
 }
 
-[data-theme='light'] .category-card[data-category-group="wlc"] .category-name {
+[data-theme="light"] .category-card[data-category-group="wlc"] .category-name {
   color: #1d6d5c;
 }
 
-[data-theme='light'] .category-card[data-category-group="hc"] .category-name {
+[data-theme="light"] .category-card[data-category-group="hc"] .category-name {
   color: #8b4233;
 }
 
-[data-theme='light'] .category-card[data-category-group="aoc"] .category-name {
+[data-theme="light"] .category-card[data-category-group="aoc"] .category-name {
   color: #5f4eb0;
 }
 
-[data-theme='light'] .category-card[data-category-group="cd"] .category-name {
+[data-theme="light"] .category-card[data-category-group="cd"] .category-name {
   color: #8e3f00;
 }
 

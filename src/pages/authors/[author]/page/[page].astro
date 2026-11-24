@@ -38,14 +38,18 @@ if (!activeAuthor) {
   throw new Error(`Author not found for slug "${author}".`);
 }
 
-const pageNumber = Number.parseInt(Array.isArray(page) ? page[0] : page ?? "", 10);
+const pageNumber = Number.parseInt(Array.isArray(page) ? page[0] : (page ?? ""), 10);
 
 if (!Number.isInteger(pageNumber) || pageNumber < 1) {
   throw new Error(`Invalid page "${page}".`);
 }
 
 const matchingQuestions = getQuestionsByAuthor(activeAuthor.id);
-const paginationResult = paginateQuestions(matchingQuestions, pageNumber, siteSettings.questionsPerPage);
+const paginationResult = paginateQuestions(
+  matchingQuestions,
+  pageNumber,
+  siteSettings.questionsPerPage
+);
 
 if (paginationResult.currentPage !== pageNumber) {
   throw new Error(`Page "${pageNumber}" is out of range.`);
@@ -73,19 +77,21 @@ const pagination = {
         <h1 class="page-title">Questions &amp; Answers</h1>
         <p class="feed-subtitle">
           By:{" "}
-          {activeAuthor.url ? (
-            <a
-              class="author-name-link"
-              href={activeAuthor.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={activeAuthor.url}
-            >
-              {activeAuthor.name}
-            </a>
-          ) : (
-            activeAuthor.name
-          )}
+          {
+            activeAuthor.url ? (
+              <a
+                class="author-name-link"
+                href={activeAuthor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={activeAuthor.url}
+              >
+                {activeAuthor.name}
+              </a>
+            ) : (
+              activeAuthor.name
+            )
+          }
         </p>
         {activeAuthor.bio ? <p class="author-bio">{activeAuthor.bio}</p> : null}
       </div>

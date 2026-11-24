@@ -16,7 +16,9 @@ const highlightReference =
     ? Astro.props.highlightReference.trim()
     : null;
 const baseIndex =
-  typeof startIndex === "number" && Number.isFinite(startIndex) ? Math.max(0, Math.floor(startIndex)) : 0;
+  typeof startIndex === "number" && Number.isFinite(startIndex)
+    ? Math.max(0, Math.floor(startIndex))
+    : 0;
 const PREVIEW_LENGTH = 200;
 
 function stripHtml(value: string): string {
@@ -44,29 +46,37 @@ function getAnswerPreview(question: { answerHtml?: string; excerpt?: string }): 
   return `${source.slice(0, PREVIEW_LENGTH).trimEnd()}...`;
 }
 ---
+
 <ul class="question-list">
-  {questions.map((q, index) => {
-    const fallbackId = baseIndex + index + 1;
-    const primaryGroup = Array.isArray(q.groupCodes) && q.groupCodes.length ? q.groupCodes[0] : undefined;
-    const displayId =
-      formatQuestionIdentifier(q, { groupCode: primaryGroup, fallback: fallbackId }) ??
-      (typeof fallbackId === "number" ? fallbackId : null);
-    const href = highlightReference
-      ? `/questions/${q.slug}?ref=${encodeURIComponent(highlightReference)}`
-      : `/questions/${q.slug}`;
-    const answerPreview = getAnswerPreview(q);
-    return (
-    <li>
-      <a class="question-card card-panel" data-question-group={primaryGroup ? primaryGroup.toLowerCase() : undefined} href={href}>
-        {showQuestionId && displayId !== null ? (
-          <span class="question-id">#{displayId}</span>
-        ) : null}
-        <span class="question-card-body">
-          <span class="question-title">{q.title}</span>
-          {answerPreview ? <span class="question-preview">{answerPreview}</span> : null}
-        </span>
-      </a>
-    </li>
-    );
-  })}
+  {
+    questions.map((q, index) => {
+      const fallbackId = baseIndex + index + 1;
+      const primaryGroup =
+        Array.isArray(q.groupCodes) && q.groupCodes.length ? q.groupCodes[0] : undefined;
+      const displayId =
+        formatQuestionIdentifier(q, { groupCode: primaryGroup, fallback: fallbackId }) ??
+        (typeof fallbackId === "number" ? fallbackId : null);
+      const href = highlightReference
+        ? `/questions/${q.slug}?ref=${encodeURIComponent(highlightReference)}`
+        : `/questions/${q.slug}`;
+      const answerPreview = getAnswerPreview(q);
+      return (
+        <li>
+          <a
+            class="question-card card-panel"
+            data-question-group={primaryGroup ? primaryGroup.toLowerCase() : undefined}
+            href={href}
+          >
+            {showQuestionId && displayId !== null ? (
+              <span class="question-id">#{displayId}</span>
+            ) : null}
+            <span class="question-card-body">
+              <span class="question-title">{q.title}</span>
+              {answerPreview ? <span class="question-preview">{answerPreview}</span> : null}
+            </span>
+          </a>
+        </li>
+      );
+    })
+  }
 </ul>

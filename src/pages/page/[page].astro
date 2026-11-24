@@ -13,7 +13,7 @@ const allQuestions = getPublishedQuestions();
 const categories = listCategories();
 
 const { page } = Astro.params;
-const pageNumber = Number.parseInt(Array.isArray(page) ? page[0] : page ?? "", 10);
+const pageNumber = Number.parseInt(Array.isArray(page) ? page[0] : (page ?? ""), 10);
 
 if (!Number.isInteger(pageNumber) || pageNumber < 1) {
   throw new Error(`Invalid page number "${page}".`);
@@ -64,24 +64,30 @@ export function getStaticPaths() {
     <fragment slot="header">
       <div class="feed-header">
         <h1 class="page-title">Questions &amp; Answers</h1>
-        {categories.length ? (
-          <div class="category-meta">
-            <a class="category-chip" href="/categories">All Categories</a>
-            <ul class="category-list">
-              {categories.map((category) => (
-                <li>
-                  <a
-                    class="category-chip"
-                    data-category-group={category.groupCode ? category.groupCode.toLowerCase() : undefined}
-                    href={`/categories/${category.id}`}
-                  >
-                    {category.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+        {
+          categories.length ? (
+            <div class="category-meta">
+              <a class="category-chip" href="/categories">
+                All Categories
+              </a>
+              <ul class="category-list">
+                {categories.map((category) => (
+                  <li>
+                    <a
+                      class="category-chip"
+                      data-category-group={
+                        category.groupCode ? category.groupCode.toLowerCase() : undefined
+                      }
+                      href={`/categories/${category.id}`}
+                    >
+                      {category.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null
+        }
       </div>
     </fragment>
   </QuestionFeed>

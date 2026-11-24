@@ -146,7 +146,9 @@ async function main() {
     const target = path.join(args.out, args.prefix, `${slug}.mp3`);
 
     if (seen.has(slug)) {
-      problems.push(`${slug}: two tracks map here -- ${seen.get(slug)} and ${path.basename(entry.filePath)}`);
+      problems.push(
+        `${slug}: two tracks map here -- ${seen.get(slug)} and ${path.basename(entry.filePath)}`
+      );
       continue;
     }
 
@@ -195,13 +197,17 @@ async function main() {
     return;
   }
 
-  console.log(`\n${plan.length} tracks map cleanly to ${args.prefix}-1 .. ${args.prefix}-${plan.length}.`);
+  console.log(
+    `\n${plan.length} tracks map cleanly to ${args.prefix}-1 .. ${args.prefix}-${plan.length}.`
+  );
 
   if (!args.apply) {
     for (const item of plan) {
       console.log(`  ${path.basename(item.from)}\n    -> ${path.relative(process.cwd(), item.to)}`);
     }
-    console.log(`\nDry run. Re-run with --apply to copy into ${path.relative(process.cwd(), args.out)}.`);
+    console.log(
+      `\nDry run. Re-run with --apply to copy into ${path.relative(process.cwd(), args.out)}.`
+    );
     return;
   }
 

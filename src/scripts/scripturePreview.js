@@ -46,4 +46,3 @@ export function initScripturePreview() {
       verseBody.textContent = "Verse text could not be loaded for this reference.";
     });
 }
-

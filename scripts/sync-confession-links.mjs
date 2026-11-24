@@ -45,7 +45,9 @@ async function load() {
     // deployed yet — it should just carry the mapping it already had.
     const raw = await readFile(out, "utf8").catch(() => null);
     if (!raw) throw new Error(`${PUBLISHED} unavailable (${error.message}) and no local copy`);
-    console.warn(`warning: ${PUBLISHED} unavailable (${error.message}) — keeping the checked-in copy`);
+    console.warn(
+      `warning: ${PUBLISHED} unavailable (${error.message}) — keeping the checked-in copy`
+    );
     return { raw, from: `${path.relative(root, out)} (unchanged)` };
   }
 }

@@ -6,12 +6,18 @@ interface Props {
 
 const { categories, title } = Astro.props;
 ---
+
 <nav class="breadcrumbs">
   <a href="/">Home</a>
-  {categories.map(c => (
-    <>
-      <span>›</span><a href={`/categories/${c.toLowerCase()}`}>{c}</a>
-    </>
-  ))}
+  {
+    categories.map((c) => (
+      <>
+        <>
+          <span>›</span>
+          <a href={`/categories/${c.toLowerCase()}`}>{c}</a>
+        </>
+      </>
+    ))
+  }
   <span>›</span>{title}
 </nav>

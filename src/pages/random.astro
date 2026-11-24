@@ -18,7 +18,7 @@ const entries = questions.map((question) => ({
     <meta name="robots" content="noindex" />
   </head>
   <body>
-    <script type="application/json" id="random-entries" set:html={JSON.stringify(entries)}></script>
+    <script type="application/json" id="random-entries" set:html={JSON.stringify(entries)} />
     <script is:inline>
       (function () {
         const container = document.getElementById("random-entries");

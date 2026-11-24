@@ -342,9 +342,7 @@ function normalizeReferenceChunk(reference: string) {
   const bookSearchText = buildBookSearchText(bookCode, bookName);
   const referenceText = `${bookName} ${referencePart}`;
   const key = `${bookCode} ${referencePart.toLowerCase()}`;
-  const slug = key
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+  const slug = key.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
   return {
     key,
@@ -360,9 +358,7 @@ function normalizeReferenceChunk(reference: string) {
 
 function buildBookSearchText(bookCode: string, bookName: string): string {
   const aliases = getBookAliases(bookCode);
-  return [...new Set([bookName, ...aliases])]
-    .map((value) => value.toLowerCase())
-    .join(" | ");
+  return [...new Set([bookName, ...aliases])].map((value) => value.toLowerCase()).join(" | ");
 }
 
 function buildSearchText(bookSearchText: string, referencePart: string): string {
@@ -374,18 +370,18 @@ function buildSearchText(bookSearchText: string, referencePart: string): string 
       .map((value) => `${value} ${referencePart}`)
   );
 
-  return [...variants]
-    .map((value) => value.toLowerCase())
-    .join(" ");
+  return [...variants].map((value) => value.toLowerCase()).join(" ");
 }
 
 function getBookAliases(bookCode: string): string[] {
-  return [...new Set(
-    Object.entries(bookMap)
-      .filter(([, value]) => value === bookCode)
-      .map(([name]) => normalizeAlias(name))
-      .filter(Boolean)
-  )];
+  return [
+    ...new Set(
+      Object.entries(bookMap)
+        .filter(([, value]) => value === bookCode)
+        .map(([name]) => normalizeAlias(name))
+        .filter(Boolean)
+    ),
+  ];
 }
 
 function normalizeAlias(value: string): string {
