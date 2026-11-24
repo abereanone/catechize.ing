@@ -146,12 +146,23 @@ const urls = Object.fromEntries(
       u.searchParams.set("bg", tone);
       return u.href;
     };
+    // Can this browser share a picture file at all? Some phone browsers (e.g. DuckDuckGo on
+    // Android, built on WebView) can share only links, or nothing.
+    const canSharePictures = (() => {
+      try {
+        return !!navigator.canShare?.({
+          files: [new File(["x"], "x.jpg", { type: "image/jpeg" })],
+        });
+      } catch {
+        return false;
+      }
+    })();
 
     share.addEventListener("click", async () => {
       const t = tone;
       say("");
       try {
-        if (isPhone && navigator.canShare) {
+        if (isPhone && canSharePictures) {
           if (!ready[t]) {
             // Still downloading: wait for it, then ask for one more tap (the wait used up this one).
             say("Getting the picture…");
@@ -161,8 +172,21 @@ const urls = Object.fromEntries(
           const file = new File([ready[t]], nameFor(t), { type: "image/jpeg" });
           const withLink = { files: [file], text: `${share.dataset.cardText} ${link()}` };
           if (navigator.canShare(withLink)) return await navigator.share(withLink);
-          if (navigator.canShare({ files: [file] }))
-            return await navigator.share({ files: [file] });
+          return await navigator.share({ files: [file] });
+        }
+        if (isPhone) {
+          // No picture sharing here. Share the link instead (it previews as this card), or failing
+          // that save the picture; a clipboard copy is little use on a phone.
+          if (navigator.share) {
+            await navigator.share({ title: share.dataset.cardText, url: link() });
+            return say(
+              "This browser can’t share pictures, so it shared the link, which shows this card."
+            );
+          }
+          save(await getBlob(t));
+          return say(
+            "This browser can’t share pictures, so the picture is saved to your downloads."
+          );
         }
         if (navigator.clipboard?.write && typeof ClipboardItem !== "undefined") {
           // Clipboards take PNG, not JPEG; the promise keeps the copy tied to this tap.
