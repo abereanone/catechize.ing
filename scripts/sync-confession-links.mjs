@@ -57,6 +57,19 @@ const data = JSON.parse(raw);
 
 const questions = data.mappings.reduce((total, mapping) => total + mapping.questions.length, 0);
 
+// Leave the checked-in copy alone when only generatedAt differs, so builds don't
+// leave a one-line date change behind in git.
+const sansDate = (d) => JSON.stringify({ ...d, generatedAt: undefined });
+const current = await readFile(out, "utf8")
+  .then(JSON.parse)
+  .catch(() => null);
+if (current && sansDate(current) === sansDate(data)) {
+  console.log(
+    `confession links unchanged (${data.mappings.length} mappings, ${questions} linked questions)`
+  );
+  process.exit(0);
+}
+
 await mkdir(path.dirname(out), { recursive: true });
 await writeFile(out, `${JSON.stringify(data, null, 2)}\n`, "utf8");
 
