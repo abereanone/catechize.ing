@@ -14,17 +14,35 @@ interface Props {
 }
 const { slug, title, alt, tone } = Astro.props;
 
-// Share links for computers (phones get the Share image button's own menu). {u} and {t} are
-// filled with the page address and the question; the click fills in the look chosen since.
+// Round brand-coloured share buttons, as on books.freely.giving. {u}, {t} and {i} are filled with
+// the page address, the question and the picture; the click fills in the look chosen since.
 const shareLinks = [
-  ["Facebook", "https://www.facebook.com/sharer/sharer.php?u={u}"],
-  ["X", "https://x.com/intent/post?text={t}&url={u}"],
-  ["Bluesky", "https://bsky.app/intent/compose?text={t}%20{u}"],
-  ["Email", "mailto:?subject={t}&body={u}"],
+  ["Facebook", "fb", "https://www.facebook.com/sharer/sharer.php?u={u}"],
+  ["X", "x", "https://x.com/intent/post?text={t}&url={u}"],
+  ["WhatsApp", "wa", "https://wa.me/?text={t}%20{u}"],
+  ["Bluesky", "bsky", "https://bsky.app/intent/compose?text={t}%20{u}"],
+  [
+    "Pinterest",
+    "pin",
+    "https://pinterest.com/pin/create/button/?url={u}&media={i}&description={t}",
+  ],
+  ["Email", "mail", "mailto:?subject={t}&body={u}"],
 ];
+const ICONS: Record<string, string> = {
+  fb: "<b>f</b>",
+  x: "<b>𝕏</b>",
+  pin: "<b>P</b>",
+  wa: '<svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.6 8.2c.3-.6.9-.7 1.2-.5l.9 1.9-.8 1a4.8 4.8 0 0 0 2.5 2.5l1-.8 1.9.9c.2.3.1.9-.5 1.2-3.1 1.1-7.3-3.1-6.2-6.2z" fill="currentColor"/></svg>',
+  bsky: '<svg viewBox="0 0 24 24"><path d="M5.6 4.2C8 6 10.6 9.6 12 11.6c1.4-2 4-5.6 6.4-7.4 1.7-1.3 4.6-2.3 4.6 1 0 .7-.4 5.5-.6 6.3-.8 2.8-3.6 3.5-6.1 3.1 4.4.8 5.5 3.3 3.1 5.8-4.6 4.7-6.6-1.2-7.1-2.7l-.3-.8-.3.8c-.5 1.5-2.5 7.4-7.1 2.7-2.4-2.5-1.3-5 3.1-5.8-2.5.4-5.3-.3-6.1-3.1C1.4 10.7 1 5.9 1 5.2c0-3.3 2.9-2.3 4.6-1z" fill="currentColor"/></svg>',
+  mail: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m3.5 7 8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
+  link: '<svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+};
 const pageUrl = new URL(`${Astro.url.pathname}?bg=${tone}`, Astro.site).href;
 const fill = (tpl: string) =>
-  tpl.replace("{u}", encodeURIComponent(pageUrl)).replace("{t}", encodeURIComponent(title));
+  tpl
+    .replace("{u}", encodeURIComponent(pageUrl))
+    .replace("{t}", encodeURIComponent(title))
+    .replace("{i}", encodeURIComponent(quoteImage(slug, tone)));
 const urls = Object.fromEntries(
   TONES.flatMap((t) => [
     [t, quoteImage(slug, t)],
@@ -69,7 +87,7 @@ const urls = Object.fromEntries(
   </div>
   <figcaption class="share-card-actions">
     <button type="button" class="share-card-button" data-card-share data-card-text={title}>
-      Share image
+      Share
     </button>
     <a
       class="share-card-button"
@@ -79,21 +97,30 @@ const urls = Object.fromEntries(
     >
       Download
     </a>
-    <p class="share-card-social">
-      Share link:
+    <p class="share-card-social" aria-label="Share a link">
       {
-        shareLinks.map(([name, tpl]) => (
+        shareLinks.map(([name, key, tpl]) => (
           <a
+            class={`share-net share-${key}`}
             href={fill(tpl)}
             data-share-link={tpl}
             target={tpl.startsWith("mailto") ? undefined : "_blank"}
             rel="noopener"
             data-no-go
-          >
-            {name}
-          </a>
+            aria-label={`Share on ${name}`}
+            title={name}
+            set:html={ICONS[key]}
+          />
         ))
       }
+      <button
+        type="button"
+        class="share-net share-link"
+        data-share-copylink
+        aria-label="Copy link"
+        title="Copy link"
+        set:html={ICONS.link}
+      />
     </p>
     <p class="share-card-status" role="status" aria-live="polite"></p>
   </figcaption>
@@ -191,9 +218,18 @@ const urls = Object.fromEntries(
       a.addEventListener("click", () => {
         a.href = a.dataset
           .shareLink!.replace("{u}", encodeURIComponent(link()))
-          .replace("{t}", encodeURIComponent(share.dataset.cardText!));
+          .replace("{t}", encodeURIComponent(share.dataset.cardText!))
+          .replace("{i}", encodeURIComponent(src(tone)));
       })
     );
+    figure.querySelector("[data-share-copylink]")?.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(link());
+        say("Link copied.");
+      } catch {
+        say(link());
+      }
+    });
 
     share.addEventListener("click", async () => {
       const t = tone;
@@ -204,7 +240,7 @@ const urls = Object.fromEntries(
             // Still downloading: wait for it, then ask for one more tap (the wait used up this one).
             say("Getting the picture…");
             await getBlob(t);
-            return say("Ready. Tap Share image again.");
+            return say("Ready. Tap Share again.");
           }
           const file = new File([ready[t]], nameFor(t), { type: "image/jpeg" });
           const withLink = { files: [file], text: `${share.dataset.cardText} ${link()}` };
@@ -328,18 +364,64 @@ const urls = Object.fromEntries(
   }
   .share-card-social {
     flex-basis: 100%;
-    margin: 0;
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--color-muted);
+    margin: 0.2rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
   }
-  .share-card-social a {
-    margin-left: 0.6rem;
+  .share-net {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    font:
+      700 1.3rem/1 Arial,
+      Helvetica,
+      sans-serif;
+    transition:
+      transform 0.1s,
+      filter 0.1s;
   }
-  @media (pointer: coarse) {
-    .share-card-social {
-      display: none;
-    }
+  .share-net:hover,
+  .share-net:focus-visible {
+    color: #fff;
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+  }
+  .share-net :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+  .share-fb {
+    background: #1877f2;
+  }
+  .share-x {
+    background: #000;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+    font-size: 1.2rem;
+  }
+  .share-wa {
+    background: #25d366;
+  }
+  .share-bsky {
+    background: #1185fe;
+  }
+  .share-pin {
+    background: #e60023;
+    font-family: Georgia, serif;
+  }
+  .share-mail {
+    background: #ea4335;
+  }
+  .share-link {
+    background: #6c757d;
   }
   .share-card-status:empty {
     display: none;
